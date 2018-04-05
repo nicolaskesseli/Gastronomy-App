@@ -1,0 +1,12 @@
+/bin/
+/build/
+/target/
+/eclipse
+/.gradle/
+/[Ll]ogs/*
+/[Ll]og/*
+*.log*
+.project
+.settings/
+.classpath
+.metadata
