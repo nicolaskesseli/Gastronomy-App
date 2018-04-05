@@ -9,8 +9,8 @@
 		<version>1.0</version>
 	</parent>
 
-	<artifactId>gastgewerbe-app-gui-service</artifactId>
-	<name>gastgewerbe-app-gui-service</name>
+	<artifactId>gastgewerbe-app-gui-bar</artifactId>
+	<name>gastgewerbe-app-gui-bar</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>

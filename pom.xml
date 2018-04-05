@@ -77,8 +77,10 @@
 		<module>gastgewerbe-app-api</module>
 		<module>gastgewerbe-app-model</module>
 		<module>gastgewerbe-app-gui-kellner</module>
-		<module>gastgewerbe-app-gui-service</module>
+		<module>gastgewerbe-app-gui-bar</module>
 		<module>gastgewerbe-app-gui-kueche</module>
+		<module>gastgewerbe-app-business-benutzer</module>
+		<module>gastgewerbe-app-business-login</module>
 		
 		
 	</modules>
