@@ -78,6 +78,7 @@
 		<module>gastgewerbe-app-model</module>
 		<module>gastgewerbe-app-gui-kellner</module>
 		<module>gastgewerbe-app-gui-service</module>
+		<module>gastgewerbe-app-gui-kueche</module>
 		
 		
 	</modules>
