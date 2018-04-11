@@ -19,11 +19,11 @@
 			<artifactId>gastgewerbe-app-model</artifactId>
 			<version>1.0</version>
 		</dependency>
-		<!--<dependency>
+		<dependency>
 			<groupId>ch.hslu.informatik</groupId>
 			<artifactId>gastgewerbe-app-persister</artifactId>
 			<version>1.0</version>
-		</dependency>-->
+		</dependency>
 		<dependency>
 			<groupId>ch.hslu.informatik</groupId>
 			<artifactId>gastgewerbe-app-api</artifactId>
