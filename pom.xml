@@ -81,6 +81,7 @@
 		<module>gastgewerbe-app-gui-kueche</module>
 		<module>gastgewerbe-app-business-benutzer</module>
 		<module>gastgewerbe-app-business-login</module>
+		<module>gastgewerbe-app-persister</module>
 		
 		
 	</modules>
