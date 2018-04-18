@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -24,6 +25,10 @@ public class Abrechnung implements Serializable{
 	@Id
 	@GeneratedValue
 	private long id;
+	
+	@OneToOne
+	private Tisch tisch;
+	private Bestellung bestellung;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private GregorianCalendar zeit;
@@ -42,9 +47,11 @@ public class Abrechnung implements Serializable{
 
 	}
 
-	public Abrechnung(GregorianCalendar zeit, Benutzer benutzer) {
+	public Abrechnung(GregorianCalendar zeit, Benutzer benutzer, Tisch tisch, Bestellung bestellung) {
 		this.zeit = zeit;
 		this.benutzer = benutzer;
+		this.tisch = tisch;
+		this.bestellung = bestellung;
 	}
 
 	public long getId() {
@@ -77,6 +84,22 @@ public class Abrechnung implements Serializable{
 
 	public void setBenutzer(Benutzer benutzer) {
 		this.benutzer = benutzer;
+	}
+
+	public Tisch getTisch() {
+		return tisch;
+	}
+
+	public void setTisch(Tisch tisch) {
+		this.tisch = tisch;
+	}
+
+	public Bestellung getBestellung() {
+		return bestellung;
+	}
+
+	public void setBestellung(Bestellung bestellung) {
+		this.bestellung = bestellung;
 	}
 
 	@Override
