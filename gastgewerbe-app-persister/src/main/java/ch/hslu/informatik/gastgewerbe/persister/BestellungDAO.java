@@ -1,20 +1,20 @@
 package ch.hslu.informatik.gastgewerbe.persister;
 
-import ch.hslu.informatik.gastgewerbe.model.Bestellung;
+import java.util.List;
 
-public interface BestellungDAO extends GenericPersisterDAO<Bestellung> {
+import ch.hslu.informatik.gastgewerbe.model.Abrechnung;
 
-	
-	Bestellung findByProduktId(int ProduktId) throws Exception;
-	
-	
-	
-	Bestellung findByProduktBezeichnung(String bezeichnung) throws Exception;
+public interface AbrechnungDAO extends GenericPersisterDAO<Abrechnung> {
 	
 	
 	
-	Bestellung findByProduktKategorie(String kategorie) throws Exception;
+	
+	
+	List<Abrechnung> findByTischID(double TischId) throws Exception;
 	
 	
 	
+	
+	
+
 }
