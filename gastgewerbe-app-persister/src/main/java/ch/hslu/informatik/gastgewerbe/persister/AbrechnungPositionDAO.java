@@ -1,5 +1,5 @@
 package ch.hslu.informatik.gastgewerbe.persister;
 
-public class AbrechnungPositionDAO {
+public interface AbrechnungPositionDAO {
 
 }
