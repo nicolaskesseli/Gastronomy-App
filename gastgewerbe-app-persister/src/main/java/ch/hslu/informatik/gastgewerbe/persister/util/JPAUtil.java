@@ -5,7 +5,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class JPAUtil {
+	private static Logger logger = LogManager.getLogger(JPAUtil.class);
 
 	private static EntityManagerFactory entityManagerFactory = null;
 
@@ -13,6 +17,7 @@ public class JPAUtil {
 		try {
 			entityManagerFactory = Persistence.createEntityManagerFactory("gastgewerbe-pu");
 		} catch (Throwable e) {
+			logger.error("Error: ",  e);
 			throw new RuntimeException();
 		}
 	}

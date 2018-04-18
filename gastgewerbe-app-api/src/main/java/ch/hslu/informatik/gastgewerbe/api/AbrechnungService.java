@@ -1,5 +1,7 @@
 package ch.hslu.informatik.gastgewerbe.api;
 
+import ch.hslu.informatik.gastgewerbe.model.Tisch;
+
 public interface AbrechnungService {
 
 
