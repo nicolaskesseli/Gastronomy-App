@@ -5,7 +5,15 @@ import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 public interface BestellungDAO extends GenericPersisterDAO<Bestellung> {
 
 	
-	Bestellung findByProduktID(int ProduktID) throws Exception;
+	Bestellung findByProduktId(int ProduktId) throws Exception;
+	
+	
+	
+	Bestellung findByProduktBezeichnung(String bezeichnung) throws Exception;
+	
+	
+	
+	Bestellung findByProduktKategorie(String kategorie) throws Exception;
 	
 	
 	

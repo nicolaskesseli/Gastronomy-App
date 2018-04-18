@@ -10,7 +10,7 @@ public interface AbrechnungDAO extends GenericPersisterDAO<Abrechnung> {
 	
 	
 	
-	List<Abrechnung> findByTischID(double TischID) throws Exception;
+	List<Abrechnung> findByTischID(double TischId) throws Exception;
 	
 	
 	
