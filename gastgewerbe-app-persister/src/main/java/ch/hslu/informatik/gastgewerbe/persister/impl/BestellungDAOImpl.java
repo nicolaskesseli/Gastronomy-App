@@ -8,27 +8,27 @@ import javax.persistence.TypedQuery;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import ch.hslu.informatik.gastgewerbe.model.Abrechnung;
-import ch.hslu.informatik.gastgewerbe.persister.AbrechnungDAO;
+import ch.hslu.informatik.gastgewerbe.model.Bestellung;
+import ch.hslu.informatik.gastgewerbe.persister.BestellungDAO;
 import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 
-public class AbrechnungDAOImpl extends GenericPersisterDAOImpl<Abrechnung> implements AbrechnungDAO {
+public class BestellungDAOImpl extends GenericPersisterDAOImpl<Bestellung> implements BestellungDAO {
 
-	private static final Logger logger = LogManager.getLogger(AbrechnungDAOImpl.class);
+	private static final Logger logger = LogManager.getLogger(BestellungDAOImpl.class);
 
-	public AbrechnungDAOImpl() {
-		super(Abrechnung.class);
+	public BestellungDAOImpl() {
+		super(Bestellung.class);
 	}
 
-	public List<Abrechnung> findByTischID(double TischId) throws Exception {
+	public List<Bestellung> findByTischId(double TischId) throws Exception {
 
 		EntityManager em = JPAUtil.createEntityManager();
 
-		TypedQuery<Abrechnung> query = em.createNamedQuery("Abrechnung.findByTischID", Abrechnung.class);
+		TypedQuery<Bestellung> query = em.createNamedQuery("Bestellung.findByTischID", Bestellung.class);
 
 		query.setParameter("bestellID", TischId);
 
-		List<Abrechnung> liste = query.getResultList();
+		List<Bestellung> liste = query.getResultList();
 
 		em.close();
 
