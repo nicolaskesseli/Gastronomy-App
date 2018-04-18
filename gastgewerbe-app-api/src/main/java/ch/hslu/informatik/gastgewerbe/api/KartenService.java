@@ -2,34 +2,36 @@ package ch.hslu.informatik.gastgewerbe.api;
 
 import java.util.List;
 
+import ch.hslu.informatik.gastgewerbe.model.Produkt;
+
 public interface KartenService {
 
 	//Fügt neuen Artikel zur Karte hinzu
-	Konsumartikel konsumartikelHinzufuegen(Konsumartikel konsumartikel) throws Exception;
+	Produkt produktHinzufuegen(Produkt produkt) throws Exception;
 	
 	
 	//Löscht Artikel aus Karte
-	void konsumartikelLoeschen(Konsumartikel Konsumartikel) throws Exception;
+	void produktLoeschen(Produkt produkt) throws Exception;
 	
 	
 	//Ändert bestehenden Artikel
-	Konsumartikel konsumartikelAktualisieren(Konsumartikel Konsumartikel) throws Exception;
+	Produkt produktAktualisieren(Produkt produkt) throws Exception;
 	
 	
 	//Findet Artikel mit ent. Bezeichnung
-	Konsumartikel findKonsumartikel(String bezeichnung) throws Exception;
+	Produkt findProdukt(String bezeichnung) throws Exception;
 	
 	
 	//Findet Artikel mit ent. ID
-	Konsumartikel findKonsumartikel(int artikelId) throws Exception;
+	Produkt findProdukt(int ProduktId) throws Exception;
 	
 	
 	//Zeigt alle Artikel an
-	List<Konsumartikel> alleKonsumartikel();
+	List<Produkt> alleProdukt();
 	
 	
 	//Zeigt alle Artikel aus gewünschter Kategorie (Getränk / Gericht)
-	List<Konsumartikel> alleKonsumartikelNachTyp(Kategorie kategorie);
+	List<Produkt> alleProduktNachTyp(String kategorie);
 	
 	
 	
