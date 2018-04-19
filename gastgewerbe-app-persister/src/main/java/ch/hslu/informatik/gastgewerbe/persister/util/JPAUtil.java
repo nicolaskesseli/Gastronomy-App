@@ -18,7 +18,7 @@ public class JPAUtil {
 			entityManagerFactory = Persistence.createEntityManagerFactory("gastgewerbe-pu");
 		} catch (Throwable e) {
 			logger.error("Error: ",  e);
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 	}
 
