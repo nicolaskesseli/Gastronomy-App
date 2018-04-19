@@ -2,47 +2,47 @@ package ch.hslu.informatik.gastgewerbe.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+
 @Entity
-@NamedQueries({
-		@NamedQuery(name = "Produkt.findByProduktTyp", query = "SELECT e FROM Produkt e WHERE e.typ=:produktTyp AND e.verkauft=FALSE"),
-		@NamedQuery(name = "Produkt.findByProduktTypCode", query = "SELECT e FROM Produkt e WHERE e.typ.typCode=:typCode AND e.verkauft=FALSE"),
-		@NamedQuery(name = "Produkt.findByCode", query = "SELECT e FROM Produkt e WHERE e.code=:code AND e.verkauft=FALSE") })
+@NamedQueries({ @NamedQuery(name = "ProduktTyp.findByName", query = "SELECT e FROM ProduktTyp e WHERE e.name=:name"),
+		@NamedQuery(name = "ProduktTyp.findByTypCode", query = "SELECT e FROM ProduktTyp e WHERE e.typCode=:typCode"),
+		@NamedQuery(name = "ProduktTyp.findByLieferant", query = "SELECT e FROM ProduktTyp e WHERE e.lieferant=:lieferant") })
 public class Produkt implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1466764209710162194L;
-
-	
-
+	private static final long serialVersionUID = -6748457523208107826L;
 	@Id
 	@GeneratedValue
 	private long id;
+	private int produktId;
+	private String name;
+	private String beschreibung;
+	private double preis;
+	private String kategorie;
+	
+	
 
-	@ManyToOne
-	private ProduktTyp typ;
-	@Column(unique = true)
-	private long code;
-
-	private boolean verkauft;
 
 	public Produkt() {
 
 	}
 
-	public Produkt(ProduktTyp typ, long uid) {
-		this.typ = typ;
-		this.code = uid;
-
+	public Produkt(int produktId, String name, String beschreibung, double preis,
+			String kategorie) {
+		this.produktId = produktId;
+		this.name = name;
+		this.beschreibung = beschreibung;
+		this.preis = preis;
+		this.kategorie = kategorie;
 	}
 
 	public long getId() {
@@ -53,29 +53,46 @@ public class Produkt implements Serializable {
 		this.id = id;
 	}
 
-	public ProduktTyp getTyp() {
-		return typ;
+	public int getProduktId() {
+		return produktId;
 	}
 
-	public void setTyp(ProduktTyp typ) {
-		this.typ = typ;
+	public void setProduktId(int produktId) {
+		this.produktId = produktId;
 	}
 
-	public long getCode() {
-		return code;
+	public String getName() {
+		return name;
 	}
 
-	public void setCode(long code) {
-		this.code = code;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public boolean isVerkauft() {
-		return verkauft;
+	public String getBeschreibung() {
+		return beschreibung;
 	}
 
-	public void setVerkauft(boolean verkauft) {
-		this.verkauft = verkauft;
+	public void setBeschreibung(String beschreibung) {
+		this.beschreibung = beschreibung;
 	}
+
+	public double getPreis() {
+		return preis;
+	}
+
+	public void setPreis(double preis) {
+		this.preis = preis;
+	}
+
+
+	public String getKategorie() {
+		return kategorie;
+	}
+	public void setKategorie(String kategorie) {
+		this.kategorie = kategorie;	
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -98,18 +115,10 @@ public class Produkt implements Serializable {
 		return true;
 	}
 	
-	/* Helper */
+	
 
-	/**
-	 * Liefert den Preis zurück.
-	 *
-	 * @return
-	 */
-	public double getPreis() {
-		return typ.getPreis();
-	}
-
-	public String getProduktCodeUndBeschreibung() {
-		return typ.getProduktCodeUndBeschreibung();
+	@Override
+	public String toString() {
+		return name;
 	}
 }

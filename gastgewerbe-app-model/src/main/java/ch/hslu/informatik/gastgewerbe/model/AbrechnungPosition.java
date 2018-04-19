@@ -18,7 +18,7 @@ public class AbrechnungPosition implements Serializable {
 	private long id;
 
 	@ManyToOne
-	private ProduktTyp produktTyp;
+	private Produkt produktTyp;
 
 	private int anzahl;
 
@@ -26,7 +26,7 @@ public class AbrechnungPosition implements Serializable {
 
 	}
 
-	public AbrechnungPosition(ProduktTyp produktTyp, int anzahl) {
+	public AbrechnungPosition(Produkt produktTyp, int anzahl) {
 		this.produktTyp = produktTyp;
 		this.anzahl = anzahl;
 	}
@@ -39,11 +39,11 @@ public class AbrechnungPosition implements Serializable {
 		this.id = id;
 	}
 
-	public ProduktTyp getProduktTyp() {
+	public Produkt getProduktTyp() {
 		return produktTyp;
 	}
 
-	public void setProduktTyp(ProduktTyp produktTyp) {
+	public void setProduktTyp(Produkt produktTyp) {
 		this.produktTyp = produktTyp;
 	}
 

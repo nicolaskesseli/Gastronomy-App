@@ -19,7 +19,7 @@ public class BestellungPosition implements Serializable {
 	private long id;
 
 	@ManyToOne
-	private ProduktTyp produktTyp;
+	private Produkt produktTyp;
 
 	int anzahl;
 
@@ -27,7 +27,7 @@ public class BestellungPosition implements Serializable {
 
 	}
 
-	public BestellungPosition(ProduktTyp produktTyp, int anzahl) {
+	public BestellungPosition(Produkt produktTyp, int anzahl) {
 		this.produktTyp = produktTyp;
 		this.anzahl = anzahl;
 	}
@@ -40,11 +40,11 @@ public class BestellungPosition implements Serializable {
 		this.id = id;
 	}
 
-	public ProduktTyp getProduktTyp() {
+	public Produkt getProduktTyp() {
 		return produktTyp;
 	}
 
-	public void setProduktTyp(ProduktTyp produktTyp) {
+	public void setProduktTyp(Produkt produktTyp) {
 		this.produktTyp = produktTyp;
 	}
 

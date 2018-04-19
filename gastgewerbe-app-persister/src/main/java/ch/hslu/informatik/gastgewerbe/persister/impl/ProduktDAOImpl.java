@@ -11,7 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import ch.hslu.informatik.gastgewerbe.model.Produkt;
-import ch.hslu.informatik.gastgewerbe.model.ProduktTyp;
+import ch.hslu.informatik.gastgewerbe.model.Produkt;
 import ch.hslu.informatik.gastgewerbe.persister.ProduktDAO;
 import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 
@@ -23,7 +23,7 @@ public class ProduktDAOImpl extends GenericPersisterDAOImpl<Produkt> implements 
 		super(Produkt.class);
 	}
 
-	public List<Produkt> findByProduktTyp(ProduktTyp produktTyp) throws Exception {
+	public List<Produkt> findByProduktTyp(Produkt produktTyp) throws Exception {
 
 		EntityManager em = JPAUtil.createEntityManager();
 
