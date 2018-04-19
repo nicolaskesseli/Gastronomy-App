@@ -1,8 +1,8 @@
 package ch.hslu.informatik.gastgewerbe.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,12 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "Bestellung.findByDatum", query = "SELECT e FROM Bestellung e WHERE e.datum=:datum") })
+@NamedQuery(name = "Bestellung.findByDatum", query = "SELECT e FROM Bestellung e WHERE e.datum=:datum") })
 
 public class Bestellung implements Serializable {
 
@@ -30,23 +28,20 @@ public class Bestellung implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
+	private Tisch tisch;
+	private LocalDate zeit;
+	private String bemerkung;
+	private boolean rechnungBezahlt;
 
-	@Temporal(TemporalType.DATE)
-	private GregorianCalendar datum;
-	@OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
-	List<BestellungPosition> bestellungPositionListe = new ArrayList<BestellungPosition>();
 	
-	private Moebelhaus besteller;
+	@OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
+	
+	List<BestellungPosition> bestellungPositionListe = new ArrayList<BestellungPosition>();
 
 	public Bestellung() {
-
+	
 	}
-
-	public Bestellung(GregorianCalendar datum, Moebelhaus besteller) {
-		this.datum = datum;
-		this.besteller = besteller;
-	}
-
+	
 	public long getId() {
 		return id;
 	}
@@ -54,13 +49,46 @@ public class Bestellung implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
-
-	public GregorianCalendar getDatum() {
-		return datum;
+	
+	public Tisch getTisch() {
+		return tisch;
 	}
 
-	public void setDatum(GregorianCalendar datum) {
-		this.datum = datum;
+	public void setTisch(Tisch tisch) {
+		this.tisch = tisch;
+	}
+
+
+
+	public LocalDate getZeit() {
+		return zeit;
+	}
+
+
+
+	public void setZeit(LocalDate zeit) {
+		this.zeit = zeit;
+	}
+
+
+
+	public String getBemerkung() {
+		return bemerkung;
+	}
+
+
+
+	public void setBemerkung(String bemerkung) {
+		this.bemerkung = bemerkung;
+	}
+
+
+	public boolean isRechnungBezahlt() {
+		return rechnungBezahlt;
+	}
+
+	public void setRechnungBezahlt(boolean rechnungBezahlt) {
+		this.rechnungBezahlt = rechnungBezahlt;
 	}
 
 	public List<BestellungPosition> getBestellungPositionListe() {
@@ -69,14 +97,6 @@ public class Bestellung implements Serializable {
 
 	public void setBestellungPositionListe(List<BestellungPosition> bestellungPositionListe) {
 		this.bestellungPositionListe = bestellungPositionListe;
-	}
-
-	public Moebelhaus getBesteller() {
-		return besteller;
-	}
-
-	public void setBesteller(Moebelhaus besteller) {
-		this.besteller = besteller;
 	}
 
 	@Override
@@ -99,6 +119,12 @@ public class Bestellung implements Serializable {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Bestellung [id=" + id + ", tisch=" + tisch + ", zeit=" + zeit + ", bemerkung=" + bemerkung
+				+ ", rechnungBezahlt=" + rechnungBezahlt + ", bestellungPositionListe=" + bestellungPositionListe + "]";
 	}
 	
 }
