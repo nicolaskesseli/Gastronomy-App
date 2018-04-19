@@ -11,120 +11,55 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import ch.hslu.informatik.gastgewerbe.model.Produkt;
-import ch.hslu.informatik.gastgewerbe.model.Produkt;
-import ch.hslu.informatik.gastgewerbe.persister.ProduktDAO;
+import ch.hslu.informatik.gastgewerbe.persister.ProduktTypDAO;
 import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 
-public class ProduktDAOImpl extends GenericPersisterDAOImpl<Produkt> implements ProduktDAO {
+public class ProduktTypDAOImpl extends GenericPersisterDAOImpl<Produkt> implements ProduktTypDAO {
 
-	private static final Logger logger = LogManager.getLogger(ProduktDAOImpl.class);
+    private static final Logger logger = LogManager.getLogger(ProduktTypDAOImpl.class);
 
-	public ProduktDAOImpl() {
-		super(Produkt.class);
-	}
+    public ProduktTypDAOImpl() {
+        super(Produkt.class);
+    }
 
-	public List<Produkt> findByProduktTyp(Produkt produktTyp) throws Exception {
+    public List<Produkt> findByName(String name) throws Exception {
 
-		EntityManager em = JPAUtil.createEntityManager();
+        EntityManager em = JPAUtil.createEntityManager();
 
-		TypedQuery<Produkt> query = em.createNamedQuery("Produkt.findByProduktTyp", Produkt.class);
+        TypedQuery<Produkt> query = em.createNamedQuery("ProduktTyp.findByName", Produkt.class);
 
-		query.setParameter("produktTyp", produktTyp);
+        query.setParameter("name", name);
 
-		List<Produkt> liste = query.getResultList();
+        List<Produkt> liste = query.getResultList();
 
-		em.close();
+        em.close();
 
-		return liste != null ? liste : new ArrayList<Produkt>();
-	}
+        return liste != null ? liste : new ArrayList<Produkt>();
+    }
 
-	public List<Produkt> findByProduktTypCode(String typCode) throws Exception {
+    public Produkt findByTypCode(String typCode) throws Exception {
 
-		EntityManager em = JPAUtil.createEntityManager();
+        EntityManager em = JPAUtil.createEntityManager();
 
-		TypedQuery<Produkt> query = em.createNamedQuery("Produkt.findByProduktTypCode", Produkt.class);
+        TypedQuery<Produkt> query = em.createNamedQuery("ProduktTyp.findByTypCode", Produkt.class);
 
-		query.setParameter("typCode", typCode);
+        query.setParameter("typCode", typCode);
 
-		List<Produkt> liste = query.getResultList();
+        List<Produkt> liste = query.getResultList();
 
-		em.close();
+        em.close();
 
-		return liste != null ? liste : new ArrayList<Produkt>();
-	}
+        if (liste.isEmpty()) {
+            return null;
+        } else if (liste.size() == 1) {
+            return liste.get(0);
+        } else {
+            String message = "Mehr als eine ProduktTyp-Entity mit dem Code \'" + typCode + "\' gefunden";
+            logger.error(message);
+            throw new IllegalStateException(message);
+        }
+    }
 
-	public Produkt findByCode(long code) throws Exception {
-
-		EntityManager em = JPAUtil.createEntityManager();
-
-		TypedQuery<Produkt> query = em.createNamedQuery("Produkt.findByCode", Produkt.class);
-
-		query.setParameter("code", code);
-
-		List<Produkt> liste = query.getResultList();
-
-		em.close();
-
-		if (liste.isEmpty()) {
-			return null;
-		} else if (liste.size() == 1) {
-			return liste.get(0);
-		} else {
-			String message = "Mehr als eine Produkt-Entity mit dem Code \'" + code + "\' gefunden";
-			logger.error(message);
-			throw new IllegalStateException(message);
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see ch.hslu.informatik.moebelhandel.moebelhaus.persister.impl.
-	 * GenericPersisterDAOImpl#findById(long)
-	 */
-	@Override
-	public Produkt findById(long id) throws Exception {
-
-		EntityManager em = JPAUtil.createEntityManager();
-
-		TypedQuery<Produkt> query = em.createQuery("SELECT e FROM Produkt e WHERE e.id=:id AND e.verkauft=FALSE",
-				Produkt.class);
-
-		query.setParameter("id", id);
-
-		List<Produkt> liste = query.getResultList();
-
-		em.close();
-
-		if (liste.isEmpty()) {
-			return null;
-		} else if (liste.size() == 1) {
-			return liste.get(0);
-		} else {
-			String message = "Mehr als eine Produkt-Entity mit dem Id-Wert \'" + id + "\' gefunden";
-			logger.error(message);
-			throw new IllegalStateException(message);
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see ch.hslu.informatik.moebelhandel.moebelhaus.persister.impl.
-	 * GenericPersisterDAOImpl#findAll()
-	 */
-	@Override
-	public List<Produkt> findAll() throws Exception {
-
-		EntityManager em = JPAUtil.createEntityManager();
-
-		TypedQuery<Produkt> query = em.createQuery("SELECT e FROM Produkt e WHERE e.verkauft=FALSE", Produkt.class);
-
-		List<Produkt> liste = query.getResultList();
-
-		em.close();
-
-		return liste != null ? liste : new ArrayList<Produkt>();
-	}
+    
 
 }
