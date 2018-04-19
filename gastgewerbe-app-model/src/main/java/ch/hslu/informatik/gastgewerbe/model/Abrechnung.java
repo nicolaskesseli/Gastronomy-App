@@ -1,6 +1,7 @@
 package ch.hslu.informatik.gastgewerbe.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -31,7 +32,7 @@ public class Abrechnung implements Serializable{
 	private Bestellung bestellung;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private GregorianCalendar zeit;
+	private LocalDate zeit;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<AbrechnungPosition> abrechnungPositionListe = new ArrayList<AbrechnungPosition>();
@@ -47,7 +48,7 @@ public class Abrechnung implements Serializable{
 
 	}
 
-	public Abrechnung(GregorianCalendar zeit, Benutzer benutzer, Tisch tisch, Bestellung bestellung) {
+	public Abrechnung(LocalDate zeit, Benutzer benutzer, Tisch tisch, Bestellung bestellung) {
 		this.zeit = zeit;
 		this.benutzer = benutzer;
 		this.tisch = tisch;
@@ -62,11 +63,11 @@ public class Abrechnung implements Serializable{
 		this.id = id;
 	}
 
-	public GregorianCalendar getZeit() {
+	public LocalDate getZeit() {
 		return zeit;
 	}
 
-	public void setZeit(GregorianCalendar zeit) {
+	public void setZeit(LocalDate zeit) {
 		this.zeit = zeit;
 	}
 
@@ -168,10 +169,10 @@ public class Abrechnung implements Serializable{
 	 * @param produktTyp
 	 * @return
 	 */
-	public AbrechnungPosition findByProduktTyp(Produkt produktTyp) {
+	public AbrechnungPosition findByProdukt(Produkt produkt) {
 
 		for (AbrechnungPosition pos : abrechnungPositionListe) {
-			if (pos.getProduktTyp().equals(produktTyp)) {
+			if (pos.getProdukt().equals(produkt)) {
 				return pos;
 			}
 		}
@@ -179,21 +180,21 @@ public class Abrechnung implements Serializable{
 		return null;
 	}
 
-	/**
-	 * Liefert die Rechnungsposition für den übergebenen Produtktyp Code zurück.
-	 *
-	 * @param produktTypCode
-	 * @return
-	 */
-	public AbrechnungPosition findByProduktTypCode(String produktTypCode) {
-
-		for (AbrechnungPosition pos : abrechnungPositionListe) {
-			if (pos.getProduktTyp().getTypCode().equals(produktTypCode)) {
-				return pos;
-			}
-		}
-
-		return null;
-	}
+//	/**
+//	 * Liefert die Rechnungsposition für den übergebenen Produtktyp Code zurück.
+//	 *
+//	 * @param produktId
+//	 * @return
+//	 */
+//	public AbrechnungPosition findByProduktId(String produkt) {
+//
+//		for (AbrechnungPosition pos : abrechnungPositionListe) {
+//			if (pos.getProdukt().getTypCode().equals(produktTypCode)) {
+//				return pos;
+//			}
+//		}
+//
+//		return null;
+	
 
 }

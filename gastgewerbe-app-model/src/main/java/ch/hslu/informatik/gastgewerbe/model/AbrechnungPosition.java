@@ -18,7 +18,7 @@ public class AbrechnungPosition implements Serializable {
 	private long id;
 
 	@ManyToOne
-	private Produkt produktTyp;
+	private Produkt produkt;
 
 	private int anzahl;
 
@@ -26,8 +26,8 @@ public class AbrechnungPosition implements Serializable {
 
 	}
 
-	public AbrechnungPosition(Produkt produktTyp, int anzahl) {
-		this.produktTyp = produktTyp;
+	public AbrechnungPosition(Produkt produkt, int anzahl) {
+		this.produkt = produkt;
 		this.anzahl = anzahl;
 	}
 
@@ -39,12 +39,14 @@ public class AbrechnungPosition implements Serializable {
 		this.id = id;
 	}
 
-	public Produkt getProduktTyp() {
-		return produktTyp;
+	
+
+	public Produkt getProdukt() {
+		return produkt;
 	}
 
-	public void setProduktTyp(Produkt produktTyp) {
-		this.produktTyp = produktTyp;
+	public void setProdukt(Produkt produkt) {
+		this.produkt = produkt;
 	}
 
 	public int getAnzahl() {
@@ -61,7 +63,7 @@ public class AbrechnungPosition implements Serializable {
 		int result = 1;
 		result = prime * result + anzahl;
 		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((produktTyp == null) ? 0 : produktTyp.hashCode());
+		result = prime * result + ((produkt == null) ? 0 : produkt.hashCode());
 		return result;
 	}
 
@@ -78,36 +80,36 @@ public class AbrechnungPosition implements Serializable {
 			return false;
 		if (id != other.id)
 			return false;
-		if (produktTyp == null) {
-			if (other.produktTyp != null)
+		if (produkt == null) {
+			if (other.produkt != null)
 				return false;
-		} else if (!produktTyp.equals(other.produktTyp))
+		} else if (!produkt.equals(other.produkt))
 			return false;
 		return true;
 	}
 
 	/* Calculated Properties */
-	public String getProduktCode() {
-		return produktTyp.getTypCode();
+	public int getProduktId() {
+		return produkt.getProduktId();
 	}
 
 	public String getBeschreibung() {
-		return produktTyp.getBeschreibung();
+		return produkt.getBeschreibung();
 	}
 
-	public String getProduktCodeUndBeschreibung() {
-		String typ = produktTyp.getTypCode();
-		String beschreibung = produktTyp.getBeschreibung();
+	public String getProduktIdUndBeschreibung() {
+		int typ = produkt.getProduktId();
+		String beschreibung = produkt.getBeschreibung();
 
 		return typ + "\n" + beschreibung;
 	}
 
 	public double getPreis() {
-		return produktTyp.getPreis();
+		return produkt.getPreis();
 	}
 
 	public double getBetrag() {
-		return anzahl * produktTyp.getPreis();
+		return anzahl * produkt.getPreis();
 	}
 
 }
