@@ -7,6 +7,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,11 +17,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@Entity
+
 public class Abrechnung implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4575490394462466750L;
 
 	@Id

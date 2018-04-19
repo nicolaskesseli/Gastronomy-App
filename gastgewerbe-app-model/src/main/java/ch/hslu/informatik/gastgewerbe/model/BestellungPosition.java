@@ -17,10 +17,11 @@ public class BestellungPosition implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
-
-	private Produkt produkt;
 	private boolean bestellungBereit;
 	private int anzahl;
+	@ManyToOne
+	private Produkt produkt;
+	
 	
 	public BestellungPosition(long id, Produkt produkt, boolean bestellungBereit, int anzahl) {
 		super();

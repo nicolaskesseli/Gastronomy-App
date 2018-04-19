@@ -13,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({
@@ -28,10 +31,14 @@ public class Bestellung implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
-	private Tisch tisch;
-	private LocalDate zeit;
 	private String bemerkung;
 	private boolean rechnungBezahlt;
+	
+	@Temporal(TemporalType.DATE)
+	private LocalDate zeit;
+	@OneToOne
+	private Tisch tisch;
+
 
 	
 	@OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)

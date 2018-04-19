@@ -2,10 +2,12 @@ package ch.hslu.informatik.gastgewerbe.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+@Entity
 public class AbrechnungPosition implements Serializable {
 	
 	/**
@@ -19,7 +21,6 @@ public class AbrechnungPosition implements Serializable {
 
 	@ManyToOne
 	private Produkt produkt;
-
 	private int anzahl;
 
 	public AbrechnungPosition() {
