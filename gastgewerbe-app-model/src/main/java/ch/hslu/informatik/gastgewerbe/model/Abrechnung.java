@@ -180,6 +180,14 @@ public class Abrechnung implements Serializable{
 		return null;
 	}
 
+	@Override
+	public String toString() {
+		return "Abrechnung [id=" + id + ", tisch=" + tisch + ", bestellung=" + bestellung + ", zeit=" + zeit
+				+ ", abrechnungPositionListe=" + abrechnungPositionListe + ", benutzer=" + benutzer + "]";
+	}
+	
+	
+
 //	/**
 //	 * Liefert die Rechnungsposition für den übergebenen Produtktyp Code zurück.
 //	 *

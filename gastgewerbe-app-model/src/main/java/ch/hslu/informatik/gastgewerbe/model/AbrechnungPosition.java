@@ -112,4 +112,11 @@ public class AbrechnungPosition implements Serializable {
 		return anzahl * produkt.getPreis();
 	}
 
+	@Override
+	public String toString() {
+		return "AbrechnungPosition [id=" + id + ", produkt=" + produkt + ", anzahl=" + anzahl + "]";
+	}
+	
+	
+
 }
