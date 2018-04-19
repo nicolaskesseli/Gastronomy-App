@@ -10,42 +10,42 @@ import javax.persistence.TypedQuery;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import ch.hslu.informatik.gastgewerbe.model.ProduktTyp;
+import ch.hslu.informatik.gastgewerbe.model.Produkt;
 import ch.hslu.informatik.gastgewerbe.persister.ProduktTypDAO;
 import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 
-public class ProduktTypDAOImpl extends GenericPersisterDAOImpl<ProduktTyp> implements ProduktTypDAO {
+public class ProduktTypDAOImpl extends GenericPersisterDAOImpl<Produkt> implements ProduktTypDAO {
 
     private static final Logger logger = LogManager.getLogger(ProduktTypDAOImpl.class);
 
     public ProduktTypDAOImpl() {
-        super(ProduktTyp.class);
+        super(Produkt.class);
     }
 
-    public List<ProduktTyp> findByName(String name) throws Exception {
+    public List<Produkt> findByName(String name) throws Exception {
 
         EntityManager em = JPAUtil.createEntityManager();
 
-        TypedQuery<ProduktTyp> query = em.createNamedQuery("ProduktTyp.findByName", ProduktTyp.class);
+        TypedQuery<Produkt> query = em.createNamedQuery("ProduktTyp.findByName", Produkt.class);
 
         query.setParameter("name", name);
 
-        List<ProduktTyp> liste = query.getResultList();
+        List<Produkt> liste = query.getResultList();
 
         em.close();
 
-        return liste != null ? liste : new ArrayList<ProduktTyp>();
+        return liste != null ? liste : new ArrayList<Produkt>();
     }
 
-    public ProduktTyp findByTypCode(String typCode) throws Exception {
+    public Produkt findByTypCode(String typCode) throws Exception {
 
         EntityManager em = JPAUtil.createEntityManager();
 
-        TypedQuery<ProduktTyp> query = em.createNamedQuery("ProduktTyp.findByTypCode", ProduktTyp.class);
+        TypedQuery<Produkt> query = em.createNamedQuery("ProduktTyp.findByTypCode", Produkt.class);
 
         query.setParameter("typCode", typCode);
 
-        List<ProduktTyp> liste = query.getResultList();
+        List<Produkt> liste = query.getResultList();
 
         em.close();
 

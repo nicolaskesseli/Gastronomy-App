@@ -15,5 +15,12 @@ public class Tisch implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
+	
+	public Tisch() {
+		
+	}
+	public Tisch(long id) {
+		this.id = id;
+	}
 
 }

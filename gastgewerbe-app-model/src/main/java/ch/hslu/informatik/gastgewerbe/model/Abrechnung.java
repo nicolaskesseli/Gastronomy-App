@@ -168,7 +168,7 @@ public class Abrechnung implements Serializable{
 	 * @param produktTyp
 	 * @return
 	 */
-	public AbrechnungPosition findByProduktTyp(ProduktTyp produktTyp) {
+	public AbrechnungPosition findByProduktTyp(Produkt produktTyp) {
 
 		for (AbrechnungPosition pos : abrechnungPositionListe) {
 			if (pos.getProduktTyp().equals(produktTyp)) {
