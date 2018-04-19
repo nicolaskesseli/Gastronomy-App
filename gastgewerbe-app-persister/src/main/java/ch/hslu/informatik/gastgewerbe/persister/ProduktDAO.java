@@ -4,44 +4,41 @@ package ch.hslu.informatik.gastgewerbe.persister;
 import java.util.List;
 
 import ch.hslu.informatik.gastgewerbe.model.Produkt;
-import ch.hslu.informatik.gastgewerbe.model.Produkt;
 
 /**
- * Interface für Persistierung von Produkt-Entities.
- *
+ * Interface für Persistierung von ProduktTyp-Entities.
+ * 
  * @version 1.0
  * @author jsucur
- *
+ * 
  */
 public interface ProduktDAO extends GenericPersisterDAO<Produkt> {
 
     /**
-     * Liefert alle Produkte für das übergebene ProduktTyp zurück, falls welche
-     * vorhanden, sonst eine leere Liste.
-     *
-     * @param produktTyp
+     * Liefert alle ProduktTypen für den übergebenen Namen zurück.
+     * 
+     * @param name
      * @return
      * @throws Exception
      */
-    List<Produkt> findByProduktTyp(Produkt produktTyp) throws Exception;
+    List<Produkt> findByName(String name) throws Exception;
 
     /**
-     * Liefert alle Produkte für den übergebenen ProduktTyp-Code zurück, falls
-     * welche vorhanden, sonst eine leere Liste.
-     *
-     * @param typCode
+     * Liefert das Produkt mit der übergebenen ID zurück.
+     * 
+     * @param produktId
      * @return
      * @throws Exception
      */
-    List<Produkt> findByProduktTypCode(String typCode) throws Exception;
+    Produkt findByProduktId(int produktId) throws Exception;
 
     /**
-     * Liefert das Produkt für den übergebenen Code zurück.
-     *
-     * @param code
+     * Liefert alle Produkte mit der erwähnten Kategorie zurück
+     * 
+     * @param kategorie
      * @return
      * @throws Exception
      */
-    Produkt findByCode(long code) throws Exception;
+    List<Produkt> findByKategorie(String kategorie) throws Exception;
+    
 }
-
