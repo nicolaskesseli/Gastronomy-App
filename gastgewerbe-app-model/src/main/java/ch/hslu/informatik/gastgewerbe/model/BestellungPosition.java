@@ -17,18 +17,15 @@ public class BestellungPosition implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
-
-	@ManyToOne
-	private ProduktTyp produktTyp;
-
-	int anzahl;
-
-	public BestellungPosition() {
-
-	}
-
-	public BestellungPosition(ProduktTyp produktTyp, int anzahl) {
-		this.produktTyp = produktTyp;
+	private Produkt produkt;
+	private boolean bestellungBereit;
+	private int anzahl;
+	
+	public BestellungPosition(long id, Produkt produkt, boolean bestellungBereit, int anzahl) {
+		super();
+		this.id = id;
+		this.produkt = produkt;
+		this.bestellungBereit = bestellungBereit;
 		this.anzahl = anzahl;
 	}
 
@@ -40,12 +37,20 @@ public class BestellungPosition implements Serializable {
 		this.id = id;
 	}
 
-	public ProduktTyp getProduktTyp() {
-		return produktTyp;
+	public Produkt getProdukt() {
+		return produkt;
 	}
 
-	public void setProduktTyp(ProduktTyp produktTyp) {
-		this.produktTyp = produktTyp;
+	public void setProdukt(Produkt produkt) {
+		this.produkt = produkt;
+	}
+
+	public boolean isBestellungBereit() {
+		return bestellungBereit;
+	}
+
+	public void setBestellungBereit(boolean bestellungBereit) {
+		this.bestellungBereit = bestellungBereit;
 	}
 
 	public int getAnzahl() {
@@ -80,7 +85,9 @@ public class BestellungPosition implements Serializable {
 
 	@Override
 	public String toString() {
-		return "BestellungPosition [id=" + id + ", produktTyp=" + produktTyp + ", anzahl=" + anzahl + "]";
+		return "BestellungPosition [id=" + id + ", produkt=" + produkt + ", bestellungBereit=" + bestellungBereit
+				+ ", anzahl=" + anzahl + "]";
 	}
+	
 
 }
