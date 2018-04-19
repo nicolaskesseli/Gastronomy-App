@@ -12,7 +12,7 @@ import ch.hslu.informatik.gastgewerbe.model.Produkt;
  * @author jsucur
  * 
  */
-public interface ProduktTypDAO extends GenericPersisterDAO<Produkt> {
+public interface ProduktDAO extends GenericPersisterDAO<Produkt> {
 
     /**
      * Liefert alle ProduktTypen für den übergebenen Namen zurück.
@@ -24,13 +24,21 @@ public interface ProduktTypDAO extends GenericPersisterDAO<Produkt> {
     List<Produkt> findByName(String name) throws Exception;
 
     /**
-     * Liefert den ProduktTyp für den übergebenen Typ-Code zurück.
+     * Liefert das Produkt mit der übergebenen ID zurück.
      * 
-     * @param typCode
+     * @param produktId
      * @return
      * @throws Exception
      */
-    Produkt findByTypCode(String typCode) throws Exception;
+    Produkt findByProduktId(int produktId) throws Exception;
 
+    /**
+     * Liefert alle Produkte mit der erwähnten Kategorie zurück
+     * 
+     * @param kategorie
+     * @return
+     * @throws Exception
+     */
+    List<Produkt> findByKategorie(String kategorie) throws Exception;
     
 }
