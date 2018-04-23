@@ -4,22 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.hslu.informatik.gastgewerbe.model.Adresse;
+import ch.hslu.informatik.gastgewerbe.model.Benutzer;
+import ch.hslu.informatik.gastgewerbe.model.Credentials;
 import ch.hslu.informatik.gastgewerbe.model.Kontakt;
 import ch.hslu.informatik.gastgewerbe.model.Person;
+import ch.hslu.informatik.gastgewerbe.model.RolleTyp;
+import ch.hslu.informatik.gastgewerbe.persister.BenutzerDAO;
+import ch.hslu.informatik.gastgewerbe.persister.impl.BenutzerDAOImpl;
+import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 
 
-public class Util {
-	public static List<Adresse> createAdresseListe() {
+public class InitHelper {
 
-		List<Adresse> liste = new ArrayList<>();
-
-		liste.add(new Adresse("Pilatusstrasse 8", 6000, "Luzern"));
-		liste.add(new Adresse("Lindenstrasse 24", 6048, "Horw"));
-		liste.add(new Adresse("Amlehnstrasse 18", 6010, "Kriens"));
-
-		return liste;
-	}
-
+	public static final int INIT_SIZE_PRODUKT_TYP = 9;
+	public static final int INIT_SIZE_PRODUKT = 9;
+	public static final int INIT_SIZE_PERSON = 6;
+	public static final int INIT_SIZE_CREDENTIALS = 6;
+	public static final int INIT_SIZE_BENUTZER = 4;
+	public static final int INIT_SIZE_BESTELLUNG_POSITION = 3;
+	public static final int INIT_SIZE_BESTELLUNG = 1;
+	public static final int INIT_SIZE_LIEFERUNG_POSITION = 6;
+	public static final int INIT_SIZE_LIEFERUNG = 2;
+	public static final int INIT_SIZE_RECHNUNG = 2;
+	
 	public static List<Person> createPersonListe() {
 
 		List<Person> liste = new ArrayList<>();
@@ -32,5 +39,46 @@ public class Util {
 				new Kontakt("mbucher@gmx.ch", "079 777 77 77")));
 
 		return liste;
+
+	}
+	
+	public static List<Benutzer> initBenutzer() throws Exception {
+
+		BenutzerDAO pBenutzer = new BenutzerDAOImpl();
+
+		List<Benutzer> liste = new ArrayList<Benutzer>();
+
+		liste.add(new Benutzer("Weber", "Marco", new Adresse("Lindenstrasse 12", 6030, "Ebikon"),
+				new Kontakt("mweber@gmail.com", "041 111 11 11"), new Credentials("mweber", "mweber_pwd"),
+				RolleTyp.KELLNER));
+		liste.add(new Benutzer("Fischer", "Ana", new Adresse("Bundesstrasse 112", 6002, "Luzern"),
+				new Kontakt("afischer1980@sbb.ch", "041 222 22 22"), new Credentials("afischer", "afischer_pwd"),
+				RolleTyp.BAR_MITARBEITER));
+		liste.add(new Benutzer("Portmann", "Roger", new Adresse("Unterdorfstrasse 12", 6033, "Buchrain"),
+				new Kontakt("rportmann1975@sunrise.ch", "041 555 55 55"), new Credentials("rportmann", "rportmann_pwd"),
+				RolleTyp.KELLNER));
+		liste.add(new Benutzer("Lindauer", "Adrian", new Adresse("Gothardstrasse 64", 6484, "Wassen"),
+				new Kontakt("alindauer@bluewin.ch", "041 666 66 66"), new Credentials("alindauer", "alindauer_pwd"),
+				RolleTyp.BAR_MITARBEITER));
+
+		for (Benutzer b : liste) {
+			pBenutzer.save(b);
+		}
+
+		return liste;
+	}
+	
+	public static void resetDb() {
+		JPAUtil.createEntityManagerForDelition().close();
+	}
+	
+	public static void deleteAllBenutzer() throws Exception {
+
+		BenutzerDAO pBenutzer = new BenutzerDAOImpl();
+
+		for (Benutzer b : pBenutzer.findAll()) {
+			pBenutzer.delete(b);
+		}
+
 	}
 }
