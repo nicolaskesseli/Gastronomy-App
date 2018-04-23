@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -13,9 +14,13 @@ import javax.persistence.OneToOne;
 @Entity
 @NamedQueries({
 		@NamedQuery(name = "Benutzer.findByBenutzername", query = "SELECT e FROM Benutzer e WHERE e.credentials.benutzername=:benutzername"),
-		@NamedQuery(name = "Benutzer.findByRolleTyp", query = "SELECT e FROM Benutzer e WHERE e.rolle=:rolleTyp") })
-public class Benutzer extends Person {
+		@NamedQuery(name = "Benutzer.findByRolleTyp", query = "SELECT e FROM Benutzer e WHERE e.rolle=:rolleTyp"), 
+		@NamedQuery(name = "Benutzer.findAll", query = "SELECT e FROM Benutzer e")
+})
 
+public class Benutzer extends Person {
+	
+	@Id
 	private static final long serialVersionUID = 2929748139540837451L;
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
