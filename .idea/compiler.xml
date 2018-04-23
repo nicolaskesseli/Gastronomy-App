@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="gastgewerbe-app-api" />
+        <module name="gastgewerbe-app-business-benutzer" />
+        <module name="gastgewerbe-app-business-login" />
+        <module name="gastgewerbe-app-gui-bar" />
+        <module name="gastgewerbe-app-gui-kellner" />
+        <module name="gastgewerbe-app-gui-kueche" />
+        <module name="gastgewerbe-app-model" />
+        <module name="gastgewerbe-app-persister" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="gastgewerbe-app" target="1.8" />
+      <module name="gastgewerbe-app-api" target="1.8" />
+      <module name="gastgewerbe-app-business-benutzer" target="1.8" />
+      <module name="gastgewerbe-app-business-login" target="1.8" />
+      <module name="gastgewerbe-app-gui-bar" target="1.8" />
+      <module name="gastgewerbe-app-gui-kellner" target="1.8" />
+      <module name="gastgewerbe-app-gui-kueche" target="1.8" />
+      <module name="gastgewerbe-app-model" target="1.8" />
+      <module name="gastgewerbe-app-persister" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
