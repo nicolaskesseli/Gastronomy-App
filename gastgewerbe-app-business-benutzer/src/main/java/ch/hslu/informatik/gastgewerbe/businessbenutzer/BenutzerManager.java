@@ -1,3 +1,5 @@
+package ch.hslu.informatik.gastgewerbe.businessbenutzer;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +13,11 @@ import ch.hslu.informatik.gastgewerbe.persister.BenutzerDAO;
 import ch.hslu.informatik.gastgewerbe.persister.impl.BenutzerDAOImpl;
 
 public class BenutzerManager implements BenutzerService {
-
-    private static Logger logger = LogManager.getLogger(BenutzerManager.class);
+	
+	
+	
+	
+	private static Logger logger = LogManager.getLogger(BenutzerManager.class);
 
     private BenutzerDAO benutzerDAO;
 
@@ -111,4 +116,5 @@ public class BenutzerManager implements BenutzerService {
     }
 
 }
+
 
