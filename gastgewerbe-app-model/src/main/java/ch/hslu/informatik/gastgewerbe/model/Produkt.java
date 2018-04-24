@@ -3,17 +3,15 @@ package ch.hslu.informatik.gastgewerbe.model;
 import java.io.Serializable;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 
 
 @Entity
-@NamedQueries({ @NamedQuery(name = "ProduktTyp.findByName", query = "SELECT e FROM ProduktTyp e WHERE e.name=:name"),
-		@NamedQuery(name = "ProduktTyp.findByTypCode", query = "SELECT e FROM ProduktTyp e WHERE e.typCode=:typCode"),
-		@NamedQuery(name = "ProduktTyp.findByLieferant", query = "SELECT e FROM ProduktTyp e WHERE e.lieferant=:lieferant") })
+@NamedQueries({ @NamedQuery(name = "Produkt.findByName", query = "SELECT e FROM Produkt e WHERE e.name=:name"),
+		@NamedQuery(name = "Produkt.FindByProduktCode", query = "SELECT e FROM Produkt e WHERE e.produktCode=:produktCode"),
+		@NamedQuery(name = "Produkt.findByKategorie", query = "SELECT e FROM Produkt e WHERE e.kategorie=:kategorieTyp"),
+        @NamedQuery(name = "Produkt.findAll", query = "SELECT e FROM Produkt e")
+})
 public class Produkt implements Serializable {
 
 	/**
@@ -23,11 +21,13 @@ public class Produkt implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
-	private int produktId;
 	private String name;
 	private String beschreibung;
 	private double preis;
-	private String kategorie;
+    @Column(unique = true)
+    private String produktCode;
+	@Enumerated(EnumType.STRING)
+	private KategorieTyp kategorie;
 	
 	
 
@@ -36,9 +36,9 @@ public class Produkt implements Serializable {
 
 	}
 
-	public Produkt(int produktId, String name, String beschreibung, double preis,
-			String kategorie) {
-		this.produktId = produktId;
+	public Produkt(String produktCode, String name, String beschreibung, double preis,
+				   KategorieTyp kategorie) {
+		this.produktCode = produktCode;
 		this.name = name;
 		this.beschreibung = beschreibung;
 		this.preis = preis;
@@ -53,12 +53,12 @@ public class Produkt implements Serializable {
 		this.id = id;
 	}
 
-	public int getProduktId() {
-		return produktId;
+	public String getProduktCode() {
+		return produktCode;
 	}
 
-	public void setProduktId(int produktId) {
-		this.produktId = produktId;
+	public void setProduktCode(String produktCode) {
+		this.produktCode = produktCode;
 	}
 
 	public String getName() {
@@ -86,20 +86,14 @@ public class Produkt implements Serializable {
 	}
 
 
-	public String getKategorie() {
+	public KategorieTyp getKategorie() {
 		return kategorie;
 	}
-	public void setKategorie(String kategorie) {
+	public void setKategorie(KategorieTyp kategorie) {
 		this.kategorie = kategorie;	
 	}
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
-	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -114,11 +108,16 @@ public class Produkt implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
 
-	@Override
-	public String toString() {
-		return name;
-	}
+    @Override
+    public String toString() {
+        return "Produkt{" +
+                "id=" + id +
+                ", produktCode=" + produktCode +
+                ", name='" + name + '\'' +
+                ", beschreibung='" + beschreibung + '\'' +
+                ", preis=" + preis +
+                ", kategorie=" + kategorie +
+                '}';
+    }
 }

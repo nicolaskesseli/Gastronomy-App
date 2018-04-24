@@ -90,19 +90,19 @@ public class AbrechnungPosition implements Serializable {
 	}
 
 	/* Calculated Properties */
-	public int getProduktId() {
-		return produkt.getProduktId();
+	public String getProduktCode() {
+		return produkt.getProduktCode();
 	}
 
 	public String getBeschreibung() {
 		return produkt.getBeschreibung();
 	}
 
-	public String getProduktIdUndBeschreibung() {
-		int typ = produkt.getProduktId();
+	public String getProduktCodedUndBeschreibung() {
+		String produktCode = produkt.getProduktCode();
 		String beschreibung = produkt.getBeschreibung();
 
-		return typ + "\n" + beschreibung;
+		return produktCode + "\n" + beschreibung;
 	}
 
 	public double getPreis() {
