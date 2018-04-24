@@ -26,8 +26,6 @@ public class BenutzerDAOImplTest {
 	
 	private static BenutzerDAO pBenutzer = new BenutzerDAOImpl();
 
-	private static Logger logger = LogManager.getLogger(BenutzerDAOImplTest.class);
-
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		InitHelper.resetDb();
