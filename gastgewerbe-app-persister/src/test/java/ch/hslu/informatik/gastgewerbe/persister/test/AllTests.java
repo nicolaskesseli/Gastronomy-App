@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({BenutzerDAOImplTest.class, })
+@SuiteClasses({BenutzerDAOImplTest.class, BestellungDAOImplTest.class})
 public class AllTests {
 
 }

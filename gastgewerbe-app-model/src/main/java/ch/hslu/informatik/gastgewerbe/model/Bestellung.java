@@ -34,10 +34,10 @@ public class Bestellung implements Serializable {
 	@GeneratedValue
 	private long id;
 	private String bemerkung;
-	private boolean rechnungBezahlt;
+	private boolean rechnungBezahlt = false;
 	
 	@Temporal(TemporalType.DATE)
-	private LocalDate zeit;
+	private LocalDate zeit = LocalDate.now();
 	@OneToOne
 	private Tisch tisch;
 
@@ -50,7 +50,13 @@ public class Bestellung implements Serializable {
 	public Bestellung() {
 	
 	}
-	
+
+	public Bestellung(String bemerkung, Tisch tisch, List<BestellungPosition> bestellungPositionListe) {
+		this.bemerkung = bemerkung;
+		this.tisch = tisch;
+		this.bestellungPositionListe = bestellungPositionListe;
+	}
+
 	public long getId() {
 		return id;
 	}

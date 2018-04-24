@@ -1,5 +1,6 @@
 package ch.hslu.informatik.gastgewerbe.persister.test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,12 @@ public class InitHelper {
 	public static final int INIT_SIZE_RECHNUNG = 2;
 
 	public static List<Bestellung> initBestellung() throws Exception {
-		return null;
+
+		List<Bestellung> liste = new ArrayList<Bestellung>();
+
+		//Bestellung b = new Bestellung("Achtung Glutenintolleranz",new Tisch(10), )
+
+		return liste;
 	}
 
 	public static void deleteAllBestellung() throws Exception {
@@ -40,6 +46,8 @@ public class InitHelper {
 	}
 
 	public static List<Produkt> initProdukt() throws Exception {
+
+
 		return null;
 	}
 
