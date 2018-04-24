@@ -16,16 +16,5 @@
         <module name="gastgewerbe-app-persister" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="gastgewerbe-app" target="1.8" />
-      <module name="gastgewerbe-app-api" target="1.8" />
-      <module name="gastgewerbe-app-business-benutzer" target="1.8" />
-      <module name="gastgewerbe-app-business-login" target="1.8" />
-      <module name="gastgewerbe-app-gui-bar" target="1.8" />
-      <module name="gastgewerbe-app-gui-kellner" target="1.8" />
-      <module name="gastgewerbe-app-gui-kueche" target="1.8" />
-      <module name="gastgewerbe-app-model" target="1.8" />
-      <module name="gastgewerbe-app-persister" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
