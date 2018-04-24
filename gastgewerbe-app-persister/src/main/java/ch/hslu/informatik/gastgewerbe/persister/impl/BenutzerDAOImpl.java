@@ -58,6 +58,8 @@ public class BenutzerDAOImpl extends GenericPersisterDAOImpl<Benutzer> implement
 
         em.close();
 
+        logger.info("findByRolleTyp Ergebniss:" +liste.toString());
+
         return liste != null ? liste : new ArrayList<Benutzer>();
     }
 

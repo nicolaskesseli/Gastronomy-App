@@ -6,8 +6,6 @@ import static org.junit.Assert.assertTrue;
 
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 import ch.hslu.informatik.gastgewerbe.model.RolleTyp;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,7 +15,7 @@ import org.junit.Test;
 
 import ch.hslu.informatik.gastgewerbe.persister.BenutzerDAO;
 import ch.hslu.informatik.gastgewerbe.persister.impl.BenutzerDAOImpl;
-import ch.hslu.informatik.gastgewerbe.persister.test.InitHelper;
+import ch.hslu.informatik.gastgewerbe.persister.util.InitHelper;
 
 import java.util.List;
 

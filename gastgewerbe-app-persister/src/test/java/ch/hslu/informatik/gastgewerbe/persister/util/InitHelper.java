@@ -1,4 +1,4 @@
-package ch.hslu.informatik.gastgewerbe.persister.test;
+package ch.hslu.informatik.gastgewerbe.persister.util;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,8 +16,7 @@ import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 
 public class InitHelper {
 
-	public static final int INIT_SIZE_PRODUKT_TYP = 9;
-	public static final int INIT_SIZE_PRODUKT = 9;
+	public static final int INIT_SIZE_PRODUKT = 6;
 	public static final int INIT_SIZE_PERSON = 6;
 	public static final int INIT_SIZE_CREDENTIALS = 6;
 	public static final int INIT_SIZE_BENUTZER = 4;
@@ -47,8 +46,25 @@ public class InitHelper {
 
 	public static List<Produkt> initProdukt() throws Exception {
 
+		ProduktDAO p = new ProduktDAOImpl();
 
-		return null;
+		List<Produkt> liste = new ArrayList<Produkt>();
+		// Getränke
+		liste.add(new Produkt("COLA","Coca Cola", "Koffeinhaltiges Getränk ungesund", 6.60, KategorieTyp.GETRANK));
+		liste.add(new Produkt("RIVE", "Rivella Rot", "Mlchserumgetränk", 5.0, KategorieTyp.GETRANK));
+		// Snacks
+		liste.add(new Produkt("CHPS", "Zweifel Chips", "Kartoffelchips ungesund", 2.60, KategorieTyp.SNACK));
+		liste.add(new Produkt("BUEN", "Bounty", "Kokosnusssnack zuckrig", 2.80, KategorieTyp.SNACK));
+		// Speisen
+		liste.add(new Produkt("PIZZ", "Pizza Maragritha", "Klassische Pizza", 19.60, KategorieTyp.SPEISE));
+		liste.add(new Produkt("ZUER", "Geschnetzeltes nach Zürcher Art", "Wie mans halt kennt...", 25.90, KategorieTyp.SPEISE));
+
+		for (Produkt t: liste){
+			p.save(t);
+		}
+
+
+		return liste;
 	}
 
 

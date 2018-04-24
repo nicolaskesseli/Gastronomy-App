@@ -16,6 +16,7 @@
 		<class>ch.hslu.informatik.gastgewerbe.model.Person</class>
 		<class>ch.hslu.informatik.gastgewerbe.model.Benutzer</class>
 		<class>ch.hslu.informatik.gastgewerbe.model.Credentials</class>
+		<class>ch.hslu.informatik.gastgewerbe.model.Produkt</class>
 		<!--
 		<class>jpa.demos.Student</class>
 		<class>jpa.demos.Modul</class>

@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import ch.hslu.informatik.gastgewerbe.model.KategorieTyp;
+import ch.hslu.informatik.gastgewerbe.model.RolleTyp;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,7 +28,7 @@ public class ProduktDAOImpl extends GenericPersisterDAOImpl<Produkt> implements 
 
         EntityManager em = JPAUtil.createEntityManager();
 
-        TypedQuery<Produkt> query = em.createNamedQuery("ProduktTyp.findByName", Produkt.class);
+        TypedQuery<Produkt> query = em.createNamedQuery("Produkt.findByName", Produkt.class);
 
         query.setParameter("name", name);
 
@@ -37,37 +39,14 @@ public class ProduktDAOImpl extends GenericPersisterDAOImpl<Produkt> implements 
         return liste != null ? liste : new ArrayList<Produkt>();
     }
 
-    public Produkt findByTypCode(String typCode) throws Exception {
-
-        EntityManager em = JPAUtil.createEntityManager();
-
-        TypedQuery<Produkt> query = em.createNamedQuery("ProduktTyp.findByTypCode", Produkt.class);
-
-        query.setParameter("typCode", typCode);
-
-        List<Produkt> liste = query.getResultList();
-
-        em.close();
-
-        if (liste.isEmpty()) {
-            return null;
-        } else if (liste.size() == 1) {
-            return liste.get(0);
-        } else {
-            String message = "Mehr als eine ProduktTyp-Entity mit dem Code \'" + typCode + "\' gefunden";
-            logger.error(message);
-            throw new IllegalStateException(message);
-        }
-    }
-
 	
-	public Produkt findByProduktId(int produktId) throws Exception {
+	public Produkt findByProduktCode(String produktCode) throws Exception {
 
 		EntityManager em = JPAUtil.createEntityManager();
 		
-		 TypedQuery<Produkt> query = em.createNamedQuery("Produkt.FindByProduktId", Produkt.class);
+		 TypedQuery<Produkt> query = em.createNamedQuery("Produkt.FindByProduktCode", Produkt.class);
 		 
-		 query.setParameter("ProduktId", produktId);
+		 query.setParameter("produktCode", produktCode);
 		 
 		 List<Produkt> liste = query.getResultList();
 
@@ -78,7 +57,7 @@ public class ProduktDAOImpl extends GenericPersisterDAOImpl<Produkt> implements 
 	        } else if (liste.size() == 1) {
 	            return liste.get(0);
 	        } else {
-	            String message = "Mehr als ein Produkt mit der ProduktId \'" + produktId + "\' gefunden";
+	            String message = "Mehr als ein Produkt mit der ProduktId \'" + produktCode + "\' gefunden";
 	            logger.error(message);
 	            throw new IllegalStateException(message);
 	        }
@@ -87,13 +66,13 @@ public class ProduktDAOImpl extends GenericPersisterDAOImpl<Produkt> implements 
 	}
 
 	
-	public List<Produkt> findByKategorie(String kategorie) throws Exception {
+	public List<Produkt> findByKategorie(KategorieTyp kategorie) throws Exception {
 
 		 EntityManager em = JPAUtil.createEntityManager();
 
 	        TypedQuery<Produkt> query = em.createNamedQuery("Produkt.findByKategorie", Produkt.class);
 
-	        query.setParameter("kategorie", kategorie);
+	        query.setParameter("kategorieTyp", kategorie);
 
 	        List<Produkt> liste = query.getResultList();
 
@@ -104,6 +83,5 @@ public class ProduktDAOImpl extends GenericPersisterDAOImpl<Produkt> implements 
 		
 	}
 
-    
 
 }
