@@ -3,14 +3,13 @@ package ch.hslu.informatik.gastgewerbe.persister.test;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.hslu.informatik.gastgewerbe.model.Adresse;
-import ch.hslu.informatik.gastgewerbe.model.Benutzer;
-import ch.hslu.informatik.gastgewerbe.model.Credentials;
-import ch.hslu.informatik.gastgewerbe.model.Kontakt;
-import ch.hslu.informatik.gastgewerbe.model.Person;
-import ch.hslu.informatik.gastgewerbe.model.RolleTyp;
+import ch.hslu.informatik.gastgewerbe.model.*;
 import ch.hslu.informatik.gastgewerbe.persister.BenutzerDAO;
+import ch.hslu.informatik.gastgewerbe.persister.BestellungDAO;
+import ch.hslu.informatik.gastgewerbe.persister.ProduktDAO;
 import ch.hslu.informatik.gastgewerbe.persister.impl.BenutzerDAOImpl;
+import ch.hslu.informatik.gastgewerbe.persister.impl.BestellungDAOImpl;
+import ch.hslu.informatik.gastgewerbe.persister.impl.ProduktDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 
 
@@ -26,7 +25,35 @@ public class InitHelper {
 	public static final int INIT_SIZE_LIEFERUNG_POSITION = 6;
 	public static final int INIT_SIZE_LIEFERUNG = 2;
 	public static final int INIT_SIZE_RECHNUNG = 2;
-	
+
+	public static List<Bestellung> initBestellung() throws Exception {
+		return null;
+	}
+
+	public static void deleteAllBestellung() throws Exception {
+
+		BestellungDAO pBestellungDAO = new BestellungDAOImpl();
+
+		for (Bestellung b : pBestellungDAO.findAll()) {
+			pBestellungDAO.delete(b);
+		}
+	}
+
+	public static List<Produkt> initProdukt() throws Exception {
+		return null;
+	}
+
+
+
+	public static void deleteAllProdukt() throws Exception {
+		ProduktDAO pProdukt = new ProduktDAOImpl();
+		for (Produkt p : pProdukt.findAll()) {
+			pProdukt.delete(p);
+		}
+	}
+
+
+
 	public static List<Person> createPersonListe() {
 
 		List<Person> liste = new ArrayList<>();
