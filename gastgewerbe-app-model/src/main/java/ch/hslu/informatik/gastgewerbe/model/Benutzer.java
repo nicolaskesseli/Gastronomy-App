@@ -15,7 +15,8 @@ import javax.persistence.OneToOne;
 @NamedQueries({
 		@NamedQuery(name = "Benutzer.findByBenutzername", query = "SELECT e FROM Benutzer e WHERE e.credentials.benutzername=:benutzername"),
 		@NamedQuery(name = "Benutzer.findByRolleTyp", query = "SELECT e FROM Benutzer e WHERE e.rolle=:rolleTyp"), 
-		@NamedQuery(name = "Benutzer.findAll", query = "SELECT e FROM Benutzer e")
+		@NamedQuery(name = "Benutzer.findAll", query = "SELECT e FROM Benutzer e"),
+		@NamedQuery(name = "Benutzer.findByNachnameUndVorname", query = "SELECT e FROM Benutzer e WHERE e.nachname=:nachname AND e.vorname=:vorname"),
 })
 
 public class Benutzer extends Person {

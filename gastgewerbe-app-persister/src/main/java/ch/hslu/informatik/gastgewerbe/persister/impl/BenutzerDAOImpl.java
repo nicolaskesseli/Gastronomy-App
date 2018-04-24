@@ -65,7 +65,7 @@ public class BenutzerDAOImpl extends GenericPersisterDAOImpl<Benutzer> implement
 
         EntityManager em = JPAUtil.createEntityManager();
 
-        TypedQuery<Benutzer> query = em.createNamedQuery("Benutzer.findByBenutzername", Benutzer.class);
+        TypedQuery<Benutzer> query = em.createNamedQuery("Benutzer.findByNachnameUndVorname", Benutzer.class);
 
         query.setParameter("nachname", nachname);
         query.setParameter("vorname", vorname);
