@@ -1,5 +1,7 @@
 package ch.hslu.informatik.gastgewerbe.persister.impl;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -20,13 +22,13 @@ public class BestellungDAOImpl extends GenericPersisterDAOImpl<Bestellung> imple
 		super(Bestellung.class);
 	}
 
-	public List<Bestellung> findByTischId(double TischId) throws Exception {
+	public List<Bestellung> findByTischId(int TischId) throws Exception {
 
 		EntityManager em = JPAUtil.createEntityManager();
 
-		TypedQuery<Bestellung> query = em.createNamedQuery("Bestellung.findByTischID", Bestellung.class);
+		TypedQuery<Bestellung> query = em.createNamedQuery("Bestellung.findByTischId", Bestellung.class);
 
-		query.setParameter("bestellID", TischId);
+		query.setParameter("tischNr", TischId);
 
 		List<Bestellung> liste = query.getResultList();
 
@@ -42,6 +44,21 @@ public class BestellungDAOImpl extends GenericPersisterDAOImpl<Bestellung> imple
 
 		}
 
+	}
+
+	public List<Bestellung> findByZeit (LocalDate zeit) throws Exception{
+
+		EntityManager em = JPAUtil.createEntityManager();
+
+		TypedQuery<Bestellung> query = em.createNamedQuery("Bestellung.findByZeit", Bestellung.class);
+
+		query.setParameter("zeit", zeit);
+
+		List<Bestellung> liste = query.getResultList();
+
+		em.close();
+
+		return liste != null ? liste : new ArrayList<Bestellung>();
 	}
 
 }

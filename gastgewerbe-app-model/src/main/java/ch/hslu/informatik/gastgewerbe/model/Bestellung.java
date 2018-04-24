@@ -19,7 +19,9 @@ import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({
-@NamedQuery(name = "Bestellung.findByDatum", query = "SELECT e FROM Bestellung e WHERE e.datum=:datum") })
+@NamedQuery(name = "Bestellung.findByZeit", query = "SELECT e FROM Bestellung e WHERE e.zeit=:zeit"),
+@NamedQuery(name="Bestellung.findByTischId", query = "SELECT e FROM Bestellung e WHERE e.tisch.tischNr=:tischNr")
+})
 
 public class Bestellung implements Serializable {
 

@@ -2,16 +2,15 @@ package ch.hslu.informatik.gastgewerbe.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+		@NamedQuery(name = "Tisch.findByTischNr", query = "SELECT e FROM Tisch e WHERE e.tischNr=:tischNr")})
+
 public class Tisch implements Serializable {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -6183963575385026738L;
 	
 	@Id
