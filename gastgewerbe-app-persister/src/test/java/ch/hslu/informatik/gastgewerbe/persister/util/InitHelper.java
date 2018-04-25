@@ -8,10 +8,12 @@ import ch.hslu.informatik.gastgewerbe.model.*;
 import ch.hslu.informatik.gastgewerbe.persister.BenutzerDAO;
 import ch.hslu.informatik.gastgewerbe.persister.BestellungDAO;
 import ch.hslu.informatik.gastgewerbe.persister.CredentialsDAO;
+import ch.hslu.informatik.gastgewerbe.persister.PersonDAO;
 import ch.hslu.informatik.gastgewerbe.persister.ProduktDAO;
 import ch.hslu.informatik.gastgewerbe.persister.impl.BenutzerDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.impl.BestellungDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.impl.CredentialsDAOImpl;
+import ch.hslu.informatik.gastgewerbe.persister.impl.PersonDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.impl.ProduktDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 
@@ -161,4 +163,37 @@ public class InitHelper {
 		}
 
 	}
+	
+	public static List<Person> initPerson() throws Exception {
+
+		PersonDAO pPerson = new PersonDAOImpl();
+		List<Person> liste = new ArrayList<Person>();
+
+		liste.add(new Person("Weber", "Marco", new Adresse("Lindenstrasse 12", 6030, "Ebikon"),
+				new Kontakt("mweber@gmail.com", "041 111 11 11")));
+		liste.add(new Person("Fischer", "Ana", new Adresse("Bundesstrasse 112", 6002, "Luzern"),
+				new Kontakt("afischer1980@sbb.ch", "041 222 22 22")));
+		liste.add(new Person("Pechvogel", "Hansli", new Adresse("Kirchgasse 4", 6274, "Eschenbach"),
+				new Kontakt("hpechvogel@bluewin.ch", "041 333 33 33")));
+		liste.add(new Person("Kaufmann", "Ursula", new Adresse("Rigistrasse 26", 6048, "Horw"),
+				new Kontakt("ukaufmann@yahoo.com", "041 444 44 44")));
+		liste.add(new Person("Portmann", "Roger", new Adresse("Unterdorfstrasse 12", 6033, "Buchrain"),
+				new Kontakt("rportmann1975@sunrise.ch", "041 555 55 55")));
+		liste.add(new Person("Lindauer", "Adrian", new Adresse("Gothardstrasse 64", 6484, "Wassen"),
+				new Kontakt("alindauer@bluewin.ch", "041 666 66 66")));
+
+		for (Person p : liste) {
+			pPerson.save(p);
+		}
+
+		return liste;
+	}
+
+	public static void deleteAllPerson() throws Exception {
+		PersonDAO pPerson = new PersonDAOImpl();
+		for (Person p : pPerson.findAll()) {
+			pPerson.delete(p);
+		}
+	}
+	
 }
