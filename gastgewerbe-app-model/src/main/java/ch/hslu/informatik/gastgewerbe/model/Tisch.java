@@ -35,6 +35,24 @@ public class Tisch implements Serializable {
 		result = prime * result + tischNr;
 		return result;
 	}
+	
+	
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public int getTischNr() {
+		return tischNr;
+	}
+
+	public void setTischNr(int tischNr) {
+		this.tischNr = tischNr;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
