@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 
 @Entity
-@NamedQuery(name = "BestellungPosition.findByProduktTyp", query = "SELECT e FROM BestellungPosition e WHERE e.produktTyp=:produktTyp")
+@NamedQuery(name = "BestellungPosition.findByProduktTyp", query = "SELECT e FROM BestellungPosition e WHERE e.Produkt.produktTyp=:produktTyp")
 public class BestellungPosition implements Serializable {
 
 	private static final long serialVersionUID = -1508291776956970574L;

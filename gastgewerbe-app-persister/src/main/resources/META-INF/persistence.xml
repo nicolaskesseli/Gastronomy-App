@@ -10,21 +10,20 @@
 
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
-		 
-		<class>ch.hslu.informatik.gastgewerbe.model.Adresse</class>
-		<class>ch.hslu.informatik.gastgewerbe.model.Kontakt</class>
-		<class>ch.hslu.informatik.gastgewerbe.model.Person</class>
-		<class>ch.hslu.informatik.gastgewerbe.model.Benutzer</class>
-		<class>ch.hslu.informatik.gastgewerbe.model.Credentials</class>
-		<class>ch.hslu.informatik.gastgewerbe.model.Produkt</class>
-		<class>ch.hslu.informatik.gastgewerbe.model.Tisch</class>
+
+        <class>ch.hslu.informatik.gastgewerbe.model.Adresse</class>
+        <class>ch.hslu.informatik.gastgewerbe.model.Kontakt</class>
+        <class>ch.hslu.informatik.gastgewerbe.model.Person</class>
+        <class>ch.hslu.informatik.gastgewerbe.model.Benutzer</class>
+        <class>ch.hslu.informatik.gastgewerbe.model.Credentials</class>
+        <class>ch.hslu.informatik.gastgewerbe.model.Produkt</class>
+        <class>ch.hslu.informatik.gastgewerbe.model.Tisch</class>
         <class>ch.hslu.informatik.gastgewerbe.model.KategorieTyp</class>
         <class>ch.hslu.informatik.gastgewerbe.model.RolleTyp</class>
-<!--
+        <!--
         <class>ch.hslu.informatik.gastgewerbe.model.Bestellung</class>
-		<class>ch.hslu.informatik.gastgewerbe.model.BestellungPosition</class>
--->
-
+        <class>ch.hslu.informatik.gastgewerbe.model.BestellungPosition</class>
+       -->
 		<validation-mode>AUTO</validation-mode>
 
 		<properties>
@@ -54,20 +53,21 @@
 
 <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
-    <class>ch.hslu.informatik.gastgewerbe.model.Adresse</class>
-    <class>ch.hslu.informatik.gastgewerbe.model.Kontakt</class>
-    <class>ch.hslu.informatik.gastgewerbe.model.Person</class>
-    <class>ch.hslu.informatik.gastgewerbe.model.Benutzer</class>
-    <class>ch.hslu.informatik.gastgewerbe.model.Credentials</class>
-    <class>ch.hslu.informatik.gastgewerbe.model.Produkt</class>
-    <class>ch.hslu.informatik.gastgewerbe.model.Tisch</class>
-    <class>ch.hslu.informatik.gastgewerbe.model.KategorieTyp</class>
-    <class>ch.hslu.informatik.gastgewerbe.model.RolleTyp</class>
-    <!--
-        <class>ch.hslu.informatik.gastgewerbe.model.Bestellung</class>
-        <class>ch.hslu.informatik.gastgewerbe.model.BestellungPosition</class>
-    -->
+   	 	<class>ch.hslu.informatik.gastgewerbe.model.Adresse</class>
+        <class>ch.hslu.informatik.gastgewerbe.model.Kontakt</class>
+        <class>ch.hslu.informatik.gastgewerbe.model.Person</class>
+        <class>ch.hslu.informatik.gastgewerbe.model.Benutzer</class>
+        <class>ch.hslu.informatik.gastgewerbe.model.Credentials</class>
+        <class>ch.hslu.informatik.gastgewerbe.model.Produkt</class>
+        <class>ch.hslu.informatik.gastgewerbe.model.Tisch</class>
+        <class>ch.hslu.informatik.gastgewerbe.model.KategorieTyp</class>
+        <class>ch.hslu.informatik.gastgewerbe.model.RolleTyp</class>
 
+    <!--
+       <class>ch.hslu.informatik.gastgewerbe.model.Bestellung</class>
+       <class>ch.hslu.informatik.gastgewerbe.model.BestellungPosition</class>
+      -->
+		
 
 
         <validation-mode>AUTO</validation-mode>
