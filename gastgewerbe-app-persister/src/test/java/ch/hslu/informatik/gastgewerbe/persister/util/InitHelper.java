@@ -7,9 +7,11 @@ import java.util.List;
 import ch.hslu.informatik.gastgewerbe.model.*;
 import ch.hslu.informatik.gastgewerbe.persister.BenutzerDAO;
 import ch.hslu.informatik.gastgewerbe.persister.BestellungDAO;
+import ch.hslu.informatik.gastgewerbe.persister.CredentialsDAO;
 import ch.hslu.informatik.gastgewerbe.persister.ProduktDAO;
 import ch.hslu.informatik.gastgewerbe.persister.impl.BenutzerDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.impl.BestellungDAOImpl;
+import ch.hslu.informatik.gastgewerbe.persister.impl.CredentialsDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.impl.ProduktDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 
@@ -117,6 +119,33 @@ public class InitHelper {
 		}
 
 		return liste;
+	}
+	
+	public static List<Credentials> initCredentials() throws Exception {
+
+		CredentialsDAO pCredentials = new CredentialsDAOImpl();
+		List<Credentials> liste = new ArrayList<Credentials>();
+
+		liste.add(new Credentials("hpechvogel", "hpechvogel_pwd"));
+		liste.add(new Credentials("mweber", "mweber_pwd"));
+		liste.add(new Credentials("rbucher", "rbucher_pwd"));
+		liste.add(new Credentials("ukaufmann", "ukaufmann_pwd"));
+		liste.add(new Credentials("Nicolas Kesseli", "MacChicken"));
+		liste.add(new Credentials("alindauer", "alindauer_pwd"));
+
+		for (Credentials c : liste) {
+			pCredentials.save(c);
+		}
+
+		return liste;
+	}
+
+	public static void deleteAllCredentials() throws Exception {
+
+		CredentialsDAO pCredentials = new CredentialsDAOImpl();
+		for (Credentials c : pCredentials.findAll()) {
+			pCredentials.delete(c);
+		}
 	}
 	
 	public static void resetDb() {
