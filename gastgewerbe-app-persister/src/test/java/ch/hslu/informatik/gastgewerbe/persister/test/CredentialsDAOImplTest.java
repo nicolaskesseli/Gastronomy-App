@@ -24,7 +24,7 @@ public class CredentialsDAOImplTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		//InitHelper.deleteAllCredentials();
+		InitHelper.deleteAllCredentials();
 	}
 
 	@Before
