@@ -18,12 +18,9 @@
         <class>ch.hslu.informatik.gastgewerbe.model.Credentials</class>
         <class>ch.hslu.informatik.gastgewerbe.model.Produkt</class>
         <class>ch.hslu.informatik.gastgewerbe.model.Tisch</class>
-        <class>ch.hslu.informatik.gastgewerbe.model.KategorieTyp</class>
-        <class>ch.hslu.informatik.gastgewerbe.model.RolleTyp</class>
-        <!--
         <class>ch.hslu.informatik.gastgewerbe.model.Bestellung</class>
         <class>ch.hslu.informatik.gastgewerbe.model.BestellungPosition</class>
-       -->
+
 		<validation-mode>AUTO</validation-mode>
 
 		<properties>
@@ -60,13 +57,9 @@
         <class>ch.hslu.informatik.gastgewerbe.model.Credentials</class>
         <class>ch.hslu.informatik.gastgewerbe.model.Produkt</class>
         <class>ch.hslu.informatik.gastgewerbe.model.Tisch</class>
-        <class>ch.hslu.informatik.gastgewerbe.model.KategorieTyp</class>
-        <class>ch.hslu.informatik.gastgewerbe.model.RolleTyp</class>
+        <class>ch.hslu.informatik.gastgewerbe.model.Bestellung</class>
+        <class>ch.hslu.informatik.gastgewerbe.model.BestellungPosition</class>
 
-    <!--
-       <class>ch.hslu.informatik.gastgewerbe.model.Bestellung</class>
-       <class>ch.hslu.informatik.gastgewerbe.model.BestellungPosition</class>
-      -->
 		
 
 

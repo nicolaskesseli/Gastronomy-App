@@ -15,18 +15,16 @@ import javax.persistence.*;
 
 public class Bestellung implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7279601401001555811L;
 
 	@Id
 	@GeneratedValue
 	private long id;
+
 	private String bemerkung;
 	private boolean rechnungBezahlt;
 	private LocalDate zeit;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Tisch tisch;
 
 	@OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)

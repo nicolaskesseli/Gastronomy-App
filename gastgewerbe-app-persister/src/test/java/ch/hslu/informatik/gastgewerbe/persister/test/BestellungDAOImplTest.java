@@ -4,6 +4,7 @@ import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.persister.BestellungDAO;
 import ch.hslu.informatik.gastgewerbe.persister.impl.BestellungDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.util.InitHelper;
+import org.apache.logging.log4j.core.appender.ConsoleAppender;
 import org.junit.*;
 
 import java.time.LocalDate;
@@ -36,7 +37,7 @@ public class BestellungDAOImplTest {
     }
 
     private void init() throws Exception {
-        InitHelper.initProdukt();
+
         InitHelper.initBestellung();
     }
 
@@ -121,7 +122,8 @@ public class BestellungDAOImplTest {
 
         int TischNr = b.getTisch().getTischNr();
 
-        assertTrue(b.equals(pBestellungDAO.findByTischNr(TischNr)));
+
+        assertTrue(b.equals(pBestellungDAO.findByTischNr(TischNr).get(0)));
 
 
     }

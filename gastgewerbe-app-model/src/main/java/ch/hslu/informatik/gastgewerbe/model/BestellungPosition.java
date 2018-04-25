@@ -2,14 +2,10 @@ package ch.hslu.informatik.gastgewerbe.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 
 @Entity
-@NamedQuery(name = "BestellungPosition.findByProduktTyp", query = "SELECT e FROM BestellungPosition e WHERE e.Produkt.produktTyp=:produktTyp")
+@NamedQuery(name = "BestellungPosition.findByProdukt", query = "SELECT e FROM BestellungPosition e WHERE e.produkt=:produkt")
 public class BestellungPosition implements Serializable {
 
 	private static final long serialVersionUID = -1508291776956970574L;
@@ -17,12 +13,14 @@ public class BestellungPosition implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
-	private boolean bestellungBereit;
 
-	@ManyToOne
+	private boolean bestellungBereit;
+	private int anzahl;
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Produkt produkt;
 
-	private int anzahl;
+
 	
 	public BestellungPosition(Produkt produkt, int anzahl) {
 		this.produkt = produkt;
