@@ -10,17 +10,20 @@ import ch.hslu.informatik.gastgewerbe.persister.BestellungDAO;
 import ch.hslu.informatik.gastgewerbe.persister.CredentialsDAO;
 import ch.hslu.informatik.gastgewerbe.persister.PersonDAO;
 import ch.hslu.informatik.gastgewerbe.persister.ProduktDAO;
+import ch.hslu.informatik.gastgewerbe.persister.TischDAO;
 import ch.hslu.informatik.gastgewerbe.persister.impl.BenutzerDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.impl.BestellungDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.impl.CredentialsDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.impl.PersonDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.impl.ProduktDAOImpl;
+import ch.hslu.informatik.gastgewerbe.persister.impl.TischDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 
 
 public class InitHelper {
 
 	public static final int INIT_SIZE_PRODUKT = 6;
+	public static final int INIT_SIZE_TISCH = 6;
 	public static final int INIT_SIZE_PERSON = 6;
 	public static final int INIT_SIZE_CREDENTIALS = 6;
 	public static final int INIT_SIZE_BENUTZER = 4;
@@ -193,6 +196,33 @@ public class InitHelper {
 		PersonDAO pPerson = new PersonDAOImpl();
 		for (Person p : pPerson.findAll()) {
 			pPerson.delete(p);
+		}
+	}
+	
+	public static List<Tisch> initTisch() throws Exception {
+
+		TischDAO pTisch = new TischDAOImpl();
+		List<Tisch> liste = new ArrayList<Tisch>();
+
+		liste.add(new Tisch(1));
+		liste.add(new Tisch(2));
+		liste.add(new Tisch(3));
+		liste.add(new Tisch(4));
+		liste.add(new Tisch(5));
+		liste.add(new Tisch(6));
+
+		for (Tisch t : liste) {
+			pTisch.save(t);
+		}
+
+		return liste;
+	}
+
+	public static void deleteAllTisch() throws Exception {
+
+		TischDAO pTisch = new TischDAOImpl();
+		for (Tisch t : pTisch.findAll()) {
+			pTisch.delete(t);
 		}
 	}
 	
