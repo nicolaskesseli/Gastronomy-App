@@ -27,6 +27,6 @@ public class JPAUtil {
 	}
 
 	public static EntityManager createEntityManagerForDelition() {
-		return Persistence.createEntityManagerFactory("gastgewerbe-pu").createEntityManager();
+		return Persistence.createEntityManagerFactory("delete-gastgewerbe-pu").createEntityManager();
 	}
 }

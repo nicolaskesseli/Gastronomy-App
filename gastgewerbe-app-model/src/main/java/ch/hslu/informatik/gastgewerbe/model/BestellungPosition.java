@@ -18,17 +18,16 @@ public class BestellungPosition implements Serializable {
 	@GeneratedValue
 	private long id;
 	private boolean bestellungBereit;
-	private int anzahl;
+
 	@ManyToOne
 	private Produkt produkt;
+
+	private int anzahl;
 	
-	
-	public BestellungPosition(long id, Produkt produkt, boolean bestellungBereit, int anzahl) {
-		super();
-		this.id = id;
+	public BestellungPosition(Produkt produkt, int anzahl) {
 		this.produkt = produkt;
-		this.bestellungBereit = bestellungBereit;
 		this.anzahl = anzahl;
+		this.bestellungBereit=false;
 	}
 
 

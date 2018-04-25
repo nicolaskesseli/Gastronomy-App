@@ -11,7 +11,7 @@ public interface BestellungDAO extends GenericPersisterDAO<Bestellung> {
 	
 	
 	
-	List<Bestellung> findByTischId(int TischId) throws Exception;
+	List<Bestellung> findByTischNr(int TischNr) throws Exception;
 
 	List<Bestellung> findByZeit(LocalDate zeit) throws Exception;
 	

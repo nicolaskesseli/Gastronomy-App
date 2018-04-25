@@ -29,15 +29,29 @@ public class InitHelper {
 	public static final int INIT_SIZE_BENUTZER = 4;
 	public static final int INIT_SIZE_BESTELLUNG_POSITION = 3;
 	public static final int INIT_SIZE_BESTELLUNG = 1;
-	public static final int INIT_SIZE_LIEFERUNG_POSITION = 6;
-	public static final int INIT_SIZE_LIEFERUNG = 2;
 	public static final int INIT_SIZE_RECHNUNG = 2;
 
 	public static List<Bestellung> initBestellung() throws Exception {
 
 		List<Bestellung> liste = new ArrayList<Bestellung>();
 
-		//Bestellung b = new Bestellung("Achtung Glutenintolleranz",new Tisch(10), )
+		BestellungDAO pBestellungDAO = new BestellungDAOImpl();
+
+		Bestellung b = new Bestellung("Achtung Glutenintolleranz",new Tisch(10));
+
+		Produkt cola = new Produkt("COLA","Coca Cola", "Koffeinhaltiges Getränk ungesund", 6.60, KategorieTyp.GETRANK);
+		Produkt chips = new Produkt("CHPS", "Zweifel Chips", "Kartoffelchips ungesund", 2.60, KategorieTyp.SNACK);
+		Produkt pizza = new Produkt("PIZZ", "Pizza Maragritha", "Klassische Pizza", 19.60, KategorieTyp.SPEISE);
+
+		b.getBestellungPositionListe().add(new BestellungPosition(cola, 4));
+		b.getBestellungPositionListe().add(new BestellungPosition(chips, 3));
+		b.getBestellungPositionListe().add(new BestellungPosition(pizza, 10));
+
+		liste.add(b);
+
+		for (Bestellung bestellung : liste){
+			pBestellungDAO.save(bestellung);
+		}
 
 		return liste;
 	}

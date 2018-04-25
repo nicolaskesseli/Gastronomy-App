@@ -5,22 +5,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @NamedQueries({
 @NamedQuery(name = "Bestellung.findByZeit", query = "SELECT e FROM Bestellung e WHERE e.zeit=:zeit"),
-@NamedQuery(name="Bestellung.findByTischId", query = "SELECT e FROM Bestellung e WHERE e.tisch.tischNr=:tischNr")
+@NamedQuery(name="Bestellung.findByTischNr", query = "SELECT e FROM Bestellung e WHERE e.tisch.tischNr=:tischNr")
 })
 
 public class Bestellung implements Serializable {
@@ -34,27 +24,25 @@ public class Bestellung implements Serializable {
 	@GeneratedValue
 	private long id;
 	private String bemerkung;
-	private boolean rechnungBezahlt = false;
-	
-	@Temporal(TemporalType.DATE)
-	private LocalDate zeit = LocalDate.now();
-	@OneToOne
+	private boolean rechnungBezahlt;
+	private LocalDate zeit;
+	@ManyToOne
 	private Tisch tisch;
 
-
-	
 	@OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
-	
 	List<BestellungPosition> bestellungPositionListe = new ArrayList<BestellungPosition>();
 
 	public Bestellung() {
 	
 	}
 
-	public Bestellung(String bemerkung, Tisch tisch, List<BestellungPosition> bestellungPositionListe) {
+
+
+	public Bestellung(String bemerkung, Tisch tisch) {
 		this.bemerkung = bemerkung;
 		this.tisch = tisch;
-		this.bestellungPositionListe = bestellungPositionListe;
+		this.rechnungBezahlt=false;
+		this.zeit=LocalDate.now();
 	}
 
 	public long getId() {
