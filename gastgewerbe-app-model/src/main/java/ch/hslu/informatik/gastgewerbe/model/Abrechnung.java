@@ -25,7 +25,7 @@ public class Abrechnung implements Serializable {
 	private Double betrag;
 
 	// Zu abrechende Bestellung
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER)
 	private Bestellung bestellung;
 
 
@@ -33,7 +33,7 @@ public class Abrechnung implements Serializable {
 	 * Der an der Kasse angemeldetet Benutzer, der die Rechnung erstellt hat
 	 * (Ersteller)
 	 */
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Benutzer benutzer;
 
 	public Abrechnung() {
