@@ -24,7 +24,34 @@ import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.model.Credentials;
 import ch.hslu.informatik.gastgewerbe.model.Kontakt;
 import ch.hslu.informatik.gastgewerbe.model.Produkt;
+import ch.hslu.informatik.gastgewerbe.model.RolleTyp;
+import ch.hslu.informatik.gastgewerbe.persister.BenutzerDAO;
+import ch.hslu.informatik.gastgewerbe.persister.impl.BenutzerDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.concurrent.ThreadLocalRandom;
+
+import javax.xml.XMLConstants;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.input.sax.XMLReaderJDOMFactory;
+import org.jdom2.input.sax.XMLReaderSchemaFactory;
+
 
 public class AppInitializer {
 	
@@ -158,8 +185,6 @@ public class AppInitializer {
 
 	private static void initTestdata() {
 		try {
-			initProduktTyp();
-			initProdukt();
 			initBenutzer();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
