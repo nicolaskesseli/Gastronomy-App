@@ -82,6 +82,7 @@
 		<module>gastgewerbe-app-business-benutzer</module>
 		<module>gastgewerbe-app-business-login</module>
 		<module>gastgewerbe-app-persister</module>
+		<module>gastgewerbe-app-initializer</module>
 		
 		
 	</modules>
