@@ -8,6 +8,7 @@
     <file url="file://$PROJECT_DIR$/gastgewerbe-app-gui-bar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gastgewerbe-app-gui-kellner" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gastgewerbe-app-gui-kueche" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gastgewerbe-app-initializer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gastgewerbe-app-model" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gastgewerbe-app-persister" charset="UTF-8" />
   </component>
