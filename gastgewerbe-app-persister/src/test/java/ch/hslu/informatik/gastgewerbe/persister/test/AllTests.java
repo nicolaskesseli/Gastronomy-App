@@ -6,7 +6,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({BenutzerDAOImplTest.class, BestellungDAOImplTest.class,CredentialsDAOImplTest.class, PersonDAOImplTest.class, ProduktDAOImplTest.class, TischDAOImplTest.class})
+@SuiteClasses({BenutzerDAOImplTest.class, BestellungDAOImplTest.class,CredentialsDAOImplTest.class, PersonDAOImplTest.class, ProduktDAOImplTest.class, TischDAOImplTest.class, AbrechnungDAOImplTest.class})
 public class AllTests {
 
 }

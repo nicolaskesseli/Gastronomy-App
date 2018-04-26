@@ -6,53 +6,45 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
-
-public class Abrechnung implements Serializable{
+@NamedQueries({
+		@NamedQuery(name = "Abrechnung.findByDatum", query = "SELECT e FROM Rechnung e WHERE e.zeit BETWEEN :startDatum AND :endDatum"),
+		@NamedQuery(name = "Abrechnung.findByBenutzer", query = "SELECT e FROM Rechnung e WHERE e.benutzer=:benutzer"),
+		@NamedQuery(name = "Abrechnung.findByBenutzerUndDatum", query = "SELECT e FROM Rechnung e WHERE e.zeit BETWEEN :startDatum AND :endDatum AND e.benutzer=:benutzer") })
+public class Abrechnung implements Serializable {
 
 	private static final long serialVersionUID = 4575490394462466750L;
 
 	@Id
 	@GeneratedValue
 	private long id;
-	
-	@OneToOne
-	private Tisch tisch;
+
+	private LocalDate zeit;
+	private Double betrag;
+
+	// Zu abrechende Bestellung
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Bestellung bestellung;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private LocalDate zeit;
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<AbrechnungPosition> abrechnungPositionListe = new ArrayList<AbrechnungPosition>();
 
 	/**
 	 * Der an der Kasse angemeldetet Benutzer, der die Rechnung erstellt hat
 	 * (Ersteller)
 	 */
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Benutzer benutzer;
 
 	public Abrechnung() {
 
 	}
 
-	public Abrechnung(LocalDate zeit, Benutzer benutzer, Tisch tisch, Bestellung bestellung) {
-		this.zeit = zeit;
+	public Abrechnung(Benutzer benutzer, Bestellung bestellung) {
+		this.zeit = LocalDate.now();
 		this.benutzer = benutzer;
-		this.tisch = tisch;
 		this.bestellung = bestellung;
+		this.betrag=0.0;
 	}
 
 	public long getId() {
@@ -71,28 +63,12 @@ public class Abrechnung implements Serializable{
 		this.zeit = zeit;
 	}
 
-	public List<AbrechnungPosition> getRechnungPositionListe() {
-		return abrechnungPositionListe;
-	}
-
-	public void setRechnungPositionListe(List<AbrechnungPosition> rechnungPositionListe) {
-		this.abrechnungPositionListe = rechnungPositionListe;
-	}
-
 	public Benutzer getBenutzer() {
 		return benutzer;
 	}
 
 	public void setBenutzer(Benutzer benutzer) {
 		this.benutzer = benutzer;
-	}
-
-	public Tisch getTisch() {
-		return tisch;
-	}
-
-	public void setTisch(Tisch tisch) {
-		this.tisch = tisch;
 	}
 
 	public Bestellung getBestellung() {
@@ -103,106 +79,60 @@ public class Abrechnung implements Serializable{
 		this.bestellung = bestellung;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
+	public void setBetrag(Double betrag) {
+		this.betrag = betrag;
 	}
+    // Liefert dem Gesamtbetrag für die Abrechnung
+	public Double getBetrag(){
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Abrechnung other = (Abrechnung) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
+	    double betrag = 0;
 
-	/* Helper Methoden */
+        List<BestellungPosition> liste = bestellung.getBestellungPositionListe();
 
-	/**
-	 * Fügt die übergebene RechnungPosition in die Liste ein.
-	 *
-	 * @param rechnungPosition
-	 * @return
-	 */
-	public boolean addRechnungPosition(AbrechnungPosition rechnungPosition) {
-		return abrechnungPositionListe.add(rechnungPosition);
-	}
-
-	/**
-	 * Entferent die übergebene Rechnungsposition aus der Liste.
-	 *
-	 * @param rechnungPosition
-	 * @return
-	 */
-	public boolean removeRechnungPosition(AbrechnungPosition rechnungPosition) {
-		return abrechnungPositionListe.remove(rechnungPosition);
-	}
-
-	/**
-	 * Liefert den Rechnungsbetrag zurück.
-	 *
-	 * @return
-	 */
-	public double getBetrag() {
-
-		double betrag = 0;
-
-		for (AbrechnungPosition rPosition : abrechnungPositionListe) {
-			betrag += rPosition.getBetrag();
-		}
+        for (BestellungPosition a : liste){
+            betrag = a.getProdukt().getPreis()*a.getAnzahl();
+        }
 
 		return betrag;
 	}
 
-	/**
-	 * Liefert die Rechnungsposition für den übergebenen Produtktyp zurück.
-	 *
-	 * @param produktTyp
-	 * @return
-	 */
-	public AbrechnungPosition findByProdukt(Produkt produkt) {
 
-		for (AbrechnungPosition pos : abrechnungPositionListe) {
-			if (pos.getProdukt().equals(produkt)) {
-				return pos;
-			}
-		}
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Abrechnung)) return false;
 
-		return null;
+		Abrechnung that = (Abrechnung) o;
+
+		if (id != that.id) return false;
+		if (zeit != null ? !zeit.equals(that.zeit) : that.zeit != null) return false;
+		if (betrag != null ? !betrag.equals(that.betrag) : that.betrag != null) return false;
+		if (bestellung != null ? !bestellung.equals(that.bestellung) : that.bestellung != null) return false;
+		return benutzer != null ? benutzer.equals(that.benutzer) : that.benutzer == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = (int) (id ^ (id >>> 32));
+		result = 31 * result + (zeit != null ? zeit.hashCode() : 0);
+		result = 31 * result + (betrag != null ? betrag.hashCode() : 0);
+		result = 31 * result + (bestellung != null ? bestellung.hashCode() : 0);
+		result = 31 * result + (benutzer != null ? benutzer.hashCode() : 0);
+		return result;
 	}
 
 	@Override
 	public String toString() {
-		return "Abrechnung [id=" + id + ", tisch=" + tisch + ", bestellung=" + bestellung + ", zeit=" + zeit
-				+ ", abrechnungPositionListe=" + abrechnungPositionListe + ", benutzer=" + benutzer + "]";
+		return "Abrechnung{" +
+				"id=" + id +
+				", zeit=" + zeit +
+				", betrag=" + betrag +
+				", bestellung=" + bestellung +
+				", benutzer=" + benutzer +
+				'}';
 	}
-	
-	
-
-//	/**
-//	 * Liefert die Rechnungsposition für den übergebenen Produtktyp Code zurück.
-//	 *
-//	 * @param produktId
-//	 * @return
-//	 */
-//	public AbrechnungPosition findByProduktId(String produkt) {
-//
-//		for (AbrechnungPosition pos : abrechnungPositionListe) {
-//			if (pos.getProdukt().getTypCode().equals(produktTypCode)) {
-//				return pos;
-//			}
-//		}
-//
-//		return null;
-	
-
 }
+
+
+	
+

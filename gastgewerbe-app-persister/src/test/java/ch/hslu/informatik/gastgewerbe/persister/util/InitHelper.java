@@ -5,18 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.hslu.informatik.gastgewerbe.model.*;
-import ch.hslu.informatik.gastgewerbe.persister.BenutzerDAO;
-import ch.hslu.informatik.gastgewerbe.persister.BestellungDAO;
-import ch.hslu.informatik.gastgewerbe.persister.CredentialsDAO;
-import ch.hslu.informatik.gastgewerbe.persister.PersonDAO;
-import ch.hslu.informatik.gastgewerbe.persister.ProduktDAO;
-import ch.hslu.informatik.gastgewerbe.persister.TischDAO;
-import ch.hslu.informatik.gastgewerbe.persister.impl.BenutzerDAOImpl;
-import ch.hslu.informatik.gastgewerbe.persister.impl.BestellungDAOImpl;
-import ch.hslu.informatik.gastgewerbe.persister.impl.CredentialsDAOImpl;
-import ch.hslu.informatik.gastgewerbe.persister.impl.PersonDAOImpl;
-import ch.hslu.informatik.gastgewerbe.persister.impl.ProduktDAOImpl;
-import ch.hslu.informatik.gastgewerbe.persister.impl.TischDAOImpl;
+import ch.hslu.informatik.gastgewerbe.persister.*;
+import ch.hslu.informatik.gastgewerbe.persister.impl.*;
 import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 
 
@@ -27,9 +17,8 @@ public class InitHelper {
 	public static final int INIT_SIZE_PERSON = 6;
 	public static final int INIT_SIZE_CREDENTIALS = 6;
 	public static final int INIT_SIZE_BENUTZER = 4;
-	public static final int INIT_SIZE_BESTELLUNG_POSITION = 3;
 	public static final int INIT_SIZE_BESTELLUNG = 1;
-	public static final int INIT_SIZE_RECHNUNG = 2;
+	public static final int INIT_SIZE_ABRECHNUNG = 1;
 
 	public static List<Bestellung> initBestellung() throws Exception {
 
@@ -239,5 +228,37 @@ public class InitHelper {
 			pTisch.delete(t);
 		}
 	}
+
+	public static List<Abrechnung> initAbrechnung() throws Exception{
+
+		AbrechnungDAO pAbrechnung = new AbrechnungDAOImpl();
+
+		List<Abrechnung> liste = new ArrayList<Abrechnung>();
+
+		List<Benutzer> benu = initBenutzer();
+		List<Bestellung> best = initBestellung();
+
+		Abrechnung rechnungA = new Abrechnung(benu.get(0), best.get(0));
+
+		liste.add(rechnungA);
+
+		for(Abrechnung r: liste){
+            pAbrechnung.save(r);
+        }
+
+		return liste;
+	}
+
+    public static void deleteAllAbrechnung() throws Exception {
+
+        AbrechnungDAO pRechnung = new AbrechnungDAOImpl();
+
+        for (Abrechnung r : pRechnung.findAll()) {
+            pRechnung.delete(r);
+        }
+
+    }
+
+
 	
 }
