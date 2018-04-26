@@ -25,16 +25,18 @@ public class InitHelper {
 		List<Bestellung> liste = new ArrayList<Bestellung>();
 
 		BestellungDAO pBestellungDAO = new BestellungDAOImpl();
+		ProduktDAO pProduktDAO = new ProduktDAOImpl();
+		TischDAO pTisch = new TischDAOImpl();
 
-		Bestellung b = new Bestellung("Achtung Glutenintolleranz",new Tisch(10));
+        List<Tisch> tische = pTisch.findAll();
 
-		Produkt cola = new Produkt("COLA","Coca Cola", "Koffeinhaltiges Getränk ungesund", 6.60, KategorieTyp.GETRANK);
-		Produkt chips = new Produkt("CHPS", "Zweifel Chips", "Kartoffelchips ungesund", 2.60, KategorieTyp.SNACK);
-		Produkt pizza = new Produkt("PIZZ", "Pizza Maragritha", "Klassische Pizza", 19.60, KategorieTyp.SPEISE);
+		Bestellung b = new Bestellung("Achtung Glutenintolleranz",tische.get(1));
 
-		b.getBestellungPositionListe().add(new BestellungPosition(cola, 4));
-		b.getBestellungPositionListe().add(new BestellungPosition(chips, 3));
-		b.getBestellungPositionListe().add(new BestellungPosition(pizza, 10));
+		List<Produkt> produkte = pProduktDAO.findAll();
+
+		b.getBestellungPositionListe().add(new BestellungPosition(produkte.get(0),4));
+		b.getBestellungPositionListe().add(new BestellungPosition(produkte.get(1),3));
+		b.getBestellungPositionListe().add(new BestellungPosition(produkte.get(2),10));
 
 		liste.add(b);
 
@@ -232,18 +234,20 @@ public class InitHelper {
 	public static List<Abrechnung> initAbrechnung() throws Exception{
 
 		AbrechnungDAO pAbrechnung = new AbrechnungDAOImpl();
+        BestellungDAO pBestellungDAO = new BestellungDAOImpl();
+        BenutzerDAO pBenutzerDAO = new BenutzerDAOImpl();
+
+        List<Bestellung> b = pBestellungDAO.findAll();
+        List<Benutzer> ben = pBenutzerDAO.findAll();
 
 		List<Abrechnung> liste = new ArrayList<Abrechnung>();
 
-		List<Benutzer> benu = initBenutzer();
-		List<Bestellung> best = initBestellung();
+		Abrechnung abrechnung = new Abrechnung(ben.get(0), b.get(0));
 
-		Abrechnung rechnungA = new Abrechnung(benu.get(0), best.get(0));
+		liste.add(abrechnung);
 
-		liste.add(rechnungA);
-
-		for(Abrechnung r: liste){
-            pAbrechnung.save(r);
+		for(Abrechnung a: liste){
+            pAbrechnung.save(a);
         }
 
 		return liste;
@@ -253,8 +257,8 @@ public class InitHelper {
 
         AbrechnungDAO pRechnung = new AbrechnungDAOImpl();
 
-        for (Abrechnung r : pRechnung.findAll()) {
-            pRechnung.delete(r);
+        for (Abrechnung a : pRechnung.findAll()) {
+            pRechnung.delete(a);
         }
 
     }

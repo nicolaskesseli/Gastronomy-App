@@ -14,20 +14,19 @@ import javax.persistence.*;
 })
 public class Produkt implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6748457523208107826L;
 	@Id
 	@GeneratedValue
 	private long id;
-	private String name;
-	private String beschreibung;
-	private double preis;
+
     @Column(unique = true)
     private String produktCode;
 	@Enumerated(EnumType.STRING)
 	private KategorieTyp kategorie;
+
+	private String name;
+	private String beschreibung;
+	private double preis;
 	
 	
 

@@ -6,6 +6,8 @@ import ch.hslu.informatik.gastgewerbe.persister.impl.AbrechnungDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.util.InitHelper;
 import org.junit.*;
 
+import java.util.List;
+
 import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
 
@@ -20,17 +22,20 @@ public class AbrechnungDAOImplTest {
 
     @AfterClass
     public static void tearDownAfterClass() throws Exception {
-        InitHelper.deleteAllBestellung();
-        InitHelper.deleteAllBenutzer();
         InitHelper.deleteAllAbrechnung();
-
+        InitHelper.deleteAllBenutzer();
+        InitHelper.deleteAllBestellung();
+        InitHelper.deleteAllProdukt();
+        InitHelper.deleteAllTisch();
     }
 
     @Before
     public void setUp() throws Exception {
+        InitHelper.deleteAllAbrechnung();
         InitHelper.deleteAllBestellung();
         InitHelper.deleteAllBenutzer();
-        InitHelper.deleteAllAbrechnung();
+        InitHelper.deleteAllProdukt();
+        InitHelper.deleteAllTisch();
     }
 
     @After
@@ -38,39 +43,119 @@ public class AbrechnungDAOImplTest {
     }
 
     private void init() throws Exception {
+        InitHelper.initTisch();
+        InitHelper.initProdukt();
+        InitHelper.initBenutzer();
+        InitHelper.initBestellung();
         InitHelper.initAbrechnung();
     }
 
     @Test
-    public final void testSave() throws Exception {
+    public void testSave() throws Exception {
 
         init();
         assertTrue(pAbrechnung.findAll().size() == InitHelper.INIT_SIZE_ABRECHNUNG);
     }
 
     @Test
-    public final void testUpdate() throws Exception {
+    public void testUpdate() throws Exception {
 
         init();
         assertTrue(pAbrechnung.findAll().size() == InitHelper.INIT_SIZE_ABRECHNUNG);
 
         Abrechnung erste = pAbrechnung.findAll().get(0);
         assertNotNull(erste);
-        int anzahlProdukeInRechnung = erste.getBestellung().getBestellungPositionListe().size();
+        double betrag = erste.getGesamtBetrag();
 
-        /* Ein produkt entfernen  */
-        erste.getBestellung().getBestellungPositionListe().remove(2);
+        /* Ein produkt entfernen geht nur über Bestellung/BestellungPos!!!!! weil ManyToOne */
 
+        // Abrechnungsbetrag ändern
+        double neuerBetrag = 50.66;
+        erste.setBetrag(neuerBetrag);
         pAbrechnung.update(erste);
 
-        Abrechnung abrechnungFromDb = pAbrechnung.findById(erste.getId());
+        Abrechnung abrechFromDB = pAbrechnung.findById(erste.getId());
 
-        assertTrue(abrechnungFromDb.getBestellung().getBestellungPositionListe().size() == anzahlProdukeInRechnung - 1);
+        assertTrue(abrechFromDB.getBetrag()==neuerBetrag);
     }
 
+    @Test
+    public void testDelete() throws Exception {
 
+        init();
+        assertTrue(pAbrechnung.findAll().size() == InitHelper.INIT_SIZE_ABRECHNUNG);
 
+        Abrechnung erste = pAbrechnung.findAll().get(0);
+        assertNotNull(erste);
+        pAbrechnung.delete(erste);
+        assertTrue(pAbrechnung.findAll().size() == InitHelper.INIT_SIZE_ABRECHNUNG - 1);
+    }
 
+    @Test
+    public void testDeleteById() throws Exception {
 
+        init();
+        assertTrue(pAbrechnung.findAll().size() == InitHelper.INIT_SIZE_ABRECHNUNG);
+
+        Abrechnung erste = pAbrechnung.findAll().get(0);
+        assertNotNull(erste);
+        pAbrechnung.deleteById(erste.getId());
+        assertTrue(pAbrechnung.findAll().size() == InitHelper.INIT_SIZE_ABRECHNUNG - 1);
+    }
+
+    @Test
+    public void testFindById() throws Exception {
+
+        init();
+        assertTrue(pAbrechnung.findAll().size() == InitHelper.INIT_SIZE_ABRECHNUNG);
+
+        Abrechnung erste = pAbrechnung.findAll().get(0);
+        assertNotNull(erste);
+        assertTrue(pAbrechnung.findById(erste.getId()).equals(erste));
+    }
+
+    @Test
+    public void testFindByDatum() throws Exception {
+
+        init();
+        assertTrue(pAbrechnung.findAll().size() == InitHelper.INIT_SIZE_ABRECHNUNG);
+
+         Abrechnung erste = pAbrechnung.findAll().get(0);
+        assertNotNull(erste);
+        Abrechnung rechnungFromDb = pAbrechnung.findByDatum(erste.getZeit()).get(0);
+        assertTrue(rechnungFromDb.equals(erste));
+    }
+
+    @Test
+    public void testFindAll() throws Exception {
+        init();
+        assertTrue(pAbrechnung.findAll().size() == InitHelper.INIT_SIZE_ABRECHNUNG);
+    }
+
+    @Test
+    public void testFindByBenutzer() throws Exception{
+        init();
+        assertTrue(pAbrechnung.findAll().size() == InitHelper.INIT_SIZE_ABRECHNUNG);
+
+        Abrechnung erste = pAbrechnung.findAll().get(0);
+        assertNotNull(erste);
+
+        Abrechnung rechnungFromDb = pAbrechnung.findByBenutzerUndDatum(erste.getBenutzer(),erste.getZeit()).get(0);
+        assertTrue(rechnungFromDb.equals(erste));
+
+    }
+
+    @Test
+    public void testFindByBenutzerUndDatum() throws Exception{
+        init();
+        assertTrue(pAbrechnung.findAll().size() == InitHelper.INIT_SIZE_ABRECHNUNG);
+
+        Abrechnung erste = pAbrechnung.findAll().get(0);
+        assertNotNull(erste);
+
+        Abrechnung rechnungFromDb = pAbrechnung.findByBenutzer(erste.getBenutzer()).get(0);
+        assertTrue(rechnungFromDb.equals(erste));
+
+    }
 
 }

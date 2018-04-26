@@ -24,12 +24,14 @@ public class BestellungDAOImplTest {
     public static void tearDownAfterClass() throws Exception {
         InitHelper.deleteAllBestellung();
         InitHelper.deleteAllProdukt();
+        InitHelper.deleteAllTisch();
     }
 
     @Before
     public void setUp() throws Exception {
         InitHelper.deleteAllBestellung();
         InitHelper.deleteAllProdukt();
+        InitHelper.deleteAllTisch();
     }
 
     @After
@@ -37,7 +39,8 @@ public class BestellungDAOImplTest {
     }
 
     private void init() throws Exception {
-
+        InitHelper.initTisch();
+        InitHelper.initProdukt();
         InitHelper.initBestellung();
     }
 

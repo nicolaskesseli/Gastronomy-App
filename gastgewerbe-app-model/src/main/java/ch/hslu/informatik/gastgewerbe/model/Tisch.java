@@ -16,6 +16,7 @@ public class Tisch implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
+
 	private int tischNr;
 	
 

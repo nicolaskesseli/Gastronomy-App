@@ -7,11 +7,6 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Adresse implements Serializable {
 
-
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -466703289533993557L;
 	
 	private String strasse;

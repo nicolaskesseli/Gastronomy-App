@@ -16,25 +16,21 @@ import javax.persistence.*;
 public class Abrechnung implements Serializable {
 
 	private static final long serialVersionUID = 4575490394462466750L;
-
+	/* Ein produkt entfernen geht nur über Bestellung/BestellungPos!!!!! weil ManyToOne */
 	@Id
 	@GeneratedValue
 	private long id;
 
-	private LocalDate zeit;
-	private Double betrag;
-
-	// Zu abrechende Bestellung
-	@OneToOne(fetch = FetchType.EAGER)
+	// Zu abrechende Bestellung(en)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Bestellung bestellung;
 
-
-	/**
-	 * Der an der Kasse angemeldetet Benutzer, der die Rechnung erstellt hat
-	 * (Ersteller)
-	 */
+	 // Der an der Kasse angemeldetet Benutzer, der die Rechnung erstellt hat
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Benutzer benutzer;
+
+	private LocalDate zeit;
+	private Double betrag;
 
 	public Abrechnung() {
 
@@ -82,8 +78,13 @@ public class Abrechnung implements Serializable {
 	public void setBetrag(Double betrag) {
 		this.betrag = betrag;
 	}
-    // Liefert dem Gesamtbetrag für die Abrechnung
-	public Double getBetrag(){
+
+	public Double getBetrag() {
+		return betrag;
+	}
+
+	// Liefert dem Gesamtbetrag für die Abrechnung
+	public Double getGesamtBetrag(){
 
 	    double betrag = 0;
 

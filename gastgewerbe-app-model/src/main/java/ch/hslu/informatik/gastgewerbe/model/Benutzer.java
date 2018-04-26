@@ -21,7 +21,7 @@ import javax.persistence.OneToOne;
 
 public class Benutzer extends Person {
 	
-	@Id
+
 	private static final long serialVersionUID = 2929748139540837451L;
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

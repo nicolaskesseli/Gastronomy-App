@@ -21,14 +21,15 @@ public class Bestellung implements Serializable {
 	@GeneratedValue
 	private long id;
 
-	private String bemerkung;
-	private boolean rechnungBezahlt;
-	private LocalDate zeit;
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Tisch tisch;
 
 	@OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
 	List<BestellungPosition> bestellungPositionListe = new ArrayList<BestellungPosition>();
+
+    private String bemerkung;
+    private boolean rechnungBezahlt;
+    private LocalDate zeit;
 
 	public Bestellung() {
 	

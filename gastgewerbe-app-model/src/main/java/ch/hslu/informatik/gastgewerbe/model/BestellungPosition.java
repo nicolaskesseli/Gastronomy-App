@@ -14,11 +14,11 @@ public class BestellungPosition implements Serializable {
 	@GeneratedValue
 	private long id;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Produkt produkt;
+
 	private boolean bestellungBereit;
 	private int anzahl;
-
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Produkt produkt;
 
 
 	
