@@ -12,6 +12,7 @@
         <module name="gastgewerbe-app-gui-bar" />
         <module name="gastgewerbe-app-gui-kellner" />
         <module name="gastgewerbe-app-gui-kueche" />
+        <module name="gastgewerbe-app-initializer" />
         <module name="gastgewerbe-app-model" />
         <module name="gastgewerbe-app-persister" />
       </profile>

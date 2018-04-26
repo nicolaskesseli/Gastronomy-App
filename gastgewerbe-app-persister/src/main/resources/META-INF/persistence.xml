@@ -20,6 +20,7 @@
         <class>ch.hslu.informatik.gastgewerbe.model.Tisch</class>
         <class>ch.hslu.informatik.gastgewerbe.model.Bestellung</class>
         <class>ch.hslu.informatik.gastgewerbe.model.BestellungPosition</class>
+       <!-- <class>ch.hslu.informatik.gastgewerbe.model.Abrechnung</class> -->
 
 		<validation-mode>AUTO</validation-mode>
 
@@ -59,6 +60,7 @@
         <class>ch.hslu.informatik.gastgewerbe.model.Tisch</class>
         <class>ch.hslu.informatik.gastgewerbe.model.Bestellung</class>
         <class>ch.hslu.informatik.gastgewerbe.model.BestellungPosition</class>
+    <!-- <class>ch.hslu.informatik.gastgewerbe.model.Abrechnung</class> -->
 
 		
 
