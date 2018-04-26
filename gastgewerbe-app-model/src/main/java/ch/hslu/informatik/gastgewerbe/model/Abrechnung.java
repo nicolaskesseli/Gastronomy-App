@@ -10,9 +10,9 @@ import javax.persistence.*;
 
 @Entity
 @NamedQueries({
-		@NamedQuery(name = "Abrechnung.findByDatum", query = "SELECT e FROM Rechnung e WHERE e.zeit BETWEEN :startDatum AND :endDatum"),
-		@NamedQuery(name = "Abrechnung.findByBenutzer", query = "SELECT e FROM Rechnung e WHERE e.benutzer=:benutzer"),
-		@NamedQuery(name = "Abrechnung.findByBenutzerUndDatum", query = "SELECT e FROM Rechnung e WHERE e.zeit BETWEEN :startDatum AND :endDatum AND e.benutzer=:benutzer") })
+		@NamedQuery(name = "Abrechnung.findByDatum", query = "SELECT e FROM Abrechnung e WHERE e.zeit BETWEEN :startDatum AND :endDatum"),
+		@NamedQuery(name = "Abrechnung.findByBenutzer", query = "SELECT e FROM Abrechnung e WHERE e.benutzer=:benutzer"),
+		@NamedQuery(name = "Abrechnung.findByBenutzerUndDatum", query = "SELECT e FROM Abrechnung e WHERE e.zeit BETWEEN :startDatum AND :endDatum AND e.benutzer=:benutzer") })
 public class Abrechnung implements Serializable {
 
 	private static final long serialVersionUID = 4575490394462466750L;
@@ -25,7 +25,7 @@ public class Abrechnung implements Serializable {
 	private Double betrag;
 
 	// Zu abrechende Bestellung
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Bestellung bestellung;
 
 
