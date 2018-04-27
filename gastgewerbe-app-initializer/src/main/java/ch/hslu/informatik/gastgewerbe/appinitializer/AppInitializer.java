@@ -68,8 +68,6 @@ public class AppInitializer {
 		Benutzer ersterBarMitarbeiter = null;
 		Benutzer ersterKuecheMitarbeiter = null;
 		Benutzer ersterKellner = null;
-		Produkt erstesProdukt = null;
-		Bestellung ersteBestellung = null;
 	
 		try {
 			Properties props = new Properties();
@@ -150,7 +148,7 @@ public class AppInitializer {
 			/* Ersten Kueche-Mitarbeiter speichern */
 			ersterKuecheMitarbeiter = new BenutzerDAOImpl().save(ersterKuecheMitarbeiter);
 			/* Ersten Kueche-Mitarbeiter speichern */
-			ersterKuecheMitarbeiter = new BenutzerDAOImpl().save(ersterKuecheMitarbeiter);
+			ersterKellner = new BenutzerDAOImpl().save(ersterKellner);
 
 		} catch (NumberFormatException e) {
 			logger.error("Der Wert für Postleitzahl [" +"xxxx" + "] ist nicht korrekt: ", e);

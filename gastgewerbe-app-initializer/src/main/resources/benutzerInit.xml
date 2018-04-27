@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+	<benutzer>
+		<vorname>Andreas</vorname>
+		<nachname>Trippel</nachname>
+		<strasse>Suurstoffi 41</strasse>
+		<plz>6343</plz>
+		<ort>Rotkreuz</ort>
+		<email>andreas.trippel@stud.hslu.ch</email>
+		<telefon>+41 41 757 68 11</telefon>
+		<benutzername>thelastsamurai</benutzername>
+		<passwort>geheim</passwort>
+		<rolle>Administrator</rolle>
+	</benutzer>
+	<benutzer>
+		<vorname>Rinaldo</vorname>
+		<nachname>Fellmann</nachname>
+		<strasse>Suurstoffi 41</strasse>
+		<plz>6343</plz>
+		<ort>Rotkreuz</ort>
+		<email>rinaldo.fellmann@stud.hslu.ch</email>
+		<telefon>+41 41 757 68 11</telefon>
+		<benutzername>jasonstatham</benutzername>
+		<passwort>geheim</passwort>
+		<rolle>Administrator</rolle>
+	</benutzer>
+	<benutzer>
+		<vorname>Simon</vorname>
+		<nachname>Achermann</nachname>
+		<strasse>Suurstoffi 41</strasse>
+		<plz>6343</plz>
+		<ort>Rotkreuz</ort>
+		<email>simon.achermann@stud.hslu.ch</email>
+		<telefon>+41 41 757 68 11</telefon>
+		<benutzername>bigfoot</benutzername>
+		<passwort>geheim</passwort>
+		<rolle>BAR_MITARBEITER</rolle>
+	</benutzer>
+	<benutzer>
+		<vorname>Thomas</vorname>
+		<nachname>Schwendimann</nachname>
+		<strasse>Suurstoffi 41</strasse>
+		<plz>6343</plz>
+		<ort>Rotkreuz</ort>
+		<email>thomas.schwendimann@stud.hslu.ch</email>
+		<telefon>+41 41 757 68 11</telefon>
+		<benutzername>thetoeggeler</benutzername>
+		<passwort>geheim</passwort>
+		<rolle>BAR_MITARBEITER</rolle>
+	</benutzer>
+	<benutzer>
+		<vorname>Fabio</vorname>
+		<nachname>Studer</nachname>
+		<strasse>Suurstoffi 41</strasse>
+		<plz>6343</plz>
+		<ort>Rotkreuz</ort>
+		<email>fabio.studer@stud.hslu.ch</email>
+		<telefon>+41 41 757 68 11</telefon>
+		<benutzername>valentinorossi</benutzername>
+		<passwort>geheim</passwort>
+		<rolle>KELLNER</rolle>
+	</benutzer>
+	<benutzer>
+		<vorname>Carlo</vorname>
+		<nachname>Brun</nachname>
+		<strasse>Suurstoffi 41</strasse>
+		<plz>6343</plz>
+		<ort>Rotkreuz</ort>
+		<email>carlo.brun@stud.hslu.ch</email>
+		<telefon>+41 41 757 68 11</telefon>
+		<benutzername>mrbeerpong</benutzername>
+		<passwort>geheim</passwort>
+		<rolle>KELLNER</rolle>
+	</benutzer>
+	<benutzer>
+		<vorname>Nicolas</vorname>
+		<nachname>Kesseli</nachname>
+		<strasse>Suurstoffi 41</strasse>
+		<plz>6343</plz>
+		<ort>Rotkreuz</ort>
+		<email>nicolas.kesseli@stud.hslu.ch</email>
+		<telefon>+41 41 757 68 11</telefon>
+		<benutzername>mohamedsalah</benutzername>
+		<passwort>geheim</passwort>
+		<rolle>KUECHE_MITARBEITER</rolle>
+	</benutzer>
+</users>
