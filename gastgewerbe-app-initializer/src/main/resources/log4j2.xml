@@ -29,6 +29,7 @@
 		</Logger>
 		<Root level="debug" additivity="false">
 			<AppenderRef ref="RollingFile" />
+			<AppenderRef ref="Console" />
 		</Root>
 	</Loggers>
 </Configuration>

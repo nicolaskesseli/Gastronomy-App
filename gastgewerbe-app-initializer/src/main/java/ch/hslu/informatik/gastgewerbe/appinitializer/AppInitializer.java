@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-
 import javax.xml.XMLConstants;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
@@ -38,7 +37,6 @@ public class AppInitializer {
 	public static void main(String[] args) {
 
 		try {
-
 			dropTables();
 			logger.info(">> DATENBANK SCHEMA NEU ERSTELLT");
 
@@ -68,74 +66,76 @@ public class AppInitializer {
 		Benutzer ersterBarMitarbeiter = null;
 		Benutzer ersterKuecheMitarbeiter = null;
 		Benutzer ersterKellner = null;
+
+		String strPlz = "";
 	
 		try {
 			Properties props = new Properties();
-			props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("moebelhaus.properties"));
+			props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("gastgewerbe.properties"));
 
 			/* erster Administrator */
 			String benutzerName = props.getProperty("erster_admin_name");
 			String benutzerVorname = props.getProperty("erster_admin_vorname");
 			String benutzerStrasse = props.getProperty("erster_admin_adresse_strasse");
-			String benutzerStrPlz = props.getProperty("erster_admin_adresse_plz");
+			strPlz = props.getProperty("erster_admin_adresse_plz");
 			String benutzerOrt = props.getProperty("erster_admin_adresse_ort");
 			String benutzerEmail = props.getProperty("erster_admin_kontakt_mail");
 			String benutzerTelefon = props.getProperty("erster_admin_kontakt_telefon");
 			String benutzerBenutzername = props.getProperty("erster_admin_credentials_benutzername");
 			String benutzerKennwort = props.getProperty("erster_admin_credentials_kennwort");
 
-			int benutzerPlz = Integer.parseInt(benutzerStrPlz);
+			int benutzerPlz = Integer.parseInt(strPlz);
 
 			ersterAdmin = new Benutzer(benutzerName, benutzerVorname,
 					new Adresse(benutzerStrasse, benutzerPlz, benutzerOrt), new Kontakt(benutzerEmail, benutzerTelefon),
 					new Credentials(benutzerBenutzername, benutzerKennwort), RolleTyp.ADMINISTRATOR);
 
 			/* erster Barmitarbeiter */
-			benutzerName = props.getProperty("erster_kasse_mitarbeiter_name");
-			benutzerVorname = props.getProperty("erster_kasse_mitarbeiter_vorname");
-			benutzerStrasse = props.getProperty("erster_kasse_mitarbeiter_adresse_strasse");
-			benutzerStrPlz = props.getProperty("erster_kasse_mitarbeiter_adresse_plz");
-			benutzerOrt = props.getProperty("erster_kasse_mitarbeiter_adresse_ort");
-			benutzerEmail = props.getProperty("erster_kasse_mitarbeiter_kontakt_mail");
-			benutzerTelefon = props.getProperty("erster_kasse_mitarbeiter_kontakt_telefon");
-			benutzerBenutzername = props.getProperty("erster_kasse_mitarbeiter_credentials_benutzername");
-			benutzerKennwort = props.getProperty("erster_kasse_mitarbeiter_credentials_kennwort");
+			benutzerName = props.getProperty("erster_bar_mitarbeiter_name");
+			benutzerVorname = props.getProperty("erster_bar_mitarbeiter_vorname");
+			benutzerStrasse = props.getProperty("erster_bar_mitarbeiter_adresse_strasse");
+			strPlz = props.getProperty("erster_bar_mitarbeiter_adresse_plz");
+			benutzerOrt = props.getProperty("erster_bar_mitarbeiter_adresse_ort");
+			benutzerEmail = props.getProperty("erster_bar_mitarbeiter_kontakt_mail");
+			benutzerTelefon = props.getProperty("erster_bar_mitarbeiter_kontakt_telefon");
+			benutzerBenutzername = props.getProperty("erster_bar_mitarbeiter_credentials_benutzername");
+			benutzerKennwort = props.getProperty("erster_bar_mitarbeiter_credentials_kennwort");
 
-			benutzerPlz = Integer.parseInt(benutzerStrPlz);
+			benutzerPlz = Integer.parseInt(strPlz);
 
 			ersterBarMitarbeiter = new Benutzer(benutzerName, benutzerVorname,
 					new Adresse(benutzerStrasse, benutzerPlz, benutzerOrt), new Kontakt(benutzerEmail, benutzerTelefon),
 					new Credentials(benutzerBenutzername, benutzerKennwort), RolleTyp.BAR_MITARBEITER);
 			
 			/* erster Kellner */
-			benutzerName = props.getProperty("erster_kasse_mitarbeiter_name");
-			benutzerVorname = props.getProperty("erster_kasse_mitarbeiter_vorname");
-			benutzerStrasse = props.getProperty("erster_kasse_mitarbeiter_adresse_strasse");
-			benutzerStrPlz = props.getProperty("erster_kasse_mitarbeiter_adresse_plz");
-			benutzerOrt = props.getProperty("erster_kasse_mitarbeiter_adresse_ort");
-			benutzerEmail = props.getProperty("erster_kasse_mitarbeiter_kontakt_mail");
-			benutzerTelefon = props.getProperty("erster_kasse_mitarbeiter_kontakt_telefon");
-			benutzerBenutzername = props.getProperty("erster_kasse_mitarbeiter_credentials_benutzername");
-			benutzerKennwort = props.getProperty("erster_kasse_mitarbeiter_credentials_kennwort");
+			benutzerName = props.getProperty("erster_kellner_mitarbeiter_name");
+			benutzerVorname = props.getProperty("erster_kellner_mitarbeiter_vorname");
+			benutzerStrasse = props.getProperty("erster_kellner_mitarbeiter_adresse_strasse");
+			strPlz = props.getProperty("erster_kellner_mitarbeiter_adresse_plz");
+			benutzerOrt = props.getProperty("erster_kellner_mitarbeiter_adresse_ort");
+			benutzerEmail = props.getProperty("erster_kellner_mitarbeiter_kontakt_mail");
+			benutzerTelefon = props.getProperty("erster_kellner_mitarbeiter_kontakt_telefon");
+			benutzerBenutzername = props.getProperty("erster_kellner_mitarbeiter_credentials_benutzername");
+			benutzerKennwort = props.getProperty("erster_kellner_mitarbeiter_credentials_kennwort");
 
-			benutzerPlz = Integer.parseInt(benutzerStrPlz);
+			benutzerPlz = Integer.parseInt(strPlz);
 
 			ersterKellner = new Benutzer(benutzerName, benutzerVorname,
 					new Adresse(benutzerStrasse, benutzerPlz, benutzerOrt), new Kontakt(benutzerEmail, benutzerTelefon),
 					new Credentials(benutzerBenutzername, benutzerKennwort), RolleTyp.KELLNER);
 			
 			/* erster KuecheMitarbeiter */
-			benutzerName = props.getProperty("erster_kasse_mitarbeiter_name");
-			benutzerVorname = props.getProperty("erster_kasse_mitarbeiter_vorname");
-			benutzerStrasse = props.getProperty("erster_kasse_mitarbeiter_adresse_strasse");
-			benutzerStrPlz = props.getProperty("erster_kasse_mitarbeiter_adresse_plz");
-			benutzerOrt = props.getProperty("erster_kasse_mitarbeiter_adresse_ort");
-			benutzerEmail = props.getProperty("erster_kasse_mitarbeiter_kontakt_mail");
-			benutzerTelefon = props.getProperty("erster_kasse_mitarbeiter_kontakt_telefon");
-			benutzerBenutzername = props.getProperty("erster_kasse_mitarbeiter_credentials_benutzername");
-			benutzerKennwort = props.getProperty("erster_kasse_mitarbeiter_credentials_kennwort");
+			benutzerName = props.getProperty("erster_kueche_mitarbeiter_name");
+			benutzerVorname = props.getProperty("erster_kueche_mitarbeiter_vorname");
+			benutzerStrasse = props.getProperty("erster_kueche_mitarbeiter_adresse_strasse");
+			strPlz = props.getProperty("erster_kueche_mitarbeiter_adresse_plz");
+			benutzerOrt = props.getProperty("erster_kueche_mitarbeiter_adresse_ort");
+			benutzerEmail = props.getProperty("erster_kueche_mitarbeiter_kontakt_mail");
+			benutzerTelefon = props.getProperty("erster_kueche_mitarbeiter_kontakt_telefon");
+			benutzerBenutzername = props.getProperty("erster_kueche_mitarbeiter_credentials_benutzername");
+			benutzerKennwort = props.getProperty("erster_kueche_mitarbeiter_credentials_kennwort");
 
-			benutzerPlz = Integer.parseInt(benutzerStrPlz);
+			benutzerPlz = Integer.parseInt(strPlz);
 
 			ersterKuecheMitarbeiter = new Benutzer(benutzerName, benutzerVorname,
 					new Adresse(benutzerStrasse, benutzerPlz, benutzerOrt), new Kontakt(benutzerEmail, benutzerTelefon),
@@ -145,10 +145,10 @@ public class AppInitializer {
 			ersterAdmin = new BenutzerDAOImpl().save(ersterAdmin);
 			/* Ersten Bar-Mitarbeiter speichern */
 			ersterBarMitarbeiter = new BenutzerDAOImpl().save(ersterBarMitarbeiter);
+			/* Ersten Kellner-Mitarbeiter speichern */
+			ersterKellner = new BenutzerDAOImpl().save(ersterKellner);
 			/* Ersten Kueche-Mitarbeiter speichern */
 			ersterKuecheMitarbeiter = new BenutzerDAOImpl().save(ersterKuecheMitarbeiter);
-			/* Ersten Kueche-Mitarbeiter speichern */
-			ersterKellner = new BenutzerDAOImpl().save(ersterKellner);
 
 		} catch (NumberFormatException e) {
 			logger.error("Der Wert für Postleitzahl [" +"xxxx" + "] ist nicht korrekt: ", e);
@@ -211,10 +211,10 @@ public class AppInitializer {
 					rolleTyp = RolleTyp.ADMINISTRATOR;
 				} else if (element.getChildText("rolle").equals("Bar-Mitarbeiter")) {
 					rolleTyp = RolleTyp.BAR_MITARBEITER;
-				} else if (element.getChildText("rolle").equals("Kueche-Mitarbeiter")) {
-					rolleTyp = RolleTyp.KUECHE_MITARBEITER;
 				} else if (element.getChildText("rolle").equals("Kellner")) {
 					rolleTyp = RolleTyp.KELLNER;
+				} else if (element.getChildText("rolle").equals("Kueche-Mitarbeiter")) {
+					rolleTyp = RolleTyp.KUECHE_MITARBEITER;
 				} else {
 					logger.error("Fehler: RolleTyp nicht gefunden");
 					throw new RuntimeException();
