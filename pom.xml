@@ -85,7 +85,5 @@
 		<module>gastgewerbe-app-initializer</module>
         <module>gastgewerbe-app-rmi-api</module>
         <module>gastgewerbe-app-rmi-impl</module>
-		
-		
 	</modules>
 </project>
