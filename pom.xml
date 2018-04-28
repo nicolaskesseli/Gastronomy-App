@@ -83,6 +83,8 @@
 		<module>gastgewerbe-app-business-login</module>
 		<module>gastgewerbe-app-persister</module>
 		<module>gastgewerbe-app-initializer</module>
+        <module>gastgewerbe-app-rmi-api</module>
+        <module>gastgewerbe-app-rmi-impl</module>
 		
 		
 	</modules>
