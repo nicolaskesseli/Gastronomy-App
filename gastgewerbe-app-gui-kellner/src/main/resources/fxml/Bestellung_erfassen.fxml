@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="570.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="316.0" layoutY="31.0" text="Bestellung erfassen">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="65.0" layoutY="95.0" text="Tisch-Nr.">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="65.0" layoutY="115.0" prefHeight="34.0" prefWidth="96.0" />
+      <Label layoutX="477.0" layoutY="78.0" prefHeight="20.0" prefWidth="254.0" text="Bestellübersicht">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <TableView layoutX="477.0" layoutY="120.0" prefHeight="344.0" prefWidth="352.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Nr." />
+          <TableColumn prefWidth="124.5999755859375" text="Name" />
+            <TableColumn prefWidth="152.4000244140625" text="Bemerkung" />
+        </columns>
+      </TableView>
+      <Label layoutX="66.0" layoutY="155.0" text="Gericht-Nr.">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="66.0" layoutY="175.0" prefHeight="34.0" prefWidth="96.0" />
+      <Button layoutX="477.0" layoutY="501.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="352.0" text="Bestellung abschicken">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <TextField layoutX="65.0" layoutY="383.0" prefHeight="89.0" prefWidth="333.0" />
+      <Label layoutX="65.0" layoutY="363.0" text="Bemerkung">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="69.0" layoutY="501.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="96.0" text="Zurück">
+         <font>
+            <Font size="19.0" />
+         </font></Button>
+      <TableView layoutX="65.0" layoutY="231.0" prefHeight="122.0" prefWidth="333.0">
+        <columns>
+          <TableColumn prefWidth="332.0" text="Details" />
+        </columns>
+      </TableView>
+      <Label layoutX="65.0" layoutY="211.0" prefHeight="20.0" prefWidth="82.0" text="Gericht">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="184.0" layoutY="501.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="155.0" text="Hinzufügen">
+         <font>
+            <Font size="19.0" />
+         </font></Button>
+      <Button layoutX="199.0" layoutY="175.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="196.0" text="Suchen">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -2,40 +2,32 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="598.0" prefWidth="879.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="570.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button alignment="CENTER" layoutX="340.0" layoutY="360.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Tisch abrechnen" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="339.0" />
-      <Button alignment="CENTER" layoutX="339.0" layoutY="198.0" maxHeight="40.0" maxWidth="879.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Bestellung entgegennehmen" AnchorPane.leftAnchor="339.0" AnchorPane.rightAnchor="340.0" />
-      <Button alignment="CENTER" layoutX="338.0" layoutY="279.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" snapToPixel="false" text="Offene Bestellungen" AnchorPane.leftAnchor="338.0" AnchorPane.rightAnchor="341.0" />
-      <MenuBar layoutY="2.0" prefHeight="22.0" prefWidth="879.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="Hilfe">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Credits">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Abmelden">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
+      <Button alignment="CENTER" layoutX="305.0" layoutY="379.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="270.0" text="Tisch abrechnen" AnchorPane.leftAnchor="305.0" AnchorPane.rightAnchor="304.0">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font></Button>
+      <Button alignment="CENTER" layoutX="305.0" layoutY="194.0" maxHeight="64.0" maxWidth="879.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="270.0" text="Bestellung entgegennehmen" AnchorPane.leftAnchor="305.0" AnchorPane.rightAnchor="304.0">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font></Button>
+      <Button alignment="CENTER" layoutX="305.0" layoutY="285.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="64.0" prefWidth="270.0" snapToPixel="false" text="Offene Bestellungen" AnchorPane.leftAnchor="305.0" AnchorPane.rightAnchor="304.0">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font></Button>
       <Label alignment="CENTER" layoutX="291.0" layoutY="96.0" prefHeight="40.0" prefWidth="100.0" text="Startseite - Kellner" textOverrun="CLIP" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font name="System Bold" size="31.0" />
          </font>
       </Label>
+      <Button alignment="CENTER" layoutX="726.0" layoutY="510.0" maxHeight="64.0" maxWidth="879.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="139.0" text="Abmelden">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
