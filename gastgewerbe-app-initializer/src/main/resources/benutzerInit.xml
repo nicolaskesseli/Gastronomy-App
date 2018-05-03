@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <users>
 	<benutzer>
+		<vorname>Nicolas</vorname>
+		<nachname>Kesseli</nachname>
+		<strasse>Suurstoffi 41</strasse>
+		<plz>6343</plz>
+		<ort>Rotkreuz</ort>
+		<email>nicolas.kesseli@stud.hslu.ch</email>
+		<telefon>+41 41 757 68 11</telefon>
+		<benutzername>mohamedsalah</benutzername>
+		<passwort>geheim</passwort>
+		<rolle>Administrator</rolle>
+	</benutzer>
+	<benutzer>
+		<vorname>Simon</vorname>
+		<nachname>Achermann</nachname>
+		<strasse>Suurstoffi 41</strasse>
+		<plz>6343</plz>
+		<ort>Rotkreuz</ort>
+		<email>simon.achermann@stud.hslu.ch</email>
+		<telefon>+41 41 757 68 11</telefon>
+		<benutzername>bigfoot</benutzername>
+		<passwort>geheim</passwort>
+		<rolle>Administrator</rolle>
+	</benutzer>
+	<benutzer>
 		<vorname>Andreas</vorname>
 		<nachname>Trippel</nachname>
 		<strasse>Suurstoffi 41</strasse>
@@ -37,42 +61,6 @@
 		<rolle>Kellner</rolle>
 	</benutzer>
 	<benutzer>
-		<vorname>Carlo</vorname>
-		<nachname>Brun</nachname>
-		<strasse>Suurstoffi 41</strasse>
-		<plz>6343</plz>
-		<ort>Rotkreuz</ort>
-		<email>carlo.brun@stud.hslu.ch</email>
-		<telefon>+41 41 757 68 11</telefon>
-		<benutzername>mrbeerpong</benutzername>
-		<passwort>geheim</passwort>
-		<rolle>Administrator</rolle>
-	</benutzer>
-	<benutzer>
-		<vorname>Nicolas</vorname>
-		<nachname>Kesseli</nachname>
-		<strasse>Suurstoffi 41</strasse>
-		<plz>6343</plz>
-		<ort>Rotkreuz</ort>
-		<email>nicolas.kesseli@stud.hslu.ch</email>
-		<telefon>+41 41 757 68 11</telefon>
-		<benutzername>mohamedsalah</benutzername>
-		<passwort>geheim</passwort>
-		<rolle>Administrator</rolle>
-	</benutzer>
-	<benutzer>
-		<vorname>Simon</vorname>
-		<nachname>Achermann</nachname>
-		<strasse>Suurstoffi 41</strasse>
-		<plz>6343</plz>
-		<ort>Rotkreuz</ort>
-		<email>simon.achermann@stud.hslu.ch</email>
-		<telefon>+41 41 757 68 11</telefon>
-		<benutzername>bigfoot</benutzername>
-		<passwort>geheim</passwort>
-		<rolle>Administrator</rolle>
-	</benutzer>
-	<benutzer>
 		<vorname>Thomas</vorname>
 		<nachname>Schwendimann</nachname>
 		<strasse>Suurstoffi 41</strasse>
@@ -84,4 +72,17 @@
 		<passwort>geheim</passwort>
 		<rolle>Administrator</rolle>
 	</benutzer>
+	<benutzer>
+		<vorname>Carlo</vorname>
+		<nachname>Brun</nachname>
+		<strasse>Suurstoffi 41</strasse>
+		<plz>6343</plz>
+		<ort>Rotkreuz</ort>
+		<email>carlo.brun@stud.hslu.ch</email>
+		<telefon>+41 41 757 68 11</telefon>
+		<benutzername>mrbeerpong</benutzername>
+		<passwort>geheim</passwort>
+		<rolle>Administrator</rolle>
+	</benutzer>
+
 </users>

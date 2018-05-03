@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+	<produkt>
+		<produktcode>1000</produktcode>
+		<name>Hahnenwasser</name>
+		<beschreibung>Hahnenwasser</beschreibung>
+		<preis>2.0</preis>
+		<kategorie>Getraenk</kategorie>
+	</produkt>
+	<produkt>
+		<produktcode>1001</produktcode>
+		<name>Mineral</name>
+		<beschreibung>Valser</beschreibung>
+		<preis>2.50</preis>
+		<kategorie>Getraenk</kategorie>
+	</produkt>
+	<produkt>
+		<produktcode>1002</produktcode>
+		<name>Cola</name>
+		<beschreibung>Coca Cola</beschreibung>
+		<preis>3.50</preis>
+		<kategorie>Getraenk</kategorie>
+	</produkt>
+	<produkt>
+		<produktcode>1003</produktcode>
+		<name>Ice Tea</name>
+		<beschreibung>Fuze</beschreibung>
+		<preis>3.50</preis>
+		<kategorie>Getraenk</kategorie>
+	</produkt>
+	<produkt>
+		<produktcode>2000</produktcode>
+		<name>Chips</name>
+		<beschreibung>Zweifel Paprika</beschreibung>
+		<preis>4.50</preis>
+		<kategorie>Snack</kategorie>
+	</produkt>
+	<produkt>
+		<produktcode>2001</produktcode>
+		<name>Chips</name>
+		<beschreibung>Zweifel Nature</beschreibung>
+		<preis>4.50</preis>
+		<kategorie>Snack</kategorie>
+	</produkt>
+	<produkt>
+		<produktcode>2002</produktcode>
+		<name>Nüsse</name>
+		<beschreibung>Wasabi</beschreibung>
+		<preis>4.0</preis>
+		<kategorie>Snack</kategorie>
+	</produkt>
+	<produkt>
+		<produktcode>3000</produktcode>
+		<name>Gemischter Salat</name>
+		<beschreibung>Gemischter Salat</beschreibung>
+		<preis>12.0</preis>
+		<kategorie>Speise</kategorie>
+	</produkt>
+	<produkt>
+		<produktcode>3001</produktcode>
+		<name>Tomaten Mozarella Salat</name>
+		<beschreibung>Tomaten Mozarella Salat</beschreibung>
+		<preis>14.0</preis>
+		<kategorie>Speise</kategorie>
+	</produkt>
+	<produkt>
+		<produktcode>3002</produktcode>
+		<name>Hausgemachter Burger</name>
+		<beschreibung>Hausgemachter Burger</beschreibung>
+		<preis>25.0</preis>
+		<kategorie>Speise</kategorie>
+	</produkt>
+	<produkt>
+		<produktcode>3003</produktcode>
+		<name>Hausgemachtes Tiramisu</name>
+		<beschreibung>Hausgemachtes Tiramisu</beschreibung>
+		<preis>13.0</preis>
+		<kategorie>Speise</kategorie>
+	</produkt>
+</products>
