@@ -36,7 +36,7 @@
 		<passwort>geheim</passwort>
 		<rolle>Kellner</rolle>
 	</benutzer>
-	<!--<benutzer>
+	<benutzer>
 		<vorname>Carlo</vorname>
 		<nachname>Brun</nachname>
 		<strasse>Suurstoffi 41</strasse>
@@ -83,5 +83,5 @@
 		<benutzername>thetoeggeler</benutzername>
 		<passwort>geheim</passwort>
 		<rolle>Administrator</rolle>
-	</benutzer> -->
+	</benutzer>
 </users>
