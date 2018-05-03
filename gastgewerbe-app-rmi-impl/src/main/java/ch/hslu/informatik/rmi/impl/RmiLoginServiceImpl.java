@@ -1,4 +1,4 @@
-package ch.hslu.informatik.gastgewerbe.rmi;
+package ch.hslu.informatik.rmi.impl;
 
 import ch.hslu.informatik.gastgewerbe.api.LoginService;
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;

@@ -1,4 +1,10 @@
 package ch.hslu.informatik.gastgewerbe.rmi.api;
 
-public interface RmiLoginService {
+import ch.hslu.informatik.gastgewerbe.api.LoginService;
+
+import java.rmi.Remote;
+
+public interface RmiLoginService extends LoginService, Remote {
+
+    public static final String REMOTE_OBJECT_NAME = "BENUTZER_SERVICE_RO";
 }

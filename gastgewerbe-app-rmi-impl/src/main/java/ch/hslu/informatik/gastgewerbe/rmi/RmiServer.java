@@ -1,7 +1,9 @@
-package ch.hslu.informatik.rmi.impl;
+package ch.hslu.informatik.gastgewerbe.rmi;
 
-import ch.hslu.informatik.gastgewerbe.rmi.RmiLoginServiceImpl;
+import ch.hslu.informatik.gastgewerbe.rmi.api.RmiAbrechnungService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiLoginService;
+import ch.hslu.informatik.rmi.impl.RmiAbrechnungServiceImpl;
+import ch.hslu.informatik.rmi.impl.RmiLoginServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -49,7 +51,10 @@ public class RmiServer {
                 reg.rebind(RmiLoginService.REMOTE_OBJECT_NAME, loginServiceRO);
                 logger.info("Remote Object \'" + RmiLoginService.REMOTE_OBJECT_NAME + "\' bound!");
 
-                //
+                // Abrechnung-RemoteObject erstellen und binden
+                RmiAbrechnungService abrechnungServicRO = new RmiAbrechnungServiceImpl();
+                reg.rebind(RmiAbrechnungService.REMOTE_OBJECT_NAME, abrechnungServicRO);
+                logger.info("Remote Object \'" + RmiAbrechnungService.REMOTE_OBJECT_NAME + "\' bound!");
 
                 String ip = InetAddress.getLocalHost().getHostAddress();
                 String titel = "RMI Server auf " + ip + ":" + portNr + " ist bereit";
@@ -62,6 +67,9 @@ public class RmiServer {
                 /* RemoteObjects freigeben (unbind) */
                 reg.unbind(RmiLoginService.REMOTE_OBJECT_NAME);
                 logger.info("Remote Object \'" + RmiLoginService.REMOTE_OBJECT_NAME + "\' unbound!");
+
+                reg.unbind(RmiAbrechnungService.REMOTE_OBJECT_NAME);
+                logger.info("Remote Object \'" + RmiAbrechnungService.REMOTE_OBJECT_NAME + "\' unbound!");
 
                 /* Prozess beenden */
                 System.exit(0);
