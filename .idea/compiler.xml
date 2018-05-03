@@ -7,22 +7,18 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="gastgewerbe-app-api" />
+        <module name="gastgewerbe-app-business-abrechnung" />
         <module name="gastgewerbe-app-business-benutzer" />
         <module name="gastgewerbe-app-business-login" />
         <module name="gastgewerbe-app-gui-bar" />
-        <module name="gastgewerbe-app-gui-kellner (1)" />
-        <module name="gastgewerbe-app-gui-kellner (2)" />
+        <module name="gastgewerbe-app-gui-kellner" />
         <module name="gastgewerbe-app-gui-kueche" />
         <module name="gastgewerbe-app-gui-verwaltung" />
         <module name="gastgewerbe-app-initializer" />
         <module name="gastgewerbe-app-model" />
         <module name="gastgewerbe-app-persister" />
-      </profile>
-      <profile name="Annotation profile for gastgewerbe-app" enabled="true">
-        <sourceOutputDir name="../gastgewerbe-app-rmi-impl/target/generated-sources/annotations" />
-        <sourceTestOutputDir name="../gastgewerbe-app-rmi-impl/target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="gastgewerbe-app-gui-kellner" />
+        <module name="gastgewerbe-app-rmi-api" />
+        <module name="gastgewerbe-app-rmi-impl" />
       </profile>
     </annotationProcessing>
   </component>
