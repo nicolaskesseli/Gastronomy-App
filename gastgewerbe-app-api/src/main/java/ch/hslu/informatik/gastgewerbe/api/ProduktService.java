@@ -4,13 +4,13 @@ import java.util.List;
 
 import ch.hslu.informatik.gastgewerbe.model.Produkt;
 
-public interface KartenService {
+public interface ProduktService {
 
-	//Fügt neuen Artikel zur Karte hinzu
+	//Fügt neuen Artikel hinzu
 	Produkt produktHinzufuegen(Produkt produkt) throws Exception;
 	
 	
-	//Löscht Artikel aus Karte
+	//Löscht Artikel
 	void produktLoeschen(Produkt produkt) throws Exception;
 	
 	
