@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>gastgewerbe-app-gui-kellner</artifactId>
-	<name>gastgewerbe-app-gui-kellner</name>
+	<name>gastgewerbe-app-rmi-api</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>

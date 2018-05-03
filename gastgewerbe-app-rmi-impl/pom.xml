@@ -9,7 +9,7 @@
 		<version>1.0</version>
 	</parent>
 
-	<artifactId>gastgewerbe-app-gui-kellner</artifactId>
+	<artifactId>gastgewerbe-app-rmi-impl</artifactId>
 	<name>gastgewerbe-app-gui-kellner</name>
 	<url>http://maven.apache.org</url>
 
