@@ -1,7 +1,7 @@
 package ch.hslu.informatik.gastgewerbe.model;
 
 public enum KategorieTyp {
-    SNACK("Snack"), SPEISE("Speise"), GETRANK("Getränk");
+    SNACK("Snack"), SPEISE("Speise"), GETRANK("Getraenk");
 
     private String bezeichnung;
 

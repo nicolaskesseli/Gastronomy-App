@@ -27,9 +27,6 @@ public class Produkt implements Serializable {
 	private String name;
 	private String beschreibung;
 	private double preis;
-	
-	
-
 
 	public Produkt() {
 
