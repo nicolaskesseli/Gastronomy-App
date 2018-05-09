@@ -1,13 +1,15 @@
 package ch.hslu.informatik.gastgewerbe.gui.bar;
 
+
 import java.net.URL;
 import java.util.ResourceBundle;
-
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import ch.hslu.informatik.gastgewerbe.api.LoginService;
+import ch.hslu.informatik.gastgewerbe.gui.bar.Context;
+import ch.hslu.informatik.gastgewerbe.gui.bar.LoginViewController;
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 import ch.hslu.informatik.gastgewerbe.model.RolleTyp;
 import javafx.event.ActionEvent;
@@ -21,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class LoginViewController implements Initializable {
 
+	
 	private static Logger logger = LogManager.getLogger(LoginViewController.class);
 
 	public static String LOGIN_ERROR_MESSAGE = "Benutzername oder Kennwort nicht korrekt!";

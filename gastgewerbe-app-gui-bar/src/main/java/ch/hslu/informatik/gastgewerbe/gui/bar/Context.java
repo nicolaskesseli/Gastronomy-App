@@ -1,8 +1,5 @@
 package ch.hslu.informatik.gastgewerbe.gui.bar;
 
-import java.io.IOException;
-import java.util.Properties;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,15 +13,15 @@ import javafx.scene.layout.BorderPane;
 public class Context {
 
 	private static Logger logger = LogManager.getLogger(Context.class);
-
+	
 	private static final String PROPERTY_FILE_NAME = "client.properties";
-
+	
 	private static Context INSTANCE = new Context();
-
+	
 	private BorderPane mainRoot;
-
+	
 	private Benutzer benutzer;
-
+	
 	private BenutzerService benutzerService;
 
 	private LoginService loginService;
@@ -73,7 +70,4 @@ public class Context {
 		return loginService;
 	}
 
-	
-
 }
-
