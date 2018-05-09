@@ -29,6 +29,8 @@ public class Context {
 
 	private static Context INSTANCE = new Context();
 
+	private BorderPane mainRoot;
+
 	private Benutzer benutzer;
 
 	private RmiProduktService produktService;
@@ -42,10 +44,20 @@ public class Context {
 	}
 
 	public static Context getInstance() {
+
 		return INSTANCE;
 	}
 
+	public BorderPane getMainRoot() {
 
+		return mainRoot;
+	}
+
+	public void setMainRoot(BorderPane mainRoot) {
+
+		this.mainRoot = mainRoot;
+
+	}
 	public Benutzer getBenutzer() {
 		return benutzer;
 	}
