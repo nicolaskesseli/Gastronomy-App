@@ -31,4 +31,9 @@ public class RmiAbrechnungServiceImpl extends UnicastRemoteObject implements Rmi
     public double tischAbrechnen(Tisch tisch) throws Exception {
         return getAbrechungService().tischAbrechnen(tisch);
     }
+
+    @Override
+    public double abschluss() throws Exception {
+        return 0;
+    }
 }
