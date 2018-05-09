@@ -1,7 +1,8 @@
-package ch.hslu.informatik.gastgewerbe.gui.kellner;
+package ch.hslu.informatik.gastgewerbe.gui.verwaltung;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -63,7 +64,7 @@ public class LoginViewController implements Initializable {
 
 			if (benutzer != null) {
 
-				if (benutzer.getRolle() == RolleTyp.KELLNER) {
+				if (benutzer.getRolle() == RolleTyp.BAR_MITARBEITER) {
 					Context.getInstance().setBenutzer(benutzer);
 
 					AnchorPane root = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));

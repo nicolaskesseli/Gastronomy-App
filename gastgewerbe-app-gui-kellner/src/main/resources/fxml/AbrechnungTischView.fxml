@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="570.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="570.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.kellner.AbrechnungTischController">
    <children>
       <Label layoutX="316.0" layoutY="40.0" text="Bestellung erfassen">
          <font>
@@ -22,7 +22,7 @@
          </font>
       </Label>
       <TextField fx:id="tischNrInput" layoutX="75.0" layoutY="125.0" prefHeight="34.0" prefWidth="96.0" />
-      <Button fx:id="offeneBestellungSuchenBtn" layoutX="218.0" layoutY="125.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="297.0" text="offene Bestellungen suchen">
+      <Button fx:id="offeneBestellungSuchenBtn" layoutX="218.0" layoutY="125.0" mnemonicParsing="false" onAction="#offeneBestellungSuchen" prefHeight="34.0" prefWidth="297.0" text="offene Bestellungen suchen">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -40,27 +40,27 @@
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <Button fx:id="quittungDruckenBtn" layoutX="604.0" layoutY="125.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="228.0" text="Quittung drucken">
+      <Button fx:id="quittungDruckenBtn" layoutX="604.0" layoutY="125.0" mnemonicParsing="false" onAction="#quittungDrucken" prefHeight="34.0" prefWidth="228.0" text="Quittung drucken">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="getrennteBezahlenBtn" layoutX="604.0" layoutY="188.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="228.0" text="getrennte Bezahlung">
+      <Button fx:id="getrennteBezahlenBtn" layoutX="604.0" layoutY="188.0" mnemonicParsing="false" onAction="#getrennteBezahlung" prefHeight="34.0" prefWidth="228.0" text="getrennte Bezahlung">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="kartenZahlungBtn" layoutX="604.0" layoutY="251.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="228.0" text="Kartenzahlung">
+      <Button fx:id="kartenZahlungBtn" layoutX="604.0" layoutY="251.0" mnemonicParsing="false" onAction="#kartenZahlung" prefHeight="34.0" prefWidth="228.0" text="Kartenzahlung">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="bestellungAbschliessenBtn" layoutX="604.0" layoutY="317.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="228.0" text="Bestellung abschliessen">
+      <Button fx:id="bestellungAbschliessenBtn" layoutX="604.0" layoutY="317.0" mnemonicParsing="false" onAction="#bestellungAbschliessen" prefHeight="66.0" prefWidth="228.0" text="Bestellung abschliessen">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="zurückBtn" layoutX="736.0" layoutY="474.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="96.0" text="Zurück">
+      <Button fx:id="zurückBtn" layoutX="736.0" layoutY="474.0" mnemonicParsing="false" onAction="#zurück" prefHeight="44.0" prefWidth="96.0" text="Zurück">
          <font>
             <Font size="19.0" />
          </font>

@@ -1,5 +1,5 @@
 package ch.hslu.informatik.gastgewerbe.gui.bar;
 
-public class GuiBarController {
+public class MainWindwoBarController {
 
 }
