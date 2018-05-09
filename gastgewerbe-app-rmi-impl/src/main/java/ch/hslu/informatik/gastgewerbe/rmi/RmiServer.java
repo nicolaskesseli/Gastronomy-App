@@ -1,9 +1,7 @@
 package ch.hslu.informatik.gastgewerbe.rmi;
 
-import ch.hslu.informatik.gastgewerbe.rmi.api.RmiAbrechnungService;
-import ch.hslu.informatik.gastgewerbe.rmi.api.RmiLoginService;
-import ch.hslu.informatik.rmi.impl.RmiAbrechnungServiceImpl;
-import ch.hslu.informatik.rmi.impl.RmiLoginServiceImpl;
+import ch.hslu.informatik.gastgewerbe.rmi.api.*;
+import ch.hslu.informatik.rmi.impl.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -56,6 +54,21 @@ public class RmiServer {
                 reg.rebind(RmiAbrechnungService.REMOTE_OBJECT_NAME, abrechnungServicRO);
                 logger.info("Remote Object \'" + RmiAbrechnungService.REMOTE_OBJECT_NAME + "\' bound!");
 
+                // Benutzer-RemoteObject erstellen und binden
+                RmiBenutzerService benutzerServiceRo = new RmiBenutzerServiceImpl();
+                reg.rebind(RmiBenutzerService.REMOTE_OBJECT_NAME, benutzerServiceRo);
+                logger.info("Remote Object \'" + RmiBenutzerService.REMOTE_OBJECT_NAME + "\' bound!");
+
+                //Bestellung-RemoteObject erstellen und binden
+                RmiBestellungService bestellungServiceRo = new RmiBestellungServiceImpl();
+                reg.rebind(RmiBestellungService.REMOTE_OBJECT_NAME, bestellungServiceRo);
+                logger.info("Remote Object \'" + RmiBestellungService.REMOTE_OBJECT_NAME + "\' bound!");
+
+                //Produkt-remoteObject erstellen und binden
+                RmiProduktService produktServiceRo= new RmiProduktServiceImpl();
+                reg.rebind(RmiProduktService.REMOTE_OBJECT_NAME, benutzerServiceRo);
+                logger.info("Remote Object \'" + RmiProduktService.REMOTE_OBJECT_NAME + "\' bound!");
+
                 String ip = InetAddress.getLocalHost().getHostAddress();
                 String titel = "RMI Server auf " + ip + ":" + portNr + " ist bereit";
 
@@ -70,6 +83,15 @@ public class RmiServer {
 
                 reg.unbind(RmiAbrechnungService.REMOTE_OBJECT_NAME);
                 logger.info("Remote Object \'" + RmiAbrechnungService.REMOTE_OBJECT_NAME + "\' unbound!");
+
+                reg.unbind(RmiBestellungService.REMOTE_OBJECT_NAME);
+                logger.info("Remote Object \'" + RmiBestellungService.REMOTE_OBJECT_NAME + "\' unbound!");
+
+                reg.unbind(RmiProduktService.REMOTE_OBJECT_NAME);
+                logger.info("Remote Object \'" + RmiProduktService.REMOTE_OBJECT_NAME + "\' unbound!");
+
+                reg.unbind(RmiBenutzerService.REMOTE_OBJECT_NAME);
+                logger.info("Remote Object \'" + RmiBenutzerService.REMOTE_OBJECT_NAME + "\' unbound!");
 
                 /* Prozess beenden */
                 System.exit(0);

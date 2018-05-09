@@ -9,6 +9,7 @@ import ch.hslu.informatik.gastgewerbe.rmi.api.RmiAbrechnungService;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -30,25 +31,18 @@ public class RmiAbrechnungServiceImpl extends UnicastRemoteObject implements Rmi
         return abrechungService;
     }
 
-
     @Override
-    public double tischAbrechnen(Tisch tisch) throws Exception {
-        return getAbrechungService().tischAbrechnen(tisch);
+    public double tischAbrechnen(Tisch tisch, Benutzer benutzer) throws Exception {
+        return getAbrechungService().tischAbrechnen(tisch, benutzer);
     }
 
-	@Override
-	public double abschluss() throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    @Override
+    public double abschluss(LocalDate zeit) throws Exception {
+        return getAbrechungService().abschluss(zeit);
+    }
 
-	@Override
-	public List<Abrechnung> findByBenutzerUndDatum(Benutzer benutzer, Date datum) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-    
-  
-
-
+    @Override
+    public List<Abrechnung> findByBenutzerUndDatum(Benutzer benutzer, LocalDate zeit) throws Exception {
+        return getAbrechungService().findByBenutzerUndDatum(benutzer, zeit);
+    }
 }
