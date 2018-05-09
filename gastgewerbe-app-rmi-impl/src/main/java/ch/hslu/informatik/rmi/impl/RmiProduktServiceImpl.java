@@ -43,7 +43,7 @@ public class RmiProduktServiceImpl extends UnicastRemoteObject implements RmiPro
     }
 
     @Override
-    public List<Produkt> findByProduktCode(String produktCode) throws Exception {
+    public Produkt findByProduktCode(String produktCode) throws Exception {
         return getProduktService().findByProduktCode(produktCode);
     }
 

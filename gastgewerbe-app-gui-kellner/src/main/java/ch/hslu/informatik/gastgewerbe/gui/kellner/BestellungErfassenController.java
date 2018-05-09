@@ -20,7 +20,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import ch.hslu.informatik.gastgewerbe.businessprodukt.ProduktManager;
 import ch.hslu.informatik.gastgewerbe.model.Produkt;
 import ch.hslu.informatik.gastgewerbe.persister.impl.ProduktDAOImpl;
 
@@ -28,7 +27,7 @@ import ch.hslu.informatik.gastgewerbe.persister.impl.ProduktDAOImpl;
 
 		private static Logger logger = LogManager.getLogger(BestellungErfassenController.class);
 		
-		Context context = new Context();
+	
 		
 	    @FXML
 	    private TextField tischNrInput;
@@ -76,10 +75,10 @@ import ch.hslu.informatik.gastgewerbe.persister.impl.ProduktDAOImpl;
 	    @FXML
 	    void gerichtSuchen(ActionEvent event) {
 	    	String gerichtCode = gerichtNrInput.getText();
-	    	List<Produkt> liste = new ArrayList<>();
+	    	Produkt p;
 	    	
 	    	try{
-	    		liste = findByProduktCode(gerichtCode);
+	    		p = Context.getInstance().getProduktService().findByProduktCode(gerichtCode);
 	    		
 	    		
 	    
