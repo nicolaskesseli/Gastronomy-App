@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="570.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="570.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.verwaltung.MainWindowVerwaltungController">
    <children>
-      <Button fx:id="benutzerVerwaltenBtn" alignment="CENTER" layoutX="305.0" layoutY="194.0" maxHeight="64.0" maxWidth="879.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="270.0" text="Benutzer verwalten" AnchorPane.leftAnchor="305.0" AnchorPane.rightAnchor="304.0">
+      <Button fx:id="benutzerVerwaltenBtn" alignment="CENTER" layoutX="305.0" layoutY="194.0" maxHeight="64.0" maxWidth="879.0" mnemonicParsing="false" onAction="#benutzerVerwalten" prefHeight="64.0" prefWidth="270.0" text="Benutzer verwalten" AnchorPane.leftAnchor="305.0" AnchorPane.rightAnchor="304.0">
          <font>
             <Font name="System Bold" size="17.0" />
          </font></Button>
-      <Button fx:id="produkteVerwalten" alignment="CENTER" layoutX="305.0" layoutY="285.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="64.0" prefWidth="270.0" snapToPixel="false" text="Produkte verwalten" AnchorPane.leftAnchor="305.0" AnchorPane.rightAnchor="304.0">
+      <Button fx:id="produkteVerwalten" alignment="CENTER" layoutX="305.0" layoutY="285.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#produkteVerwalten" prefHeight="64.0" prefWidth="270.0" snapToPixel="false" text="Produkte verwalten" AnchorPane.leftAnchor="305.0" AnchorPane.rightAnchor="304.0">
          <font>
             <Font name="System Bold" size="17.0" />
          </font></Button>
@@ -20,7 +20,7 @@
             <Font name="System Bold" size="31.0" />
          </font>
       </Label>
-      <Button fx:id="abmeldeBtn" alignment="CENTER" layoutX="726.0" layoutY="510.0" maxHeight="64.0" maxWidth="879.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="139.0" text="Abmelden">
+      <Button fx:id="abmeldeBtn" alignment="CENTER" layoutX="726.0" layoutY="510.0" maxHeight="64.0" maxWidth="879.0" mnemonicParsing="false" onAction="#abmelden" prefHeight="46.0" prefWidth="139.0" text="Abmelden">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>

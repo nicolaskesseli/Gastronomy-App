@@ -21,13 +21,12 @@ public class BestellungPosition implements Serializable {
 	private int anzahl;
 
 
-	
+
 	public BestellungPosition(Produkt produkt, int anzahl) {
 		this.produkt = produkt;
 		this.anzahl = anzahl;
 		this.bestellungBereit=false;
 	}
-
 
 	public BestellungPosition() {
 

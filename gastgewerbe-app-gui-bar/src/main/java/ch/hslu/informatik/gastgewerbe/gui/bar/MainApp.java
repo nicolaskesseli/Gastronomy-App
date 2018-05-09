@@ -1,4 +1,4 @@
-package ch.hslu.informatik.gastgewerbe.gui.verwaltung;
+package ch.hslu.informatik.gastgewerbe.gui.bar;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,7 @@ public class MainApp extends Application {
 	public void start(Stage primaryStage) {
 		
 		try {
-			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/fxml/MainWindowVerwaltung.fxml"));
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/fxml/MainWindowBar.fxml"));
 			Scene scene = new Scene(root,850,570);
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
