@@ -11,10 +11,8 @@ public interface BestellungService {
     Bestellung bestellen(Bestellung bestellung) throws Exception;
 
     // Bestellungsposition zu bestender Bestellung hinzufügen
-    Bestellung bestellungPosHinzuefugen(Bestellung bestellung) throws Exception;
+    Bestellung bestellungAktualisieren(Bestellung bestellung) throws Exception;
 
-    // Bestellungsposition zu bestender Bestellung löschen
-    Bestellung bestellungPosLoeschen(Bestellung bestellung) throws Exception;
 
     // Liefert alle offenen Bestellung
     List<Bestellung> alleBestellungen() throws Exception;
