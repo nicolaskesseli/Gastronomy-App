@@ -17,21 +17,19 @@ public interface ProduktService {
 	//Ändert bestehenden Artikel
 	Produkt produktAktualisieren(Produkt produkt) throws Exception;
 	
-	
-	//Findet Artikel mit ent. Bezeichnung
-	Produkt findProdukt(String bezeichnung) throws Exception;
-	
-	
-	//Findet Artikel mit ent. ID
-	Produkt findProduktByCode(int ProduktId) throws Exception;
+	//Findet Artikel mit ent. produktCode
+	Produkt findByProduktCode(String produktCode) throws Exception;
+
+	//Findet Liste von Produkte anhand des Namen
+	List<Produkt> findProduktByName(String name) throws Exception;
 	
 	
-	//Zeigt alle Artikel an
-	List<Produkt> alleProdukt();
+	//Zeigt alle Pordukte an
+	List<Produkt> alleProdukt()throws Exception;
 	
 	
-	//Zeigt alle Artikel aus gewünschter Kategorie (Getränk / Gericht)
-	List<Produkt> alleProduktNachKategorie(String kategorie);
+	//Zeigt alle Produkte aus gewünschter Kategorie (Getränk / Gericht / SNACK)
+	List<Produkt> alleProduktNachKategorie(String kategorie) throws Exception;
 	
 	
 	
