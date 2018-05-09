@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import ch.hslu.informatik.gastgewerbe.api.BenutzerService;
 import ch.hslu.informatik.gastgewerbe.api.LoginService;
 import ch.hslu.informatik.gastgewerbe.businessbenutzer.BenutzerManager;
+import ch.hslu.informatik.gastgewerbe.businessprodukt.ProduktManager;
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 import ch.hslu.informatik.gastgewerbe.verteiler.business.login.LoginManager;
 import javafx.scene.layout.BorderPane;
@@ -28,6 +29,8 @@ public class Context {
 	private BenutzerService benutzerService;
 
 	private LoginService loginService;
+	
+	private ProduktManager produktManager;
 
 	private Context() {
 
@@ -71,6 +74,14 @@ public class Context {
 		}
 
 		return loginService;
+	}
+	
+	public ProduktManager getProduktManager() {
+		if (produktManager == null) {
+			produktManager = new ProduktManager();
+		}
+		
+		return produktManager;
 	}
 
 	

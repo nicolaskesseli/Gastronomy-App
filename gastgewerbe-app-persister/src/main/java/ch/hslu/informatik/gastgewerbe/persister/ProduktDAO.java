@@ -31,7 +31,7 @@ public interface ProduktDAO extends GenericPersisterDAO<Produkt> {
      * @return
      * @throws Exception
      */
-    List<Produkt>findByProduktCode(String produktCode) throws Exception;
+    List<Produkt> findByProduktCode(String produktCode) throws Exception;
 
     /**
      * Liefert alle Produkte mit der erwähnten Kategorie zurück

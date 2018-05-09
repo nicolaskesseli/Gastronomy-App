@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="570.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.kellner.MainWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.kellner.MainWindowController">
    <children>
       <Button fx:id="tischAbrechnenBtn" alignment="CENTER" layoutX="305.0" layoutY="379.0" mnemonicParsing="false" onAction="#tischAbrechnen" prefHeight="64.0" prefWidth="270.0" text="Tisch abrechnen" AnchorPane.leftAnchor="305.0" AnchorPane.rightAnchor="304.0">
          <font>
@@ -24,7 +24,7 @@
             <Font name="System Bold" size="31.0" />
          </font>
       </Label>
-      <Button fx:id="abmeldeBtn" alignment="CENTER" layoutX="726.0" layoutY="510.0" maxHeight="64.0" maxWidth="879.0" mnemonicParsing="false" onAction="#abmelden" prefHeight="46.0" prefWidth="139.0" text="Abmelden">
+      <Button fx:id="abmeldeBtn" alignment="CENTER" layoutX="675.0" layoutY="495.0" maxHeight="64.0" maxWidth="879.0" mnemonicParsing="false" onAction="#abmelden" prefHeight="46.0" prefWidth="139.0" text="Abmelden">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>

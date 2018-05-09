@@ -36,6 +36,11 @@
 		</dependency>
 		<dependency>
 			<groupId>ch.hslu.informatik</groupId>
+			<artifactId>gastgewerbe-app-business-produkt</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.hslu.informatik</groupId>
 			<artifactId>gastgewerbe-app-persister</artifactId>
 			<version>1.0</version>
 		</dependency>

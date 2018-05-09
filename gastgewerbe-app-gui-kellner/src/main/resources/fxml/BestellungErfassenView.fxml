@@ -10,9 +10,9 @@
 
 <AnchorPane prefHeight="570.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.kellner.BestellungErfassenController">
    <children>
-      <Label layoutX="316.0" layoutY="31.0" text="Bestellung erfassen">
+      <Label layoutX="288.0" layoutY="20.0" text="Bestellung erfassen">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="30.0" />
          </font>
       </Label>
       <Label layoutX="65.0" layoutY="95.0" text="Tisch-Nr.">
@@ -33,19 +33,13 @@
             <TableColumn prefWidth="152.4000244140625" text="Bemerkung" />
         </columns>
       </TableView>
-      <Label layoutX="66.0" layoutY="155.0" text="Gericht-Nr.">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <TextField fx:id="gerichtNrInput" layoutX="66.0" layoutY="175.0" prefHeight="34.0" prefWidth="96.0" />
       <Button fx:id="bestellungAbschickenBtn" layoutX="477.0" layoutY="501.0" mnemonicParsing="false" onAction="#bestellungAbschicken" prefHeight="44.0" prefWidth="352.0" text="Bestellung abschicken">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="bemerkungInput" layoutX="65.0" layoutY="383.0" prefHeight="89.0" prefWidth="333.0" />
-      <Label layoutX="65.0" layoutY="363.0" text="Bemerkung">
+      <TextField fx:id="bemerkungInput" layoutX="66.0" layoutY="438.0" prefHeight="34.0" prefWidth="333.0" />
+      <Label layoutX="66.0" layoutY="418.0" text="Bemerkung">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -54,12 +48,7 @@
          <font>
             <Font size="19.0" />
          </font></Button>
-      <TableView fx:id="gerichtDetailsTbl" layoutX="65.0" layoutY="231.0" prefHeight="122.0" prefWidth="333.0">
-        <columns>
-          <TableColumn prefWidth="332.0" text="Details" />
-        </columns>
-      </TableView>
-      <Label layoutX="65.0" layoutY="211.0" prefHeight="20.0" prefWidth="82.0" text="Gericht">
+      <Label layoutX="67.0" layoutY="293.0" prefHeight="20.0" prefWidth="82.0" text="Gericht">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -68,10 +57,33 @@
          <font>
             <Font size="19.0" />
          </font></Button>
-      <Button fx:id="suchenGerichtBtn" layoutX="199.0" layoutY="175.0" mnemonicParsing="false" onAction="#gerichtSuchen" prefHeight="34.0" prefWidth="196.0" text="Suchen">
+      <Label layoutX="66.0" layoutY="165.0" text="Gericht-Nr.">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="gerichtNrInput" layoutX="66.0" layoutY="185.0" prefHeight="34.0" prefWidth="196.0" />
+      <Button fx:id="suchenGerichtBtn" layoutX="275.0" layoutY="185.0" mnemonicParsing="false" onAction="#gerichtSuchen" prefHeight="34.0" prefWidth="130.0" text="Suchen">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
+      <Label layoutX="67.0" layoutY="230.0" text="Gericht-Name">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="gerichtNameInput" layoutX="66.0" layoutY="250.0" prefHeight="34.0" prefWidth="196.0" />
+      <Button fx:id="suchenGerichtBtn1" layoutX="275.0" layoutY="250.0" mnemonicParsing="false" onAction="#gerichtSuchenName" prefHeight="34.0" prefWidth="130.0" text="Suchen">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <TableView fx:id="gerichtAuswahl" layoutX="68.0" layoutY="313.0" prefHeight="98.0" prefWidth="333.0">
+        <columns>
+          <TableColumn prefWidth="239.00003051757812" text="Bezeichnung" />
+          <TableColumn prefWidth="92.99996948242188" text="Preis" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
