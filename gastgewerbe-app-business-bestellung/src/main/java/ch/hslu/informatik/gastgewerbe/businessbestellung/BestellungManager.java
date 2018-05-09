@@ -3,6 +3,7 @@ package ch.hslu.informatik.gastgewerbe.businessbestellung;
 import java.time.LocalDate;
 import java.util.List;
 
+import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -49,6 +50,18 @@ public class BestellungManager implements BestellungService {
 	public Bestellung bestellungAktualisieren(Bestellung bestellung) throws Exception {
 		try {
 			return getBestellungDAO().update(bestellung);
+		} catch (Exception e) {
+			String msg = "Bestellung konnte nicht aktualisiert werden";
+			logger.error(msg, e);
+			throw new Exception(msg);
+		}
+	}
+
+	@Override
+	public boolean bestellungPositionBereit(BestellungPosition bestellungPosition) throws Exception {
+		try {
+			bestellungPosition.setBestellungBereit(true);
+			return true;
 		} catch (Exception e) {
 			String msg = "Bestellung konnte nicht aktualisiert werden";
 			logger.error(msg, e);

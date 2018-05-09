@@ -1,6 +1,7 @@
 package ch.hslu.informatik.gastgewerbe.api;
 
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
+import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,7 +15,7 @@ public interface BestellungService {
     Bestellung bestellungAktualisieren(Bestellung bestellung) throws Exception;
 
     // Bestellungsposition bereit
-    Bestellung bestellungBereit(Bestellung bestellung) throws Exception;
+    boolean bestellungPositionBereit(BestellungPosition bestellungPosition) throws Exception;
 
     // Liefert alle offenen Bestellung
     List<Bestellung> alleBestellungen() throws Exception;
