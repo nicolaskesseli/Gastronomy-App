@@ -39,9 +39,9 @@ public class MainWindowBarController {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginView.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
-			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.initStyle(StageStyle.UNDECORATED);
-			stage.setTitle("Bestellung erfassen");
+		//	stage.initModality(Modality.APPLICATION_MODAL);
+		//	stage.initStyle(StageStyle.UNDECORATED);
+		//	stage.setTitle("Bestellung erfassen");
 			stage.setScene(new Scene(root1));
 			stage.show();
 			((Node) (event.getSource())).getScene().getWindow().hide();

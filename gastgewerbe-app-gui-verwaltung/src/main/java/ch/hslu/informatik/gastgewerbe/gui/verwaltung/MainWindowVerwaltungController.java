@@ -35,9 +35,9 @@ public class MainWindowVerwaltungController {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginView.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
-			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.initStyle(StageStyle.UNDECORATED);
-			stage.setTitle("Login");
+			//stage.initModality(Modality.APPLICATION_MODAL);
+		//	stage.initStyle(StageStyle.UNDECORATED);
+		//	stage.setTitle("Login");
 			stage.setScene(new Scene(root1));
 			stage.show();
 			((Node) (event.getSource())).getScene().getWindow().hide();
@@ -53,9 +53,9 @@ public class MainWindowVerwaltungController {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/BenutzerVerwaltenView.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
-			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.initStyle(StageStyle.UNDECORATED);
-			stage.setTitle("Benutzerverwaltung");
+		//	stage.initModality(Modality.APPLICATION_MODAL);
+		//	stage.initStyle(StageStyle.UNDECORATED);
+		//	stage.setTitle("Benutzerverwaltung");
 			stage.setScene(new Scene(root1));
 			stage.show();
 			((Node) (event.getSource())).getScene().getWindow().hide();
@@ -71,9 +71,9 @@ public class MainWindowVerwaltungController {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ProduktVerwaltenView.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
-			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.initStyle(StageStyle.UNDECORATED);
-			stage.setTitle("Produktverwaltung");
+		//	stage.initModality(Modality.APPLICATION_MODAL);
+		//	stage.initStyle(StageStyle.UNDECORATED);
+		//	stage.setTitle("Produktverwaltung");
 			stage.setScene(new Scene(root1));
 			stage.show();
 			((Node) (event.getSource())).getScene().getWindow().hide();
