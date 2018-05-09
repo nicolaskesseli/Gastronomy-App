@@ -84,7 +84,6 @@ public class Bestellung implements Serializable {
 		this.bemerkung = bemerkung;
 	}
 
-
 	public boolean isRechnungBezahlt() {
 		return rechnungBezahlt;
 	}
