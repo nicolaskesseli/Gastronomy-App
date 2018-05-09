@@ -21,22 +21,7 @@
 		</dependency>
 		<dependency>
 			<groupId>ch.hslu.informatik</groupId>
-			<artifactId>gastgewerbe-app-api</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.hslu.informatik</groupId>
-			<artifactId>gastgewerbe-app-business-login</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.hslu.informatik</groupId>
-			<artifactId>gastgewerbe-app-business-benutzer</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.hslu.informatik</groupId>
-			<artifactId>gastgewerbe-app-persister</artifactId>
+			<artifactId>gastgewerbe-app-rmi-api</artifactId>
 			<version>1.0</version>
 		</dependency>
 		<dependency>

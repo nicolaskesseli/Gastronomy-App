@@ -1,6 +1,8 @@
 	package ch.hslu.informatik.gastgewerbe.gui.kellner;
 
-	import java.io.IOException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,15 +14,20 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import ch.hslu.informatik.gastgewerbe.model.Produkt;
+import ch.hslu.informatik.gastgewerbe.persister.impl.ProduktDAOImpl;
 
 	public class BestellungErfassenController {
 
 		private static Logger logger = LogManager.getLogger(BestellungErfassenController.class);
+		
+	
 		
 	    @FXML
 	    private TextField tischNrInput;
@@ -41,13 +48,19 @@ import javafx.stage.StageStyle;
 	    private Button zurückInput;
 
 	    @FXML
-	    private TableView<?> gerichtDetailsTbl;
+	    private TableView<?> gerichtAuswahl;
 
 	    @FXML
 	    private Button gerichtHinzufügenBtn;
 
 	    @FXML
 	    private Button suchenGerichtBtn;
+	    
+	    @FXML 
+	    private Button gerichtNameInput;
+	    
+	    @FXML
+	    private Label labelGericht;
 
 	    @FXML
 	    void bestellungAbschicken(ActionEvent event) {
@@ -61,9 +74,21 @@ import javafx.stage.StageStyle;
 
 	    @FXML
 	    void gerichtSuchen(ActionEvent event) {
-
-
-
+	    	String gerichtCode = gerichtNrInput.getText();
+	    	Produkt p;
+	    	
+	    	try{
+	    		p = Context.getInstance().getProduktService().findByProduktCode(gerichtCode);
+	    		
+	    		
+	    
+	    	}catch(Exception e) {
+	    		e.getMessage();
+	    	}
+	    }
+	    
+	    void gerichtSuchenName(ActionEvent event) {
+	    	
 	    }
 
 	    @FXML

@@ -1,4 +1,4 @@
-package ch.hslu.informatik.gastgewerbe.gui.kellner;
+package ch.hslu.informatik.gastgewerbe.gui.kueche;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -7,55 +7,46 @@ import java.io.InputStream;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import ch.hslu.informatik.gastgewerbe.api.ProduktService;
-import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiBestellungService;
-import ch.hslu.informatik.gastgewerbe.rmi.api.RmiLoginService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiProduktService;
-import ch.hslu.informatik.gastgewerbe.verteiler.business.login.LoginManager;
-import javafx.scene.layout.BorderPane;
+
+
 
 public class Context {
 
 	private static Logger logger = LogManager.getLogger(Context.class);
-
+	
 	private static final String PROPERTY_FILE_NAME = "client.properties";
 	private static final String POLICY_FILE_NAME = "rmi_client.policy";
+	
+	
 
 	private static Context INSTANCE = new Context();
 
-	private Benutzer benutzer;
-
-	private RmiProduktService produktService;
-	
-	private RmiLoginService loginService;
-	
 	private RmiBestellungService bestellungService;
+	
+	private RmiProduktService produktService;
+
+
 	
 	private Context() {
 
+		
 	}
-
+	
 	public static Context getInstance() {
 		return INSTANCE;
 	}
-
-
-	public Benutzer getBenutzer() {
-		return benutzer;
-	}
-
-	public void setBenutzer(Benutzer benutzer) {
-		this.benutzer = benutzer;
-	}
 	
 	public RmiBestellungService getBestellungService() {
-
+		
 		int portNr = 0;
 
 		if (bestellungService == null) {
@@ -99,7 +90,7 @@ public class Context {
 					}
 				}
 			} catch (Exception e) {
-				String msg = "Fehler beim Holen des RmiBestellungRO:";
+				String msg = "Fehler beim Holen des RmiLoginRO:";
 				logger.error(msg, e);
 				throw new RuntimeException(msg);
 			}
@@ -108,63 +99,8 @@ public class Context {
 		return bestellungService;
 	}
 	
-
-	public RmiLoginService getLoginService() {
-
-		int portNr = 0;
-
-		if (loginService == null) {
-
-			try (InputStream is = this.getClass().getClassLoader().getResourceAsStream(PROPERTY_FILE_NAME)) {
-
-				setSecurityManager();
-
-				Properties props = new Properties();
-
-				if (is == null) {
-					throw new RuntimeException(
-							"Die Property-Datei \'" + PROPERTY_FILE_NAME + "\' konnte nicht gefunden werden!");
-				} else {
-
-					props.load(is);
-
-					String ip = props.getProperty("rmi.server.ip");
-					String strPort = props.getProperty("rmi.registry.port");
-
-					try {
-						portNr = Integer.parseInt(strPort);
-						Registry reg = LocateRegistry.getRegistry(ip, portNr);
-
-						if (reg != null) {
-							String url = "rmi://" + ip + ":" + portNr + "/" + RmiLoginService.REMOTE_OBJECT_NAME;
-
-							loginService = (RmiLoginService) Naming.lookup(url);
-
-						} else {
-							String msg = "Die Reference auf RMI-Registry konnte auf " + ip + ":" + portNr
-									+ " nicht geholt werden!";
-							logger.error(msg);
-							throw new RuntimeException(msg);
-						}
-
-					} catch (NumberFormatException nfe) {
-						String msg = "Die Portnummer-Angabe \'" + strPort + "\' ist nicht korrekt";
-						logger.error(msg, nfe);
-						throw new RuntimeException(nfe);
-					}
-				}
-			} catch (Exception e) {
-				String msg = "Fehler beim Holen des RmiLoginRO:";
-				logger.error(msg, e);
-				throw new RuntimeException(msg);
-			}
-		}
-
-		return loginService;
-	}
-	
-	public RmiProduktService getProduktService() {
-
+public RmiProduktService getProduktService() {
+		
 		int portNr = 0;
 
 		if (produktService == null) {
@@ -208,7 +144,7 @@ public class Context {
 					}
 				}
 			} catch (Exception e) {
-				String msg = "Fehler beim Holen des RmiProduktRO:";
+				String msg = "Fehler beim Holen des RmiLoginRO:";
 				logger.error(msg, e);
 				throw new RuntimeException(msg);
 			}
@@ -216,7 +152,6 @@ public class Context {
 
 		return produktService;
 	}
-
 	/* Diese Methode setzt den SecurityManager */
 	private void setSecurityManager() throws IOException {
 
@@ -251,8 +186,6 @@ public class Context {
 			System.setProperty("java.security.policy", pathToTempPolicyFile);
 			System.setSecurityManager(new SecurityManager());
 		}
+
 	}
-
-
 }
-

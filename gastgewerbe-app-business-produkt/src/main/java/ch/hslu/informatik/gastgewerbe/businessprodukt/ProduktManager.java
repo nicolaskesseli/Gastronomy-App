@@ -86,7 +86,7 @@ public class ProduktManager implements ProduktService {
     }
 
 	@Override
-	public List<Produkt> findByProduktCode(String produktCode) throws Exception {
+	public Produkt findByProduktCode(String produktCode) throws Exception {
         try {
             return getProduktDAO().findByProduktCode(produktCode);
         } catch (Exception e) {
