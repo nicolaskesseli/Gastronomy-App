@@ -40,7 +40,7 @@ public class ProduktDAOImpl extends GenericPersisterDAOImpl<Produkt> implements 
     }
 
 	
-	public List<Produkt> findByProduktCode(String produktCode) throws Exception {
+	public Produkt findByProduktCode(String produktCode) throws Exception {
 
 		EntityManager em = JPAUtil.createEntityManager();
 		
@@ -55,7 +55,7 @@ public class ProduktDAOImpl extends GenericPersisterDAOImpl<Produkt> implements 
 	        if (liste.isEmpty()) {
 	            return null;
 	        } else if (liste.size() == 1) {
-	            return liste;
+	            return liste.get(0);
 	        } else {
 	            String message = "Mehr als ein Produkt mit der ProduktId \'" + produktCode + "\' gefunden";
 	            logger.error(message);

@@ -17,7 +17,7 @@ public interface ProduktService {
 	Produkt produktAktualisieren(Produkt produkt) throws Exception;
 	
 	//Findet Artikel mit ent. produktCode
-	List<Produkt> findByProduktCode(String produktCode) throws Exception;
+	Produkt findByProduktCode(String produktCode) throws Exception;
 
 	//Findet Liste von Produkte anhand des Namen
 	List<Produkt> findProduktByName(String name) throws Exception;
