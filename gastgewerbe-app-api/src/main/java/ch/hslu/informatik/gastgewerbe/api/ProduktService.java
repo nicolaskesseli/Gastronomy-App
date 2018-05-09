@@ -23,7 +23,7 @@ public interface ProduktService {
 	
 	
 	//Findet Artikel mit ent. ID
-	Produkt findProdukt(int ProduktId) throws Exception;
+	Produkt findProduktByCode(int ProduktId) throws Exception;
 	
 	
 	//Zeigt alle Artikel an
@@ -31,7 +31,7 @@ public interface ProduktService {
 	
 	
 	//Zeigt alle Artikel aus gewünschter Kategorie (Getränk / Gericht)
-	List<Produkt> alleProduktNachTyp(String kategorie);
+	List<Produkt> alleProduktNachKategorie(String kategorie);
 	
 	
 	

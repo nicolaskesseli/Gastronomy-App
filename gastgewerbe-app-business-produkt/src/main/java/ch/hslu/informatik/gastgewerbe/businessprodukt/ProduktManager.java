@@ -28,7 +28,7 @@ public class ProduktManager implements ProduktService {
     }
 
     @Override
-    public Produkt findProdukt(int ProduktId) throws Exception {
+    public Produkt findProduktByCode(int ProduktId) throws Exception {
         return null;
     }
 
@@ -38,7 +38,7 @@ public class ProduktManager implements ProduktService {
     }
 
     @Override
-    public List<Produkt> alleProduktNachTyp(String kategorie) {
+    public List<Produkt> alleProduktNachKategorie(String kategorie) {
         return null;
     }
 }

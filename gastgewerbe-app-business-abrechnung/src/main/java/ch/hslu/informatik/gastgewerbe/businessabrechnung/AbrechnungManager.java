@@ -9,4 +9,10 @@ public class AbrechnungManager implements AbrechnungService {
     public double tischAbrechnen(Tisch tisch) throws Exception {
         return 0;
     }
+
+	@Override
+	public double abschluss() throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
