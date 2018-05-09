@@ -3,11 +3,10 @@ package ch.hslu.informatik.gastgewerbe.gui.verwaltung;
 import java.io.IOException;
 import java.util.Properties;
 
+import ch.hslu.informatik.gastgewerbe.api.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import ch.hslu.informatik.gastgewerbe.api.BenutzerService;
-import ch.hslu.informatik.gastgewerbe.api.LoginService;
 import ch.hslu.informatik.gastgewerbe.businessbenutzer.BenutzerManager;
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 import ch.hslu.informatik.gastgewerbe.verteiler.business.login.LoginManager;
@@ -17,7 +16,8 @@ public class Context {
 
 	private static Logger logger = LogManager.getLogger(Context.class);
 
-	private static final String PROPERTY_FILE_NAME = "client.properties";
+	private static final String PROPERTY_FILE_NAME = "rmi_client.properties";
+	private static final String POLICY_FILE_NAME = "rmi_client.policy";
 
 	private static Context INSTANCE = new Context();
 
@@ -28,6 +28,12 @@ public class Context {
 	private BenutzerService benutzerService;
 
 	private LoginService loginService;
+
+	private AbrechnungService abrechnungService;
+
+	private BestellungService bestellungService;
+
+	private ProduktService produktService;
 
 	private Context() {
 
@@ -52,8 +58,6 @@ public class Context {
 	public void setBenutzer(Benutzer benutzer) {
 		this.benutzer = benutzer;
 	}
-
-
 
 	public BenutzerService getBenutzerService() {
 
