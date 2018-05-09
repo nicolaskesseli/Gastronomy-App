@@ -13,9 +13,8 @@ public interface BestellungService {
     // Bestellungsposition zu bestender Bestellung hinzufügen
     Bestellung bestellungAktualisieren(Bestellung bestellung) throws Exception;
 
-
     // Bestellungsposition bereit
-
+    Bestellung bestellungBereit(Bestellung bestellung) throws Exception;
 
     // Liefert alle offenen Bestellung
     List<Bestellung> alleBestellungen() throws Exception;
