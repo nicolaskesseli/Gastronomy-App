@@ -88,5 +88,6 @@
         <module>gastgewerbe-app-rmi-impl</module>
 		<module>gastgewerbe-app-business-abrechnung</module>
 		<module>gastgewerbe-app-business-produkt</module>
+		<module>gastgewerbe-app-business-bestellung</module>
 	</modules>
 </project>

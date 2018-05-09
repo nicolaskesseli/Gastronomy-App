@@ -22,15 +22,6 @@ public class ProduktManager implements ProduktService {
         return null;
     }
 
-    @Override
-    public Produkt findProdukt(String bezeichnung) throws Exception {
-        return null;
-    }
-
-    @Override
-    public Produkt findProduktByCode(int ProduktId) throws Exception {
-        return null;
-    }
 
     @Override
     public List<Produkt> alleProdukt() {
@@ -41,4 +32,16 @@ public class ProduktManager implements ProduktService {
     public List<Produkt> alleProduktNachKategorie(String kategorie) {
         return null;
     }
+
+	@Override
+	public Produkt findByProduktCode(String produktCode) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Produkt> findProduktByName(String name) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
