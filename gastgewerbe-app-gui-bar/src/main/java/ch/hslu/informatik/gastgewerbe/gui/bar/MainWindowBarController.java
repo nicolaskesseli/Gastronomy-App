@@ -36,7 +36,7 @@ public class MainWindowBarController {
 	@FXML
 	void abmelden (ActionEvent event) {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/BestellungErfassenView.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginView.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
 			stage.initModality(Modality.APPLICATION_MODAL);
@@ -50,6 +50,15 @@ public class MainWindowBarController {
 
 		}
 	}
+	  @FXML
+	    void bestellungBereit(ActionEvent event) {
+
+	    }
+
+	    @FXML
+	    void bestellungLöschen(ActionEvent event) {
+
+	    }
 	
 	
 	
