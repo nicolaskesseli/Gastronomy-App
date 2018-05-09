@@ -24,7 +24,7 @@ public class Context {
 
 	private static Logger logger = LogManager.getLogger(Context.class);
 
-	private static final String PROPERTY_FILE_NAME = "client.properties";
+	private static final String PROPERTY_FILE_NAME = "rmi_client.properties";
 	private static final String POLICY_FILE_NAME = "rmi_client.policy";
 
 	private static Context INSTANCE = new Context();
