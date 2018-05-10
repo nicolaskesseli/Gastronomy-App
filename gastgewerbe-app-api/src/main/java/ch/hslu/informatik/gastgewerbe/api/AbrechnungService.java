@@ -2,11 +2,9 @@ package ch.hslu.informatik.gastgewerbe.api;
 
 import ch.hslu.informatik.gastgewerbe.model.Abrechnung;
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
-import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.model.Tisch;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public interface AbrechnungService {

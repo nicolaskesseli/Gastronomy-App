@@ -17,7 +17,7 @@ public class MainApp extends Application {
 	public void start(Stage primaryStage) {
 		
 		try {
-			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/fxml/LoginView.fxml"));
 			Scene scene = new Scene(root,850,570);
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);

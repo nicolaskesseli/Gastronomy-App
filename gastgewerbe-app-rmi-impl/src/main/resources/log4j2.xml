@@ -23,7 +23,7 @@
 	</Appenders>
 	
 	<Loggers>
-		<Logger name="root" level="debug" additivity="false">
+		<Logger name="root" level="DEBUG" additivity="false">
 			<appender-ref ref="Console" lefel="debug" />
 			<appender-ref ref="RollingFile" level="debug" />
 		</Logger>

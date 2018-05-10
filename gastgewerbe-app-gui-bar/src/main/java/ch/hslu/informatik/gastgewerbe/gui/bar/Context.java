@@ -1,15 +1,14 @@
 package ch.hslu.informatik.gastgewerbe.gui.bar;
 
-import ch.hslu.informatik.gastgewerbe.rmi.api.RmiBenutzerService;
+
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiBestellungService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiLoginService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiProduktService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import ch.hslu.informatik.gastgewerbe.businessbenutzer.BenutzerManager;
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
-import ch.hslu.informatik.gastgewerbe.verteiler.business.login.LoginManager;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 import java.io.File;
@@ -102,6 +101,8 @@ public class Context {
 
 						if (reg != null) {
 							String url = "rmi://" + ip + ":" + portNr + "/" + RmiLoginService.REMOTE_OBJECT_NAME;
+							
+							logger.info("Adresse rmi: " +url);
 
 							loginService = (RmiLoginService) Naming.lookup(url);
 

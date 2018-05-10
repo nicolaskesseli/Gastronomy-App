@@ -2,7 +2,7 @@
 <Configuration monitorinterval="60" status="DEBUG" strict="true">
 
 	<Properties>
-		<Property name="filename">logs/moebelhaus.log</Property>
+		<Property name="filename">logs/gastgewerbe.log</Property>
 	</Properties>
 
 	<Appenders>

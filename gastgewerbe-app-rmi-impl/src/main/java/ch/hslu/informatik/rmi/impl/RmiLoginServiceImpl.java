@@ -5,12 +5,16 @@ import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiLoginService;
 import ch.hslu.informatik.gastgewerbe.verteiler.business.login.LoginManager;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 public class RmiLoginServiceImpl extends UnicastRemoteObject implements RmiLoginService {
 
-    private LoginService loginService;
+	private static final long serialVersionUID = -9217144171822126825L;
+	
+	
+	private LoginService loginService;
 
     public RmiLoginServiceImpl() throws RemoteException {
 

@@ -12,12 +12,10 @@ import java.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import ch.hslu.informatik.gastgewerbe.api.ProduktService;
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiBestellungService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiLoginService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiProduktService;
-import ch.hslu.informatik.gastgewerbe.verteiler.business.login.LoginManager;
 import javafx.scene.layout.BorderPane;
 
 public class Context {
