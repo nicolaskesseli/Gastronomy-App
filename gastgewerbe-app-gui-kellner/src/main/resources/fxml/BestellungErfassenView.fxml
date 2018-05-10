@@ -28,9 +28,9 @@
       </Label>
       <TableView fx:id="bestellübersichtTbl" layoutX="477.0" layoutY="120.0" prefHeight="344.0" prefWidth="352.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Nr." />
-          <TableColumn prefWidth="124.5999755859375" text="Name" />
-            <TableColumn prefWidth="152.4000244140625" text="Bemerkung" />
+          <TableColumn fx:id="code" prefWidth="75.0" text="Code" />
+          <TableColumn fx:id="bezeichnung2" prefWidth="173.39996337890625" text="Bezeichnung" />
+            <TableColumn fx:id="bemerkung" prefWidth="104.60003662109375" text="Bemerkung" />
         </columns>
       </TableView>
       <Button fx:id="bestellungAbschickenBtn" layoutX="477.0" layoutY="501.0" mnemonicParsing="false" onAction="#bestellungAbschicken" prefHeight="44.0" prefWidth="352.0" text="Bestellung abschicken">
@@ -57,7 +57,7 @@
          <font>
             <Font size="19.0" />
          </font></Button>
-      <Label layoutX="66.0" layoutY="165.0" text="Gericht-Nr.">
+      <Label layoutX="66.0" layoutY="165.0" text="Gericht-Code">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -81,8 +81,8 @@
       </Button>
       <TableView fx:id="gerichtAuswahl" layoutX="68.0" layoutY="313.0" prefHeight="98.0" prefWidth="333.0">
         <columns>
-          <TableColumn prefWidth="239.00003051757812" text="Bezeichnung" />
-          <TableColumn prefWidth="92.99996948242188" text="Preis" />
+          <TableColumn fx:id="bezeichnung" prefWidth="239.00003051757812" text="Bezeichnung" />
+          <TableColumn fx:id="preis" prefWidth="92.99996948242188" text="Preis" />
         </columns>
       </TableView>
    </children>
