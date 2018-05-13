@@ -4,6 +4,7 @@ package ch.hslu.informatik.gastgewerbe.gui.bar;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiBestellungService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiLoginService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiProduktService;
+import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,9 +32,7 @@ public class Context {
 	
 	private Benutzer benutzer;
 
-    private BorderPane mainRoot;
-
-    private MainWindowBarController mainWindowBarController;
+    private Stage mainStage;
 
 	private RmiLoginService loginService;
 
@@ -57,20 +56,12 @@ public class Context {
 		this.benutzer = benutzer;
 	}
 
-    public BorderPane getMainRoot() {
-        return mainRoot;
+    public Stage getMainStage() {
+        return mainStage;
     }
 
-    public void setMainRoot(BorderPane mainRoot) {
-        this.mainRoot = mainRoot;
-    }
-
-    public MainWindowBarController getMainWindowBarController() {
-        return mainWindowBarController;
-    }
-
-    public void setMainWindowBarController(MainWindowBarController mainWindowBarController) {
-        this.mainWindowBarController = mainWindowBarController;
+    public void setMainStage(Stage mainStage) {
+        this.mainStage = mainStage;
     }
 
     public RmiLoginService getLoginService(){

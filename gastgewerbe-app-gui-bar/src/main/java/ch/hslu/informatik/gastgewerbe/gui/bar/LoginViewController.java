@@ -71,11 +71,18 @@ public class LoginViewController implements Initializable {
 
 			if (benutzer != null) {
 
-				if (benutzer.getRolle() == RolleTyp.BAR_MITARBEITER) {
+				if (benutzer.getRolle() == RolleTyp.BAR_MITARBEITER|| benutzer.getRolle() == RolleTyp.ADMINISTRATOR) {
 					Context.getInstance().setBenutzer(benutzer);
 					
-					AnchorPane root = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
-					Context.getInstance().getMainRoot().setCenter(root);
+					AnchorPane mainRoot = FXMLLoader.load(getClass().getResource("/fxml/MainWindowBar.fxml"));
+
+					Scene mainScene = new Scene(mainRoot);
+
+					Stage mainStage = Context.getInstance().getMainStage();
+
+					mainStage.setScene(mainScene);
+					mainStage.show();
+
 
 				} else{
 					lblError.setText(LoginViewController.ACCESS_DENIED_MESSAGE);

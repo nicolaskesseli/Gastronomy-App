@@ -11,9 +11,11 @@
    <children>
       <TableView fx:id="bestellübersichtBarTbl" layoutX="75.0" layoutY="84.0" prefHeight="373.0" prefWidth="743.0">
         <columns>
-            <TableColumn prefWidth="92.39996337890625" text="Tisch-Nr." />
-          <TableColumn prefWidth="230.20001220703125" text="Bestellung" />
-          <TableColumn prefWidth="393.79998779296875" text="Bemerkungen" />
+            <TableColumn fx:id="colTischNr" prefWidth="75.0" text="Tisch-Nr." />
+            <TableColumn fx:id="colZeit" prefWidth="58.0" text="Zeit" />
+          <TableColumn fx:id="colAnz" prefWidth="68.0" text="Anzahl" />
+            <TableColumn fx:id="colProdukt" prefWidth="267.0" text="Produkt" />
+          <TableColumn fx:id="colBemer" prefWidth="274.0" text="Bemerkungen" />
         </columns>
       </TableView>
       <Button fx:id="bestellungBereitBtn" layoutX="75.0" layoutY="466.0" mnemonicParsing="false" onAction="#bestellungBereit" prefHeight="39.0" prefWidth="369.0" text="Bestellung Bereit">
