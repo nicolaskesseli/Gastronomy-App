@@ -15,6 +15,7 @@ import ch.hslu.informatik.gastgewerbe.model.Produkt;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import org.apache.logging.log4j.LogManager;
@@ -34,31 +35,25 @@ public class MainWindowBarController implements Initializable {
 	private List<Bestellung> bestellungen = new ArrayList<>();
 
 	@FXML
-	private TableView<Bestellung> bestellübersichtBarTbl;
+	private TreeTableView<Bestellung> TreeTableBar;
 
 	@FXML
-	private TableColumn<Bestellung, Integer> colTischNr;
+	private TreeTableColumn<Bestellung, Integer> tcolTisch;
 
 	@FXML
-	private TableColumn<Bestellung, LocalDate> colZeit;
+	private TreeTableColumn<Bestellung, LocalDate> tcolZeit;
 
 	@FXML
-	private TableColumn<BestellungPosition, Integer> colAnz;
+	private TreeTableColumn<Bestellung, String> tcolBemerkung;
 
 	@FXML
-	private TableColumn<BestellungPosition, Produkt> colProdukt;
+	private TreeTableColumn<BestellungPosition, Long> tcolPos;
 
 	@FXML
-	private TableColumn<Bestellung, String> colBemer;
-	
-	@FXML 
-	private Button bestellungBereitBtn;
-	
+	private TreeTableColumn<BestellungPosition, Integer> tcolAnz;
+
 	@FXML
-	private Button bestellungLöschenBtn;
-	
-	@FXML
-	private Button abmeldeBtn;
+	private TreeTableColumn<BestellungPosition, Produkt> tcolProdukt;
 	
 	@FXML
 	void abmelden (ActionEvent event) {
@@ -83,18 +78,30 @@ public class MainWindowBarController implements Initializable {
 	@FXML
         void bestellungBereit(ActionEvent event) {
 
-        Bestellung ausgewahlteBestellung = bestellübersichtBarTbl.getSelectionModel().getSelectedItem();
+        Bestellung ausgewahlteBestellung = TreeTableBar.getSelectionModel().getSelectedItem().getValue();
 
-        List<BestellungPosition> bestellungPosition = ausgewahlteBestellung.getBestellungPositionListe();
+        try{
+        	for (BestellungPosition p: ausgewahlteBestellung.getBestellungPositionListe()){
+				Context.getInstance().getBestellungService().bestellungPositionBereit(p);
+				updateTable();
+			}
+		} catch (Exception e) {
+			String msg = "BestellPos: " +ausgewahlteBestellung.toString()+" konnte nicht in Status bereit versetzt werden!";
+			logger.error(msg, e);
 
-
-
+			// error dialog anzeigen
+			Alert error = new Alert(Alert.AlertType.ERROR);
+			error.setTitle("Fehler");
+			error.setHeaderText("Fehler bei Statusänderung");
+			error.setContentText("Die ausgewählte Position konnte nicht in den Status bereit versetzt werden. Bitte wenden Sie sich an Ihren Systemadministrator.");
+			error.showAndWait();
+			}
 	    }
 
     @FXML
 	    void bestellungLöschen(ActionEvent event) {
 
-	    Bestellung ausgewahlteBestellung = bestellübersichtBarTbl.getSelectionModel().getSelectedItem();
+	    Bestellung ausgewahlteBestellung = TreeTableBar.getSelectionModel().getSelectedItem().getValue();
 
 	    try {
 
@@ -121,8 +128,6 @@ public class MainWindowBarController implements Initializable {
         error.setContentText("Die ausgewählte Bestellung konnte nicht gelöscht werden. Bitte wenden Sie sich an Ihren Systemadministrator.");
         error.showAndWait();
         }
-
-
     }
 
 
@@ -136,20 +141,21 @@ public class MainWindowBarController implements Initializable {
 	    try{
 
 	    	// Tabelle initialisieren
-	        colTischNr.setCellValueFactory(new PropertyValueFactory<Bestellung,Integer>("tischNr"));
-	        colZeit.setCellValueFactory(new PropertyValueFactory<Bestellung, LocalDate>("zeit"));
-	        colAnz.setCellValueFactory(new PropertyValueFactory<BestellungPosition, Integer>("anzahl"));
-	        colProdukt.setCellValueFactory(new PropertyValueFactory<BestellungPosition, Produkt>("produkt"));
-	        colBemer.setCellValueFactory(new PropertyValueFactory<Bestellung, String>("bemerkung"));
+
+	        tcolTisch.setCellValueFactory(new TreeItemPropertyValueFactory<Bestellung,Integer>("tischNr"));
+	        tcolZeit.setCellValueFactory(new TreeItemPropertyValueFactory<Bestellung, LocalDate>("zeit"));
+	        tcolBemerkung.setCellValueFactory(new TreeItemPropertyValueFactory<Bestellung, String>("bemerkung"));
+	        tcolPos.setCellValueFactory(new TreeItemPropertyValueFactory<BestellungPosition, Long>("id"));
+	        tcolAnz.setCellValueFactory(new TreeItemPropertyValueFactory<BestellungPosition, Integer>("anzahl"));
+	        tcolProdukt.setCellValueFactory(new TreeItemPropertyValueFactory<BestellungPosition, Produkt>("produkt"));
 
 	        // Datumformat anpassen CellFactory anpassen um nach dateFormatter zu formatieren
 
-			colZeit.setCellFactory(new Callback<TableColumn<Bestellung, LocalDate>, TableCell<Bestellung, LocalDate>>() {
+			tcolZeit.setCellFactory(new Callback<TreeTableColumn<Bestellung, LocalDate>, TreeTableCell<Bestellung, LocalDate>>() {
 				@Override
-				public TableCell<Bestellung, LocalDate> call(TableColumn<Bestellung, LocalDate> param) {
-					return new TableCell<Bestellung, LocalDate>(){
-
-						protected void updateItem(LocalDate item, boolean empty){
+				public TreeTableCell<Bestellung, LocalDate> call(TreeTableColumn<Bestellung, LocalDate> param) {
+					return new TreeTableCell<Bestellung, LocalDate>() {
+						protected void updateItem(LocalDate item, boolean empty) {
 							super.updateItem(item, empty);
 
 							if (item == null || empty) {
@@ -174,7 +180,7 @@ public class MainWindowBarController implements Initializable {
 
     private void updateTable() {
 
-        bestellübersichtBarTbl.getItems().clear();
+        TreeTableBar.getColumns().clear();
 
         try {
             // Nur Bestellungen für Bar einlesen
@@ -189,11 +195,26 @@ public class MainWindowBarController implements Initializable {
                 }
             }
 
+			TreeItem<Bestellung> root = new TreeItem<>();
 
+            for (Bestellung best : alleBestellungen){
+				TreeItem<Bestellung> middleRoot = new TreeItem<>(best);
+				middleRoot.setExpanded(true);
 
-            bestellungen.addAll(alleBestellungen);
-            bestellübersichtBarTbl.getItems().addAll(bestellungen);
-            bestellübersichtBarTbl.getSelectionModel().select(0);
+            	for(BestellungPosition bestelPosition: best.getBestellungPositionListe()){
+            		Bestellung bestellung = new Bestellung();
+            		List<BestellungPosition> einzelneBestPos = new ArrayList<>();
+            		einzelneBestPos.add(bestelPosition);
+            		bestellung.setBestellungPositionListe(einzelneBestPos);
+            		TreeItem<Bestellung> childNode = new TreeItem<>(bestellung);
+					middleRoot.getChildren().add(childNode);
+				}
+            	root.getChildren().add(middleRoot);
+			}
+
+			TreeTableBar.setRoot(root);
+			TreeTableBar.setShowRoot(false);
+			TreeTableBar.getSelectionModel().select(0);
 
         } catch (Exception e) {
             logger.error("Fehler beim updaten der Tabelle: ", e);
