@@ -54,7 +54,9 @@ public class BestellungPosition implements Serializable {
 		this.bestellungBereit = bestellungBereit;
 	}
 
-
+	public boolean isBestellungBereit() {
+		return bestellungBereit;
+	}
 
 	public int getAnzahl() {
 		return anzahl;

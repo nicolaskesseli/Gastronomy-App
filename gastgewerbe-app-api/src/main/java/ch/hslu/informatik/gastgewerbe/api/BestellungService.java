@@ -26,6 +26,9 @@ public interface BestellungService {
     // Liefer alle offenen Bestellungen für das bestimmte Datum
     List<Bestellung> findByZeit(LocalDate zeit) throws Exception;
 
+    // Löscht übergebene Bestellung
+    void deletBestellung(Bestellung bestellung) throws Exception;
+
 
 
 }

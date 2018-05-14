@@ -1,6 +1,7 @@
 package ch.hslu.informatik.gastgewerbe.gui.bar;
 
 
+import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiBestellungService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiLoginService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiProduktService;
@@ -19,6 +20,8 @@ import java.io.InputStream;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 public class Context {
@@ -64,7 +67,7 @@ public class Context {
         this.mainStage = mainStage;
     }
 
-    public RmiLoginService getLoginService(){
+	public RmiLoginService getLoginService(){
 
 		int portNr = 0;
 

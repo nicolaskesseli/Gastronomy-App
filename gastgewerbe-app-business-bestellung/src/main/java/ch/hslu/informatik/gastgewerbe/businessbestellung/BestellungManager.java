@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
+import ch.hslu.informatik.gastgewerbe.persister.BestellungPositionDAO;
+import ch.hslu.informatik.gastgewerbe.persister.impl.BestellungPositionDAOImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,8 +31,16 @@ public class BestellungManager implements BestellungService {
 
         return bestellungDAO;
     }
-	
-	
+
+    private BestellungPositionDAO bestellungPosDAO;
+
+    public BestellungPositionDAO getBestellungPosDAO(){
+		if (bestellungPosDAO == null) {
+			bestellungPosDAO = new BestellungPositionDAOImpl();
+		}
+
+		return bestellungPosDAO;
+	}
 
 	@Override
 	public Bestellung bestellen(Bestellung bestellung) throws Exception {
@@ -61,6 +71,7 @@ public class BestellungManager implements BestellungService {
 	public boolean bestellungPositionBereit(BestellungPosition bestellungPosition) throws Exception {
 		try {
 			bestellungPosition.setBestellungBereit(true);
+			getBestellungPosDAO().update(bestellungPosition);
 			return true;
 		} catch (Exception e) {
 			String msg = "Bestellung konnte nicht aktualisiert werden";
@@ -105,4 +116,16 @@ public class BestellungManager implements BestellungService {
 		}
 	}
 
+	@Override
+	public void deletBestellung(Bestellung bestellung) throws Exception {
+    	try{
+    		getBestellungDAO().delete(bestellung);
+
+		}catch (Exception e) {
+			String msg = "Bestellung: " +bestellung.toString()+" konnte nicht gelöscht werden!";
+			logger.error(msg, e);
+			throw new Exception(msg);
+		}
+
+	}
 }
