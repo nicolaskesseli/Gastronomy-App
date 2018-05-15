@@ -32,7 +32,6 @@ public class Context {
 
 	private Benutzer benutzer;
 
-
 	private RmiProduktService produktService;
 
 	private RmiLoginService loginService;
@@ -74,7 +73,7 @@ public class Context {
 
 
 
-	public RmiBestellungService getBestellungService() {
+	/*public RmiBestellungService getBestellungService() {
 
 		int portNr = 0;
 
@@ -126,7 +125,7 @@ public class Context {
 		}
 
 		return bestellungService;
-	}
+	}*/
 
 
 	public RmiLoginService getLoginService() {
@@ -183,7 +182,7 @@ public class Context {
 		return loginService;
 	}
 
-	public RmiProduktService getProduktService() {
+	/*public RmiProduktService getProduktService() {
 
 		int portNr = 0;
 
@@ -290,7 +289,7 @@ public class Context {
 		}
 
 		return abrechnungService;
-	}
+	}*/
 
 
 	public RmiBenutzerService getBenutzerService() {
@@ -382,7 +381,6 @@ public class Context {
 			System.setSecurityManager(new SecurityManager());
 		}
 	}
-	
 
 }
 

@@ -3,6 +3,7 @@ package ch.hslu.informatik.gastgewerbe.gui.verwaltung;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import ch.hslu.informatik.gastgewerbe.rmi.api.RmiLoginService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -47,7 +48,7 @@ public class LoginViewController implements Initializable {
 
 		lblError.setText("");
 
-		LoginService loginService = null;
+		RmiLoginService loginService = null;
 
 		try {
 			loginService = Context.getInstance().getLoginService();
@@ -63,7 +64,7 @@ public class LoginViewController implements Initializable {
 
 			if (benutzer != null) {
 
-				if (benutzer.getRolle() == RolleTyp.BAR_MITARBEITER) {
+				if (benutzer.getRolle() == RolleTyp.BAR_MITARBEITER || benutzer.getRolle() == RolleTyp.ADMINISTRATOR || benutzer.getRolle() == RolleTyp.KELLNER || benutzer.getRolle() == RolleTyp.KUECHE_MITARBEITER) {
 					Context.getInstance().setBenutzer(benutzer);
 
 					AnchorPane root = FXMLLoader.load(getClass().getResource("/fxml/MainWindowVerwaltung.fxml"));
