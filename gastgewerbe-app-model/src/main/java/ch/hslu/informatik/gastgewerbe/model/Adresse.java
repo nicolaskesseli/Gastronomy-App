@@ -1,6 +1,7 @@
 package ch.hslu.informatik.gastgewerbe.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Embeddable;
 
@@ -48,31 +49,19 @@ public class Adresse implements Serializable {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((ort == null) ? 0 : ort.hashCode());
-		result = prime * result + plz;
-		return result;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Adresse)) return false;
+		Adresse adresse = (Adresse) o;
+		return plz == adresse.plz &&
+				Objects.equals(strasse, adresse.strasse) &&
+				Objects.equals(ort, adresse.ort);
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Adresse other = (Adresse) obj;
-		if (ort == null) {
-			if (other.ort != null)
-				return false;
-		} else if (!ort.equals(other.ort))
-			return false;
-		if (plz != other.plz)
-			return false;
-		return true;
+	public int hashCode() {
+
+		return Objects.hash(strasse, plz, ort);
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package ch.hslu.informatik.gastgewerbe.model;
 
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -58,25 +59,19 @@ public class Credentials implements Serializable {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Credentials)) return false;
+		Credentials that = (Credentials) o;
+		return id == that.id &&
+				Objects.equals(benutzername, that.benutzername) &&
+				Objects.equals(passwort, that.passwort);
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Credentials other = (Credentials) obj;
-		if (id != other.id)
-			return false;
-		return true;
+	public int hashCode() {
+
+		return Objects.hash(id, benutzername, passwort);
 	}
 
 	@Override

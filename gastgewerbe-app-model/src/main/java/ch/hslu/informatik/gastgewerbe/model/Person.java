@@ -2,6 +2,7 @@ package ch.hslu.informatik.gastgewerbe.model;
 
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -83,25 +84,21 @@ public class Person implements Serializable {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Person)) return false;
+		Person person = (Person) o;
+		return id == person.id &&
+				Objects.equals(nachname, person.nachname) &&
+				Objects.equals(vorname, person.vorname) &&
+				Objects.equals(adresse, person.adresse) &&
+				Objects.equals(kontakt, person.kontakt);
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Person other = (Person) obj;
-		if (id != other.id)
-			return false;
-		return true;
+	public int hashCode() {
+
+		return Objects.hash(id, nachname, vorname, adresse, kontakt);
 	}
 
 	@Override

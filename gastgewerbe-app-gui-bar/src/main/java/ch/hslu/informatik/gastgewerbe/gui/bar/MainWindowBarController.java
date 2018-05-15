@@ -211,6 +211,7 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 
 							if (bestellung != null) {
 								tblPosBar.getItems().clear();
+								positionenListe.clear();
 
 								List<BestellungPosition> tempListe = bestellung.getBestellungPositionListe();
 								for(BestellungPosition p : tempListe){
@@ -252,19 +253,30 @@ public class MainWindowBarController extends TimerTask implements Initializable 
     private void updateTable() {
 
         tblBestBar.getItems().clear();
+        bestellungenListe.clear();
 
         try {
-            // Nur Bestellungen für Bar einlesen
+            // Nur Bestellungen für Bar einlesen D.h. Kategorie SNACK GETRÄNK dich noch nicht bereit sind
             List<Bestellung> alleBestellungen = Context.getInstance().getBestellungService().alleBestellungen();
+
+            List<Bestellung> barBestellungen = new ArrayList<>();
 
             for (Bestellung b : alleBestellungen){
 				List<BestellungPosition> bestellungPosition = b.getBestellungPositionListe();
 				for (BestellungPosition p : bestellungPosition) {
-					if (p.getProdukt().getKategorie().equals(KategorieTyp.SNACK)||p.getProdukt().getKategorie().equals(KategorieTyp.GETRANK)||p.isBestellungBereit()==true){
-						bestellungenListe.add(new BestellungWrapper(b));
+					if (p.getProdukt().getKategorie().equals(KategorieTyp.SNACK) || p.getProdukt().getKategorie().equals(KategorieTyp.GETRANK)){
+							if(!p.isBestellungBereit()){
+								if(!barBestellungen.contains(b)){
+									barBestellungen.add(b);
+							}
+						}
 					}
 				}
 			}
+			for (Bestellung b : barBestellungen){
+                bestellungenListe.add(new BestellungWrapper(b));
+            }
+
 
 			tblBestBar.getItems().addAll(bestellungenListe);
 			tblBestBar.getSelectionModel().select(0);

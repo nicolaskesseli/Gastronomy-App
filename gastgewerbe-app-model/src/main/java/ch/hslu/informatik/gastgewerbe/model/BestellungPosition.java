@@ -1,6 +1,7 @@
 package ch.hslu.informatik.gastgewerbe.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.*;
 
@@ -67,32 +68,29 @@ public class BestellungPosition implements Serializable {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof BestellungPosition)) return false;
+		BestellungPosition that = (BestellungPosition) o;
+		return id == that.id &&
+				bestellungBereit == that.bestellungBereit &&
+				anzahl == that.anzahl &&
+				Objects.equals(produkt, that.produkt);
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		BestellungPosition other = (BestellungPosition) obj;
-		if (id != other.id)
-			return false;
-		return true;
+	public int hashCode() {
+
+		return Objects.hash(id, produkt, bestellungBereit, anzahl);
 	}
 
 	@Override
 	public String toString() {
-		return "BestellungPosition [id=" + id + ", produkt=" + produkt + ", bestellungBereit=" + bestellungBereit
-				+ ", anzahl=" + anzahl + "]";
+		return "BestellungPosition{" +
+				"id=" + id +
+				", produkt=" + produkt +
+				", bestellungBereit=" + bestellungBereit +
+				", anzahl=" + anzahl +
+				'}';
 	}
-	
-
 }

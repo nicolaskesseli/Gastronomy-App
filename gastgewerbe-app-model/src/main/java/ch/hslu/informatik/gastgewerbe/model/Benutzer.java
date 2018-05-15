@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import java.util.Objects;
 
 @Entity
 @NamedQueries({
@@ -58,32 +59,27 @@ public class Benutzer extends Person {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((credentials == null) ? 0 : credentials.hashCode());
-		result = prime * result + ((rolle == null) ? 0 : rolle.hashCode());
-		return result;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Benutzer)) return false;
+		if (!super.equals(o)) return false;
+		Benutzer benutzer = (Benutzer) o;
+		return Objects.equals(credentials, benutzer.credentials) &&
+				rolle == benutzer.rolle;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Benutzer other = (Benutzer) obj;
-		if (credentials == null) {
-			if (other.credentials != null)
-				return false;
-		} else if (!credentials.equals(other.credentials))
-			return false;
-		if (rolle != other.rolle)
-			return false;
-		return true;
+	public int hashCode() {
+
+		return Objects.hash(super.hashCode(), credentials, rolle);
 	}
 
+	@Override
+	public String toString() {
+		return "Benutzer{" +
+				"credentials=" + credentials +
+				", rolle=" + rolle +
+				'}';
+	}
 }
 

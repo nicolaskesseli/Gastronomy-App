@@ -1,6 +1,7 @@
 package ch.hslu.informatik.gastgewerbe.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -39,5 +40,27 @@ public class Kontakt implements Serializable {
 		this.telefon = telefon;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Kontakt)) return false;
+		Kontakt kontakt = (Kontakt) o;
+		return Objects.equals(email, kontakt.email) &&
+				Objects.equals(telefon, kontakt.telefon);
+	}
+
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(email, telefon);
+	}
+
+	@Override
+	public String toString() {
+		return "Kontakt{" +
+				"email='" + email + '\'' +
+				", telefon='" + telefon + '\'' +
+				'}';
+	}
 }
 

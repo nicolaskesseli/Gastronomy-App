@@ -1,6 +1,7 @@
 package ch.hslu.informatik.gastgewerbe.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 
 import javax.persistence.*;
@@ -90,30 +91,34 @@ public class Produkt implements Serializable {
 	}
 
 
-
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Produkt other = (Produkt) obj;
-		if (id != other.id)
-			return false;
-		return true;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Produkt)) return false;
+		Produkt produkt = (Produkt) o;
+		return id == produkt.id &&
+				Double.compare(produkt.preis, preis) == 0 &&
+				Objects.equals(produktCode, produkt.produktCode) &&
+				kategorie == produkt.kategorie &&
+				Objects.equals(name, produkt.name) &&
+				Objects.equals(beschreibung, produkt.beschreibung);
 	}
 
-    @Override
-    public String toString() {
-        return "Produkt{" +
-                "id=" + id +
-                ", produktCode=" + produktCode +
-                ", name='" + name + '\'' +
-                ", beschreibung='" + beschreibung + '\'' +
-                ", preis=" + preis +
-                ", kategorie=" + kategorie +
-                '}';
-    }
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(id, produktCode, kategorie, name, beschreibung, preis);
+	}
+
+	@Override
+	public String toString() {
+		return "Produkt{" +
+				"id=" + id +
+				", produktCode='" + produktCode + '\'' +
+				", kategorie=" + kategorie +
+				", name='" + name + '\'' +
+				", beschreibung='" + beschreibung + '\'' +
+				", preis=" + preis +
+				'}';
+	}
 }
