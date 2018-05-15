@@ -11,6 +11,8 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
 import ch.hslu.informatik.gastgewerbe.model.*;
+import ch.hslu.informatik.gastgewerbe.persister.BestellungDAO;
+import ch.hslu.informatik.gastgewerbe.persister.impl.BestellungDAOImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jdom2.Document;
@@ -219,6 +221,63 @@ public class AppInitializer {
 		} catch (IOException e) {
 			logger.error("Fehler beim Lesen der XML-Datei: " + xmlDateiName + ".", e);
 			throw new RuntimeException(e);
+		}
+	}
+
+	private static void initBestellung() throws Exception {
+
+		logger.info(">> Erzeugung von Bestellungen gestartet.");
+
+		ProduktDAO dao = new ProduktDAOImpl();
+
+		Bestellung best1 = new Bestellung("Achtung Gluten Intolleranz", new Tisch (12));
+
+		BestellungPosition pos = new BestellungPosition(dao.findByProduktCode("1000"), 4);
+		BestellungPosition pos2 = new BestellungPosition(dao.findByProduktCode("2000"),3);
+		BestellungPosition pos3 = new BestellungPosition(dao.findByProduktCode("3000"), 5);
+
+		List<BestellungPosition> positionen = new ArrayList<>();
+
+		positionen.add(pos);
+		positionen.add(pos2);
+		positionen.add(pos3);
+
+		best1.setBestellungPositionListe(positionen);
+
+		logger.info("  >> Bestellung " +best1.getId()+" "+ best1.getTisch() + " " + best1.getZeit() + " Anzahl Pos:" + best1.getBestellungPositionListe().size()+" erzeugt.");
+
+		Bestellung best2 = new Bestellung("Muss extrem schnell gehen Küche!!!", new Tisch(10));
+
+		BestellungPosition pos4 = new BestellungPosition(dao.findByProduktCode("1001"), 2);
+		BestellungPosition pos5 = new BestellungPosition(dao.findByProduktCode("1002"),3);
+		BestellungPosition pos6 = new BestellungPosition(dao.findByProduktCode("2001"), 3);
+		BestellungPosition pos7 = new BestellungPosition(dao.findByProduktCode("2002"), 2);
+		BestellungPosition pos8 = new BestellungPosition(dao.findByProduktCode("3002"), 5);
+		BestellungPosition pos9 = new BestellungPosition(dao.findByProduktCode("3003"), 8);
+
+		List<BestellungPosition> positionen2 = new ArrayList<>();
+
+		positionen2.add(pos4);
+		positionen2.add(pos5);
+		positionen2.add(pos6);
+		positionen2.add(pos7);
+		positionen2.add(pos8);
+		positionen2.add(pos9);
+
+		best2.setBestellungPositionListe(positionen2);
+
+		logger.info("  >> Bestellung " +best2.getId()+" "+ best2.getTisch() + " " + best2.getZeit() + " Anzahl Pos:" + best2.getBestellungPositionListe().size()+" erzeugt.");
+		logger.info(">> Erzeugung von Bestellungen beendet.");
+
+		List<Bestellung> bestell = new ArrayList<>();
+		bestell.add(best1);
+		bestell.add(best2);
+
+		BestellungDAO bestellungDAO = new BestellungDAOImpl();
+
+		for (Bestellung b : bestell) {
+			bestellungDAO.save(b);
+			logger.info(">> Bestellung mit Id-Nr. " + b.getId() + " wurde in die Datebank gespeichert.");
 		}
 	}
 
