@@ -3,6 +3,7 @@ package ch.hslu.informatik.gastgewerbe.gui.bar;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -48,7 +49,7 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 	private TableColumn<BestellungWrapper, Integer> colTischNr;
 
 	@FXML
-	private TableColumn<BestellungWrapper, LocalDate> colZeit;
+	private TableColumn<BestellungWrapper, LocalDateTime> colZeit;
 
 	@FXML
 	private TableColumn<BestellungWrapper, String> colBemerkung;
@@ -162,7 +163,7 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 
 	    	// Tabelle initialisieren
 			colTischNr.setCellValueFactory(new PropertyValueFactory<BestellungWrapper, Integer>("tischNr"));
-			colZeit.setCellValueFactory(new PropertyValueFactory<BestellungWrapper, LocalDate>("zeit"));
+			colZeit.setCellValueFactory(new PropertyValueFactory<BestellungWrapper, LocalDateTime>("zeit"));
 			colBemerkung.setCellValueFactory(new PropertyValueFactory<BestellungWrapper, String>("bemerkung"));
 
 			colPos.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Long>("id"));
@@ -175,14 +176,14 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 	        // Datumformat anpassen CellFactory anpassen um nach dateFormatter zu formatieren
 
 			colZeit.setCellFactory(
-					new Callback<TableColumn<BestellungWrapper, LocalDate>, TableCell<BestellungWrapper, LocalDate>>() {
+					new Callback<TableColumn<BestellungWrapper, LocalDateTime>, TableCell<BestellungWrapper, LocalDateTime>>() {
 
 						@Override
-						public TableCell<BestellungWrapper, LocalDate> call(TableColumn<BestellungWrapper, LocalDate> param) {
+						public TableCell<BestellungWrapper, LocalDateTime> call(TableColumn<BestellungWrapper, LocalDateTime> param) {
 
-							return new TableCell<BestellungWrapper, LocalDate>() {
+							return new TableCell<BestellungWrapper, LocalDateTime>() {
 
-								protected void updateItem(LocalDate item, boolean empty) {
+								protected void updateItem(LocalDateTime item, boolean empty) {
 									super.updateItem(item, empty);
 
 									if (item == null || empty) {
