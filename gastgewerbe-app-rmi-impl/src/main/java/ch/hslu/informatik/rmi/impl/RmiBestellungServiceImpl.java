@@ -63,4 +63,14 @@ public class RmiBestellungServiceImpl extends UnicastRemoteObject implements Rmi
         getBestellungService().deletBestellung(bestellung);
 
     }
+
+    @Override
+    public Bestellung findById(Long id) throws Exception {
+        return getBestellungService().findById(id);
+    }
+
+    @Override
+    public BestellungPosition bestPosFindById(Long id) throws Exception {
+        return getBestellungService().bestPosFindById(id);
+    }
 }
