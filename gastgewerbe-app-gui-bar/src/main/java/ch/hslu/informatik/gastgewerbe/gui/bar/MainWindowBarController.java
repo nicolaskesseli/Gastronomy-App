@@ -87,7 +87,7 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 
 		}
 	}
-	@FXML
+	    @FXML
         void bestellungBereit(ActionEvent event) {
 
         BestellungPositionWrapper ausgewähltePosition;
@@ -115,7 +115,7 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 			}
 	    }
 
-    @FXML
+        @FXML
 	    void bestellungLöschen(ActionEvent event) {
 
 	    BestellungWrapper ausgewahlteBestellung;
