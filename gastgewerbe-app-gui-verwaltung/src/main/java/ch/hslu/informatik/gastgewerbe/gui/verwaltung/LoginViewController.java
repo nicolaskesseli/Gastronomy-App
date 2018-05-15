@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiLoginService;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class LoginViewController implements Initializable {
+
 
 	private static Logger logger = LogManager.getLogger(LoginViewController.class);
 
@@ -48,7 +51,7 @@ public class LoginViewController implements Initializable {
 
 		lblError.setText("");
 
-		RmiLoginService loginService = null;
+		LoginService loginService = null;
 
 		try {
 			loginService = Context.getInstance().getLoginService();
@@ -64,16 +67,23 @@ public class LoginViewController implements Initializable {
 
 			if (benutzer != null) {
 
-				if (benutzer.getRolle() == RolleTyp.BAR_MITARBEITER || benutzer.getRolle() == RolleTyp.ADMINISTRATOR || benutzer.getRolle() == RolleTyp.KELLNER || benutzer.getRolle() == RolleTyp.KUECHE_MITARBEITER) {
+				if (benutzer.getRolle() == RolleTyp.BAR_MITARBEITER|| benutzer.getRolle() == RolleTyp.ADMINISTRATOR) {
 					Context.getInstance().setBenutzer(benutzer);
 
-					AnchorPane root = FXMLLoader.load(getClass().getResource("/fxml/MainWindowVerwaltung.fxml"));
-					Context.getInstance().getMainRoot().setCenter(root);
+					AnchorPane mainRoot = FXMLLoader.load(getClass().getResource("/fxml/MainWindowBar.fxml"));
+
+					Scene mainScene = new Scene(mainRoot);
+
+					Stage mainStage = Context.getInstance().getMainStage();
+
+					mainStage.setScene(mainScene);
+					mainStage.show();
+
 
 				} else{
 					lblError.setText(LoginViewController.ACCESS_DENIED_MESSAGE);
 				}
-				
+
 			} else {
 				lblError.setText(LoginViewController.LOGIN_ERROR_MESSAGE);
 			}

@@ -47,7 +47,9 @@ public class Context {
 
 	}
 
-	public static Context getInstance() {
+	public static Context getInstance()
+
+	{
 		return INSTANCE;
 	}
 
