@@ -11,8 +11,8 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
 import ch.hslu.informatik.gastgewerbe.model.*;
-import ch.hslu.informatik.gastgewerbe.persister.BestellungDAO;
-import ch.hslu.informatik.gastgewerbe.persister.impl.BestellungDAOImpl;
+import ch.hslu.informatik.gastgewerbe.persister.*;
+import ch.hslu.informatik.gastgewerbe.persister.impl.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jdom2.Document;
@@ -22,10 +22,6 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.input.sax.XMLReaderJDOMFactory;
 import org.jdom2.input.sax.XMLReaderSchemaFactory;
 
-import ch.hslu.informatik.gastgewerbe.persister.BenutzerDAO;
-import ch.hslu.informatik.gastgewerbe.persister.ProduktDAO;
-import ch.hslu.informatik.gastgewerbe.persister.impl.BenutzerDAOImpl;
-import ch.hslu.informatik.gastgewerbe.persister.impl.ProduktDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 
 public class AppInitializer {
@@ -61,6 +57,8 @@ public class AppInitializer {
 		try {
 			initBenutzer();
 			initProdukt();
+			initTisch();
+			initBestellung();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -224,59 +222,66 @@ public class AppInitializer {
 		}
 	}
 
+    private static void initTisch() throws Exception {
+        logger.info(">> Erzeugung von Tischen gestartet.");
+        Tisch tisch1 = new Tisch(1);
+        Tisch tisch2 = new Tisch (2);
+        Tisch tisch3 = new Tisch (3);
+        Tisch tisch4 = new Tisch (4);
+        List<Tisch> tische = new ArrayList<>();
+        tische.add(tisch1);
+        tische.add(tisch2);
+        tische.add(tisch3);
+        tische.add(tisch4);
+
+        for (Tisch t:tische){
+            logger.info("  >> Tisch " + t.getId()+" "+ t.getTischNr()+ " wurde erzeugt.");
+        }
+        logger.info(">> Erzeugung von Tischen beendet.");
+
+        TischDAO tischDAO = new TischDAOImpl();
+
+        for (Tisch t:tische){
+            tischDAO.save(t);
+            logger.info(">> Tisch mit Id-Nr. " + t.getId() + " wurde in die Datebank gespeichert.");
+        }
+    }
+
 	private static void initBestellung() throws Exception {
 
 		logger.info(">> Erzeugung von Bestellungen gestartet.");
 
 		ProduktDAO dao = new ProduktDAOImpl();
+		TischDAO tischDAO = new TischDAOImpl();
+        BestellungDAO bestellungDAO = new BestellungDAOImpl();
 
-		Bestellung best1 = new Bestellung("Achtung Gluten Intolleranz", new Tisch (12));
+		Bestellung best1 = new Bestellung("Achtung Gluten Intolleranz", tischDAO.findByTischNr(2));
 
-		BestellungPosition pos = new BestellungPosition(dao.findByProduktCode("1000"), 4);
-		BestellungPosition pos2 = new BestellungPosition(dao.findByProduktCode("2000"),3);
-		BestellungPosition pos3 = new BestellungPosition(dao.findByProduktCode("3000"), 5);
-
-		List<BestellungPosition> positionen = new ArrayList<>();
-
-		positionen.add(pos);
-		positionen.add(pos2);
-		positionen.add(pos3);
-
-		best1.setBestellungPositionListe(positionen);
+		best1.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("1000"), 4));
+		best1.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("2000"),3));
+		best1.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("3000"), 5));
 
 		logger.info("  >> Bestellung " +best1.getId()+" "+ best1.getTisch() + " " + best1.getZeit() + " Anzahl Pos:" + best1.getBestellungPositionListe().size()+" erzeugt.");
 
-		Bestellung best2 = new Bestellung("Muss extrem schnell gehen Küche!!!", new Tisch(10));
+		Bestellung best2 = new Bestellung("Muss extrem schnell gehen Küche!!!", tischDAO.findByTischNr(3));
 
-		BestellungPosition pos4 = new BestellungPosition(dao.findByProduktCode("1001"), 2);
-		BestellungPosition pos5 = new BestellungPosition(dao.findByProduktCode("1002"),3);
-		BestellungPosition pos6 = new BestellungPosition(dao.findByProduktCode("2001"), 3);
-		BestellungPosition pos7 = new BestellungPosition(dao.findByProduktCode("2002"), 2);
-		BestellungPosition pos8 = new BestellungPosition(dao.findByProduktCode("3002"), 5);
-		BestellungPosition pos9 = new BestellungPosition(dao.findByProduktCode("3003"), 8);
-
-		List<BestellungPosition> positionen2 = new ArrayList<>();
-
-		positionen2.add(pos4);
-		positionen2.add(pos5);
-		positionen2.add(pos6);
-		positionen2.add(pos7);
-		positionen2.add(pos8);
-		positionen2.add(pos9);
-
-		best2.setBestellungPositionListe(positionen2);
+		best2.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("1001"), 2));
+		best2.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("1002"),3));
+        best2.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("2001"), 3));
+        best2.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("2002"), 2));
+        best2.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("3002"), 5));
+        best2.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("3003"), 8));
 
 		logger.info("  >> Bestellung " +best2.getId()+" "+ best2.getTisch() + " " + best2.getZeit() + " Anzahl Pos:" + best2.getBestellungPositionListe().size()+" erzeugt.");
+
 		logger.info(">> Erzeugung von Bestellungen beendet.");
 
-		List<Bestellung> bestell = new ArrayList<>();
-		bestell.add(best1);
-		bestell.add(best2);
+		List<Bestellung> bestellungen = new ArrayList<>();
+        bestellungen.add(best1);
+        bestellungen.add(best2);
 
-		BestellungDAO bestellungDAO = new BestellungDAOImpl();
-
-		for (Bestellung b : bestell) {
-			bestellungDAO.save(b);
+		for (Bestellung b : bestellungen) {
+            bestellungDAO.save(b);
 			logger.info(">> Bestellung mit Id-Nr. " + b.getId() + " wurde in die Datebank gespeichert.");
 		}
 	}
