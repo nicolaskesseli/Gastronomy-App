@@ -26,9 +26,13 @@ public interface BestellungService {
     // Liefer alle offenen Bestellungen für das bestimmte Datum
     List<Bestellung> findByZeit(LocalDate zeit) throws Exception;
 
+    // Liefert Bestellung mit dieser ID
+    Bestellung findById(Long id) throws Exception;
+
     // Löscht übergebene Bestellung
     void deletBestellung(Bestellung bestellung) throws Exception;
 
-
+    // Liefert BestellungsPos für diese ID
+    BestellungPosition bestPosFindById(Long id) throws Exception;
 
 }

@@ -128,4 +128,28 @@ public class BestellungManager implements BestellungService {
 		}
 
 	}
+
+	@Override
+	public Bestellung findById(Long id) throws Exception {
+
+    	try{
+    		return getBestellungDAO().findById(id);
+		} catch (Exception e) {
+			String msg = "Keine Bestellung mit ID " + id + " gefunden";
+			logger.error(msg, e);
+			throw new Exception(msg);
+		}
+	}
+
+	@Override
+	public BestellungPosition bestPosFindById(Long id) throws Exception {
+		try{
+			return  getBestellungPosDAO().findById(id);
+		}catch (Exception e) {
+			String msg = "Keine BestellPos mit ID " + id + " gefunden";
+			logger.error(msg, e);
+			throw new Exception(msg);
+		}
+
+	}
 }

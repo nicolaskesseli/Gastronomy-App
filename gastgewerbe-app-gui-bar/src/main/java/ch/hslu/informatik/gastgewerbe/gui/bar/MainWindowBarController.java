@@ -6,14 +6,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungPositionWrapper;
+import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungWrapper;
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
 import ch.hslu.informatik.gastgewerbe.model.KategorieTyp;
-import ch.hslu.informatik.gastgewerbe.model.Produkt;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import org.apache.logging.log4j.LogManager;
@@ -30,29 +31,41 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 
 	private static Logger logger = LogManager.getLogger(MainWindowBarController.class);
 
-	private List<Bestellung> bestellungen = new ArrayList<>();
+	private List<BestellungWrapper> bestellungenListe = new ArrayList<>();
+
+	private List<BestellungPositionWrapper> positionenListe = new ArrayList<>();
 
 	@FXML
-	private TableView<?> tblBar;
+	private Button bestellungBereitBtn;
 
 	@FXML
-	private TableColumn<?, ?> colTischNr;
+	private Button bestellungLöschenBtn;
 
 	@FXML
-	private TableColumn<?, ?> colZeit;
+	private TableView<BestellungWrapper> tblBestBar;
 
 	@FXML
-	private TableColumn<?, ?> colBemerkung;
+	private TableColumn<BestellungWrapper, Integer> colTischNr;
 
 	@FXML
-	private TableColumn<?, ?> colPos;
+	private TableColumn<BestellungWrapper, LocalDate> colZeit;
 
 	@FXML
-	private TableColumn<?, ?> colAnzahl;
+	private TableColumn<BestellungWrapper, String> colBemerkung;
 
 	@FXML
-	private TableColumn<?, ?> colProdukt;
-	
+	private TableView<BestellungPositionWrapper> tblPosBar;
+
+	@FXML
+	private TableColumn<BestellungPositionWrapper, Long> colPos;
+
+	@FXML
+	private TableColumn<BestellungPositionWrapper, Integer> colAnzahl;
+
+	@FXML
+	private TableColumn<BestellungPositionWrapper, String> colProdukt;
+
+
 	@FXML
 	void abmelden (ActionEvent event) {
 		try {
@@ -76,17 +89,18 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 	@FXML
         void bestellungBereit(ActionEvent event) {
 
-
-
-        Bestellung ausgewahlteBestellung;
+        BestellungPositionWrapper ausgewähltePosition;
 
         try{
-            ausgewahlteBestellung=TreeTableBar.getSelectionModel().getSelectedItem().getValue();
+			ausgewähltePosition=tblPosBar.getSelectionModel().getSelectedItem();
 
-        	for (BestellungPosition p: ausgewahlteBestellung.getBestellungPositionListe()){
-				Context.getInstance().getBestellungService().bestellungPositionBereit(p);
-				updateTable();
+			if(ausgewähltePosition!= null){
+				BestellungPosition bereit = Context.getInstance().getBestellungService().bestPosFindById(ausgewähltePosition.getId());
+				Context.getInstance().getBestellungService().bestellungPositionBereit(bereit);
 			}
+
+			updateTable();
+
 		} catch (Exception e) {
 			String msg = "BestellPos. konnte nicht in Status bereit versetzt werden!";
 			logger.error(msg, e);
@@ -103,12 +117,15 @@ public class MainWindowBarController extends TimerTask implements Initializable 
     @FXML
 	    void bestellungLöschen(ActionEvent event) {
 
-	    Bestellung ausgewahlteBestellung;
+	    BestellungWrapper ausgewahlteBestellung;
 
 	    try {
-	        ausgewahlteBestellung=TreeTableBar.getSelectionModel().getSelectedItem().getValue();
+	        ausgewahlteBestellung=tblBestBar.getSelectionModel().getSelectedItem();
 
-            Context.getInstance().getBestellungService().deletBestellung(ausgewahlteBestellung);
+	        if(ausgewahlteBestellung != null){
+	        	Bestellung löschen = Context.getInstance().getBestellungService().findById(ausgewahlteBestellung.getId());
+				Context.getInstance().getBestellungService().deletBestellung(löschen);
+	        }
 
             updateTable();
 
@@ -144,35 +161,80 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 	    try{
 
 	    	// Tabelle initialisieren
+			colTischNr.setCellValueFactory(new PropertyValueFactory<BestellungWrapper, Integer>("tischNr"));
+			colZeit.setCellValueFactory(new PropertyValueFactory<BestellungWrapper, LocalDate>("zeit"));
+			colBemerkung.setCellValueFactory(new PropertyValueFactory<BestellungWrapper, String>("bemerkung"));
 
-	        tcolTisch.setCellValueFactory(new TreeItemPropertyValueFactory<Bestellung,Integer>("tischNr"));
-	        tcolZeit.setCellValueFactory(new TreeItemPropertyValueFactory<Bestellung, LocalDate>("zeit"));
-	        tcolBemerkung.setCellValueFactory(new TreeItemPropertyValueFactory<Bestellung, String>("bemerkung"));
-	        tcolPos.setCellValueFactory(new TreeItemPropertyValueFactory<BestellungPosition, Long>("id"));
-	        tcolAnz.setCellValueFactory(new TreeItemPropertyValueFactory<BestellungPosition, Integer>("anzahl"));
-	        tcolProdukt.setCellValueFactory(new TreeItemPropertyValueFactory<BestellungPosition, Produkt>("produkt"));
+			colPos.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Long>("id"));
+			colAnzahl.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Integer>("anzahl"));
+			colProdukt.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, String>("produkt"));
+
+
+
 
 	        // Datumformat anpassen CellFactory anpassen um nach dateFormatter zu formatieren
 
-			tcolZeit.setCellFactory(new Callback<TreeTableColumn<Bestellung, LocalDate>, TreeTableCell<Bestellung, LocalDate>>() {
-				@Override
-				public TreeTableCell<Bestellung, LocalDate> call(TreeTableColumn<Bestellung, LocalDate> param) {
-					return new TreeTableCell<Bestellung, LocalDate>() {
-						protected void updateItem(LocalDate item, boolean empty) {
-							super.updateItem(item, empty);
+			colZeit.setCellFactory(
+					new Callback<TableColumn<BestellungWrapper, LocalDate>, TableCell<BestellungWrapper, LocalDate>>() {
 
-							if (item == null || empty) {
-								setText(null);
-							} else {
-								setText(dateFormatter.format(item));
+						@Override
+						public TableCell<BestellungWrapper, LocalDate> call(TableColumn<BestellungWrapper, LocalDate> param) {
+
+							return new TableCell<BestellungWrapper, LocalDate>() {
+
+								protected void updateItem(LocalDate item, boolean empty) {
+									super.updateItem(item, empty);
+
+									if (item == null || empty) {
+										setText(null);
+									} else {
+										setText(dateFormatter.format(item));
+									}
+								}
+							};
+						}
+					});
+
+			/* Auf Click werden die Positionen der ausgewählten Bestellung angezeigt*/
+			tblBestBar.setRowFactory(new Callback<TableView<BestellungWrapper>, TableRow<BestellungWrapper>>() {
+
+				@Override
+				public TableRow<BestellungWrapper> call(TableView<BestellungWrapper> param) {
+					TableRow<BestellungWrapper> tRow = new TableRow<>();
+
+					tRow.setOnMouseClicked(event -> {
+						if (event.getClickCount() == 1 && !tRow.isEmpty()) {
+							BestellungWrapper item = tRow.getItem();
+
+							Bestellung bestellung = item.getBestellung();
+
+							if (bestellung != null) {
+								tblPosBar.getItems().clear();
+
+								List<BestellungPosition> tempListe = bestellung.getBestellungPositionListe();
+								for(BestellungPosition p : tempListe){
+									positionenListe.add(new BestellungPositionWrapper(p));
+								}
+								tblPosBar.getItems().addAll(positionenListe);
+								tblPosBar.getSelectionModel().select(0);
+
 							}
 						}
-					};
+					});
+
+					return tRow;
 				}
 			});
 
+
 			// Tabelle aktualisieren
 			updateTable();
+
+			/* Binding für die Schaltfläche 'Löschen' erstellen */
+			bestellungLöschenBtn.disableProperty().bind(Bindings.size(tblBestBar.getItems()).lessThan(1));
+			/* Binding für die Schaltfläche 'Bereit' erstellen */
+			bestellungBereitBtn.disableProperty().bind(Bindings.size(tblPosBar.getItems()).lessThan(1));
+
 
 			// Automatisches aktualisieren
             MainWindowBarController task = new MainWindowBarController();
@@ -188,41 +250,23 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 
     private void updateTable() {
 
-        TreeTableBar.getColumns().clear();
+        tblBestBar.getItems().clear();
 
         try {
             // Nur Bestellungen für Bar einlesen
             List<Bestellung> alleBestellungen = Context.getInstance().getBestellungService().alleBestellungen();
 
-            for (Bestellung b : alleBestellungen) {
-                List<BestellungPosition> bestellungPosition = b.getBestellungPositionListe();
-                for (BestellungPosition p : bestellungPosition) {
-                    if (p.getProdukt().getKategorie() == KategorieTyp.SPEISE || p.isBestellungBereit()==true) {
-                        bestellungPosition.remove(p);
-                    }
-                }
-            }
-
-			TreeItem<Bestellung> root = new TreeItem<>();
-
-            for (Bestellung best : alleBestellungen){
-				TreeItem<Bestellung> middleRoot = new TreeItem<>(best);
-				middleRoot.setExpanded(true);
-
-            	for(BestellungPosition bestelPosition: best.getBestellungPositionListe()){
-            		Bestellung bestellung = new Bestellung();
-            		List<BestellungPosition> einzelneBestPos = new ArrayList<>();
-            		einzelneBestPos.add(bestelPosition);
-            		bestellung.setBestellungPositionListe(einzelneBestPos);
-            		TreeItem<Bestellung> childNode = new TreeItem<>(bestellung);
-					middleRoot.getChildren().add(childNode);
+            for (Bestellung b : alleBestellungen){
+				List<BestellungPosition> bestellungPosition = b.getBestellungPositionListe();
+				for (BestellungPosition p : bestellungPosition) {
+					if (p.getProdukt().getKategorie().equals(KategorieTyp.SNACK)||p.getProdukt().getKategorie().equals(KategorieTyp.GETRANK)||p.isBestellungBereit()==true){
+						bestellungenListe.add(new BestellungWrapper(b));
+					}
 				}
-            	root.getChildren().add(middleRoot);
 			}
 
-			TreeTableBar.setRoot(root);
-			TreeTableBar.setShowRoot(false);
-			TreeTableBar.getSelectionModel().select(0);
+			tblBestBar.getItems().addAll(bestellungenListe);
+			tblBestBar.getSelectionModel().select(0);
 
         } catch (Exception e) {
             logger.error("Fehler beim updaten der Tabelle: ", e);
