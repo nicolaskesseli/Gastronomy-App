@@ -33,25 +33,25 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 	private List<Bestellung> bestellungen = new ArrayList<>();
 
 	@FXML
-	private TreeTableView<Bestellung> TreeTableBar;
+	private TableView<?> tblBar;
 
 	@FXML
-	private TreeTableColumn<Bestellung, Integer> tcolTisch;
+	private TableColumn<?, ?> colTischNr;
 
 	@FXML
-	private TreeTableColumn<Bestellung, LocalDate> tcolZeit;
+	private TableColumn<?, ?> colZeit;
 
 	@FXML
-	private TreeTableColumn<Bestellung, String> tcolBemerkung;
+	private TableColumn<?, ?> colBemerkung;
 
 	@FXML
-	private TreeTableColumn<BestellungPosition, Long> tcolPos;
+	private TableColumn<?, ?> colPos;
 
 	@FXML
-	private TreeTableColumn<BestellungPosition, Integer> tcolAnz;
+	private TableColumn<?, ?> colAnzahl;
 
 	@FXML
-	private TreeTableColumn<BestellungPosition, Produkt> tcolProdukt;
+	private TableColumn<?, ?> colProdukt;
 	
 	@FXML
 	void abmelden (ActionEvent event) {
