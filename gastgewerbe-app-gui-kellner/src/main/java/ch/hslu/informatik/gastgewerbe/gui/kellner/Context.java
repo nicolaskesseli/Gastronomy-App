@@ -17,6 +17,7 @@ import ch.hslu.informatik.gastgewerbe.rmi.api.RmiBestellungService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiLoginService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiProduktService;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class Context {
 
@@ -28,6 +29,8 @@ public class Context {
 	private static Context INSTANCE = new Context();
 
 	private BorderPane mainRoot;
+	
+	private Stage mainStage;
 
 	private Benutzer benutzer;
 
@@ -56,6 +59,15 @@ public class Context {
 		this.mainRoot = mainRoot;
 
 	}
+	
+	public Stage getMainStage() {
+		return mainStage;
+	}
+	
+	public void setMainStage(Stage mainStage) {
+		this.mainStage = mainStage;
+	}
+	
 	public Benutzer getBenutzer() {
 		return benutzer;
 	}

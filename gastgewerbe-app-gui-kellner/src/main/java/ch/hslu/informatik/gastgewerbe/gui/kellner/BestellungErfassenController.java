@@ -83,14 +83,15 @@ import ch.hslu.informatik.gastgewerbe.persister.impl.ProduktDAOImpl;
 	    @FXML
 	    private TableColumn<Table, String> bezeichnung;
 	    
+	    Table t = new Table("test", 50);
 	    
-	    
-	    final ObservableList<Table> data = FXCollections.observableArrayList(
+	    ObservableList<Table> datenModell = FXCollections.observableArrayList();
 //				new Table(p.getBeschreibung(), p.getPreis()),
-				new Table("12.50", 100)
-				);
+			
+	    		//new Table("12.50", 100)
 				
 				
+				TableView<Table> table = new TableView<>(datenModell);
 	    
 	    
 	    

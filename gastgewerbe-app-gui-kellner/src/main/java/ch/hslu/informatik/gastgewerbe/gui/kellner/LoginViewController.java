@@ -13,10 +13,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class LoginViewController implements Initializable {
 
@@ -66,8 +68,13 @@ public class LoginViewController implements Initializable {
 				if (benutzer.getRolle() == RolleTyp.KELLNER) {
 					Context.getInstance().setBenutzer(benutzer);
 
-					AnchorPane root = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
-					Context.getInstance().getMainRoot().setCenter(root);
+					AnchorPane mainRoot = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
+					Scene mainScene = new Scene(mainRoot);
+
+					Stage mainStage = Context.getInstance().getMainStage();
+
+					mainStage.setScene(mainScene);
+					mainStage.show();
 
 				} else{
 					lblError.setText(LoginViewController.ACCESS_DENIED_MESSAGE);
