@@ -8,6 +8,7 @@ import org.apache.logging.log4j.core.appender.ConsoleAppender;
 import org.junit.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static junit.framework.TestCase.assertTrue;
 
@@ -89,7 +90,7 @@ public class BestellungDAOImplTest {
 
         Bestellung b = pBestellungDAO.findAll().get(0);
 
-        LocalDate zeit = b.getZeit();
+        LocalDateTime zeit = b.getZeit();
 
         assertTrue(b.equals(pBestellungDAO.findByZeit(zeit).get(0)));
 

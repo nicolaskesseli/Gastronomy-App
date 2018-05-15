@@ -1,6 +1,7 @@
 package ch.hslu.informatik.gastgewerbe.businessabrechnung;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -57,7 +58,7 @@ public class AbrechnungManager implements AbrechnungService {
     public double tischAbrechnen(Tisch tisch, Benutzer benutzer) throws Exception {
 
 		try {
-			List<Bestellung> bestellungenHeute = getBestellungDAO().findByZeit(LocalDate.now());
+			List<Bestellung> bestellungenHeute = getBestellungDAO().findByZeit(LocalDateTime.now());
 			List<Bestellung> abzurechnedeBestellung = new ArrayList<>();
 			for (Bestellung b : bestellungenHeute) {
 				if (b.getTisch().getTischNr() == tisch.getTischNr()) {
@@ -99,7 +100,7 @@ public class AbrechnungManager implements AbrechnungService {
 	}
 
 	@Override
-	public double abschluss(LocalDate zeit) throws Exception {
+	public double abschluss(LocalDateTime zeit) throws Exception {
 		// TODO Auto-generated method stub
 
 		try{
@@ -123,7 +124,7 @@ public class AbrechnungManager implements AbrechnungService {
 	}
 
 	@Override
-	public List<Abrechnung> findByBenutzerUndDatum(Benutzer benutzer, LocalDate zeit) throws Exception {
+	public List<Abrechnung> findByBenutzerUndDatum(Benutzer benutzer, LocalDateTime zeit) throws Exception {
 		// TODO Auto-generated method stub
 		try{
 			return getAbrechnungDAO().findByBenutzerUndDatum(benutzer, zeit);

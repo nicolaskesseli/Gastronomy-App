@@ -1,6 +1,7 @@
 package ch.hslu.informatik.gastgewerbe.businessbestellung;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
@@ -106,7 +107,7 @@ public class BestellungManager implements BestellungService {
 	
 
 	@Override
-	public List<Bestellung> findByZeit(LocalDate zeit) throws Exception {
+	public List<Bestellung> findByZeit(LocalDateTime zeit) throws Exception {
 		try {
 			return getBestellungDAO().findByZeit(zeit);
 		}catch (Exception e) {

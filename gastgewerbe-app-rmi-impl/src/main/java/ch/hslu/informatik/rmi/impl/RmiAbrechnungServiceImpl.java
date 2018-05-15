@@ -10,6 +10,7 @@ import ch.hslu.informatik.gastgewerbe.rmi.api.RmiAbrechnungService;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -37,12 +38,12 @@ public class RmiAbrechnungServiceImpl extends UnicastRemoteObject implements Rmi
     }
 
     @Override
-    public double abschluss(LocalDate zeit) throws Exception {
+    public double abschluss(LocalDateTime zeit) throws Exception {
         return getAbrechungService().abschluss(zeit);
     }
 
     @Override
-    public List<Abrechnung> findByBenutzerUndDatum(Benutzer benutzer, LocalDate zeit) throws Exception {
+    public List<Abrechnung> findByBenutzerUndDatum(Benutzer benutzer, LocalDateTime zeit) throws Exception {
         return getAbrechungService().findByBenutzerUndDatum(benutzer, zeit);
     }
 }

@@ -1,6 +1,7 @@
 package ch.hslu.informatik.gastgewerbe.persister.impl;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class BestellungDAOImpl extends GenericPersisterDAOImpl<Bestellung> imple
 
 	}
 
-	public List<Bestellung> findByZeit (LocalDate zeit) throws Exception{
+	public List<Bestellung> findByZeit (LocalDateTime zeit) throws Exception{
 
 		EntityManager em = JPAUtil.createEntityManager();
 

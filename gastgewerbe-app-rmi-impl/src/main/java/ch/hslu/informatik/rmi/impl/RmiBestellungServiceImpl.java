@@ -9,6 +9,7 @@ import ch.hslu.informatik.gastgewerbe.rmi.api.RmiBestellungService;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class RmiBestellungServiceImpl extends UnicastRemoteObject implements RmiBestellungService {
@@ -54,7 +55,7 @@ public class RmiBestellungServiceImpl extends UnicastRemoteObject implements Rmi
     }
 
     @Override
-    public List<Bestellung> findByZeit(LocalDate zeit) throws Exception {
+    public List<Bestellung> findByZeit(LocalDateTime zeit) throws Exception {
         return getBestellungService().findByZeit(zeit);
     }
 

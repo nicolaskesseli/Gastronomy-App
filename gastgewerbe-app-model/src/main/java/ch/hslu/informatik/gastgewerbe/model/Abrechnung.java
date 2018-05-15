@@ -2,9 +2,11 @@ package ch.hslu.informatik.gastgewerbe.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.*;
 
@@ -29,7 +31,7 @@ public class Abrechnung implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Benutzer benutzer;
 
-	private LocalDate zeit;
+	private LocalDateTime zeit;
 	private Double betrag;
 
 	public Abrechnung() {
@@ -37,7 +39,7 @@ public class Abrechnung implements Serializable {
 	}
 
 	public Abrechnung(Benutzer benutzer, Bestellung bestellung) {
-		this.zeit = LocalDate.now();
+		this.zeit = LocalDateTime.now();
 		this.benutzer = benutzer;
 		this.bestellung = bestellung;
 		this.betrag=0.0;
@@ -51,11 +53,11 @@ public class Abrechnung implements Serializable {
 		this.id = id;
 	}
 
-	public LocalDate getZeit() {
+	public LocalDateTime getZeit() {
 		return zeit;
 	}
 
-	public void setZeit(LocalDate zeit) {
+	public void setZeit(LocalDateTime zeit) {
 		this.zeit = zeit;
 	}
 
@@ -97,39 +99,32 @@ public class Abrechnung implements Serializable {
 		return betrag;
 	}
 
-
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (!(o instanceof Abrechnung)) return false;
-
 		Abrechnung that = (Abrechnung) o;
-
-		if (id != that.id) return false;
-		if (zeit != null ? !zeit.equals(that.zeit) : that.zeit != null) return false;
-		if (betrag != null ? !betrag.equals(that.betrag) : that.betrag != null) return false;
-		if (bestellung != null ? !bestellung.equals(that.bestellung) : that.bestellung != null) return false;
-		return benutzer != null ? benutzer.equals(that.benutzer) : that.benutzer == null;
+		return id == that.id &&
+				Objects.equals(bestellung, that.bestellung) &&
+				Objects.equals(benutzer, that.benutzer) &&
+				Objects.equals(zeit, that.zeit) &&
+				Objects.equals(betrag, that.betrag);
 	}
 
 	@Override
 	public int hashCode() {
-		int result = (int) (id ^ (id >>> 32));
-		result = 31 * result + (zeit != null ? zeit.hashCode() : 0);
-		result = 31 * result + (betrag != null ? betrag.hashCode() : 0);
-		result = 31 * result + (bestellung != null ? bestellung.hashCode() : 0);
-		result = 31 * result + (benutzer != null ? benutzer.hashCode() : 0);
-		return result;
+
+		return Objects.hash(id, bestellung, benutzer, zeit, betrag);
 	}
 
 	@Override
 	public String toString() {
 		return "Abrechnung{" +
 				"id=" + id +
-				", zeit=" + zeit +
-				", betrag=" + betrag +
 				", bestellung=" + bestellung +
 				", benutzer=" + benutzer +
+				", zeit=" + zeit +
+				", betrag=" + betrag +
 				'}';
 	}
 }

@@ -174,7 +174,7 @@ import ch.hslu.informatik.gastgewerbe.persister.impl.ProduktDAOImpl;
 	    	bezeichnung.setCellValueFactory(new PropertyValueFactory<Table, String>("rBezeichnung"));
 	    	preis.setCellValueFactory(new PropertyValueFactory<Table, Double>("rPreis"));
 	    	
-	    	gerichtAuswahl.setItems(data);
+	    	//gerichtAuswahl.setItems(data);
 		}
 
 	}

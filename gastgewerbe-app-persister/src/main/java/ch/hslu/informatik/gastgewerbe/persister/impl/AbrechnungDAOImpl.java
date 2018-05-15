@@ -8,6 +8,7 @@ import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +19,13 @@ public class AbrechnungDAOImpl extends GenericPersisterDAOImpl<Abrechnung> imple
     }
 
     @Override
-    public List<Abrechnung> findByDatum(LocalDate zeit) throws Exception {
+    public List<Abrechnung> findByDatum(LocalDateTime zeit) throws Exception {
 
         // Datum von
-        LocalDate startDatum = zeit;
+        LocalDateTime startDatum = zeit;
 
         // Datum bis
-        LocalDate endDatum = zeit.plusDays(1);
+        LocalDateTime endDatum = zeit.plusDays(1);
 
         EntityManager em = JPAUtil.createEntityManager();
 
@@ -56,12 +57,12 @@ public class AbrechnungDAOImpl extends GenericPersisterDAOImpl<Abrechnung> imple
     }
 
     @Override
-    public List<Abrechnung> findByBenutzerUndDatum(Benutzer benutzer, LocalDate zeit) throws Exception {
+    public List<Abrechnung> findByBenutzerUndDatum(Benutzer benutzer, LocalDateTime zeit) throws Exception {
         // Datum von
-        LocalDate startDatum = zeit;
+        LocalDateTime startDatum = zeit;
 
         // Datum bis
-        LocalDate endDatum = zeit.plusDays(1);
+        LocalDateTime endDatum = zeit.plusDays(1);
 
         EntityManager em = JPAUtil.createEntityManager();
 

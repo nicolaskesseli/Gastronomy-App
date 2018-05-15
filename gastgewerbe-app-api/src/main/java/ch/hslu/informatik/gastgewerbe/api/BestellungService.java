@@ -4,6 +4,7 @@ import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface BestellungService {
@@ -24,7 +25,7 @@ public interface BestellungService {
     List<Bestellung> findByTischNr(int TischNr) throws Exception;
 
     // Liefer alle offenen Bestellungen für das bestimmte Datum
-    List<Bestellung> findByZeit(LocalDate zeit) throws Exception;
+    List<Bestellung> findByZeit(LocalDateTime zeit) throws Exception;
 
     // Liefert Bestellung mit dieser ID
     Bestellung findById(Long id) throws Exception;

@@ -2,8 +2,10 @@ package ch.hslu.informatik.gastgewerbe.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.*;
 
@@ -29,7 +31,7 @@ public class Bestellung implements Serializable {
 
     private String bemerkung;
     private boolean rechnungBezahlt;
-    private LocalDate zeit;
+    private LocalDateTime zeit;
 
 	public Bestellung() {
 	
@@ -41,7 +43,7 @@ public class Bestellung implements Serializable {
 		this.bemerkung = bemerkung;
 		this.tisch = tisch;
 		this.rechnungBezahlt=false;
-		this.zeit=LocalDate.now();
+		this.zeit=LocalDateTime.now();
 	}
 
 	public long getId() {
@@ -62,13 +64,13 @@ public class Bestellung implements Serializable {
 
 
 
-	public LocalDate getZeit() {
+	public LocalDateTime getZeit() {
 		return zeit;
 	}
 
 
 
-	public void setZeit(LocalDate zeit) {
+	public void setZeit(LocalDateTime zeit) {
 		this.zeit = zeit;
 	}
 
@@ -101,31 +103,33 @@ public class Bestellung implements Serializable {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Bestellung)) return false;
+		Bestellung that = (Bestellung) o;
+		return id == that.id &&
+				rechnungBezahlt == that.rechnungBezahlt &&
+				Objects.equals(tisch, that.tisch) &&
+				Objects.equals(bestellungPositionListe, that.bestellungPositionListe) &&
+				Objects.equals(bemerkung, that.bemerkung) &&
+				Objects.equals(zeit, that.zeit);
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Bestellung other = (Bestellung) obj;
-		if (id != other.id)
-			return false;
-		return true;
+	public int hashCode() {
+
+		return Objects.hash(id, tisch, bestellungPositionListe, bemerkung, rechnungBezahlt, zeit);
 	}
 
 	@Override
 	public String toString() {
-		return "Bestellung [id=" + id + ", tisch=" + tisch + ", zeit=" + zeit + ", bemerkung=" + bemerkung
-				+ ", rechnungBezahlt=" + rechnungBezahlt + ", bestellungPositionListe=" + bestellungPositionListe + "]";
+		return "Bestellung{" +
+				"id=" + id +
+				", tisch=" + tisch +
+				", bestellungPositionListe=" + bestellungPositionListe +
+				", bemerkung='" + bemerkung + '\'' +
+				", rechnungBezahlt=" + rechnungBezahlt +
+				", zeit=" + zeit +
+				'}';
 	}
-	
 }

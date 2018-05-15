@@ -3,6 +3,7 @@ package ch.hslu.informatik.gastgewerbe.gui.wrapper;
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class BestellungWrapper {
 
@@ -40,11 +41,11 @@ public class BestellungWrapper {
         return bestellung.getTisch().getTischNr();
     }
 
-    public void setZeit(LocalDate zeit){
+    public void setZeit(LocalDateTime zeit){
         bestellung.setZeit(zeit);
     }
 
-    public LocalDate getZeit(){
+    public LocalDateTime getZeit(){
         return bestellung.getZeit();
     }
 
