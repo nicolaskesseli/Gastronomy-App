@@ -11,6 +11,7 @@ import java.util.Properties;
 
 import ch.hslu.informatik.gastgewerbe.api.*;
 import ch.hslu.informatik.gastgewerbe.rmi.api.*;
+import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -42,14 +43,23 @@ public class Context {
 
 	private RmiBenutzerService benutzerService;
 
+	private Stage mainStage;
+
 	private Context() {
 
+	}
+
+	public Stage getMainStage() {
+		return mainStage;
+	}
+
+	public void setMainStage(Stage mainStage) {
+		this.mainStage = mainStage;
 	}
 
 	public static Context getInstance() {
 		return INSTANCE;
 	}
-
 
 	public BorderPane getMainRoot() {
 
@@ -69,9 +79,6 @@ public class Context {
 
 		this.benutzer = benutzer;
 	}
-
-
-
 
 	/*public RmiBestellungService getBestellungService() {
 
