@@ -57,4 +57,10 @@ public class RmiBestellungServiceImpl extends UnicastRemoteObject implements Rmi
     public List<Bestellung> findByZeit(LocalDate zeit) throws Exception {
         return getBestellungService().findByZeit(zeit);
     }
+
+    @Override
+    public void deletBestellung(Bestellung bestellung) throws Exception {
+        getBestellungService().deletBestellung(bestellung);
+
+    }
 }

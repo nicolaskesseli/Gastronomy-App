@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
@@ -28,7 +26,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-public class MainWindowBarController implements Initializable {
+public class MainWindowBarController extends TimerTask implements Initializable {
 
 	private static Logger logger = LogManager.getLogger(MainWindowBarController.class);
 
@@ -78,15 +76,19 @@ public class MainWindowBarController implements Initializable {
 	@FXML
         void bestellungBereit(ActionEvent event) {
 
-        Bestellung ausgewahlteBestellung = TreeTableBar.getSelectionModel().getSelectedItem().getValue();
+
+
+        Bestellung ausgewahlteBestellung;
 
         try{
+            ausgewahlteBestellung=TreeTableBar.getSelectionModel().getSelectedItem().getValue();
+
         	for (BestellungPosition p: ausgewahlteBestellung.getBestellungPositionListe()){
 				Context.getInstance().getBestellungService().bestellungPositionBereit(p);
 				updateTable();
 			}
 		} catch (Exception e) {
-			String msg = "BestellPos: " +ausgewahlteBestellung.toString()+" konnte nicht in Status bereit versetzt werden!";
+			String msg = "BestellPos. konnte nicht in Status bereit versetzt werden!";
 			logger.error(msg, e);
 
 			// error dialog anzeigen
@@ -101,9 +103,10 @@ public class MainWindowBarController implements Initializable {
     @FXML
 	    void bestellungLöschen(ActionEvent event) {
 
-	    Bestellung ausgewahlteBestellung = TreeTableBar.getSelectionModel().getSelectedItem().getValue();
+	    Bestellung ausgewahlteBestellung;
 
 	    try {
+	        ausgewahlteBestellung=TreeTableBar.getSelectionModel().getSelectedItem().getValue();
 
             Context.getInstance().getBestellungService().deletBestellung(ausgewahlteBestellung);
 
@@ -118,7 +121,7 @@ public class MainWindowBarController implements Initializable {
 
 
         } catch (Exception e) {
-        String msg = "Bestellung: " +ausgewahlteBestellung.toString()+" konnte nicht gelöscht werden!";
+        String msg = "Bestellung konnte nicht gelöscht werden!";
         logger.error(msg, e);
 
         // error dialog anzeigen
@@ -171,6 +174,11 @@ public class MainWindowBarController implements Initializable {
 			// Tabelle aktualisieren
 			updateTable();
 
+			// Automatisches aktualisieren
+            MainWindowBarController task = new MainWindowBarController();
+            Timer timer = new Timer();
+            timer.schedule(task, 120000, 3000000);
+
         }catch (Exception e) {
             logger.error("Fehler bei der View-Initialisierung: ", e);
             throw new RuntimeException(e);
@@ -220,5 +228,10 @@ public class MainWindowBarController implements Initializable {
             logger.error("Fehler beim updaten der Tabelle: ", e);
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void run() {
+	    updateTable();
     }
 }
