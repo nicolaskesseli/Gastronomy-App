@@ -2,7 +2,6 @@ package ch.hslu.informatik.gastgewerbe.gui.bar;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -98,9 +97,11 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 			if(ausgewähltePosition!= null){
 				BestellungPosition bereit = Context.getInstance().getBestellungService().bestPosFindById(ausgewähltePosition.getId());
 				Context.getInstance().getBestellungService().bestellungPositionBereit(bereit);
+				tblPosBar.getItems().remove(ausgewähltePosition);
 			}
 
 			updateTable();
+
 
 		} catch (Exception e) {
 			String msg = "BestellPos. konnte nicht in Status bereit versetzt werden!";
@@ -170,9 +171,6 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 			colAnzahl.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Integer>("anzahl"));
 			colProdukt.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, String>("produkt"));
 
-
-
-
 	        // Datumformat anpassen CellFactory anpassen um nach dateFormatter zu formatieren
 
 			colZeit.setCellFactory(
@@ -210,16 +208,20 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 							Bestellung bestellung = item.getBestellung();
 
 							if (bestellung != null) {
+
 								tblPosBar.getItems().clear();
 								positionenListe.clear();
 
 								List<BestellungPosition> tempListe = bestellung.getBestellungPositionListe();
 								for(BestellungPosition p : tempListe){
-									positionenListe.add(new BestellungPositionWrapper(p));
+									if(p.getProdukt().getKategorie().equals(KategorieTyp.SNACK) || p.getProdukt().getKategorie().equals(KategorieTyp.GETRANK)){
+										if(!p.isBestellungBereit()){
+											positionenListe.add(new BestellungPositionWrapper(p));
+										}
+									}
 								}
 								tblPosBar.getItems().addAll(positionenListe);
 								tblPosBar.getSelectionModel().select(0);
-
 							}
 						}
 					});
