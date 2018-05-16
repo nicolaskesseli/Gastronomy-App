@@ -42,4 +42,8 @@ public class ProduktWrapper {
 		return produkt;
 	}
 
+	public void setProdukt(Produkt produkt) {
+		this.produkt = produkt;
+	}
+
 }
