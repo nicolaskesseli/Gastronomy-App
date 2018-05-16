@@ -29,12 +29,15 @@ import ch.hslu.informatik.gastgewerbe.gui.wrapper.ProduktWrapper;
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
 import ch.hslu.informatik.gastgewerbe.model.Produkt;
+import ch.hslu.informatik.gastgewerbe.model.Tisch;
 
 public class BestellungErfassenController implements Initializable {
 
 	private static Logger logger = LogManager.getLogger(BestellungErfassenController.class);
 	
 	private BestellungPositionWrapper position;
+	
+	private BestellungWrapper bestellung;
 
 	private List<ProduktWrapper> produktListe = new ArrayList<>();
 	
@@ -96,10 +99,15 @@ public class BestellungErfassenController implements Initializable {
 
 	@FXML
 	void bestellungAbschicken(ActionEvent event) {
-		Bestellung bestellung = new Bestellung();
-
+		
 		try {
-
+			
+			String bemerkung = bemerkungInput.getText();
+			int tischNr = Integer.parseInt(tischNrInput.getText());
+			Tisch tisch = new Tisch(tischNr);
+			
+			Bestellung bestellung = new Bestellung(bemerkung, tisch);
+			
 			Context.getInstance().getBestellungService().bestellen(bestellung);
 
 		} catch (Exception e) {
@@ -109,7 +117,6 @@ public class BestellungErfassenController implements Initializable {
 
 	}
 
-	
 	@FXML
 	void bestellPositionLoeschen(ActionEvent event) {
 		
