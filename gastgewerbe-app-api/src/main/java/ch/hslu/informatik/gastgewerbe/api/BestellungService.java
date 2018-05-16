@@ -18,13 +18,13 @@ public interface BestellungService {
     // Bestellungsposition bereit
     boolean bestellungPositionBereit(BestellungPosition bestellungPosition) throws Exception;
 
-    // Liefert alle offenen Bestellung
+    // Liefert alle  Bestellung
     List<Bestellung> alleBestellungen() throws Exception;
 
-    // Liefert alle offenen Bestellungen einer Tisch Nr.
+    // Liefert alle  Bestellungen einer Tisch Nr.
     List<Bestellung> findByTischNr(int TischNr) throws Exception;
 
-    // Liefer alle offenen Bestellungen für das bestimmte Datum
+    // Liefer alle  Bestellungen für das bestimmte Datum
     List<Bestellung> findByZeit(LocalDateTime zeit) throws Exception;
 
     // Liefert Bestellung mit dieser ID

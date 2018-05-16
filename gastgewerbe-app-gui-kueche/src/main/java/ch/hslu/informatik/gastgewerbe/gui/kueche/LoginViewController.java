@@ -1,29 +1,24 @@
-package ch.hslu.informatik.gastgewerbe.gui.bar;
+package ch.hslu.informatik.gastgewerbe.gui.kueche;
 
-
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import ch.hslu.informatik.gastgewerbe.api.LoginService;
-import ch.hslu.informatik.gastgewerbe.gui.bar.Context;
-import ch.hslu.informatik.gastgewerbe.gui.bar.LoginViewController;
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 import ch.hslu.informatik.gastgewerbe.model.RolleTyp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class LoginViewController implements Initializable {
 
@@ -71,10 +66,10 @@ public class LoginViewController implements Initializable {
 
 			if (benutzer != null) {
 
-				if (benutzer.getRolle() == RolleTyp.BAR_MITARBEITER|| benutzer.getRolle() == RolleTyp.ADMINISTRATOR) {
+				if (benutzer.getRolle() == RolleTyp.KUECHE_MITARBEITER || benutzer.getRolle() == RolleTyp.ADMINISTRATOR) {
 					Context.getInstance().setBenutzer(benutzer);
 					
-					AnchorPane mainRoot = FXMLLoader.load(getClass().getResource("/fxml/MainWindowBar.fxml"));
+					AnchorPane mainRoot = FXMLLoader.load(getClass().getResource("/fxml/MainWindowKueche.fxml"));
 
 					Scene mainScene = new Scene(mainRoot);
 

@@ -1,7 +1,7 @@
 package ch.hslu.informatik.gastgewerbe.gui.bar;
 
 
-import ch.hslu.informatik.gastgewerbe.model.Bestellung;
+
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiBestellungService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiLoginService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiProduktService;
@@ -10,8 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
+
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,8 +19,7 @@ import java.io.InputStream;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.HashMap;
-import java.util.Map;
+
 import java.util.Properties;
 
 public class Context {
