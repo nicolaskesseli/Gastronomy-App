@@ -2,44 +2,42 @@ package ch.hslu.informatik.gastgewerbe.gui.kellner;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.TimerTask;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.util.Callback;
+import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungPositionWrapper;
+import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungWrapper;
 import ch.hslu.informatik.gastgewerbe.gui.wrapper.ProduktWrapper;
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
+import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
 import ch.hslu.informatik.gastgewerbe.model.Produkt;
-import ch.hslu.informatik.gastgewerbe.persister.impl.ProduktDAOImpl;
 
 public class BestellungErfassenController implements Initializable {
 
 	private static Logger logger = LogManager.getLogger(BestellungErfassenController.class);
+	
+	private BestellungPositionWrapper position;
 
 	private List<ProduktWrapper> produktListe = new ArrayList<>();
+	
 	
 	private List<Produkt> namenListe = new ArrayList<>();
 
@@ -47,19 +45,19 @@ public class BestellungErfassenController implements Initializable {
 	private TextField tischNrInput;
 
 	@FXML
-	private TableView<ProduktWrapper> bestellübersichtTbl;
+	private TableView<BestellungPositionWrapper> bestellübersichtTbl;
 
 	@FXML
-	private TableColumn<ProduktWrapper, String> colCodeUebersicht;
+	private TableColumn<BestellungPositionWrapper, String> colCodeUebersicht;
 
 	@FXML
-	private TableColumn<ProduktWrapper, String> colBezeichnungUebersicht;
+	private TableColumn<BestellungPositionWrapper, String> colBezeichnungUebersicht;
 	
 	@FXML
-	private TableColumn<ProduktWrapper, String> colPreisUebersicht;
-
+	private TableColumn<BestellungPositionWrapper, Double> colPreisUebersicht;
+	
 	@FXML
-	private TableColumn<ProduktWrapper, String> bemerkung;
+	private TableColumn<BestellungPositionWrapper, Integer> colAnzalUebersicht;
 
 	@FXML
 	private Button bestellungAbschickenBtn;
@@ -69,9 +67,9 @@ public class BestellungErfassenController implements Initializable {
 
 	@FXML
 	private Button zurückInput;
-
+	
 	@FXML
-	private Button gerichtHinzufügenBtn;
+	private Button bestellPositionLoeschenBtn;
 
 	@FXML
 	private TextField gerichtNrInput;
@@ -111,9 +109,10 @@ public class BestellungErfassenController implements Initializable {
 
 	}
 
+	
 	@FXML
-	void bestellungHinzufügen(ActionEvent event) {
-
+	void bestellPositionLoeschen(ActionEvent event) {
+		
 	}
 
 	@FXML
@@ -135,7 +134,11 @@ public class BestellungErfassenController implements Initializable {
 				ProduktWrapper pWrapper = new ProduktWrapper(p);
 				gefundesProdukt = pWrapper;
 
+				gerichtNrInput.setText("");
+				
 				updateTableCodeSuche();
+				
+				
 
 			}
 
@@ -160,6 +163,7 @@ public class BestellungErfassenController implements Initializable {
 				tblGerichtAuswahl.getItems().clear();
 			}else {
 				
+				gerichtNameInput.setText("");
 
 				updateTableNameSuche();
 			
@@ -192,8 +196,43 @@ public class BestellungErfassenController implements Initializable {
 		try {
 			colPreis.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, Double>("preis"));
 			colName.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, String>("name"));
+			colCodeUebersicht.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, String>("produktCode"));
+			colBezeichnungUebersicht.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, String>("name"));
+			colPreisUebersicht.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Double>("preis"));
+			colAnzalUebersicht.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Integer>("anzahl"));
+			
+			
 			updateTableNameSuche();
 			updateTableCodeSuche();
+			
+			
+			tblGerichtAuswahl.setRowFactory(new Callback<TableView<ProduktWrapper>, TableRow<ProduktWrapper>>() {
+
+				@Override
+				public TableRow<ProduktWrapper> call(TableView<ProduktWrapper> param) {
+					TableRow<ProduktWrapper> tRow = new TableRow<>();
+
+					tRow.setOnMouseClicked(event -> {
+						if (event.getClickCount() == 1 && !tRow.isEmpty()) {
+							ProduktWrapper item = tRow.getItem();
+
+							Produkt produkt = item.getProdukt();
+
+							if (produkt != null) {
+								position = new BestellungPositionWrapper(new BestellungPosition(produkt, 1));
+								
+								bestellübersichtTbl.getItems().add(position);
+								bestellübersichtTbl.getSelectionModel().select(0);
+							
+							}
+						}
+					});
+
+					return tRow;
+				}
+				
+			}
+		);
 
 		} catch (Exception e) {
 			logger.error("Fehler beim initialisieren: ", e);
