@@ -2,9 +2,11 @@
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.TimerTask;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,6 +29,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import ch.hslu.informatik.gastgewerbe.gui.wrapper.ProduktWrapper;
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.model.Produkt;
 import ch.hslu.informatik.gastgewerbe.persister.impl.ProduktDAOImpl;
@@ -35,20 +38,24 @@ import ch.hslu.informatik.gastgewerbe.persister.impl.ProduktDAOImpl;
 
 		private static Logger logger = LogManager.getLogger(BestellungErfassenController.class);
 		
+		private List<ProduktWrapper> produktListe = new ArrayList<>();
+		
+		
+		
 	    @FXML
 	    private TextField tischNrInput;
 
 	    @FXML
-	    private TableView<?> bestellübersichtTbl;
+	    private TableView<ProduktWrapper> bestellübersichtTbl;
 
 	    @FXML
-	    private TableColumn<Table, String> code;
+	    private TableColumn<ProduktWrapper, String> code;
 
 	    @FXML
-	    private TableColumn<Table, String> bezeichnung2;
+	    private TableColumn<ProduktWrapper, String> bezeichnung2;
 
 	    @FXML
-	    private TableColumn<Table, String> bemerkung;
+	    private TableColumn<ProduktWrapper, String> bemerkung;
 
 	    @FXML
 	    private Button bestellungAbschickenBtn;
@@ -75,23 +82,20 @@ import ch.hslu.informatik.gastgewerbe.persister.impl.ProduktDAOImpl;
 	    private Button suchenGerichtBtn1;
 
 	    @FXML
-	    private TableView<Table> gerichtAuswahl;
+	    private TableView<ProduktWrapper> tblGerichtAuswahl;
 
 	    @FXML
-	    private TableColumn<Table, Double> preis;
+	    private TableColumn<ProduktWrapper, Double> colPreis;
 	    
 	    @FXML
-	    private TableColumn<Table, String> bezeichnung;
+	    private TableColumn<ProduktWrapper, String> colName;
+	    
+	    private ProduktWrapper gefundesProdukt;
 	    
 	    Table t = new Table("test", 50);
 	    
 	    ObservableList<Table> datenModell = FXCollections.observableArrayList();
-//				new Table(p.getBeschreibung(), p.getPreis()),
-			
-	    		//new Table("12.50", 100)
-				
-				
-				TableView<Table> table = new TableView<>(datenModell);
+//			
 	    
 	    
 	    
@@ -122,10 +126,16 @@ import ch.hslu.informatik.gastgewerbe.persister.impl.ProduktDAOImpl;
 	    	String gerichtCode = gerichtNrInput.getText();
 	    	Produkt p;
 	    	
+	    	
+	    	
 	    	try{
 	    		
 	    		p = Context.getInstance().getProduktService().findByProduktCode(gerichtCode);
 	    		
+	    		ProduktWrapper pWrapper = new ProduktWrapper(p);
+	    		gefundesProdukt = pWrapper;
+	    		
+	    		updateTable();
 	    	
 	    	}catch(Exception e) {
 	    		e.getMessage();
@@ -170,13 +180,38 @@ import ch.hslu.informatik.gastgewerbe.persister.impl.ProduktDAOImpl;
 	    }
 	    
 	    public void initialize(URL location, ResourceBundle resources) {
-		System.out.println("Initialize aufgerufen");
-	    	bezeichnung.setCellValueFactory(new PropertyValueFactory<Table, String>("rBezeichnung"));
-	    	preis.setCellValueFactory(new PropertyValueFactory<Table, Double>("rPreis"));
 	    	
-	    	//gerichtAuswahl.setItems(data);
+	    	try {
+	    		colPreis.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, Double>("preis"));
+	    		colName.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, String>("name"));
+	    		updateTable();
+	    		
+	    	} catch (Exception e) {
+	    		logger.error("Fehler beim initialisieren: ", e);
+	    		throw new RuntimeException(e);
+	    	}
+	    	
+	    	
 		}
-
+	    public void updateTable() {
+	   
+	    	
+	    	try {
+	    		    		
+	    		tblGerichtAuswahl.getItems().clear();
+		    	produktListe.clear();
+	    		
+	    		tblGerichtAuswahl.getItems().addAll(gefundesProdukt);
+	    		tblGerichtAuswahl.getSelectionModel().select(0);
+	    		
+	    		
+	    		
+	    	} catch (Exception e) {
+	    		logger.error("Fehler beim updaten der Tabelle: ", e);
+	    		throw new RuntimeException(e);
+	    	}
+	    	
+	    }
 	}
 
 	
