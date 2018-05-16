@@ -2,44 +2,33 @@ package ch.hslu.informatik.gastgewerbe.gui.kellner;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.TimerTask;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungPositionWrapper;
 import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungWrapper;
 import ch.hslu.informatik.gastgewerbe.gui.wrapper.ProduktWrapper;
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
-import ch.hslu.informatik.gastgewerbe.model.KategorieTyp;
 import ch.hslu.informatik.gastgewerbe.model.Produkt;
-import ch.hslu.informatik.gastgewerbe.persister.impl.ProduktDAOImpl;
 
 public class BestellungErfassenController implements Initializable {
 
@@ -49,9 +38,6 @@ public class BestellungErfassenController implements Initializable {
 
 	private List<ProduktWrapper> produktListe = new ArrayList<>();
 	
-	private List<BestellungPositionWrapper> positionenListe = new ArrayList<>();
-	
-	private List<BestellungWrapper> bestellungListe = new ArrayList<>();
 	
 	private List<Produkt> namenListe = new ArrayList<>();
 
