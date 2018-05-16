@@ -189,7 +189,7 @@ public class Context {
 		return loginService;
 	}
 
-	/*public RmiProduktService getProduktService() {
+	public RmiProduktService getProduktService() {
 
 		int portNr = 0;
 
@@ -244,7 +244,7 @@ public class Context {
 	}
 
 
-	public RmiAbrechnungService getAbrechnungService() {
+	/*public RmiAbrechnungService getAbrechnungService() {
 
 		int portNr = 0;
 

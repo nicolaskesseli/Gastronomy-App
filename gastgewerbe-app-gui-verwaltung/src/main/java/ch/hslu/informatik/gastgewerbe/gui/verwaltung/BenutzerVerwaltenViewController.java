@@ -133,7 +133,7 @@ public class BenutzerVerwaltenViewController implements Initializable {
 
                 @Override
                 public void changed(ObservableValue<? extends BenutzerWrapper> observable, BenutzerWrapper oldValue,
-                        BenutzerWrapper newValue) {
+                                    BenutzerWrapper newValue) {
                     if (newValue != null) {
                         updateView();
                     }

@@ -67,10 +67,10 @@ public class LoginViewController implements Initializable {
 
 			if (benutzer != null) {
 
-				if (benutzer.getRolle() == RolleTyp.BAR_MITARBEITER|| benutzer.getRolle() == RolleTyp.ADMINISTRATOR) {
+				if (benutzer.getRolle() == RolleTyp.ADMINISTRATOR) {
 					Context.getInstance().setBenutzer(benutzer);
 
-					AnchorPane mainRoot = FXMLLoader.load(getClass().getResource("/fxml/MainWindowBar.fxml"));
+					AnchorPane mainRoot = FXMLLoader.load(getClass().getResource("/fxml/MainWindowVerwaltung.fxml"));
 
 					Scene mainScene = new Scene(mainRoot);
 
