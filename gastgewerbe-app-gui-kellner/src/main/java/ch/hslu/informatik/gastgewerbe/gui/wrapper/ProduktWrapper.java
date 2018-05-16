@@ -1,13 +1,21 @@
 package ch.hslu.informatik.gastgewerbe.gui.wrapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ch.hslu.informatik.gastgewerbe.model.Produkt;
 
 public class ProduktWrapper {
 	
 	private Produkt produkt;
 	
+	List<Produkt> pListe = new ArrayList<>();
+	
 	public ProduktWrapper() {
-		
+				
+	}
+	
+	public ProduktWrapper(List<Produkt> pListe) {
 		
 	}
 

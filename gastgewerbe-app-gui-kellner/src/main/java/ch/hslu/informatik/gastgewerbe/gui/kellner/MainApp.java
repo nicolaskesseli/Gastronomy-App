@@ -26,7 +26,6 @@ public class MainApp extends Application {
 			Scene scene = new Scene(root,850,570);
 			
 			Context.getInstance().setMainStage(primaryStage);
-			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
@@ -37,7 +36,7 @@ public class MainApp extends Application {
 	}
 	public static void main(String[] args) {
 	launch(args);
-		//	Application.launch(MainApp.class, (java.lang.String[]) null);
+		
 	}
 	
 	

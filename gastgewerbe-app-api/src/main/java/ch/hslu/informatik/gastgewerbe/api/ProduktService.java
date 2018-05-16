@@ -2,6 +2,7 @@ package ch.hslu.informatik.gastgewerbe.api;
 
 import java.util.List;
 
+
 import ch.hslu.informatik.gastgewerbe.model.KategorieTyp;
 import ch.hslu.informatik.gastgewerbe.model.Produkt;
 

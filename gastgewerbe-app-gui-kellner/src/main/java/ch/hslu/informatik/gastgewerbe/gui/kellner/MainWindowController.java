@@ -15,7 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -44,15 +44,14 @@ import javafx.stage.StageStyle;
 	    @FXML
 	    void bestellungErfassen(ActionEvent event) {
 	    	try {
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/BestellungErfassenView.fxml"));
-				Parent root1 = (Parent) fxmlLoader.load();
-				Stage stage = new Stage();
-			//	stage.initModality(Modality.APPLICATION_MODAL);
-			//	stage.initStyle(StageStyle.UNDECORATED);
-			//	stage.setTitle("Bestellung erfassen");
-				stage.setScene(new Scene(root1));
-				stage.show();
-				((Node) (event.getSource())).getScene().getWindow().hide();
+	    		AnchorPane mainRoot = FXMLLoader.load(getClass().getResource("/fxml/BestellungErfassenView.fxml"));
+				Scene mainScene = new Scene(mainRoot);
+
+				Stage mainStage = Context.getInstance().getMainStage();
+
+				mainStage.setScene(mainScene);
+				mainStage.show();
+				//((Node) (event.getSource())).getScene().getWindow().hide();
 			} catch (IOException e) {
 				logger.error(e.getMessage(), e);
 
@@ -62,14 +61,13 @@ import javafx.stage.StageStyle;
 	    @FXML
 	    void offeneBestellungen(ActionEvent event) {
 	    	try {
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/BestellungBereitView.fxml"));
-				Parent root1 = (Parent) fxmlLoader.load();
-				Stage stage = new Stage();
-				//stage.initModality(Modality.APPLICATION_MODAL);
-				//stage.initStyle(StageStyle.UNDECORATED);
-				//stage.setTitle("Offene Bestellungen");
-				stage.setScene(new Scene(root1));
-				stage.show();
+	    		AnchorPane mainRoot = FXMLLoader.load(getClass().getResource("/fxml/BestellungBereitView.fxml"));
+				Scene mainScene = new Scene(mainRoot);
+
+				Stage mainStage = Context.getInstance().getMainStage();
+
+				mainStage.setScene(mainScene);
+				mainStage.show();
 				((Node) (event.getSource())).getScene().getWindow().hide();
 	    	} catch (IOException e) {
 				logger.error(e.getMessage(), e);
@@ -80,14 +78,13 @@ import javafx.stage.StageStyle;
 	    @FXML
 	    void tischAbrechnen(ActionEvent event) {
 	    	try {
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/AbrechnungTischView.fxml"));
-				Parent root1 = (Parent) fxmlLoader.load();
-				Stage stage = new Stage();
-			//	stage.initModality(Modality.APPLICATION_MODAL);
-			//	stage.initStyle(StageStyle.UNDECORATED);
-			//	stage.setTitle("Tisch abrechnen");
-				stage.setScene(new Scene(root1));
-				stage.show();
+	    		AnchorPane mainRoot = FXMLLoader.load(getClass().getResource("/fxml/AbrechnungTischView.fxml"));
+				Scene mainScene = new Scene(mainRoot);
+
+				Stage mainStage = Context.getInstance().getMainStage();
+
+				mainStage.setScene(mainScene);
+				mainStage.show();
 				((Node) (event.getSource())).getScene().getWindow().hide();
 	    	} catch (IOException e) {
 				logger.error(e.getMessage(), e);
@@ -102,8 +99,6 @@ import javafx.stage.StageStyle;
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginView.fxml"));
 				Parent root1 = (Parent) fxmlLoader.load();
 				Stage stage = new Stage();
-				//stage.initModality(Modality.APPLICATION_MODAL);
-			//	stage.initStyle(StageStyle.UNDECORATED);
 				stage.setScene(new Scene(root1));
 				stage.show();
 				((Node) (event.getSource())).getScene().getWindow().hide();

@@ -26,11 +26,11 @@
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <TableView fx:id="bestellübersichtTbl" layoutX="477.0" layoutY="120.0" prefHeight="344.0" prefWidth="352.0">
+      <TableView fx:id="bestellübersichtTbl" layoutX="477.0" layoutY="108.0" prefHeight="283.0" prefWidth="352.0">
         <columns>
-          <TableColumn fx:id="code" prefWidth="75.0" text="Code" />
-          <TableColumn fx:id="bezeichnung2" prefWidth="173.39996337890625" text="Bezeichnung" />
-            <TableColumn fx:id="bemerkung" prefWidth="104.60003662109375" text="Bemerkung" />
+          <TableColumn fx:id="colCodeUebersicht" prefWidth="60.20001220703125" text="Code" />
+          <TableColumn fx:id="colBezeichnungUebersicht" prefWidth="221.0" text="Bezeichnung" />
+            <TableColumn fx:id="colPreisUebersicht" prefWidth="70.0" text="Preis" />
         </columns>
       </TableView>
       <Button fx:id="bestellungAbschickenBtn" layoutX="477.0" layoutY="501.0" mnemonicParsing="false" onAction="#bestellungAbschicken" prefHeight="44.0" prefWidth="352.0" text="Bestellung abschicken">
@@ -38,8 +38,8 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="bemerkungInput" layoutX="66.0" layoutY="438.0" prefHeight="34.0" prefWidth="333.0" />
-      <Label layoutX="66.0" layoutY="418.0" text="Bemerkung">
+      <TextField fx:id="bemerkungInput" layoutX="477.0" layoutY="416.0" prefHeight="67.0" prefWidth="352.0" />
+      <Label layoutX="477.0" layoutY="396.0" text="Bemerkung">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -79,10 +79,10 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <TableView fx:id="gerichtAuswahl" layoutX="68.0" layoutY="313.0" prefHeight="98.0" prefWidth="333.0">
+      <TableView fx:id="tblGerichtAuswahl" layoutX="68.0" layoutY="313.0" prefHeight="166.0" prefWidth="333.0">
         <columns>
-          <TableColumn fx:id="bezeichnung" prefWidth="239.00003051757812" text="Bezeichnung" />
-          <TableColumn fx:id="preis" prefWidth="92.99996948242188" text="Preis" />
+          <TableColumn fx:id="colName" prefWidth="239.00003051757812" text="Bezeichnung" />
+          <TableColumn fx:id="colPreis" prefWidth="92.99996948242188" text="Preis" />
         </columns>
       </TableView>
    </children>
