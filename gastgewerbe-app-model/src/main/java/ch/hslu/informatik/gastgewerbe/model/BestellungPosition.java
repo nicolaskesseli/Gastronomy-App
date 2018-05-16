@@ -20,6 +20,7 @@ public class BestellungPosition implements Serializable {
 
 	private boolean bestellungBereit;
 	private int anzahl;
+	private boolean bestellungAusgeliefert;
 
 
 
@@ -27,6 +28,7 @@ public class BestellungPosition implements Serializable {
 		this.produkt = produkt;
 		this.anzahl = anzahl;
 		this.bestellungBereit=false;
+		this.bestellungAusgeliefert=false;
 	}
 
 	public BestellungPosition() {
@@ -67,6 +69,14 @@ public class BestellungPosition implements Serializable {
 		this.anzahl = anzahl;
 	}
 
+	public boolean isBestellungAusgeliefert() {
+		return bestellungAusgeliefert;
+	}
+
+	public void setBestellungAusgeliefert(boolean bestellungAusgeliefert) {
+		this.bestellungAusgeliefert = bestellungAusgeliefert;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -75,13 +85,14 @@ public class BestellungPosition implements Serializable {
 		return id == that.id &&
 				bestellungBereit == that.bestellungBereit &&
 				anzahl == that.anzahl &&
+				bestellungAusgeliefert == that.bestellungAusgeliefert &&
 				Objects.equals(produkt, that.produkt);
 	}
 
 	@Override
 	public int hashCode() {
 
-		return Objects.hash(id, produkt, bestellungBereit, anzahl);
+		return Objects.hash(id, produkt, bestellungBereit, anzahl, bestellungAusgeliefert);
 	}
 
 	@Override
@@ -91,6 +102,7 @@ public class BestellungPosition implements Serializable {
 				", produkt=" + produkt +
 				", bestellungBereit=" + bestellungBereit +
 				", anzahl=" + anzahl +
+				", bestellungAusgeliefert=" + bestellungAusgeliefert +
 				'}';
 	}
 }
