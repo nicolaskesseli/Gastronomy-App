@@ -63,8 +63,8 @@ public class ProduktVerwaltenViewController {
 	@FXML
 	private TableView<ProduktWrapper> tblProdukt;
 
-	@FXML
-	private Button hinzufuegenBtn;
+	//@FXML
+	//private Button hinzufuegenBtn;
 
 	@FXML
 	private Button resetBtn;
@@ -111,17 +111,19 @@ public class ProduktVerwaltenViewController {
 			lblError.setText("");
 
 			/* cmbKategorie initialisieren */
-			List<String> kategorieListe = new ArrayList<>();
+			List<KategorieTyp> kategorieListe = new ArrayList<>();
 
-			String k1 = "Getraenke";
-			String k2 = "Snack";
-			String k3 = "Speise";
+			KategorieTyp k1 = KategorieTyp.GETRANK;
+			KategorieTyp k2 = KategorieTyp.SNACK;
+			KategorieTyp k3 = KategorieTyp.SPEISE;
 
 			cmbKategorie.getItems().clear();
 
 			kategorieListe.add(k1);
 			kategorieListe.add(k2);
 			kategorieListe.add(k3);
+			
+			cmbKategorie.getItems().addAll(kategorieListe);
 
 			if (tblProdukt.getItems().size() > 0 && cmbKategorie.getItems().size() > 0) {
 				cmbKategorie.getSelectionModel().select(0);
@@ -132,7 +134,8 @@ public class ProduktVerwaltenViewController {
 			colPreis.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, Double>("preis"));
 			colBezeichnung.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, String>("bezeichnung"));
 			colBeschreibung.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, String>("beschreibung"));
-
+			
+			
 			tblProdukt.getSelectionModel().select(0);
 
 			updateTable();
@@ -163,7 +166,6 @@ public class ProduktVerwaltenViewController {
 
 			List<Produkt> produktListe = Context.getInstance().getProduktService().alleProdukt();
 
-			tblProdukt.getItems().clear();
 
 			List<ProduktWrapper> wrapperliste = new ArrayList<>();
 
@@ -172,10 +174,13 @@ public class ProduktVerwaltenViewController {
 			for (Produkt produkt : produktListe) {
 				wrapperliste.add(new ProduktWrapper(nummer++, produkt));
 			}
-
+			
+			tblProdukt.getItems().clear();
 			tblProdukt.getItems().addAll(wrapperliste);
 
 			tblProdukt.getSelectionModel().select(0);
+			
+			updateView();
 
 		} catch (Exception e) {
 			logger.error("Fehler beim Update der Tabelle: ", e);
