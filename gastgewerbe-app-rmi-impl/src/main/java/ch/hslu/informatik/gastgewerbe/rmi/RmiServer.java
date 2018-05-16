@@ -1,4 +1,4 @@
-package ch.hslu.informatik.gastgewerbe.rmi;
+	package ch.hslu.informatik.gastgewerbe.rmi;
 
 import ch.hslu.informatik.gastgewerbe.rmi.api.*;
 import ch.hslu.informatik.rmi.impl.*;
@@ -66,7 +66,7 @@ public class RmiServer {
 
                 //Produkt-remoteObject erstellen und binden
                 RmiProduktService produktServiceRo= new RmiProduktServiceImpl();
-                reg.rebind(RmiProduktService.REMOTE_OBJECT_NAME, benutzerServiceRo);
+                reg.rebind(RmiProduktService.REMOTE_OBJECT_NAME, produktServiceRo);
                 logger.info("Remote Object \'" + RmiProduktService.REMOTE_OBJECT_NAME + "\' bound!");
 
                 String ip = InetAddress.getLocalHost().getHostAddress();
