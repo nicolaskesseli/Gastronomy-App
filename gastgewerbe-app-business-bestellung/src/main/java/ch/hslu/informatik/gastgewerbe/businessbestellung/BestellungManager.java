@@ -75,7 +75,7 @@ public class BestellungManager implements BestellungService {
 			getBestellungPosDAO().update(bestellungPosition);
 			return true;
 		} catch (Exception e) {
-			String msg = "Bestellung konnte nicht aktualisiert werden";
+			String msg = "Bestellung konnte nicht auf Status bereit werden";
 			logger.error(msg, e);
 			throw new Exception(msg);
 		}
@@ -152,5 +152,18 @@ public class BestellungManager implements BestellungService {
 			throw new Exception(msg);
 		}
 
+	}
+
+	@Override
+	public boolean bestellungPositionAusgeliefert(BestellungPosition bestellungPosition) throws Exception {
+		try {
+			bestellungPosition.setBestellungAusgeliefert(true);
+			getBestellungPosDAO().update(bestellungPosition);
+			return true;
+		} catch (Exception e) {
+			String msg = "Bestellung konnte nicht auf Status ausgeliefert werden";
+			logger.error(msg, e);
+			throw new Exception(msg);
+		}
 	}
 }

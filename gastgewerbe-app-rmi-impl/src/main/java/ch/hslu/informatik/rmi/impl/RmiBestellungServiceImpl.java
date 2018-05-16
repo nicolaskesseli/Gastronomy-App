@@ -74,4 +74,9 @@ public class RmiBestellungServiceImpl extends UnicastRemoteObject implements Rmi
     public BestellungPosition bestPosFindById(Long id) throws Exception {
         return getBestellungService().bestPosFindById(id);
     }
+
+    @Override
+    public boolean bestellungPositionAusgeliefert(BestellungPosition bestellungPosition) throws Exception {
+        return getBestellungService().bestellungPositionAusgeliefert(bestellungPosition);
+    }
 }

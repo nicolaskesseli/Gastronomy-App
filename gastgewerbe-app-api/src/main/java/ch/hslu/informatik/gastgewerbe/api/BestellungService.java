@@ -15,7 +15,7 @@ public interface BestellungService {
     // Bestellungsposition zu bestender Bestellung hinzufügen
     Bestellung bestellungAktualisieren(Bestellung bestellung) throws Exception;
 
-    // Bestellungsposition bereit
+    // Bestellungsposition wird auf bereit gesetzt
     boolean bestellungPositionBereit(BestellungPosition bestellungPosition) throws Exception;
 
     // Liefert alle  Bestellung
@@ -24,7 +24,7 @@ public interface BestellungService {
     // Liefert alle  Bestellungen einer Tisch Nr.
     List<Bestellung> findByTischNr(int TischNr) throws Exception;
 
-    // Liefer alle  Bestellungen für das bestimmte Datum
+    // Liefer alle  Bestellungen für das bestimmte Datum/Zeit
     List<Bestellung> findByZeit(LocalDateTime zeit) throws Exception;
 
     // Liefert Bestellung mit dieser ID
@@ -35,5 +35,8 @@ public interface BestellungService {
 
     // Liefert BestellungsPos für diese ID
     BestellungPosition bestPosFindById(Long id) throws Exception;
+
+    //Bestellungsposition wird auf ausgeliefert gesetzt
+    boolean bestellungPositionAusgeliefert(BestellungPosition bestellungPosition) throws Exception;
 
 }
