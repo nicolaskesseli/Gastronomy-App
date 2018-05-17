@@ -80,7 +80,7 @@ public class Context {
 		this.benutzer = benutzer;
 	}
 
-	/*public RmiBestellungService getBestellungService() {
+	public RmiBestellungService getBestellungService() {
 
 		int portNr = 0;
 
@@ -132,7 +132,7 @@ public class Context {
 		}
 
 		return bestellungService;
-	}*/
+	}
 
 
 	public RmiLoginService getLoginService() {
