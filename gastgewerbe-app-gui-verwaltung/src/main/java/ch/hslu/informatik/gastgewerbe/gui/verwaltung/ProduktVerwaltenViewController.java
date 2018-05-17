@@ -4,16 +4,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-import ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.BenutzerWrapper;
 import ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.ProduktWrapper;
 import ch.hslu.informatik.gastgewerbe.model.KategorieTyp;
 import ch.hslu.informatik.gastgewerbe.model.Produkt;
-import ch.hslu.informatik.gastgewerbe.model.RolleTyp;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -26,9 +22,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+
 
 public class ProduktVerwaltenViewController implements Initializable {
 
@@ -68,7 +63,7 @@ public class ProduktVerwaltenViewController implements Initializable {
 	private Button btnReset;
 
 	@FXML
-	private Button btnZurueck;
+	private Button btnZuruck;
 
 	@FXML
 	private Button btnSuche;
@@ -77,7 +72,7 @@ public class ProduktVerwaltenViewController implements Initializable {
 	private Button btnLoeschen;
 
 	@FXML
-	private TableColumn<ProduktWrapper, Integer> colNummer;
+	private TableColumn<ProduktWrapper, String> colProduktName;
 
 	@FXML
 	private TableColumn<ProduktWrapper, Double> colPreis;
@@ -89,7 +84,7 @@ public class ProduktVerwaltenViewController implements Initializable {
 	private TableColumn<ProduktWrapper, String> colProduktCode;
 
 	@FXML
-	void zurueck(ActionEvent event) {
+	void zuruck (ActionEvent event) {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/MainWindowVerwaltung.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
@@ -129,9 +124,9 @@ public class ProduktVerwaltenViewController implements Initializable {
 			}
 
 			/* Tabelle konfigurieren */
-			colNummer.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, Integer>("nummer"));
-			colPreis.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, Double>("preis"));
 			colProduktCode.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, String>("produktCode"));
+			colProduktName.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, String>("name"));
+			colPreis.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, Double>("preis"));
 			colBeschreibung.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, String>("beschreibung"));
 
 			tblProdukt.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ProduktWrapper>() {
@@ -156,7 +151,32 @@ public class ProduktVerwaltenViewController implements Initializable {
 		}
 	}
 
+	@FXML
 	private void suche() {
+
+		String produktCode = txtProduktCode.getText();
+		Produkt p;
+
+		try {
+
+			p = Context.getInstance().getProduktService().findByProduktCode(produktCode);
+
+			if (p == null) {
+				txtProduktCode.setText("Keine gültiger Code");
+				tblProdukt.getItems().clear();
+			}else {
+
+				ProduktWrapper pWrapper = new ProduktWrapper(p);
+				tblProdukt.getItems().add(pWrapper);
+
+				txtProduktCode.setText("");
+				updateTable();
+
+			}
+		} catch (Exception e) {
+			e.getMessage();
+			System.out.println("Ein Fehler ist aufgetreten");
+		}
 
 	}
 
@@ -175,7 +195,7 @@ public class ProduktVerwaltenViewController implements Initializable {
 				int nummer = 1;
 
 				for (Produkt produkt : produktListe) {
-					wrapperListe.add(new ProduktWrapper(nummer++, produkt));
+					wrapperListe.add(new ProduktWrapper(produkt));
 				}
 
 				tblProdukt.getItems().clear();
@@ -218,12 +238,13 @@ public class ProduktVerwaltenViewController implements Initializable {
 
 	}
 
-	/*@FXML
+	@FXML
 	private void neuesProduktErfassen() {
 		reset();
 		txtProduktName.requestFocus();
-	}*/
+	}
 
+	@FXML
 	private void speichern() {
 
 		if (eingabeValid()) {
@@ -308,25 +329,30 @@ public class ProduktVerwaltenViewController implements Initializable {
 	}
 
 	@FXML
-	void loeschen(ActionEvent event) {
+	private void loeschen() {
 
 		if (tblProdukt.getSelectionModel().getSelectedItem() == null) {
 			return;
 		}
 
-		Produkt p = tblProdukt.getSelectionModel().getSelectedItem().getProdukt();
+		Produkt produkt = tblProdukt.getSelectionModel().getSelectedItem().getProdukt();
 
-		if (p != null) {
+		if (produkt != null) {
 			try {
-				Context.getInstance().getProduktService().produktLoeschen(p);
+				Context.getInstance().getProduktService().produktLoeschen(produkt);
 				updateTable();
 				updateView();
 			} catch (Exception e) {
-				logger.error("Fehler beim Löschen des Produkts: ", e);
+				logger.error("Fehler beim Löschen des Produkt: ", e);
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Produkt löschen");
+				alert.setHeaderText("Information");
+				alert.setContentText("Das Löschen des Produkt ist misslungen.");
+				alert.showAndWait();
 			}
 		}
-
 	}
+
 
 	@FXML
 	private void reset() {
