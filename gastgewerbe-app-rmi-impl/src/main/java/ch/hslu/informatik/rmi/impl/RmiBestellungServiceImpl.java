@@ -4,6 +4,7 @@ import ch.hslu.informatik.gastgewerbe.api.BestellungService;
 import ch.hslu.informatik.gastgewerbe.businessbestellung.BestellungManager;
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
+import ch.hslu.informatik.gastgewerbe.model.Tisch;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiBestellungService;
 
 import java.rmi.RemoteException;
@@ -108,6 +109,12 @@ public class RmiBestellungServiceImpl extends UnicastRemoteObject implements Rmi
 	@Override
 	public List<Bestellung> findByRechBezahltTisch(int TischNr, Boolean rechnungBezahlt) throws Exception {
 		return getBestellungService().findByRechBezahltTisch(TischNr, rechnungBezahlt);
+		
+	}
+	
+	@Override
+	public Tisch findTischByTischNr(int TischNr) throws Exception {
+		return getBestellungService().findTischByTischNr(TischNr);
 		
 	}
 }

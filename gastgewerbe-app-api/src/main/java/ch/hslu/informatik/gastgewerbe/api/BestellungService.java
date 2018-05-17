@@ -2,6 +2,7 @@ package ch.hslu.informatik.gastgewerbe.api;
 
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
+import ch.hslu.informatik.gastgewerbe.model.Tisch;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -56,6 +57,8 @@ public interface BestellungService {
     
     /* Liefert alle  Bestellungen einer Tisch-Nr., mit dem übergebenen Rechnungsstatus*/
     List<Bestellung> findByRechBezahltTisch(int TischNr, Boolean rechnungBezahlt) throws Exception;
+    
+   
     
     
 }

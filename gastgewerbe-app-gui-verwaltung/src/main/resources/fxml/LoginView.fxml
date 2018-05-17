@@ -11,9 +11,9 @@
 	<children>
 
 		<Label layoutX="325.0" layoutY="210.0" text="Benutzername:" />
-		<TextField fx:id="txtBenutzername" layoutX="417.0" layoutY="206.0" />
+		<TextField fx:id="txtBenutzername" layoutX="417.0" layoutY="206.0" text="bigfoot" />
 		<Label layoutX="325.0" layoutY="241.0" text="Kennwort:" />
-		<PasswordField fx:id="txtKennwort" layoutX="417.0" layoutY="237.0" />
+		<PasswordField fx:id="txtKennwort" layoutX="417.0" layoutY="237.0" text="geheim" />
 		<Label fx:id="lblError" layoutX="418.0" layoutY="304.0" prefHeight="17.0" prefWidth="347.0" text=" " textFill="RED" />
 
 		<Button fx:id="button" defaultButton="true" layoutX="418.0" layoutY="267.0" onAction="#anmelden" text="Anmelden" />

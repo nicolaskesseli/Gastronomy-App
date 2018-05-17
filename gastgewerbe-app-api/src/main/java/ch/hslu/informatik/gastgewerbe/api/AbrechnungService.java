@@ -20,6 +20,9 @@ public interface AbrechnungService {
 
 	// Liefert alle rechnungen für den übergeben Benutzer und Datum zurück
 	List<Abrechnung> findByBenutzerUndDatum(Benutzer benutzer, LocalDateTime zeit) throws Exception;
+	
+	 /* Liefert den gesuchten Tisch zurück*/
+    Tisch findByTischNr(int TischNr) throws Exception;
 
 
 }

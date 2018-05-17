@@ -12,6 +12,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
+import ch.hslu.informatik.gastgewerbe.model.Person;
+import ch.hslu.informatik.gastgewerbe.model.Tisch;
 import ch.hslu.informatik.gastgewerbe.persister.BestellungDAO;
 import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 
@@ -126,5 +128,6 @@ public class BestellungDAOImpl extends GenericPersisterDAOImpl<Bestellung> imple
 		return liste != null ? liste : new ArrayList<Bestellung>();
 	}
 	
-	
+
+
 }
