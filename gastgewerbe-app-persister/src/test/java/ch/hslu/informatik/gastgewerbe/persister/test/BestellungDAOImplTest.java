@@ -140,14 +140,50 @@ public class BestellungDAOImplTest {
 
         Bestellung b = pBestellungDAO.findAll().get(0);
 
-        boolean bereit = b.isRechnungBezahlt();
+        boolean bezahlt = b.isRechnungBezahlt();
 
         b.setRechnungBezahlt(true);
         pBestellungDAO.update(b);
 
-        assertTrue(pBestellungDAO.findByRechBezahlt(true).get(0).isRechnungBezahlt()!=bereit);
+        assertTrue(pBestellungDAO.findByRechBezahlt(true).get(0).isRechnungBezahlt()!=bezahlt);
 
     }
+
+    @Test
+    public void testfindByBereit() throws Exception{
+
+        init();
+        assertTrue(pBestellungDAO.findAll().size() == InitHelper.INIT_SIZE_BESTELLUNG);
+
+        Bestellung b = pBestellungDAO.findAll().get(0);
+
+        boolean bereit = b.getBestellungPositionListe().get(0).isBestellungBereit();
+
+        b.getBestellungPositionListe().get(0).setBestellungBereit(true);
+        pBestellungDAO.update(b);
+
+        assertTrue(pBestellungDAO.findByBereit(true).get(0).getBestellungPositionListe().get(0).isBestellungBereit()!=bereit);
+
+    }
+
+    @Test
+    public void testfindByAusgeliefert() throws Exception{
+
+        init();
+        assertTrue(pBestellungDAO.findAll().size() == InitHelper.INIT_SIZE_BESTELLUNG);
+
+        Bestellung b = pBestellungDAO.findAll().get(0);
+
+        boolean ausgeliefert = b.getBestellungPositionListe().get(0).isBestellungAusgeliefert();
+
+        b.getBestellungPositionListe().get(0).setBestellungAusgeliefert(true);
+        pBestellungDAO.update(b);
+
+        assertTrue(pBestellungDAO.findByAusgeliefert(true).get(0).getBestellungPositionListe().get(0).isBestellungAusgeliefert()!=ausgeliefert);
+
+    }
+
+
 
 
 }

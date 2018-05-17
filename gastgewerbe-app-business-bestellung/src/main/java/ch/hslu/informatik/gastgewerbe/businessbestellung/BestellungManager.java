@@ -202,4 +202,26 @@ public class BestellungManager implements BestellungService {
 			throw new Exception(msg);
 		}
 	}
+
+	@Override
+	public List<Bestellung> findByBereit(Boolean bestellungBereit) throws Exception {
+		try{
+			return getBestellungDAO().findByBereit(bestellungBereit);
+		}catch (Exception e) {
+			String msg = "Keine Bestellung mit BestellStatus " + bestellungBereit + " gefunden";
+			logger.error(msg, e);
+			throw new Exception(msg);
+		}
+	}
+
+	@Override
+	public List<Bestellung> findByAusgeliefert(Boolean bestellungAusgeliefert) throws Exception {
+		try{
+			return getBestellungDAO().findByAusgeliefert(bestellungAusgeliefert);
+		}catch (Exception e) {
+			String msg = "Keine Bestellung mit AuslieferungsStatus " + bestellungAusgeliefert + " gefunden";
+			logger.error(msg, e);
+			throw new Exception(msg);
+		}
+	}
 }

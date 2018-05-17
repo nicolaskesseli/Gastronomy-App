@@ -48,5 +48,9 @@ public interface BestellungService {
     /* Liefert alle  BestellungPositionen mit dem übergebenen Boolean für Auslieferungsstatus*/
     List<BestellungPosition> bestPosFindByAusgeliefert(Boolean bestellungAusgeliefert) throws Exception;
 
+    /* Liefert alle  Bestellungen mit dem übergebenen Boolean für Bestellungsstatus*/
+    List<Bestellung> findByBereit(Boolean bestellungBereit) throws Exception;
 
+    /* Liefert alle  Bestellungen mit dem übergebenen Boolean für Auslieferungsstatus*/
+    List<Bestellung> findByAusgeliefert(Boolean bestellungAusgeliefert) throws Exception;
 }

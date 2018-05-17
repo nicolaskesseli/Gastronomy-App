@@ -77,4 +77,36 @@ public class BestellungDAOImpl extends GenericPersisterDAOImpl<Bestellung> imple
 
 		return liste != null ? liste : new ArrayList<Bestellung>();
 	}
+
+	@Override
+	public List<Bestellung> findByBereit(Boolean bestellungBereit) throws Exception {
+
+		EntityManager em = JPAUtil.createEntityManager();
+
+		TypedQuery<Bestellung> query = em.createNamedQuery("Bestellung.findByBereit", Bestellung.class);
+
+		query.setParameter("bestellungBereit", bestellungBereit);
+
+		List<Bestellung> liste = query.getResultList();
+
+		em.close();
+
+		return liste != null ? liste : new ArrayList<Bestellung>();
+	}
+
+	@Override
+	public List<Bestellung> findByAusgeliefert(Boolean bestellungAusgeliefert) throws Exception {
+
+		EntityManager em = JPAUtil.createEntityManager();
+
+		TypedQuery<Bestellung> query = em.createNamedQuery("Bestellung.findByAusgeliefert", Bestellung.class);
+
+		query.setParameter("bestellungAusgeliefert", bestellungAusgeliefert);
+
+		List<Bestellung> liste = query.getResultList();
+
+		em.close();
+
+		return liste != null ? liste : new ArrayList<Bestellung>();
+	}
 }
