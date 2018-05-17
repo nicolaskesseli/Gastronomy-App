@@ -28,10 +28,10 @@
               <Separator layoutX="32.0" layoutY="123.0" prefHeight="4.0" prefWidth="793.0" />
               <TableView fx:id="tblProdukt" layoutX="21.0" layoutY="199.0" prefHeight="309.0" prefWidth="793.0">
                      <columns>
-                           <TableColumn fx:id="colProduktCode" prefWidth="37.600006103515625" text="Code" />
-                           <TableColumn fx:id="colProduktName" prefWidth="195.80001831054688" text="Produktcode" />
-                           <TableColumn fx:id="colBeschreibung" prefWidth="436.800048828125" text="Beschreibung" />
-                           <TableColumn fx:id="colPreis" prefWidth="127.7999267578125" text="Preis" />
+                           <TableColumn fx:id="colProduktCode" prefWidth="77.0" text="Code" />
+                           <TableColumn fx:id="colProduktName" prefWidth="157.0" text="Name" />
+                           <TableColumn fx:id="colBeschreibung" prefWidth="237.0" text="Beschreibung" />
+                           <TableColumn fx:id="colPreis" prefWidth="328.0" text="Preis" />
                      </columns>
               </TableView>
       <Separator layoutX="503.0" layoutY="52.0" prefHeight="17.0" prefWidth="130.0" rotate="90.0" />
@@ -40,6 +40,6 @@
       <Button fx:id="btnZuruck" layoutX="20.0" layoutY="508.0" mnemonicParsing="false" onAction="#zuruck" prefHeight="25.0" prefWidth="110.0" text="Zurück" />
       <Button fx:id="btnLoeschen" layoutX="704.0" layoutY="92.0" mnemonicParsing="false" onAction="#loeschen" text="Löschen" />
       <Button fx:id="btnSuche" layoutX="586.0" layoutY="92.0" mnemonicParsing="false" onAction="#suche" text="Suchen" />
-      <Button fx:id="btnProduktErfassen" layoutX="21.0" layoutY="161.0" mnemonicParsing="false" onAction="#neuesProduktErfassen" text="Neu" />
+      <Button fx:id="btnProduktErfassen" layoutX="21.0" layoutY="161.0" mnemonicParsing="false" onAction="#neuesProduktErfassen" prefHeight="27.0" prefWidth="102.0" text="Neu" />
        </children>
 </AnchorPane>

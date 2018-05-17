@@ -57,18 +57,6 @@ public class ProduktVerwaltenViewController implements Initializable {
 	private TableView<ProduktWrapper> tblProdukt;
 
 	@FXML
-	private Button btnProduktHinzufuegen;
-
-	@FXML
-	private Button btnReset;
-
-	@FXML
-	private Button btnZuruck;
-
-	@FXML
-	private Button btnSuche;
-
-	@FXML
 	private Button btnLoeschen;
 
 	@FXML
@@ -250,57 +238,60 @@ public class ProduktVerwaltenViewController implements Initializable {
 		if (eingabeValid()) {
 
 			if (tblProdukt.getSelectionModel().getSelectedItem() == null) {
-				/*
-				 * Ein bestehendes Produkt soll (evtl. nach Änderungen)
-				 * gespeichert werden
-				 */
 
+				/* Neuen Benutzer einfügen */
 				String name = txtProduktName.getText();
-				String typCode = txtProduktCode.getText();
-				String beschreibung = txtBeschreibung.getText();
+				String produktCode = txtProduktCode.getText();
 				double preis = Double.parseDouble(txtProduktPreis.getText());
+				String beschreibung = txtBeschreibung.getText();
 				KategorieTyp kategorie = cmbKategorie.getSelectionModel().getSelectedItem();
 
-				Produkt produkt = new Produkt(typCode, name, beschreibung, preis, kategorie);
+				Produkt produkt = new Produkt(produktCode, name, beschreibung, preis, kategorie);
 
 				try {
 					Context.getInstance().getProduktService().produktHinzufuegen(produkt);
 				} catch (Exception e) {
-					logger.error("Fehler beim hinzufügen des ProduktTyps: ", e);
-					lblError.setText(ERROR_MSG_UPDATE_MISSLUNGEN);
+					logger.error("Fehler beim Hinzufügen eines neuen Produkt: ", e);
+					lblError.setText(ERROR_MSG_SPEICHERN_MISSLUNGEN);
+					Alert alert = new Alert(Alert.AlertType.ERROR);
+					alert.setTitle("Produkt speichern");
+					alert.setHeaderText("Information");
+					alert.setContentText("Das Hinzufügen des neuen Produkts ist misslungen.");
+					alert.showAndWait();
 				}
 			} else {
 
-				/* Ein neues Produkt soll gespeichert werden */
+				/* Den selektierten Benutzer updaten */
 				String name = txtProduktName.getText();
-				String typCode = txtProduktCode.getText();
-				String beschreibung = txtBeschreibung.getText();
+				String produktCode = txtProduktCode.getText();
 				double preis = Double.parseDouble(txtProduktPreis.getText());
+				String beschreibung = txtBeschreibung.getText();
 				KategorieTyp kategorie = cmbKategorie.getSelectionModel().getSelectedItem();
 
-				Produkt produkt = new Produkt(typCode, name, beschreibung, preis, kategorie);
+				Produkt produkt = tblProdukt.getSelectionModel().getSelectedItem().getProdukt();
 
-				Produkt p = tblProdukt.getSelectionModel().getSelectedItem().getProdukt();
-
-				p.setName(name);
-				p.setProduktCode(typCode);
-				p.setBeschreibung(beschreibung);
-				p.setPreis(preis);
-				p.setKategorie(kategorie);
+				produkt.setProduktCode(produktCode);
+				produkt.setName(name);
+				produkt.setBeschreibung(beschreibung);
+				produkt.setPreis(preis);
+				produkt.setKategorie(kategorie);
 
 				try {
 					Context.getInstance().getProduktService().produktAktualisieren(produkt);
 				} catch (Exception e) {
-					logger.error("Fehler beim Sepichern des neuen Produkt: ", e);
-					lblError.setText(ERROR_MSG_SPEICHERN_MISSLUNGEN);
-					return;
+					logger.error("Fehler beim Hinzufügen eines neuen Produkts: ", e);
+					lblError.setText(ERROR_MSG_UPDATE_MISSLUNGEN);
+					Alert alert = new Alert(Alert.AlertType.ERROR);
+					alert.setTitle("Produkt speichern");
+					alert.setHeaderText("Information");
+					alert.setContentText("Das Aktualisieren des ausgewählten Produkts ist misslungen.");
+					alert.showAndWait();
 				}
 			}
 
 			updateTable();
 			reset();
 			txtProduktName.requestFocus();
-
 		}
 
 	}
@@ -344,6 +335,7 @@ public class ProduktVerwaltenViewController implements Initializable {
 				updateView();
 			} catch (Exception e) {
 				logger.error("Fehler beim Löschen des Produkt: ", e);
+				lblError.setText(ERROR_MSG_LOESCHEN_MISSLUNGEN);
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setTitle("Produkt löschen");
 				alert.setHeaderText("Information");
