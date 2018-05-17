@@ -103,6 +103,11 @@ public class BestellungErfassenController implements Initializable {
 		try {
 			
 			String bemerkung = bemerkungInput.getText();
+			
+			if(bemerkung.isEmpty()) {
+				bemerkung = "keine Bemerkungen";
+			}
+			
 			int tischNr = Integer.parseInt(tischNrInput.getText());
 			Tisch tisch = new Tisch(tischNr);
 			

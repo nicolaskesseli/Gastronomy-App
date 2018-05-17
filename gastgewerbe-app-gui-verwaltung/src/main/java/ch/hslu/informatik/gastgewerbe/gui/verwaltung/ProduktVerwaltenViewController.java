@@ -14,6 +14,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.apache.logging.log4j.LogManager;
@@ -29,7 +30,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class ProduktVerwaltenViewController {
+public class ProduktVerwaltenViewController implements Initializable {
 
 	private static Logger logger = LogManager.getLogger(ProduktVerwaltenViewController.class);
 
@@ -55,25 +56,25 @@ public class ProduktVerwaltenViewController {
 	private TextField txtBeschreibung;
 
 	@FXML
-	private TextField nummerLöschenInput;
-
-	@FXML
 	private ComboBox<KategorieTyp> cmbKategorie;
 
 	@FXML
 	private TableView<ProduktWrapper> tblProdukt;
 
-	//@FXML
-	//private Button hinzufuegenBtn;
+	@FXML
+	private Button btnProduktHinzufuegen;
 
 	@FXML
-	private Button resetBtn;
+	private Button btnReset;
 
 	@FXML
-	private Button suchenBtn;
+	private Button btnZurueck;
 
 	@FXML
-	private Button loeschenBtn;
+	private Button btnSuche;
+
+	@FXML
+	private Button btnLoeschen;
 
 	@FXML
 	private TableColumn<ProduktWrapper, Integer> colNummer;
@@ -85,10 +86,10 @@ public class ProduktVerwaltenViewController {
 	private TableColumn<ProduktWrapper, String> colBeschreibung;
 
 	@FXML
-	private TableColumn<ProduktWrapper, String> colBezeichnung;
+	private TableColumn<ProduktWrapper, String> colProduktCode;
 
 	@FXML
-	void zurück(ActionEvent event) {
+	void zurueck(ActionEvent event) {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/MainWindowVerwaltung.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
@@ -117,8 +118,6 @@ public class ProduktVerwaltenViewController {
 			KategorieTyp k2 = KategorieTyp.SNACK;
 			KategorieTyp k3 = KategorieTyp.SPEISE;
 
-			cmbKategorie.getItems().clear();
-
 			kategorieListe.add(k1);
 			kategorieListe.add(k2);
 			kategorieListe.add(k3);
@@ -132,14 +131,8 @@ public class ProduktVerwaltenViewController {
 			/* Tabelle konfigurieren */
 			colNummer.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, Integer>("nummer"));
 			colPreis.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, Double>("preis"));
-			colBezeichnung.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, String>("bezeichnung"));
+			colProduktCode.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, String>("produktCode"));
 			colBeschreibung.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, String>("beschreibung"));
-			
-			
-			tblProdukt.getSelectionModel().select(0);
-
-			updateTable();
-			updateView();
 
 			tblProdukt.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ProduktWrapper>() {
 
@@ -152,10 +145,19 @@ public class ProduktVerwaltenViewController {
 				}
 			});
 
+			updateTable();
+
+			btnLoeschen.disableProperty()
+					.bind(Bindings.size(tblProdukt.getSelectionModel().getSelectedItems()).isEqualTo(0));
+
 		} catch (Exception e) {
 			logger.error("Fehler bei der Initialisierung der View: ", e);
 			return;
 		}
+	}
+
+	private void suche() {
+
 	}
 
 	private void updateTable() {
@@ -167,20 +169,22 @@ public class ProduktVerwaltenViewController {
 			List<Produkt> produktListe = Context.getInstance().getProduktService().alleProdukt();
 
 
-			List<ProduktWrapper> wrapperliste = new ArrayList<>();
+			if (produktListe.size() > 0) {
+				List<ProduktWrapper> wrapperListe = new ArrayList<>();
 
-			int nummer = 1;
+				int nummer = 1;
 
-			for (Produkt produkt : produktListe) {
-				wrapperliste.add(new ProduktWrapper(nummer++, produkt));
+				for (Produkt produkt : produktListe) {
+					wrapperListe.add(new ProduktWrapper(nummer++, produkt));
+				}
+
+				tblProdukt.getItems().clear();
+				tblProdukt.getItems().addAll(wrapperListe);
+
+				tblProdukt.getSelectionModel().select(0);
+
+				updateView();
 			}
-			
-			tblProdukt.getItems().clear();
-			tblProdukt.getItems().addAll(wrapperliste);
-
-			tblProdukt.getSelectionModel().select(0);
-			
-			updateView();
 
 		} catch (Exception e) {
 			logger.error("Fehler beim Update der Tabelle: ", e);
@@ -193,62 +197,43 @@ public class ProduktVerwaltenViewController {
 
 		lblError.setText("");
 
-		try {
-			ProduktWrapper wrapper = tblProdukt.getSelectionModel().getSelectedItem();
+		if (tblProdukt.getSelectionModel().getSelectedItem() == null) {
 
-			if (wrapper == null) {
-				txtProduktCode.setText("");
-				txtProduktName.setText("");
-				txtProduktPreis.setText("0.0");
-				txtBeschreibung.setText("");
-				return;
-			}
+			cmbKategorie.getSelectionModel().clearSelection();
+			txtProduktName.setText("");
+			txtProduktPreis.setText("0.0");
+			txtBeschreibung.setText("");
+			txtProduktCode.setText("");
 
-			Produkt p = wrapper.getProdukt();
+		} else {
 
-			txtProduktName.setText(p.getName());
-			txtProduktCode.setText(p.getProduktCode());
-			txtProduktPreis.setText("" + p.getPreis());
-			txtBeschreibung.setText(p.getBeschreibung());
+			Produkt p = tblProdukt.getSelectionModel().getSelectedItem().getProdukt();
 
-		} catch (Exception e) {
-			logger.error("Fehler beim Updaten der Tabelle: ", e);
-			throw new RuntimeException(e);
+				cmbKategorie.getSelectionModel().select(p.getKategorie());
+				txtProduktName.setText(p.getName());
+				txtProduktCode.setText(p.getProduktCode());
+				txtProduktPreis.setText("" + p.getPreis());
+				txtBeschreibung.setText(p.getBeschreibung());
 		}
 
 	}
+
+	/*@FXML
+	private void neuesProduktErfassen() {
+		reset();
+		txtProduktName.requestFocus();
+	}*/
 
 	private void speichern() {
 
 		if (eingabeValid()) {
 
-			if (tblProdukt.getSelectionModel().getSelectedItem() != null) {
+			if (tblProdukt.getSelectionModel().getSelectedItem() == null) {
 				/*
-				 * Ein bestehender ProduktTyp soll (evtl. nach Änderungen)
+				 * Ein bestehendes Produkt soll (evtl. nach Änderungen)
 				 * gespeichert werden
 				 */
-				Produkt produkt = tblProdukt.getSelectionModel().getSelectedItem().getProdukt();
 
-				produkt.setName(txtProduktName.getText());
-				produkt.setProduktCode(txtProduktCode.getText());
-				produkt.setBeschreibung(txtBeschreibung.getText());
-				produkt.setPreis(Double.parseDouble(txtProduktPreis.getText()));
-				KategorieTyp kategorie = cmbKategorie.getSelectionModel().getSelectedItem();
-
-				try {
-					Context.getInstance().getProduktService().produktAktualisieren(produkt);
-					updateTable();
-					reset();
-
-				} catch (Exception e) {
-					logger.error("Fehler beim Updaten des ProduktTyps: ", e);
-					lblError.setText(ERROR_MSG_UPDATE_MISSLUNGEN);
-					return;
-				}
-
-			} else {
-
-				/* Ein neuer ProduktTyp soll gespeichert werden */
 				String name = txtProduktName.getText();
 				String typCode = txtProduktCode.getText();
 				String beschreibung = txtBeschreibung.getText();
@@ -259,21 +244,49 @@ public class ProduktVerwaltenViewController {
 
 				try {
 					Context.getInstance().getProduktService().produktHinzufuegen(produkt);
-					updateTable();
-					reset();
+				} catch (Exception e) {
+					logger.error("Fehler beim hinzufügen des ProduktTyps: ", e);
+					lblError.setText(ERROR_MSG_UPDATE_MISSLUNGEN);
+				}
+			} else {
 
+				/* Ein neues Produkt soll gespeichert werden */
+				String name = txtProduktName.getText();
+				String typCode = txtProduktCode.getText();
+				String beschreibung = txtBeschreibung.getText();
+				double preis = Double.parseDouble(txtProduktPreis.getText());
+				KategorieTyp kategorie = cmbKategorie.getSelectionModel().getSelectedItem();
+
+				Produkt produkt = new Produkt(typCode, name, beschreibung, preis, kategorie);
+
+				Produkt p = tblProdukt.getSelectionModel().getSelectedItem().getProdukt();
+
+				p.setName(name);
+				p.setProduktCode(typCode);
+				p.setBeschreibung(beschreibung);
+				p.setPreis(preis);
+				p.setKategorie(kategorie);
+
+				try {
+					Context.getInstance().getProduktService().produktAktualisieren(produkt);
 				} catch (Exception e) {
 					logger.error("Fehler beim Sepichern des neuen Produkt: ", e);
 					lblError.setText(ERROR_MSG_SPEICHERN_MISSLUNGEN);
 					return;
 				}
 			}
+
+			updateTable();
+			reset();
+			txtProduktName.requestFocus();
+
 		}
 
 	}
 
 	private boolean eingabeValid() {
 
+		lblError.setText("");
 		if (isValid(txtProduktName.getText()) && isValid(txtProduktCode.getText()) && isValid(txtProduktPreis.getText())
 				&& isValid(txtBeschreibung.getText())) {
 			/* Prüfen, od der Preis korrekt eingegeben wurde */
@@ -297,24 +310,20 @@ public class ProduktVerwaltenViewController {
 	@FXML
 	void loeschen(ActionEvent event) {
 
-		try {
-
-			Produkt p = null;
-			ProduktWrapper wrapper = tblProdukt.getSelectionModel().getSelectedItem();
-
-			if (wrapper != null) {
-				p = wrapper.getProdukt();
-			}
-
-			Context.getInstance().getProduktService().produktLoeschen(p);
-
-			updateTable();
-			reset();
-
-		} catch (Exception e) {
-			logger.error("Fehler beim Löschen des ProduktTyp-Objekts: ", e);
-			lblError.setText(ERROR_MSG_LOESCHEN_MISSLUNGEN);
+		if (tblProdukt.getSelectionModel().getSelectedItem() == null) {
 			return;
+		}
+
+		Produkt p = tblProdukt.getSelectionModel().getSelectedItem().getProdukt();
+
+		if (p != null) {
+			try {
+				Context.getInstance().getProduktService().produktLoeschen(p);
+				updateTable();
+				updateView();
+			} catch (Exception e) {
+				logger.error("Fehler beim Löschen des Produkts: ", e);
+			}
 		}
 
 	}
