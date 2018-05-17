@@ -51,6 +51,9 @@ public class ProduktVerwaltenViewController implements Initializable {
 	private TextField txtBeschreibung;
 
 	@FXML
+	private TextField txtSucheProduktCode;
+
+	@FXML
 	private ComboBox<KategorieTyp> cmbKategorie;
 
 	@FXML
@@ -142,7 +145,7 @@ public class ProduktVerwaltenViewController implements Initializable {
 	@FXML
 	private void suche() {
 
-		String produktCode = txtProduktCode.getText();
+		String produktCode = txtSucheProduktCode.getText();
 		Produkt p;
 
 		try {
@@ -150,15 +153,16 @@ public class ProduktVerwaltenViewController implements Initializable {
 			p = Context.getInstance().getProduktService().findByProduktCode(produktCode);
 
 			if (p == null) {
-				txtProduktCode.setText("Keine gültiger Code");
+				txtSucheProduktCode.setText("Keine gültiger Code");
 				tblProdukt.getItems().clear();
-			}else {
 
+			} else {
+
+				tblProdukt.getItems().clear();
 				ProduktWrapper pWrapper = new ProduktWrapper(p);
 				tblProdukt.getItems().add(pWrapper);
 
-				txtProduktCode.setText("");
-				updateTable();
+				txtSucheProduktCode.setText("");
 
 			}
 		} catch (Exception e) {
@@ -168,6 +172,7 @@ public class ProduktVerwaltenViewController implements Initializable {
 
 	}
 
+	@FXML
 	private void updateTable() {
 
 		lblError.setText("");
