@@ -6,7 +6,10 @@ import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
-@NamedQuery(name = "BestellungPosition.findByProdukt", query = "SELECT e FROM BestellungPosition e WHERE e.produkt=:produkt")
+@NamedQueries({
+@NamedQuery(name = "BestellungPosition.findByBereit", query = "SELECT e FROM BestellungPosition e WHERE e.bestellungBereit=:bestellungBereit"),
+@NamedQuery(name = "BestellungPosition.findByAusgeliefert", query = "SELECT e FROM BestellungPosition e WHERE e.bestellungAusgeliefert=:bestellungAusgeliefert")
+})
 public class BestellungPosition implements Serializable {
 
 	private static final long serialVersionUID = -1508291776956970574L;

@@ -166,4 +166,40 @@ public class BestellungManager implements BestellungService {
 			throw new Exception(msg);
 		}
 	}
+
+	@Override
+	public List<Bestellung> findByRechBezahlt(Boolean rechnungBezahlt) throws Exception {
+
+    	try{
+    		return getBestellungDAO().findByRechBezahlt(rechnungBezahlt);
+		}catch (Exception e) {
+			String msg = "Keine Bestellung mit RechStatus " + rechnungBezahlt + " gefunden";
+			logger.error(msg, e);
+			throw new Exception(msg);
+		}
+	}
+
+	@Override
+	public List<BestellungPosition> bestPosFindByBereit(Boolean bestellungBereit) throws Exception {
+
+    	try{
+    		return getBestellungPosDAO().findByBereit(bestellungBereit);
+		}catch (Exception e) {
+			String msg = "Keine BestellPos mit BestellStatus " + bestellungBereit + " gefunden";
+			logger.error(msg, e);
+			throw new Exception(msg);
+		}
+	}
+
+	@Override
+	public List<BestellungPosition> bestPosFindByAusgeliefert(Boolean bestellungAusgeliefert) throws Exception {
+
+		try{
+			return getBestellungPosDAO().findByAusgeliefert(bestellungAusgeliefert);
+		}catch (Exception e) {
+			String msg = "Keine BestellPos mit AuslieferungsStatus " + bestellungAusgeliefert + " gefunden";
+			logger.error(msg, e);
+			throw new Exception(msg);
+		}
+	}
 }

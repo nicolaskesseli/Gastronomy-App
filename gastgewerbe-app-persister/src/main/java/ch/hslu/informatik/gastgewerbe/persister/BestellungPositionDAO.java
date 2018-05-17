@@ -8,10 +8,20 @@ import java.util.List;
 public interface BestellungPositionDAO extends GenericPersisterDAO<BestellungPosition>{
 
     /*
-     * Liefert alle BestellungPosition-Objekte für das übergebene Produkt
+     * Liefert alle BestellungPosition-Objekte für den übergebenen Boolean Bestellungsstatus
      * zurück, falls welche vorhanden, sonst eine leere Liste.
      *
 
      */
-    List<BestellungPosition> findByProdukt(Produkt produkt) throws Exception;
+    List<BestellungPosition> findByBereit(Boolean bestellungBereit) throws Exception;
+
+
+    /*
+     * Liefert alle BestellungPosition-Objekte für den übergebenen Boolean Auslieferungsstatus
+     * zurück, falls welche vorhanden, sonst eine leere Liste.
+     *
+
+     */
+
+    List<BestellungPosition> findByAusgeliefert(Boolean bestellungAusgeliefert) throws Exception;
 }

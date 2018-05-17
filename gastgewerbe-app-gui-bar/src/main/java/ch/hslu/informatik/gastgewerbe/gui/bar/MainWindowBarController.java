@@ -280,6 +280,7 @@ public class MainWindowBarController extends TimerTask implements Initializable 
             }
 
 
+
 			tblBestBar.getItems().addAll(bestellungenListe);
 			tblBestBar.getSelectionModel().select(0);
 

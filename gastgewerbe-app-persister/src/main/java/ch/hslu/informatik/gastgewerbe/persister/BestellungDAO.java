@@ -15,9 +15,14 @@ public interface BestellungDAO extends GenericPersisterDAO<Bestellung> {
 	List<Bestellung> findByTischNr(int TischNr) throws Exception;
 
 	List<Bestellung> findByZeit(LocalDateTime zeit) throws Exception;
-	
-	
-	
-	
+
+	/*
+	 * Liefert alle Bestellung-Objekte für den übergebenen Boolean Bezahlungsstatus
+	 * zurück, falls welche vorhanden, sonst eine leere Liste.
+	 *
+
+	 */
+
+	List<Bestellung> findByRechBezahlt(Boolean rechnungBezahlt) throws Exception;
 
 }

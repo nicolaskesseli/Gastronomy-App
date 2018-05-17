@@ -132,5 +132,22 @@ public class BestellungDAOImplTest {
 
     }
 
+    @Test
+    public void testfindByRechBezahlt() throws Exception{
+
+        init();
+        assertTrue(pBestellungDAO.findAll().size() == InitHelper.INIT_SIZE_BESTELLUNG);
+
+        Bestellung b = pBestellungDAO.findAll().get(0);
+
+        boolean bereit = b.isRechnungBezahlt();
+
+        b.setRechnungBezahlt(true);
+        pBestellungDAO.update(b);
+
+        assertTrue(pBestellungDAO.findByRechBezahlt(true).get(0).isRechnungBezahlt()!=bereit);
+
+    }
+
 
 }

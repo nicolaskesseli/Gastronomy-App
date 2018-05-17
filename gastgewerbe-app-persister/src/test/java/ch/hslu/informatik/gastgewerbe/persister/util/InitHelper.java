@@ -19,6 +19,8 @@ public class InitHelper {
 	public static final int INIT_SIZE_BENUTZER = 4;
 	public static final int INIT_SIZE_BESTELLUNG = 1;
 	public static final int INIT_SIZE_ABRECHNUNG = 1;
+	public static final int INIT_SIZE_BESTELLUNGPOSITIONEN = 3;
+
 
 	public static List<Bestellung> initBestellung() throws Exception {
 
@@ -53,6 +55,35 @@ public class InitHelper {
 
 		for (Bestellung b : pBestellungDAO.findAll()) {
 			pBestellungDAO.delete(b);
+		}
+	}
+
+	public static List<BestellungPosition> initBestellungPosition() throws Exception{
+
+		List<BestellungPosition> liste = new ArrayList<BestellungPosition>();
+
+		ProduktDAO pProduktDAO = new ProduktDAOImpl();
+		BestellungPositionDAO  BestPosDAO = new BestellungPositionDAOImpl();
+
+		List<Produkt> produkte = pProduktDAO.findAll();
+
+		liste.add(new BestellungPosition(produkte.get(0), 5));
+		liste.add(new BestellungPosition(produkte.get(1), 3));
+		liste.add(new BestellungPosition(produkte.get(2), 6));
+
+		for (BestellungPosition p : liste){
+			BestPosDAO.save(p);
+		}
+
+		return liste;
+	}
+
+	public static void deleteAllBestellungPosition() throws Exception {
+
+		BestellungPositionDAO  BestPosDAO = new BestellungPositionDAOImpl();
+
+		for (BestellungPosition p : BestPosDAO.findAll()) {
+			BestPosDAO.delete(p);
 		}
 	}
 

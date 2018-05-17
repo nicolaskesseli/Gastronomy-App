@@ -16,13 +16,30 @@ public class BestellungPositionDAOImpl extends GenericPersisterDAOImpl<Bestellun
         super(BestellungPosition.class);
     }
 
-
-    public List<BestellungPosition> findByProdukt(Produkt produkt) throws Exception {
+    @Override
+    public List<BestellungPosition> findByBereit(Boolean bestellungBereit) throws Exception {
 
         EntityManager em = JPAUtil.createEntityManager();
-        TypedQuery<BestellungPosition> query = em.createNamedQuery("BestellungPosition.findByProdukt",
-                BestellungPosition.class);
-        query.setParameter("produkt", produkt);
+
+        TypedQuery<BestellungPosition> query = em.createNamedQuery("BestellungPosition.findByBereit", BestellungPosition.class);
+
+        query.setParameter("bestellungBereit", bestellungBereit);
+
+        List<BestellungPosition> liste = query.getResultList();
+
+        em.close();
+
+        return liste != null ? liste : new ArrayList<BestellungPosition>();
+    }
+
+    @Override
+    public List<BestellungPosition> findByAusgeliefert(Boolean bestellungAusgeliefert) throws Exception {
+
+        EntityManager em = JPAUtil.createEntityManager();
+
+        TypedQuery<BestellungPosition> query = em.createNamedQuery("BestellungPosition.findByAusgeliefert", BestellungPosition.class);
+
+        query.setParameter("bestellungAusgeliefert", bestellungAusgeliefert);
 
         List<BestellungPosition> liste = query.getResultList();
 

@@ -1,5 +1,6 @@
 package ch.hslu.informatik.gastgewerbe.gui.bar;
 
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -14,7 +15,7 @@ public class MainApp extends Application {
 	public void start(Stage primaryStage) {
 
 		Logger logger = LogManager.getLogger(MainApp.class);
-		
+
 		try {
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/fxml/LoginView.fxml"));
 			Scene scene = new Scene(root,850,570);

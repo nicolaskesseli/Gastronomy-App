@@ -62,4 +62,19 @@ public class BestellungDAOImpl extends GenericPersisterDAOImpl<Bestellung> imple
 		return liste != null ? liste : new ArrayList<Bestellung>();
 	}
 
+	@Override
+	public List<Bestellung> findByRechBezahlt(Boolean rechnungBezahlt) throws Exception {
+
+		EntityManager em = JPAUtil.createEntityManager();
+
+		TypedQuery<Bestellung> query = em.createNamedQuery("Bestellung.findByRechBezahlt", Bestellung.class);
+
+		query.setParameter("rechnungBezahlt", rechnungBezahlt);
+
+		List<Bestellung> liste = query.getResultList();
+
+		em.close();
+
+		return liste != null ? liste : new ArrayList<Bestellung>();
+	}
 }
