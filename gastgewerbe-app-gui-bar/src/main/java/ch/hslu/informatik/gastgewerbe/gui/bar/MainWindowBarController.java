@@ -129,6 +129,7 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 				Context.getInstance().getBestellungService().deletBestellung(löschen);
 	        }
 
+	        tblPosBar.getItems().clear();
             updateTable();
 
             // info dialog anzeigen
@@ -254,12 +255,13 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 
     private void updateTable() {
 
-        tblBestBar.getItems().clear();
-        bestellungenListe.clear();
+
+	    tblBestBar.getItems().clear();
+	    bestellungenListe.clear();
 
         try {
-            // Nur Bestellungen für Bar einlesen D.h. Kategorie SNACK GETRÄNK dich noch nicht bereit sind
-            List<Bestellung> alleBestellungen = Context.getInstance().getBestellungService().alleBestellungen();
+            // Nur Bestellungen für Bar einlesen D.h. Kategorie SNACK GETRÄNK die noch nicht bereit sind
+            List<Bestellung> alleBestellungen = Context.getInstance().getBestellungService().findByBereit(false);
 
             List<Bestellung> barBestellungen = new ArrayList<>();
 
@@ -288,10 +290,17 @@ public class MainWindowBarController extends TimerTask implements Initializable 
             logger.error("Fehler beim updaten der Tabelle: ", e);
             throw new RuntimeException(e);
         }
+
     }
 
     @Override
     public void run() {
-	    updateTable();
+	    try {
+
+	        updateTable();
+
+        } catch (Exception e){
+	        logger.info("Tabelle Update fehlgeschlagen. Grund: keine nicht bereiten Bestellungen" + e);
+        }
     }
 }

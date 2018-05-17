@@ -132,6 +132,7 @@ public class MainWindowKuecheController extends TimerTask implements Initializab
                 Context.getInstance().getBestellungService().deletBestellung(löschen);
             }
 
+            tblPosKueche.getItems().clear();
             updateTable();
 
             // info dialog anzeigen
@@ -262,7 +263,7 @@ public class MainWindowKuecheController extends TimerTask implements Initializab
 
         try {
             // Nur Bestellungen für Küche einlesen D.h. Kategorie SPEISE die noch nicht bereit sind
-            List<Bestellung> alleBestellungen = Context.getInstance().getBestellungService().alleBestellungen();
+            List<Bestellung> alleBestellungen = Context.getInstance().getBestellungService().findByBereit(false);
 
             List<Bestellung> kuecheBestellungen = new ArrayList<>();
 
@@ -294,7 +295,13 @@ public class MainWindowKuecheController extends TimerTask implements Initializab
 
     @Override
     public void run() {
-        updateTable();
+        try {
+
+            updateTable();
+
+        } catch (Exception e){
+            logger.info("Tabelle Update fehlgeschlagen. Grund: keine nicht bereiten Bestellungen" + e);
+        }
     }
 }
 
