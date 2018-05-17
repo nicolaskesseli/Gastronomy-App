@@ -40,5 +40,13 @@ public interface BestellungDAO extends GenericPersisterDAO<Bestellung> {
 	 */
 
 	List<Bestellung> findByAusgeliefert(Boolean bestellungAusgeliefert) throws Exception;
+	
+	/*
+	 * Liefert alle Bestellung-Objekte für den übergebenen Boolean RechnungsStatus und Tisch-Nr.
+	 * zurück, falls welche vorhanden, sonst eine leere Liste.
+	 *
+	 */
+
+	List<Bestellung> findByRechBezahltTisch(int TischNr, Boolean rechnungBezahlt) throws Exception;
 
 }

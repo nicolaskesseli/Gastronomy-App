@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="570.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.kellner.AbrechnungTischController">
    <children>
-      <Label layoutX="316.0" layoutY="40.0" text="Bestellung erfassen">
+      <Label layoutX="356.0" layoutY="43.0" text="Abrechnung">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -27,11 +27,12 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <TableView fx:id="übersichtBestellungenTabelle" layoutX="71.0" layoutY="196.0" prefHeight="259.0" prefWidth="449.0">
+      <TableView fx:id="tblUebersichtBestellung" layoutX="71.0" layoutY="196.0" prefHeight="259.0" prefWidth="449.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Nr." />
-          <TableColumn prefWidth="188.800048828125" text="Name" />
-            <TableColumn minWidth="0.0" prefWidth="97.199951171875" text="Preis" />
+          <TableColumn fx:id="colNummer" prefWidth="75.0" text="Nr." />
+          <TableColumn fx:id="colName" prefWidth="188.800048828125" text="Name" />
+            <TableColumn fx:id="colPreis" minWidth="0.0" prefWidth="97.199951171875" text="Preis" />
+            <TableColumn fx:id="colAnzahl" prefWidth="85.0" text="Anzahl" />
         </columns>
       </TableView>
       <TextArea fx:id="TotalCHFOutput" layoutX="228.0" layoutY="477.0" prefHeight="38.0" prefWidth="297.0" />
@@ -45,17 +46,12 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="getrennteBezahlenBtn" layoutX="604.0" layoutY="188.0" mnemonicParsing="false" onAction="#getrennteBezahlung" prefHeight="34.0" prefWidth="228.0" text="getrennte Bezahlung">
+      <Button fx:id="kartenZahlungBtn" layoutX="604.0" layoutY="196.0" mnemonicParsing="false" onAction="#kartenZahlung" prefHeight="34.0" prefWidth="228.0" text="Kartenzahlung">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="kartenZahlungBtn" layoutX="604.0" layoutY="251.0" mnemonicParsing="false" onAction="#kartenZahlung" prefHeight="34.0" prefWidth="228.0" text="Kartenzahlung">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Button>
-      <Button fx:id="bestellungAbschliessenBtn" layoutX="604.0" layoutY="317.0" mnemonicParsing="false" onAction="#bestellungAbschliessen" prefHeight="66.0" prefWidth="228.0" text="Bestellung abschliessen">
+      <Button fx:id="bestellungAbschliessenBtn" layoutX="604.0" layoutY="260.0" mnemonicParsing="false" onAction="#bestellungAbschliessen" prefHeight="66.0" prefWidth="228.0" text="Bestellung abschliessen">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

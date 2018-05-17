@@ -118,7 +118,7 @@ public class BestellungManager implements BestellungService {
 	}
 
 	@Override
-	public void deletBestellung(Bestellung bestellung) throws Exception {
+	public void deleteBestellung(Bestellung bestellung) throws Exception {
     	try{
     		getBestellungDAO().delete(bestellung);
 
@@ -220,6 +220,17 @@ public class BestellungManager implements BestellungService {
 			return getBestellungDAO().findByAusgeliefert(bestellungAusgeliefert);
 		}catch (Exception e) {
 			String msg = "Keine Bestellung mit AuslieferungsStatus " + bestellungAusgeliefert + " gefunden";
+			logger.error(msg, e);
+			throw new Exception(msg);
+		}
+	}
+
+	@Override
+	public List<Bestellung> findByRechBezahltTisch(int TischNr, Boolean rechnungBezahlt) throws Exception {
+		try{
+			return getBestellungDAO().findByRechBezahltTisch(TischNr, rechnungBezahlt);
+		}catch (Exception e) {
+			String msg = "Keine Bestellung mit Tisch-Nr. " + TischNr + "und Rechnungsstatus: " +  rechnungBezahlt + " gefunden";
 			logger.error(msg, e);
 			throw new Exception(msg);
 		}

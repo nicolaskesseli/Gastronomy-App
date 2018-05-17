@@ -31,7 +31,7 @@ public interface BestellungService {
     Bestellung findById(Long id) throws Exception;
 
       /* Löscht übergebene Bestellung*/
-    void deletBestellung(Bestellung bestellung) throws Exception;
+    void deleteBestellung(Bestellung bestellung) throws Exception;
 
      /*Liefert BestellungsPos für diese ID*/
     BestellungPosition bestPosFindById(Long id) throws Exception;
@@ -53,4 +53,9 @@ public interface BestellungService {
 
     /* Liefert alle  Bestellungen mit dem übergebenen Boolean für Auslieferungsstatus*/
     List<Bestellung> findByAusgeliefert(Boolean bestellungAusgeliefert) throws Exception;
+    
+    /* Liefert alle  Bestellungen einer Tisch-Nr., mit dem übergebenen Rechnungsstatus*/
+    List<Bestellung> findByRechBezahltTisch(int TischNr, Boolean rechnungBezahlt) throws Exception;
+    
+    
 }

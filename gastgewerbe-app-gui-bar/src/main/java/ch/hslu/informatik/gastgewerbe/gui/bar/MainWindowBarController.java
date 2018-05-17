@@ -126,7 +126,7 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 
 	        if(ausgewahlteBestellung != null){
 	        	Bestellung löschen = Context.getInstance().getBestellungService().findById(ausgewahlteBestellung.getId());
-				Context.getInstance().getBestellungService().deletBestellung(löschen);
+				Context.getInstance().getBestellungService().deleteBestellung(löschen);
 	        }
 
 	        tblPosBar.getItems().clear();

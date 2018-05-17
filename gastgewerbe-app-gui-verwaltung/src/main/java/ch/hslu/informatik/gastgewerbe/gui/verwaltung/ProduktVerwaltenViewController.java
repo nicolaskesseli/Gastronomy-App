@@ -4,16 +4,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-import ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.BenutzerWrapper;
 import ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.ProduktWrapper;
 import ch.hslu.informatik.gastgewerbe.model.KategorieTyp;
 import ch.hslu.informatik.gastgewerbe.model.Produkt;
-import ch.hslu.informatik.gastgewerbe.model.RolleTyp;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -26,9 +22,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+
 
 public class ProduktVerwaltenViewController implements Initializable {
 
@@ -62,22 +57,10 @@ public class ProduktVerwaltenViewController implements Initializable {
 	private TableView<ProduktWrapper> tblProdukt;
 
 	@FXML
-	private Button btnProduktHinzufuegen;
-
-	@FXML
-	private Button btnReset;
-
-	@FXML
-	private Button btnZurueck;
-
-	@FXML
-	private Button btnSuche;
-
-	@FXML
 	private Button btnLoeschen;
 
 	@FXML
-	private TableColumn<ProduktWrapper, Integer> colNummer;
+	private TableColumn<ProduktWrapper, String> colProduktName;
 
 	@FXML
 	private TableColumn<ProduktWrapper, Double> colPreis;
@@ -89,7 +72,7 @@ public class ProduktVerwaltenViewController implements Initializable {
 	private TableColumn<ProduktWrapper, String> colProduktCode;
 
 	@FXML
-	void zurueck(ActionEvent event) {
+	void zuruck (ActionEvent event) {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/MainWindowVerwaltung.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
@@ -129,9 +112,9 @@ public class ProduktVerwaltenViewController implements Initializable {
 			}
 
 			/* Tabelle konfigurieren */
-			colNummer.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, Integer>("nummer"));
-			colPreis.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, Double>("preis"));
 			colProduktCode.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, String>("produktCode"));
+			colProduktName.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, String>("name"));
+			colPreis.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, Double>("preis"));
 			colBeschreibung.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, String>("beschreibung"));
 
 			tblProdukt.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ProduktWrapper>() {
@@ -156,7 +139,32 @@ public class ProduktVerwaltenViewController implements Initializable {
 		}
 	}
 
+	@FXML
 	private void suche() {
+
+		String produktCode = txtProduktCode.getText();
+		Produkt p;
+
+		try {
+
+			p = Context.getInstance().getProduktService().findByProduktCode(produktCode);
+
+			if (p == null) {
+				txtProduktCode.setText("Keine gültiger Code");
+				tblProdukt.getItems().clear();
+			}else {
+
+				ProduktWrapper pWrapper = new ProduktWrapper(p);
+				tblProdukt.getItems().add(pWrapper);
+
+				txtProduktCode.setText("");
+				updateTable();
+
+			}
+		} catch (Exception e) {
+			e.getMessage();
+			System.out.println("Ein Fehler ist aufgetreten");
+		}
 
 	}
 
@@ -175,7 +183,7 @@ public class ProduktVerwaltenViewController implements Initializable {
 				int nummer = 1;
 
 				for (Produkt produkt : produktListe) {
-					wrapperListe.add(new ProduktWrapper(nummer++, produkt));
+					wrapperListe.add(new ProduktWrapper(produkt));
 				}
 
 				tblProdukt.getItems().clear();
@@ -218,68 +226,72 @@ public class ProduktVerwaltenViewController implements Initializable {
 
 	}
 
-	/*@FXML
+	@FXML
 	private void neuesProduktErfassen() {
 		reset();
 		txtProduktName.requestFocus();
-	}*/
+	}
 
+	@FXML
 	private void speichern() {
 
 		if (eingabeValid()) {
 
 			if (tblProdukt.getSelectionModel().getSelectedItem() == null) {
-				/*
-				 * Ein bestehendes Produkt soll (evtl. nach Änderungen)
-				 * gespeichert werden
-				 */
 
+				/* Neuen Benutzer einfügen */
 				String name = txtProduktName.getText();
-				String typCode = txtProduktCode.getText();
-				String beschreibung = txtBeschreibung.getText();
+				String produktCode = txtProduktCode.getText();
 				double preis = Double.parseDouble(txtProduktPreis.getText());
+				String beschreibung = txtBeschreibung.getText();
 				KategorieTyp kategorie = cmbKategorie.getSelectionModel().getSelectedItem();
 
-				Produkt produkt = new Produkt(typCode, name, beschreibung, preis, kategorie);
+				Produkt produkt = new Produkt(produktCode, name, beschreibung, preis, kategorie);
 
 				try {
 					Context.getInstance().getProduktService().produktHinzufuegen(produkt);
 				} catch (Exception e) {
-					logger.error("Fehler beim hinzufügen des ProduktTyps: ", e);
-					lblError.setText(ERROR_MSG_UPDATE_MISSLUNGEN);
+					logger.error("Fehler beim Hinzufügen eines neuen Produkt: ", e);
+					lblError.setText(ERROR_MSG_SPEICHERN_MISSLUNGEN);
+					Alert alert = new Alert(Alert.AlertType.ERROR);
+					alert.setTitle("Produkt speichern");
+					alert.setHeaderText("Information");
+					alert.setContentText("Das Hinzufügen des neuen Produkts ist misslungen.");
+					alert.showAndWait();
 				}
 			} else {
 
-				/* Ein neues Produkt soll gespeichert werden */
+				/* Den selektierten Benutzer updaten */
 				String name = txtProduktName.getText();
-				String typCode = txtProduktCode.getText();
-				String beschreibung = txtBeschreibung.getText();
+				String produktCode = txtProduktCode.getText();
 				double preis = Double.parseDouble(txtProduktPreis.getText());
+				String beschreibung = txtBeschreibung.getText();
 				KategorieTyp kategorie = cmbKategorie.getSelectionModel().getSelectedItem();
 
-				Produkt produkt = new Produkt(typCode, name, beschreibung, preis, kategorie);
+				Produkt produkt = tblProdukt.getSelectionModel().getSelectedItem().getProdukt();
 
-				Produkt p = tblProdukt.getSelectionModel().getSelectedItem().getProdukt();
-
-				p.setName(name);
-				p.setProduktCode(typCode);
-				p.setBeschreibung(beschreibung);
-				p.setPreis(preis);
-				p.setKategorie(kategorie);
+				produkt.setProduktCode(produktCode);
+				produkt.setName(name);
+				produkt.setBeschreibung(beschreibung);
+				produkt.setPreis(preis);
+				produkt.setKategorie(kategorie);
 
 				try {
 					Context.getInstance().getProduktService().produktAktualisieren(produkt);
 				} catch (Exception e) {
-					logger.error("Fehler beim Sepichern des neuen Produkt: ", e);
-					lblError.setText(ERROR_MSG_SPEICHERN_MISSLUNGEN);
-					return;
+					logger.error("Fehler beim Hinzufügen eines neuen Produkts: ", e);
+					lblError.setText(ERROR_MSG_UPDATE_MISSLUNGEN);
+					Alert alert = new Alert(Alert.AlertType.ERROR);
+					alert.setTitle("Produkt speichern");
+					alert.setHeaderText("Information");
+					alert.setContentText("Das Aktualisieren des ausgewählten Produkts ist misslungen.");
+					alert.showAndWait();
 				}
 			}
 
 			updateTable();
 			reset();
 			txtProduktName.requestFocus();
-
 		}
 
 	}
@@ -308,25 +320,31 @@ public class ProduktVerwaltenViewController implements Initializable {
 	}
 
 	@FXML
-	void loeschen(ActionEvent event) {
+	private void loeschen() {
 
 		if (tblProdukt.getSelectionModel().getSelectedItem() == null) {
 			return;
 		}
 
-		Produkt p = tblProdukt.getSelectionModel().getSelectedItem().getProdukt();
+		Produkt produkt = tblProdukt.getSelectionModel().getSelectedItem().getProdukt();
 
-		if (p != null) {
+		if (produkt != null) {
 			try {
-				Context.getInstance().getProduktService().produktLoeschen(p);
+				Context.getInstance().getProduktService().produktLoeschen(produkt);
 				updateTable();
 				updateView();
 			} catch (Exception e) {
-				logger.error("Fehler beim Löschen des Produkts: ", e);
+				logger.error("Fehler beim Löschen des Produkt: ", e);
+				lblError.setText(ERROR_MSG_LOESCHEN_MISSLUNGEN);
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Produkt löschen");
+				alert.setHeaderText("Information");
+				alert.setContentText("Das Löschen des Produkt ist misslungen.");
+				alert.showAndWait();
 			}
 		}
-
 	}
+
 
 	@FXML
 	private void reset() {

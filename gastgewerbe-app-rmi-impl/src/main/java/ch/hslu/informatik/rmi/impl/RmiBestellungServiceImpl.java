@@ -60,8 +60,8 @@ public class RmiBestellungServiceImpl extends UnicastRemoteObject implements Rmi
     }
 
     @Override
-    public void deletBestellung(Bestellung bestellung) throws Exception {
-        getBestellungService().deletBestellung(bestellung);
+    public void deleteBestellung(Bestellung bestellung) throws Exception {
+        getBestellungService().deleteBestellung(bestellung);
 
     }
 
@@ -104,4 +104,10 @@ public class RmiBestellungServiceImpl extends UnicastRemoteObject implements Rmi
     public List<Bestellung> findByAusgeliefert(Boolean bestellungAusgeliefert) throws Exception {
         return getBestellungService().findByAusgeliefert(bestellungAusgeliefert);
     }
+
+	@Override
+	public List<Bestellung> findByRechBezahltTisch(int TischNr, Boolean rechnungBezahlt) throws Exception {
+		return getBestellungService().findByRechBezahltTisch(TischNr, rechnungBezahlt);
+		
+	}
 }

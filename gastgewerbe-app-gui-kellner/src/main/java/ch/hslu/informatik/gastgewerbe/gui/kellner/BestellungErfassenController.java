@@ -41,6 +41,10 @@ public class BestellungErfassenController implements Initializable {
 
 	private List<ProduktWrapper> produktListe = new ArrayList<>();
 	
+	private List<BestellungPositionWrapper> bestellungPositionListe = new ArrayList<>();
+	
+	private List<BestellungWrapper> bestellungListe = new ArrayList<>();
+	
 	
 	private List<Produkt> namenListe = new ArrayList<>();
 
@@ -98,9 +102,28 @@ public class BestellungErfassenController implements Initializable {
 	private ProduktWrapper gefundesProdukt;
 
 	@FXML
-	void bestellungAbschicken(ActionEvent event) {
+	void bestellungAbschicken(ActionEvent event) throws Exception {
 		
+		
+		BestellungPositionWrapper bPosition = new BestellungPositionWrapper();
 		try {
+			
+			
+			int i;
+			
+			for(i=0; i<100; i++) {
+			
+			 bPosition = bestellübersichtTbl.getItems().get(i); 
+			
+				if(bestellübersichtTbl.getItems().get(i) == null) {
+					i=100;
+			}
+			
+			
+			}
+			
+			
+			
 			
 			String bemerkung = bemerkungInput.getText();
 			
@@ -109,15 +132,26 @@ public class BestellungErfassenController implements Initializable {
 			}
 			
 			int tischNr = Integer.parseInt(tischNrInput.getText());
-			Tisch tisch = new Tisch(tischNr);
 			
-			Bestellung bestellung = new Bestellung(bemerkung, tisch);
+			bestellung.setBemerkung(bemerkung);
+			bestellung.setTischNr(tischNr);
 			
-			Context.getInstance().getBestellungService().bestellen(bestellung);
+			Context.getInstance().getBestellungService().bestellen(bestellung.getBestellung());
 
+		} catch (NumberFormatException e) {
+			String msg = "Keine Nummer im Eingabefeld.";
+			String ausgabe = "Nummer eingeben!";
+			tischNrInput.setText(ausgabe);
+			throw new Exception(msg);
+			
 		} catch (Exception e) {
-			e.getMessage();
-			System.out.println("Ein Fehler ist aufgetreten");
+			String msg = "Ein Fehler ist bei Bestellungübergabe aufgetreten";
+			logger.error(msg,e);
+			throw new Exception(msg);
+		
+	
+		
+			
 		}
 
 	}
@@ -125,6 +159,10 @@ public class BestellungErfassenController implements Initializable {
 	@FXML
 	void bestellPositionLoeschen(ActionEvent event) {
 		
+		bestellPositionLoeschenBtn.setOnAction(e -> {
+		    BestellungPositionWrapper selectedItem = bestellübersichtTbl.getSelectionModel().getSelectedItem();
+		    bestellübersichtTbl.getItems().remove(selectedItem);
+		});
 	}
 
 	@FXML

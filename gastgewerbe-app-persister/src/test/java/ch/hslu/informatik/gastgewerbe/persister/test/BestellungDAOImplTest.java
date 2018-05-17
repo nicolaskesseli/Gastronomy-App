@@ -9,6 +9,7 @@ import org.junit.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static junit.framework.TestCase.assertTrue;
 
@@ -182,8 +183,22 @@ public class BestellungDAOImplTest {
         assertTrue(pBestellungDAO.findByAusgeliefert(true).get(0).getBestellungPositionListe().get(0).isBestellungAusgeliefert()!=ausgeliefert);
 
     }
+    @Test
+    public void testFindByRechBezahltTisch() throws Exception{
 
+        init();
+        assertTrue(pBestellungDAO.findAll().size() == InitHelper.INIT_SIZE_BESTELLUNG);
 
+        Bestellung b = pBestellungDAO.findAll().get(0);
+
+        boolean abgerechnet = b.isRechnungBezahlt();
+        int TischNr = b.getTisch().getTischNr();
+
+        List<Bestellung> list = pBestellungDAO.findByRechBezahltTisch(TischNr, abgerechnet);
+
+        assertTrue(list.get(0).getTisch().getTischNr() == TischNr && list.get(0).isRechnungBezahlt() == abgerechnet);
+        
+    }
 
 
 }
