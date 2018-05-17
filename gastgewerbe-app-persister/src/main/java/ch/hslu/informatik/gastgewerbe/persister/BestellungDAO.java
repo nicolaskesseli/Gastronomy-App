@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
+import ch.hslu.informatik.gastgewerbe.model.Tisch;
 
 public interface BestellungDAO extends GenericPersisterDAO<Bestellung> {
 	
@@ -48,5 +49,7 @@ public interface BestellungDAO extends GenericPersisterDAO<Bestellung> {
 	 */
 
 	List<Bestellung> findByRechBezahltTisch(int TischNr, Boolean rechnungBezahlt) throws Exception;
+	
+	
 
 }

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
+import ch.hslu.informatik.gastgewerbe.model.Tisch;
 import ch.hslu.informatik.gastgewerbe.persister.BestellungPositionDAO;
 import ch.hslu.informatik.gastgewerbe.persister.impl.BestellungPositionDAOImpl;
 import org.apache.logging.log4j.LogManager;
@@ -64,7 +65,7 @@ public class BestellungManager implements BestellungService {
 		} catch (Exception e) {
 			String msg = "Bestellung konnte nicht aktualisiert werden";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg, e);
 		}
 	}
 
@@ -77,7 +78,7 @@ public class BestellungManager implements BestellungService {
 		} catch (Exception e) {
 			String msg = "Bestellung konnte nicht auf Status bereit werden";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg, e);
 		}
 	}
 
@@ -89,7 +90,7 @@ public class BestellungManager implements BestellungService {
 		}catch (Exception e) {
 			String msg = "Keine Objekte gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg, e);
 		}
 	}
 
@@ -100,7 +101,7 @@ public class BestellungManager implements BestellungService {
 		}catch (Exception e) {
 			String msg = "Keine Bestellungen mit der Tisch-Nr. " + TischNr + " gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg, e);
 		}
 	}
 	
@@ -113,7 +114,7 @@ public class BestellungManager implements BestellungService {
 		}catch (Exception e) {
 			String msg = "Keine Bestellung mit dem Datum " + zeit + " gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg, e);
 		}
 	}
 
@@ -125,7 +126,7 @@ public class BestellungManager implements BestellungService {
 		}catch (Exception e) {
 			String msg = "Bestellung: " +bestellung.toString()+" konnte nicht gelöscht werden!";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg, e);
 		}
 
 	}
@@ -138,7 +139,7 @@ public class BestellungManager implements BestellungService {
 		} catch (Exception e) {
 			String msg = "Keine Bestellung mit ID " + id + " gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg, e);
 		}
 	}
 
@@ -149,7 +150,7 @@ public class BestellungManager implements BestellungService {
 		}catch (Exception e) {
 			String msg = "Keine BestellPos mit ID " + id + " gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg, e);
 		}
 
 	}
@@ -163,7 +164,7 @@ public class BestellungManager implements BestellungService {
 		} catch (Exception e) {
 			String msg = "Bestellung konnte nicht auf Status ausgeliefert werden";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg, e);
 		}
 	}
 
@@ -175,7 +176,7 @@ public class BestellungManager implements BestellungService {
 		}catch (Exception e) {
 			String msg = "Keine Bestellung mit RechStatus " + rechnungBezahlt + " gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg, e);
 		}
 	}
 
@@ -187,7 +188,7 @@ public class BestellungManager implements BestellungService {
 		}catch (Exception e) {
 			String msg = "Keine BestellPos mit BestellStatus " + bestellungBereit + " gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg, e);
 		}
 	}
 
@@ -199,7 +200,7 @@ public class BestellungManager implements BestellungService {
 		}catch (Exception e) {
 			String msg = "Keine BestellPos mit AuslieferungsStatus " + bestellungAusgeliefert + " gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg, e);
 		}
 	}
 
@@ -210,7 +211,7 @@ public class BestellungManager implements BestellungService {
 		}catch (Exception e) {
 			String msg = "Keine Bestellung mit BestellStatus " + bestellungBereit + " gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg, e);
 		}
 	}
 
@@ -221,7 +222,7 @@ public class BestellungManager implements BestellungService {
 		}catch (Exception e) {
 			String msg = "Keine Bestellung mit AuslieferungsStatus " + bestellungAusgeliefert + " gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg, e);
 		}
 	}
 
@@ -232,7 +233,9 @@ public class BestellungManager implements BestellungService {
 		}catch (Exception e) {
 			String msg = "Keine Bestellung mit Tisch-Nr. " + TischNr + "und Rechnungsstatus: " +  rechnungBezahlt + " gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg, e);
 		}
 	}
+
+	
 }

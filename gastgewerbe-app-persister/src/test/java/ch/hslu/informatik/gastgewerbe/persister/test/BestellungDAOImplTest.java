@@ -199,6 +199,8 @@ public class BestellungDAOImplTest {
         assertTrue(list.get(0).getTisch().getTischNr() == TischNr && list.get(0).isRechnungBezahlt() == abgerechnet);
         
     }
+    
+ 
 
 
 }
