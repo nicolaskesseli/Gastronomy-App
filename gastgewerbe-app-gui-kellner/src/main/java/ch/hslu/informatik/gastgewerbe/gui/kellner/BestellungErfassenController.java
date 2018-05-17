@@ -101,60 +101,7 @@ public class BestellungErfassenController implements Initializable {
 
 	private ProduktWrapper gefundesProdukt;
 
-	@FXML
-	void bestellungAbschicken(ActionEvent event) throws Exception {
-		
-		
-		BestellungPositionWrapper bPosition = new BestellungPositionWrapper();
-		try {
-			
-			
-			int i;
-			
-			for(i=0; i<100; i++) {
-			
-			 bPosition = bestellübersichtTbl.getItems().get(i); 
-			
-				if(bestellübersichtTbl.getItems().get(i) == null) {
-					i=100;
-			}
-			
-			
-			}
-			
-			
-			
-			
-			String bemerkung = bemerkungInput.getText();
-			
-			if(bemerkung.isEmpty()) {
-				bemerkung = "keine Bemerkungen";
-			}
-			
-			int tischNr = Integer.parseInt(tischNrInput.getText());
-			
-			bestellung.setBemerkung(bemerkung);
-			bestellung.setTischNr(tischNr);
-			
-			Context.getInstance().getBestellungService().bestellen(bestellung.getBestellung());
-
-		} catch (NumberFormatException e) {
-			String msg = "Keine Nummer im Eingabefeld.";
-			String ausgabe = "Nummer eingeben!";
-			tischNrInput.setText(ausgabe);
-			throw new Exception(msg);
-			
-		} catch (Exception e) {
-			String msg = "Ein Fehler ist bei Bestellungübergabe aufgetreten";
-			logger.error(msg,e);
-			throw new Exception(msg);
-		
 	
-		
-			
-		}
-
-	}
 
 	@FXML
 	void bestellPositionLoeschen(ActionEvent event) {
@@ -331,6 +278,58 @@ public class BestellungErfassenController implements Initializable {
 		} catch (Exception e) {
 			logger.error("Fehler beim updaten der Tabelle: ", e);
 			throw new RuntimeException(e);
+		}
+
+	}
+	
+	@FXML
+	void bestellungAbschicken(ActionEvent event) throws Exception {
+		
+		
+//		BestellungPositionWrapper bPosition = new BestellungPositionWrapper();
+		try {
+			
+			Bestellung b = new Bestellung();
+			
+			
+			String bemerkung = bemerkungInput.getText();
+			
+			if(bemerkung.isEmpty()) {
+				bemerkung = "keine Bemerkungen";
+			}
+			
+			int tischNr = Integer.parseInt(tischNrInput.getText());
+			
+			Tisch tisch = new Tisch(tischNr);
+			
+			
+			for(BestellungPositionWrapper item : bestellübersichtTbl.getItems()) {
+				b.getBestellungPositionListe().add(item.getBestellungPosition());
+				
+				// TODO: persist BestellPosition
+			}
+			
+			b.setBemerkung(bemerkung);
+			b.setTisch(tisch);
+			Context.getInstance().getBestellungService().bestellen(b);
+
+			// TODO: persist Bestellung od. Wrapper
+			
+			
+		} catch (NumberFormatException e) {
+			String msg = "Keine Nummer im Eingabefeld.";
+			String ausgabe = "Nummer eingeben!";
+			tischNrInput.setText(ausgabe);
+			throw new Exception(msg, e);
+			
+		} catch (Exception e) {
+			String msg = "Ein Fehler ist bei Bestellungübergabe aufgetreten";
+			logger.error(msg,e);
+			throw new Exception(msg,e);
+		
+	
+		
+			
 		}
 
 	}

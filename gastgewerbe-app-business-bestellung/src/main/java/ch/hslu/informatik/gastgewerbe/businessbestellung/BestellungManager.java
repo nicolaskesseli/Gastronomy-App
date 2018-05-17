@@ -50,7 +50,7 @@ public class BestellungManager implements BestellungService {
         } catch (Exception e) {
             String msg = "Bestellung konnte nicht durchgeführt werden";
             logger.error(msg, e);
-            throw new Exception(msg);
+            throw new Exception(msg, e);
 		}
 	}
 	
