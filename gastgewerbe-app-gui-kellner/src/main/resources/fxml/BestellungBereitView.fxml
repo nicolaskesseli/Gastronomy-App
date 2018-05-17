@@ -14,22 +14,31 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="bestellungBereitTabelle" layoutX="70.0" layoutY="99.0" prefHeight="369.0" prefWidth="716.0">
-        <columns>
-          <TableColumn prefWidth="122.5999755859375" text="Tisch-Nr." />
-          <TableColumn minWidth="0.0" prefWidth="293.20001220703125" text="Gerichtsbezeichnung" />
-            <TableColumn prefWidth="298.79998779296875" text="Bemerkung" />
-        </columns>
-      </TableView>
       <Button fx:id="bestellpositionAbschliessenBtn" layoutX="434.0" layoutY="494.0" mnemonicParsing="false" onAction="#bestellungAbschliessen" prefHeight="44.0" prefWidth="352.0" text="Bestellposition abschliessen">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="zurückBtn" layoutX="70.0" layoutY="494.0" mnemonicParsing="false" onAction="#zurück" prefHeight="44.0" prefWidth="190.0" text="Zurück">
+      <Button fx:id="zurückBtn" layoutX="646.0" layoutY="14.0" mnemonicParsing="false" onAction="#zurück" prefHeight="44.0" prefWidth="190.0" text="Zurück">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
+      <TableView fx:id="tblBestBar" layoutX="62.0" layoutY="89.0" prefHeight="104.0" prefWidth="742.0">
+         <columns>
+            <TableColumn fx:id="colTischNr" prefWidth="75.0" text="Tisch-Nr." />
+            <TableColumn fx:id="colZeit" prefWidth="129.0" text="Zeit" />
+            <TableColumn fx:id="colBemerkung" prefWidth="537.0" text="Bemerkung" />
+         </columns>
+      </TableView>
+      <Label layoutX="62.0" layoutY="69.0" prefHeight="17.0" prefWidth="128.0" text="Bestellungen" />
+      <TableView fx:id="tblPosBar" layoutX="54.0" layoutY="241.0" prefHeight="244.0" prefWidth="742.0">
+         <columns>
+            <TableColumn fx:id="colPos" minWidth="1.0" prefWidth="61.0" text="Pos-Nr." />
+            <TableColumn fx:id="colAnzahl" prefWidth="63.0" text="Anzahl" />
+            <TableColumn fx:id="colProdukt" prefWidth="617.0" text="Produkt" />
+         </columns>
+      </TableView>
+      <Label layoutX="54.0" layoutY="220.0" prefHeight="21.0" prefWidth="161.0" text="Bestellungspositionen" />
    </children>
 </AnchorPane>
