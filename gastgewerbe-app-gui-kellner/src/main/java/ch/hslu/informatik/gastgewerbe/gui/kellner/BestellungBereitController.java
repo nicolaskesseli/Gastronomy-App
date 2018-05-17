@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class BestellungBereitController {
+
+    /* TODO @Andy Fenster FXML und Controller Bestellung bereit */
 	
 	private static Logger logger = LogManager.getLogger(BestellungBereitController.class);
 	
