@@ -83,4 +83,22 @@ public class MainWindowVerwaltungController {
 		}
     }
 
+	@FXML
+	void bestellungenVerwalten(ActionEvent event) {
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/BestellungView.fxml"));
+			Parent root1 = (Parent) fxmlLoader.load();
+			Stage stage = new Stage();
+			//	stage.initModality(Modality.APPLICATION_MODAL);
+			//	stage.initStyle(StageStyle.UNDECORATED);
+			//	stage.setTitle("Produktverwaltung");
+			stage.setScene(new Scene(root1));
+			stage.show();
+			((Node) (event.getSource())).getScene().getWindow().hide();
+		} catch (IOException e) {
+			logger.error(e.getMessage(), e);
+
+		}
+	}
+
 }
