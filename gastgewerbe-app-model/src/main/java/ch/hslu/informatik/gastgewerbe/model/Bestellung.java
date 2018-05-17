@@ -15,7 +15,8 @@ import javax.persistence.*;
 	@NamedQuery(name = "Bestellung.findByZeit", query = "SELECT e FROM Bestellung e WHERE e.zeit=:zeit"),
 	@NamedQuery(name = "Bestellung.findByTischNr", query = "SELECT e FROM Bestellung e WHERE e.tisch.tischNr=:tischNr"),
 	@NamedQuery(name = "Bestellung.findByBereit", query = "SELECT e FROM Bestellung e,  BestellungPosition p WHERE p.bestellungBereit =:bestellungBereit"),
-	@NamedQuery(name = "Bestellung.findByAusgeliefert", query = "SELECT e FROM Bestellung e,  BestellungPosition p WHERE p.bestellungAusgeliefert =:bestellungAusgeliefert")
+	@NamedQuery(name = "Bestellung.findByAusgeliefert", query = "SELECT e FROM Bestellung e,  BestellungPosition p WHERE p.bestellungAusgeliefert =:bestellungAusgeliefert"),
+	@NamedQuery(name = "Bestellung.findByRechBezahltTisch", query = "SELECT e FROM Bestellung e WHERE e.tisch.tischNr=:tischNr AND e.rechnungBezahlt=:rechnungBezahlt")
 })
 
 public class Bestellung implements Serializable {

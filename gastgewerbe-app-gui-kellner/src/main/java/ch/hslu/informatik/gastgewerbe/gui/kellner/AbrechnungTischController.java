@@ -1,28 +1,41 @@
 package ch.hslu.informatik.gastgewerbe.gui.kellner;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungPositionWrapper;
+import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungWrapper;
+import ch.hslu.informatik.gastgewerbe.gui.wrapper.ProduktWrapper;
+import ch.hslu.informatik.gastgewerbe.model.Produkt;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class AbrechnungTischController {
+public class AbrechnungTischController implements Initializable {
 
 	private static Logger logger = LogManager.getLogger(BestellungBereitController.class);
+	
+	private List<BestellungPositionWrapper> bestellungPositionListe = new ArrayList<>();
 	
     @FXML
     private Label tischNr;
@@ -34,8 +47,20 @@ public class AbrechnungTischController {
     private Button offeneBestellungSuchenBtn;
 
     @FXML
-    private TableView<?> übersichtBestellungenTabelle;
+    private TableView<?> tblUebersichtBestellung;
+    
+    @FXML
+	private TableColumn<BestellungPositionWrapper, String> colNummer;
 
+    @FXML
+	private TableColumn<BestellungPositionWrapper, String> colName;
+    
+    @FXML
+	private TableColumn<BestellungPositionWrapper, Double> colPreis;
+    
+    @FXML
+	private TableColumn<BestellungPositionWrapper, Integer> colAnzahl;
+    
     @FXML
     private TextArea TotalCHFOutput;
 
@@ -53,6 +78,9 @@ public class AbrechnungTischController {
 
     @FXML
     private Button zurückBtn;
+    
+	private ProduktWrapper gefundesProdukt;
+
 
     @FXML
     void bestellungAbschliessen(ActionEvent event) {
@@ -95,5 +123,38 @@ public class AbrechnungTischController {
 			logger.error(e.getMessage(), e);
     	}
     }
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		colPreis.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Double>("preis"));
+		colName.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, String>("name"));
+		colAnzahl.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Integer>("anzahl"));
+		colNummer.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, String>("produktCode"));
+		
+			
+	}
+	
+	public void updateTableTischSuche() {
+
+
+		
+		try {
+			
+			tblUebersichtBestellung.getItems().clear();
+			bestellungPositionListe.clear();
+	
+			
+			//tblUebersichtBestellung.getItems().addAll(gefundesProdukt);
+			tblUebersichtBestellung.getSelectionModel().select(0);
+
+			gefundesProdukt = null;
+
+		} catch (Exception e) {
+			logger.error("Fehler beim updaten der Tabelle: ", e);
+			throw new RuntimeException(e);
+		}
+
+	}
 
 }

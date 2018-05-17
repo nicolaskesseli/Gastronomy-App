@@ -129,7 +129,7 @@ public class MainWindowKuecheController extends TimerTask implements Initializab
 
             if(ausgewahlteBestellung != null){
                 Bestellung löschen = Context.getInstance().getBestellungService().findById(ausgewahlteBestellung.getId());
-                Context.getInstance().getBestellungService().deletBestellung(löschen);
+                Context.getInstance().getBestellungService().deleteBestellung(löschen);
             }
 
             updateTable();

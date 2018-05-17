@@ -76,7 +76,7 @@ public class AbrechnungManager implements AbrechnungService {
 
 			Abrechnung abrechnung = new Abrechnung(benutzer, bestellung);
 
-			// Abrechnung spreichern
+			// Abrechnung speichern
 			getAbrechnungDAO().save(abrechnung);
 
 			// Bestellung auf abgerechnet setzen und updaten
