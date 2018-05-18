@@ -37,16 +37,19 @@ public class AbrechnungTischController implements Initializable {
 
 	private static Logger logger = LogManager.getLogger(BestellungBereitController.class);
 
-	private List<BestellungWrapper> bestellungenListe = new ArrayList<>();
 	
-	private List<BestellungPosition> bestellungenPositionListe = new ArrayList<>();
-
 	private List<Bestellung> offeneBestellungen = new ArrayList<>();
 	
 	private List<BestellungPosition> offeneBestellungPosition = new ArrayList<>();
 	
+	private List<BestellungWrapper> bestellungenListeWrapper = new ArrayList<>();
+
+	private List<BestellungPositionWrapper> offeneBestellungPositionWrapperListe = new ArrayList<>();
 	
 	private int tischNr;
+	
+	private List<BestellungPosition> pListe = new ArrayList<>();
+
 
 	@FXML
 	private TextField tischNrInput;
@@ -55,7 +58,7 @@ public class AbrechnungTischController implements Initializable {
 	private Button offeneBestellungSuchenBtn;
 
 	@FXML
-	private TableView<?> tblUebersichtBestellung;
+	private TableView<BestellungPositionWrapper> tblUebersichtBestellung;
 
 	@FXML
 	private TableColumn<BestellungPositionWrapper, String> colNummer;
@@ -142,16 +145,25 @@ public class AbrechnungTischController implements Initializable {
 		try {
 
 			tblUebersichtBestellung.getItems().clear();
-			bestellungenListe.clear();
+//			offeneBestellungPositionWrapperListe.clear();
+			
+			
+			int i = 0;
 
 			for (Bestellung b : offeneBestellungen) {
-				bestellungenListe.add(new BestellungWrapper(b));
-				for(BestellungPosition p : offeneBestellungPosition){
-					bestellungenPositionListe.add(p);
+				for(i=0; i<b.getBestellungPositionListe().size();i++) {
+					
+					pListe.add(b.getBestellungPositionListe().get(i));
+					
 				}
 			}
 			
-		//	tblUebersichtBestellung.getItems().addAll(bestellungenPositionListe);
+			for(BestellungPosition bestellungPosition : pListe) {
+				offeneBestellungPositionWrapperListe.add(new BestellungPositionWrapper(bestellungPosition));
+			}
+			
+			
+			tblUebersichtBestellung.getItems().addAll(offeneBestellungPositionWrapperListe);
 			tblUebersichtBestellung.getSelectionModel().select(0);
 
 			gefundesProdukt = null;
