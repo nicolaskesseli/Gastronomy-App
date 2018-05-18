@@ -12,6 +12,8 @@ import org.apache.logging.log4j.Logger;
 import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungPositionWrapper;
 import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungWrapper;
 import ch.hslu.informatik.gastgewerbe.gui.wrapper.ProduktWrapper;
+import ch.hslu.informatik.gastgewerbe.model.Bestellung;
+import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
 import ch.hslu.informatik.gastgewerbe.model.Produkt;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,95 +36,96 @@ import javafx.stage.StageStyle;
 public class AbrechnungTischController implements Initializable {
 
 	private static Logger logger = LogManager.getLogger(BestellungBereitController.class);
+
+	private List<BestellungWrapper> bestellungenListe = new ArrayList<>();
 	
-	private List<BestellungPositionWrapper> bestellungPositionListe = new ArrayList<>();
+	private List<BestellungPosition> bestellungenPositionListe = new ArrayList<>();
+
+	private List<Bestellung> offeneBestellungen = new ArrayList<>();
 	
-    @FXML
-    private Label tischNr;
+	private List<BestellungPosition> offeneBestellungPosition = new ArrayList<>();
+	
+	
+	private int tischNr;
 
-    @FXML
-    private TextField tischNrInput;
+	@FXML
+	private TextField tischNrInput;
 
-    @FXML
-    private Button offeneBestellungSuchenBtn;
+	@FXML
+	private Button offeneBestellungSuchenBtn;
 
-    @FXML
-    private TableView<?> tblUebersichtBestellung;
-    
-    @FXML
+	@FXML
+	private TableView<?> tblUebersichtBestellung;
+
+	@FXML
 	private TableColumn<BestellungPositionWrapper, String> colNummer;
 
-    @FXML
+	@FXML
 	private TableColumn<BestellungPositionWrapper, String> colName;
-    
-    @FXML
+
+	@FXML
 	private TableColumn<BestellungPositionWrapper, Double> colPreis;
-    
-    @FXML
+
+	@FXML
 	private TableColumn<BestellungPositionWrapper, Integer> colAnzahl;
-    
-    @FXML
-    private TextArea TotalCHFOutput;
 
-    @FXML
-    private Button quittungDruckenBtn;
+	@FXML
+	private Label lblTotal;
 
-    @FXML
-    private Button getrennteBezahlenBtn;
+	@FXML
+	private Button bestellungAbschliessenBtn;
 
-    @FXML
-    private Button kartenZahlungBtn;
+	@FXML
+	private Button zurückBtn;
 
-    @FXML
-    private Button bestellungAbschliessenBtn;
-
-    @FXML
-    private Button zurückBtn;
-    
 	private ProduktWrapper gefundesProdukt;
 
+	@FXML
+	void bestellungAbschliessen(ActionEvent event) {
 
-    @FXML
-    void bestellungAbschliessen(ActionEvent event) {
+	}
 
-    }
+	@FXML
+	void offeneBestellungSuchen(ActionEvent event) throws Exception {
 
-    @FXML
-    void getrennteBezahlung(ActionEvent event) {
+		try {
+			tischNr = Integer.parseInt(tischNrInput.getText());
+			offeneBestellungen = Context.getInstance().getBestellungService().findByRechBezahltTisch(tischNr, false);
+			
+			updateTable();
+			
+			
+			
+			
+			
+			
+			
+		} catch (NumberFormatException e) {
+			String msg = "Keine Nummer im Eingabefeld";
+			String ausgabe = "Nummer eingeben";
+			tischNrInput.setText(ausgabe);
+			throw new Exception(msg, e);
+		} catch (Exception e) {
+			String msg = "Ein Fehler ist bei der Bestellsuche aufgetreten";
+			logger.error(msg, e);
+			throw new Exception(msg, e);
+		}
 
-    }
+	}
 
-    @FXML
-    void kartenZahlung(ActionEvent event) {
-
-    }
-
-    @FXML
-    void offeneBestellungSuchen(ActionEvent event) {
-
-    }
-
-    @FXML
-    void quittungDrucken(ActionEvent event) {
-
-    }
-
-    @FXML
-    void zurück(ActionEvent event) {
-    	try {
+	@FXML
+	void zurück(ActionEvent event) {
+		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/MainWindow.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
-			//stage.initModality(Modality.APPLICATION_MODAL);
-		//	stage.initStyle(StageStyle.UNDECORATED);
-		//	stage.setTitle("Hauptseite");
 			stage.setScene(new Scene(root1));
 			stage.show();
 			((Node) (event.getSource())).getScene().getWindow().hide();
-    	} catch (IOException e) {
+		} catch (IOException e) {
 			logger.error(e.getMessage(), e);
-    	}
-    }
+		}
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -131,21 +134,24 @@ public class AbrechnungTischController implements Initializable {
 		colName.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, String>("name"));
 		colAnzahl.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Integer>("anzahl"));
 		colNummer.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, String>("produktCode"));
-		
-			
+
 	}
-	
-	public void updateTableTischSuche() {
 
+	public void updateTable() {
 
-		
 		try {
-			
+
 			tblUebersichtBestellung.getItems().clear();
-			bestellungPositionListe.clear();
-	
+			bestellungenListe.clear();
+
+			for (Bestellung b : offeneBestellungen) {
+				bestellungenListe.add(new BestellungWrapper(b));
+				for(BestellungPosition p : offeneBestellungPosition){
+					bestellungenPositionListe.add(p);
+				}
+			}
 			
-			//tblUebersichtBestellung.getItems().addAll(gefundesProdukt);
+		//	tblUebersichtBestellung.getItems().addAll(bestellungenPositionListe);
 			tblUebersichtBestellung.getSelectionModel().select(0);
 
 			gefundesProdukt = null;
