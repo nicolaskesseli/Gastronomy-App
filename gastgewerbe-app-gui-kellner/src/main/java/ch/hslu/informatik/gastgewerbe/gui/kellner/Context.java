@@ -13,6 +13,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
+import ch.hslu.informatik.gastgewerbe.rmi.api.RmiAbrechnungService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiBestellungService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiLoginService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiProduktService;
@@ -39,6 +40,8 @@ public class Context {
 	private RmiLoginService loginService;
 	
 	private RmiBestellungService bestellungService;
+	
+	private RmiAbrechnungService abrechnungService;
 	
 	private Context() {
 
@@ -238,6 +241,62 @@ public class Context {
 
 		return produktService;
 	}
+	
+	
+	public RmiAbrechnungService getAbrechnungService() {
+
+		int portNr = 0;
+
+		if (abrechnungService == null) {
+
+			try (InputStream is = this.getClass().getClassLoader().getResourceAsStream(PROPERTY_FILE_NAME)) {
+
+				setSecurityManager();
+
+				Properties props = new Properties();
+
+				if (is == null) {
+					throw new RuntimeException(
+							"Die Property-Datei \'" + PROPERTY_FILE_NAME + "\' konnte nicht gefunden werden!");
+				} else {
+
+					props.load(is);
+
+					String ip = props.getProperty("rmi.server.ip");
+					String strPort = props.getProperty("rmi.registry.port");
+
+					try {
+						portNr = Integer.parseInt(strPort);
+						Registry reg = LocateRegistry.getRegistry(ip, portNr);
+
+						if (reg != null) {
+							String url = "rmi://" + ip + ":" + portNr + "/" + RmiAbrechnungService.REMOTE_OBJECT_NAME;
+
+							abrechnungService = (RmiAbrechnungService) Naming.lookup(url);
+
+						} else {
+							String msg = "Die Reference auf RMI-Registry konnte auf " + ip + ":" + portNr
+									+ " nicht geholt werden!";
+							logger.error(msg);
+							throw new RuntimeException(msg);
+						}
+
+					} catch (NumberFormatException nfe) {
+						String msg = "Die Portnummer-Angabe \'" + strPort + "\' ist nicht korrekt";
+						logger.error(msg, nfe);
+						throw new RuntimeException(nfe);
+					}
+				}
+			} catch (Exception e) {
+				String msg = "Fehler beim Holen des RmiAbrechnungRO:";
+				logger.error(msg, e);
+				throw new RuntimeException(msg, e);
+			}
+		}
+
+		return abrechnungService;
+	}
+
 
 	/* Diese Methode setzt den SecurityManager */
 	private void setSecurityManager() throws IOException {
@@ -274,7 +333,8 @@ public class Context {
 			System.setSecurityManager(new SecurityManager());
 		}
 	}
-
+	
+	
 
 }
 

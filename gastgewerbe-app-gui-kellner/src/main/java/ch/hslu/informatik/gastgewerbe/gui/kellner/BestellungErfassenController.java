@@ -289,7 +289,7 @@ public class BestellungErfassenController implements Initializable {
 //		BestellungPositionWrapper bPosition = new BestellungPositionWrapper();
 		try {
 			
-			Bestellung b = new Bestellung();
+			
 			
 			
 			String bemerkung = bemerkungInput.getText();
@@ -300,8 +300,7 @@ public class BestellungErfassenController implements Initializable {
 			
 			int tischNr = Integer.parseInt(tischNrInput.getText());
 			
-			Tisch tisch = new Tisch(tischNr);
-			
+			Bestellung b = new Bestellung(bemerkung, Context.getInstance().getAbrechnungService().findByTischNr(tischNr));
 			
 			for(BestellungPositionWrapper item : bestellübersichtTbl.getItems()) {
 				b.getBestellungPositionListe().add(item.getBestellungPosition());
@@ -309,10 +308,14 @@ public class BestellungErfassenController implements Initializable {
 				// TODO: persist BestellPosition
 			}
 			
-			b.setBemerkung(bemerkung);
-			b.setTisch(tisch);
+//			b.setBemerkung(bemerkung);
+//			b.setTisch(Context.getInstance().getAbrechnungService().findByTischNr(tischNr));
+			
 			Context.getInstance().getBestellungService().bestellen(b);
 
+			
+			bemerkungInput.setText("Bestellung hat funktioniert");
+			
 			// TODO: persist Bestellung od. Wrapper
 			
 			
