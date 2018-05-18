@@ -29,6 +29,9 @@ public class AbrechnungManager implements AbrechnungService {
 	private AbrechnungDAO abrechnungDAO;
 	private BestellungDAO bestellungDAO;
 	private TischDAO tischDAO;
+	
+	private Abrechnung abrechnung;
+	private double betrag;
 
 	public AbrechnungDAO getAbrechnungDAO(){
 		if (abrechnungDAO == null) {
@@ -67,29 +70,31 @@ public class AbrechnungManager implements AbrechnungService {
 					}
 				}
 			}
+//			if (abzurechnedeBestellung.size() < 2) {
+//				bestellung = abzurechnedeBestellung.get(0);
+//			}
+			
+//			Bestellung bestellung = new Bestellung();
 
-			Bestellung bestellung = new Bestellung();
-
-			if (abzurechnedeBestellung.size() < 2) {
-				bestellung = abzurechnedeBestellung.get(0);
-			}
-
-			Abrechnung abrechnung = new Abrechnung(benutzer, bestellung);
+			for(Bestellung b : abzurechnedeBestellung) {
+				
+			Abrechnung abrechnung = new Abrechnung(benutzer, b);
 
 			// Abrechnung speichern
 			getAbrechnungDAO().save(abrechnung);
 
 			// Bestellung auf abgerechnet setzen und updaten
-			bestellung.setRechnungBezahlt(true);
-			getBestellungDAO().update(bestellung);
+			b.setRechnungBezahlt(true);
+			getBestellungDAO().update(b);
+			
+
+			betrag += abrechnung.getGesamtBetrag();
+			
+			}
 			logger.info(abrechnung.toString()+ " wrude erstellt!");
 
-			double betrag = abrechnung.getGesamtBetrag();
-
-			return betrag;
-
 		}catch (IndexOutOfBoundsException e){
-			String msg = "Mehr als eine Bestellung für "+tisch.toString()+ " / Abrechnen misslungen";
+			String msg = "Mehr als eine Bestellung für "+ tisch.getTischNr() + " / Abrechnen misslungen";
 			logger.error(msg, e);
 			throw new Exception(msg);
 		} catch (Exception e){
@@ -97,6 +102,7 @@ public class AbrechnungManager implements AbrechnungService {
 			logger.error(msg, e);
 			throw new Exception(msg);
 		}
+		return betrag;
 	}
 
 	@Override
