@@ -85,7 +85,7 @@ import javafx.stage.StageStyle;
 
 				mainStage.setScene(mainScene);
 				mainStage.show();
-				((Node) (event.getSource())).getScene().getWindow().hide();
+				//((Node) (event.getSource())).getScene().getWindow().hide();
 	    	} catch (IOException e) {
 				logger.error(e.getMessage(), e);
 
