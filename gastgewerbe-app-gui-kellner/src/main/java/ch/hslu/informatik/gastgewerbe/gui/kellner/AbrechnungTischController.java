@@ -12,9 +12,11 @@ import org.apache.logging.log4j.Logger;
 import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungPositionWrapper;
 import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungWrapper;
 import ch.hslu.informatik.gastgewerbe.gui.wrapper.ProduktWrapper;
+import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
 import ch.hslu.informatik.gastgewerbe.model.Produkt;
+import ch.hslu.informatik.gastgewerbe.model.Tisch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,6 +52,11 @@ public class AbrechnungTischController implements Initializable {
 	
 	private List<BestellungPosition> pListe = new ArrayList<>();
 
+	private double gesamtBetrag;
+	
+	private Benutzer benutzer;
+	
+	private Tisch tisch;
 
 	@FXML
 	private TextField tischNrInput;
@@ -81,11 +88,31 @@ public class AbrechnungTischController implements Initializable {
 	@FXML
 	private Button zurückBtn;
 
-	private ProduktWrapper gefundesProdukt;
 
 	@FXML
-	void bestellungAbschliessen(ActionEvent event) {
+	void bestellungAbschliessen(ActionEvent event) throws Exception {
 
+		benutzer = Context.getInstance().getBenutzer();
+		try {
+			
+		tisch = Context.getInstance().getAbrechnungService().findByTischNr(Integer.parseInt(tischNrInput.getText()));
+		
+		double b = Context.getInstance().getAbrechnungService().tischAbrechnen(tisch, benutzer);
+		
+		} catch (NumberFormatException e) {
+			String msg = "Keine Nummer im Eingabefeld";
+			String ausgabe = "Nummer eingeben";
+			tischNrInput.setText(ausgabe);
+			throw new Exception(msg, e);
+		} catch (Exception e) {
+			String msg = "Ein Fehler ist bei der Bestellsuche aufgetreten";
+			logger.error(msg, e);
+			throw new Exception(msg, e);
+			
+		}
+		
+		
+		
 	}
 
 	@FXML
@@ -96,12 +123,7 @@ public class AbrechnungTischController implements Initializable {
 			offeneBestellungen = Context.getInstance().getBestellungService().findByRechBezahltTisch(tischNr, false);
 			
 			updateTable();
-			
-			
-			
-			
-			
-			
+		
 			
 		} catch (NumberFormatException e) {
 			String msg = "Keine Nummer im Eingabefeld";
@@ -115,6 +137,8 @@ public class AbrechnungTischController implements Initializable {
 		}
 
 	}
+	
+	
 
 	@FXML
 	void zurück(ActionEvent event) {
@@ -140,12 +164,14 @@ public class AbrechnungTischController implements Initializable {
 
 	}
 
+	
+	@FXML
 	public void updateTable() {
 
 		try {
 
 			tblUebersichtBestellung.getItems().clear();
-//			offeneBestellungPositionWrapperListe.clear();
+			offeneBestellungPositionWrapperListe.clear();
 			
 			
 			int i = 0;
@@ -165,8 +191,21 @@ public class AbrechnungTischController implements Initializable {
 			
 			tblUebersichtBestellung.getItems().addAll(offeneBestellungPositionWrapperListe);
 			tblUebersichtBestellung.getSelectionModel().select(0);
+			
+			
+			for (BestellungPosition a : pListe){
+	            gesamtBetrag += a.getProdukt().getPreis()*a.getAnzahl();
+	        }
+			
+			String gesamtTotal = String.valueOf(gesamtBetrag);
+			
+			lblTotal.setText(gesamtTotal + " CHF");
 
-			gefundesProdukt = null;
+			pListe.clear();
+			gesamtBetrag = 0;
+			gesamtTotal = "";
+			
+		
 
 		} catch (Exception e) {
 			logger.error("Fehler beim updaten der Tabelle: ", e);
