@@ -153,7 +153,7 @@ public class ProduktVerwaltenViewController implements Initializable {
 			p = Context.getInstance().getProduktService().findByProduktCode(produktCode);
 
 			if (p == null) {
-				txtSucheProduktCode.setText("Keine gültiger Code");
+				txtSucheProduktCode.setText("Kein gültiger Code");
 				tblProdukt.getItems().clear();
 
 			} else {

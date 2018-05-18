@@ -15,18 +15,18 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Label layoutX="65.0" layoutY="95.0" text="Tisch-Nr.">
+      <Label layoutX="31.0" layoutY="86.0" text="Tisch-Nr.">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="tischNrInput" layoutX="65.0" layoutY="115.0" prefHeight="34.0" prefWidth="96.0" />
+      <TextField fx:id="tischNrInput" layoutX="30.0" layoutY="104.0" prefHeight="34.0" prefWidth="196.0" />
       <Label layoutX="434.0" layoutY="82.0" prefHeight="20.0" prefWidth="254.0" text="Bestellübersicht">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TableView fx:id="bestellübersichtTbl" layoutX="433.0" layoutY="108.0" prefHeight="283.0" prefWidth="396.0">
+      <TableView fx:id="bestellübersichtTbl" layoutX="433.0" layoutY="108.0" prefHeight="267.0" prefWidth="396.0">
         <columns>
           <TableColumn fx:id="colCodeUebersicht" prefWidth="60.20001220703125" text="Code" />
           <TableColumn fx:id="colBezeichnungUebersicht" prefWidth="222.0" text="Produkt" />
@@ -34,55 +34,55 @@
             <TableColumn fx:id="colAnzalUebersicht" prefWidth="44.199951171875" text="Anzahl" />
         </columns>
       </TableView>
-      <Button fx:id="bestellungAbschickenBtn" layoutX="433.0" layoutY="501.0" mnemonicParsing="false" onAction="#bestellungAbschicken" prefHeight="44.0" prefWidth="396.0" text="Bestellung abschicken">
+      <Button fx:id="bestellungAbschickenBtn" layoutX="433.0" layoutY="479.0" mnemonicParsing="false" onAction="#bestellungAbschicken" prefHeight="44.0" prefWidth="396.0" text="Bestellung abschicken">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="bemerkungInput" layoutX="433.0" layoutY="416.0" prefHeight="67.0" prefWidth="396.0" />
-      <Label layoutX="433.0" layoutY="396.0" text="Bemerkung">
+      <TextField fx:id="bemerkungInput" layoutX="433.0" layoutY="402.0" prefHeight="67.0" prefWidth="396.0" />
+      <Label layoutX="433.0" layoutY="382.0" text="Bemerkung">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="zurückInput" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#zuruck" prefHeight="44.0" prefWidth="96.0" text="Zurück">
+      <Button fx:id="zurückInput" layoutX="30.0" layoutY="22.0" mnemonicParsing="false" onAction="#zuruck" prefHeight="34.0" prefWidth="87.0" text="Zurück">
          <font>
             <Font size="19.0" />
          </font></Button>
-      <Label layoutX="67.0" layoutY="293.0" prefHeight="20.0" prefWidth="82.0" text="Gericht">
+      <Label layoutX="31.0" layoutY="269.0" prefHeight="20.0" prefWidth="82.0" text="Gericht">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="66.0" layoutY="165.0" text="Gericht-Code">
+      <Label layoutX="30.0" layoutY="141.0" text="Gericht-Code">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="gerichtNrInput" layoutX="66.0" layoutY="185.0" prefHeight="34.0" prefWidth="196.0" />
-      <Button fx:id="suchenGerichtBtn" layoutX="289.0" layoutY="185.0" mnemonicParsing="false" onAction="#gerichtSuchen" prefHeight="34.0" prefWidth="130.0" text="Suchen">
+      <TextField fx:id="gerichtNrInput" layoutX="30.0" layoutY="161.0" prefHeight="34.0" prefWidth="196.0" />
+      <Button fx:id="suchenGerichtBtn" layoutX="253.0" layoutY="161.0" mnemonicParsing="false" onAction="#gerichtSuchen" prefHeight="34.0" prefWidth="130.0" text="Suchen">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Label layoutX="67.0" layoutY="230.0" text="Gericht-Name">
+      <Label layoutX="31.0" layoutY="206.0" text="Gericht-Name">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="gerichtNameInput" layoutX="66.0" layoutY="250.0" prefHeight="34.0" prefWidth="196.0" />
-      <Button fx:id="suchenGerichtBtn1" layoutX="289.0" layoutY="250.0" mnemonicParsing="false" onAction="#gerichtSuchenName" prefHeight="34.0" prefWidth="130.0" text="Suchen">
+      <TextField fx:id="gerichtNameInput" layoutX="30.0" layoutY="226.0" prefHeight="34.0" prefWidth="196.0" />
+      <Button fx:id="suchenGerichtBtn1" layoutX="253.0" layoutY="226.0" mnemonicParsing="false" onAction="#gerichtSuchenName" prefHeight="34.0" prefWidth="130.0" text="Suchen">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <TableView fx:id="tblGerichtAuswahl" layoutX="68.0" layoutY="313.0" prefHeight="166.0" prefWidth="352.0">
+      <TableView fx:id="tblGerichtAuswahl" layoutX="32.0" layoutY="289.0" prefHeight="166.0" prefWidth="352.0">
         <columns>
           <TableColumn fx:id="colName" prefWidth="267.79998779296875" text="Produkt" />
           <TableColumn fx:id="colPreis" prefWidth="83.20001220703125" text="Preis" />
         </columns>
       </TableView>
-      <Button fx:id="bestellPositionLoeschenBtn" layoutX="67.0" layoutY="501.0" mnemonicParsing="false" onAction="#bestellPositionLoeschen" prefHeight="44.0" prefWidth="352.0" text="Bestellposition löschen">
+      <Button fx:id="bestellPositionLoeschenBtn" layoutX="31.0" layoutY="477.0" mnemonicParsing="false" onAction="#bestellPositionLoeschen" prefHeight="44.0" prefWidth="352.0" text="Bestellposition löschen">
          <font>
             <Font size="19.0" />
          </font>
