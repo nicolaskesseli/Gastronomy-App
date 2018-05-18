@@ -25,6 +25,9 @@ public class MainWindowVerwaltungController {
 
     @FXML
     private Button produkteVerwalten;
+    
+    @FXML
+    private Button bestellungVerwalten;
 
     @FXML
     private Button abmeldeBtn;

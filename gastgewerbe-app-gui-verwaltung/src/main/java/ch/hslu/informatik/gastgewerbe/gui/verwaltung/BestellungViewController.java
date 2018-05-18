@@ -214,7 +214,7 @@ public class BestellungViewController extends TimerTask implements Initializable
 
 								List<BestellungPosition> tempListe = bestellung.getBestellungPositionListe();
 								for(BestellungPosition p : tempListe){
-									if(p.getProdukt().getKategorie().equals(KategorieTyp.SNACK) || p.getProdukt().getKategorie().equals(KategorieTyp.GETRANK)){
+									if(p.getProdukt().getKategorie().equals(KategorieTyp.SNACK) || p.getProdukt().getKategorie().equals(KategorieTyp.GETRANK) || p.getProdukt().getKategorie().equals(KategorieTyp.SPEISE)){
 										if(!p.isBestellungBereit()){
 											positionenListe.add(new BestellungPositionWrapper(p));
 										}
