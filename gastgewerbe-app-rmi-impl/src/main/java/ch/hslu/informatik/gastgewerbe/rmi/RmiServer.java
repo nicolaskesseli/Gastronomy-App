@@ -50,8 +50,8 @@ public class RmiServer {
                 logger.info("Remote Object \'" + RmiLoginService.REMOTE_OBJECT_NAME + "\' bound!");
 
                 // Abrechnung-RemoteObject erstellen und binden
-                RmiAbrechnungService abrechnungServicRO = new RmiAbrechnungServiceImpl();
-                reg.rebind(RmiAbrechnungService.REMOTE_OBJECT_NAME, abrechnungServicRO);
+                RmiAbrechnungService abrechnungServiceRO = new RmiAbrechnungServiceImpl();
+                reg.rebind(RmiAbrechnungService.REMOTE_OBJECT_NAME, abrechnungServiceRO);
                 logger.info("Remote Object \'" + RmiAbrechnungService.REMOTE_OBJECT_NAME + "\' bound!");
 
                 // Benutzer-RemoteObject erstellen und binden

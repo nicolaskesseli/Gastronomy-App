@@ -246,6 +246,8 @@ public class Context {
 	public RmiAbrechnungService getAbrechnungService() {
 
 		int portNr = 0;
+		
+		abrechnungService = null;
 
 		if (abrechnungService == null) {
 

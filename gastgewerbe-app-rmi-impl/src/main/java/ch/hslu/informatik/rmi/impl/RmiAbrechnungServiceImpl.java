@@ -16,39 +16,37 @@ import java.util.List;
 
 public class RmiAbrechnungServiceImpl extends UnicastRemoteObject implements RmiAbrechnungService {
 
-    private AbrechnungService abrechungService;
+	private AbrechnungService abrechnungService;
 
-    public RmiAbrechnungServiceImpl() throws RemoteException {
+	public RmiAbrechnungServiceImpl() throws RemoteException {
 
-    }
+	}
 
-    public AbrechnungService getAbrechungService() {
+	public AbrechnungService getAbrechnungService() {
+		if (abrechnungService == null) {
+			abrechnungService = new AbrechnungManager();
+		}
 
-        if (abrechungService == null) {
-            abrechungService = new AbrechnungManager() {
-            };
-        }
+		return abrechnungService;
+	}
 
-        return abrechungService;
-    }
+	@Override
+	public Abrechnung tischAbrechnen(Tisch tisch, Benutzer benutzer) throws Exception {
+		return getAbrechnungService().tischAbrechnen(tisch, benutzer);
+	}
 
-    @Override
-    public double tischAbrechnen(Tisch tisch, Benutzer benutzer) throws Exception {
-        return getAbrechungService().tischAbrechnen(tisch, benutzer);
-    }
+	@Override
+	public double abschluss(LocalDateTime zeit) throws Exception {
+		return getAbrechnungService().abschluss(zeit);
+	}
 
-    @Override
-    public double abschluss(LocalDateTime zeit) throws Exception {
-        return getAbrechungService().abschluss(zeit);
-    }
-
-    @Override
-    public List<Abrechnung> findByBenutzerUndDatum(Benutzer benutzer, LocalDateTime zeit) throws Exception {
-        return getAbrechungService().findByBenutzerUndDatum(benutzer, zeit);
-    }
+	@Override
+	public List<Abrechnung> findByBenutzerUndDatum(Benutzer benutzer, LocalDateTime zeit) throws Exception {
+		return getAbrechnungService().findByBenutzerUndDatum(benutzer, zeit);
+	}
 
 	@Override
 	public Tisch findByTischNr(int TischNr) throws Exception {
-		return getAbrechungService().findByTischNr(TischNr);
+		return getAbrechnungService().findByTischNr(TischNr);
 	}
 }

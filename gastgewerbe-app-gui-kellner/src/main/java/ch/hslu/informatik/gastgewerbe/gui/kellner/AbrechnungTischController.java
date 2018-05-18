@@ -92,12 +92,16 @@ public class AbrechnungTischController implements Initializable {
 	@FXML
 	void bestellungAbschliessen(ActionEvent event) throws Exception {
 
-		benutzer = Context.getInstance().getBenutzer();
+		
 		try {
+			
+		benutzer = Context.getInstance().getBenutzer();
 			
 		tisch = Context.getInstance().getAbrechnungService().findByTischNr(Integer.parseInt(tischNrInput.getText()));
 		
-		double b = Context.getInstance().getAbrechnungService().tischAbrechnen(tisch, benutzer);
+		Context.getInstance().getAbrechnungService().tischAbrechnen(tisch, benutzer);
+		
+		tblUebersichtBestellung.getItems().clear();
 		
 		} catch (NumberFormatException e) {
 			String msg = "Keine Nummer im Eingabefeld";

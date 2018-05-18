@@ -19,12 +19,11 @@ import ch.hslu.informatik.gastgewerbe.persister.impl.BestellungDAOImpl;
 
 public class BestellungManager implements BestellungService {
 	
-	
-	
 	private static Logger logger = LogManager.getLogger(BestellungManager.class);
 
     private BestellungDAO bestellungDAO;
-
+    private BestellungPositionDAO bestellungPosDAO;
+    
     public BestellungDAO getBestellungDAO() {
 
         if (bestellungDAO == null) {
@@ -34,7 +33,7 @@ public class BestellungManager implements BestellungService {
         return bestellungDAO;
     }
 
-    private BestellungPositionDAO bestellungPosDAO;
+    
 
     public BestellungPositionDAO getBestellungPosDAO(){
 		if (bestellungPosDAO == null) {
