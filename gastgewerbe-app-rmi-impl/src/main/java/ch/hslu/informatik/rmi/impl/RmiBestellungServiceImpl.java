@@ -112,9 +112,5 @@ public class RmiBestellungServiceImpl extends UnicastRemoteObject implements Rmi
 		
 	}
 	
-	@Override
-	public Tisch findTischByTischNr(int TischNr) throws Exception {
-		return getBestellungService().findTischByTischNr(TischNr);
-		
-	}
+	
 }

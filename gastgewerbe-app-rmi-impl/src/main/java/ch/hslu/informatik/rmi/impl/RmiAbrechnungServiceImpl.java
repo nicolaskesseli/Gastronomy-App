@@ -46,4 +46,9 @@ public class RmiAbrechnungServiceImpl extends UnicastRemoteObject implements Rmi
     public List<Abrechnung> findByBenutzerUndDatum(Benutzer benutzer, LocalDateTime zeit) throws Exception {
         return getAbrechungService().findByBenutzerUndDatum(benutzer, zeit);
     }
+
+	@Override
+	public Tisch findByTischNr(int TischNr) throws Exception {
+		return getAbrechungService().findByTischNr(TischNr);
+	}
 }
