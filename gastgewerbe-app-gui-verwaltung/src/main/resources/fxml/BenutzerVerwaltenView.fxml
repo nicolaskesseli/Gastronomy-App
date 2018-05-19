@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1180.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.verwaltung.BenutzerVerwaltenViewController">
+<AnchorPane prefHeight="600.0" prefWidth="1180.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.verwaltung.BenutzerVerwaltenViewController">
 	<children>
 	<Label fx:id="lblError" layoutX="80.0" layoutY="15.0" prefHeight="17.0" prefWidth="1050.0" textFill="RED" />
 		<Label layoutX="10.0" layoutY="50.0" text="Rolle" />
@@ -48,10 +48,9 @@
 		<Label layoutX="840.0" layoutY="110.0" text="Kennwort:" />
 		<TextField fx:id="txtKennwort" layoutX="930.0" layoutY="110.0" prefWidth="200.0" />
 
-		<Separator layoutX="10.0" layoutY="138.0" prefHeight="0.0" prefWidth="1122.0" />
-		<Button layoutX="1050.0" layoutY="141.0" mnemonicParsing="false" onAction="#speichern" prefWidth="80.0" text="Speichern" />
-		<Button fx:id="btnNeu" layoutX="10.0" layoutY="141.0" mnemonicParsing="false" onAction="#neuenBenutzerErfassen" prefWidth="80.0" text="Neu" />
-		<Button layoutX="91.0" layoutY="141.0" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="79.0" text="Reset" />
+		<Separator layoutX="9.0" layoutY="144.0" prefHeight="0.0" prefWidth="1122.0" />
+		<Button layoutX="1050.0" layoutY="155.0" mnemonicParsing="false" onAction="#speichern" prefWidth="80.0" text="Speichern" />
+		<Button fx:id="btnNeu" layoutX="10.0" layoutY="155.0" mnemonicParsing="false" onAction="#neuenBenutzerErfassen" prefWidth="80.0" text="Neu" />
 
 		<Label layoutX="10.0" layoutY="195.0" text="Benutzer:" />
 		<TableView fx:id="tblBenutzer" layoutX="10.0" layoutY="210.0" prefHeight="280.0" prefWidth="1118.0">
@@ -78,10 +77,10 @@
 						<TableColumn fx:id="colKennwort" prefWidth="100.0" text="Kennwort" />
 					</columns>
 				</TableColumn>
-				<TableColumn fx:id="colRolle" prefWidth="160.0" text="Rolle" />
+				<TableColumn fx:id="colRolle" prefWidth="167.0" text="Rolle" />
 			</columns>
 		</TableView>
 		<Button fx:id="btnLoeschen" layoutX="1048.0" layoutY="500.0" mnemonicParsing="false" onAction="#loeschen" prefWidth="80.0" text="Löschen" />
-		<Button fx:id="zurückBtn" layoutX="20.0" layoutY="508.0" mnemonicParsing="false" onAction="#zurück" prefWidth="80.0" text="Zurück" />
+		<Button fx:id="zurückBtn" layoutX="10.0" layoutY="508.0" mnemonicParsing="false" onAction="#zurück" prefWidth="80.0" text="Zurück" />
 	</children>
 </AnchorPane>
