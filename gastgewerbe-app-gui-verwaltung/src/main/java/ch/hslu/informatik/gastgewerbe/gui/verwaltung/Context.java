@@ -31,6 +31,8 @@ public class Context {
 
 	private BorderPane mainRoot;
 
+	private MenuBarViewController menuBarViewController;
+
 	private Benutzer benutzer;
 
 	private RmiProduktService produktService;
@@ -78,6 +80,14 @@ public class Context {
 	public void setBenutzer(Benutzer benutzer) {
 
 		this.benutzer = benutzer;
+	}
+
+	public MenuBarViewController getMenuBarViewController() {
+		return menuBarViewController;
+	}
+
+	public void setMenuBarViewController(MenuBarViewController menuBarViewController) {
+		this.menuBarViewController = menuBarViewController;
 	}
 
 	public RmiBestellungService getBestellungService() {

@@ -373,7 +373,7 @@ public class BenutzerVerwaltenViewController implements Initializable {
     @FXML
     void zurück(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/MainWindowVerwaltung.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/VerwaltungHomeView.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             //		stage.initModality(Modality.APPLICATION_MODAL);
