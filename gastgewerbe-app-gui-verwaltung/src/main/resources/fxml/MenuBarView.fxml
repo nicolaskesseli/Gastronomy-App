@@ -32,16 +32,12 @@
 				</Menu>
 				<Menu mnemonicParsing="false" text="Bestellung">
 					<items>
-						<MenuItem mnemonicParsing="false" onAction="#bestellungAnschauen" text="Lagerbestand abfragen" />
-						<Menu mnemonicParsing="false" text="Bestellungen anschauen">
-							<items>
-							</items>
-						</Menu>
+						<MenuItem mnemonicParsing="false" onAction="#bestellungAnschauen" text="Bestellung anschauen" />
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Produkte">
 					<items>
-						<MenuItem mnemonicParsing="false" onAction="#produktVerwalten" text="Benutzerverwaltung" />
+						<MenuItem mnemonicParsing="false" onAction="#produktVerwalten" text="Produktverwaltung" />
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Personal">

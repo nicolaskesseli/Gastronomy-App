@@ -10,7 +10,6 @@
 
 <AnchorPane id="AnchorPane" minHeight="570.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.verwaltung.LoginViewController">
 	<children>
-
 		<Label layoutX="325.0" layoutY="210.0" text="Benutzername:" />
 		<TextField fx:id="txtBenutzername" layoutX="417.0" layoutY="206.0" text="bigfoot" />
 		<Label layoutX="325.0" layoutY="241.0" text="Kennwort:" />
@@ -30,6 +29,5 @@
       </Label>
       <Label layoutX="384.0" layoutY="68.0" text="Gastgewerbe Verwaltung" />
       <Separator layoutY="100.0" prefHeight="5.0" prefWidth="839.0" />
-
 	</children>
 </AnchorPane>

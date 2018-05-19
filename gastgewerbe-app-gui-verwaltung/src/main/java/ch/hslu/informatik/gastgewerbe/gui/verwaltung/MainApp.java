@@ -37,9 +37,10 @@ public class MainApp extends Application {
 
 			scene.getStylesheets().add("/styles/Styles.css");
 
-			primaryStage.setTitle("Möbelhaus-Lager");
+			primaryStage.setTitle("Gastgewerbe-Verwaltung");
 			primaryStage.setScene(scene);
 			primaryStage.show();
+
 		} catch (Exception e){
 			logger.error("Fehler bei der Mainklasse");
 		}

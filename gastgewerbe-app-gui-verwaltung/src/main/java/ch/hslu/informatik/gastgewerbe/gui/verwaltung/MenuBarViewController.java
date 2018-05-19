@@ -19,18 +19,6 @@ public class MenuBarViewController implements Initializable {
     private static final String TITEL_PRODUKT_VERWALTEN = "Produkt-Typ verwalten";
 
     @FXML
-    private Button mBtnVerkauf;
-
-    @FXML
-    private Button mBtnProduktruecknahme;
-
-    @FXML
-    private Button mBtnTagesabschluss;
-
-    @FXML
-    private Button mBtnAbmeldung;
-
-    @FXML
     private Label lblBenutzer;
 
     @FXML

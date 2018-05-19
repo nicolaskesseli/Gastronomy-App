@@ -81,6 +81,5 @@
 			</columns>
 		</TableView>
 		<Button fx:id="btnLoeschen" layoutX="1048.0" layoutY="500.0" mnemonicParsing="false" onAction="#loeschen" prefWidth="80.0" text="Löschen" />
-		<Button fx:id="zurückBtn" layoutX="10.0" layoutY="508.0" mnemonicParsing="false" onAction="#zurück" prefWidth="80.0" text="Zurück" />
 	</children>
 </AnchorPane>
