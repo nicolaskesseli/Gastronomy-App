@@ -28,8 +28,6 @@ public class Context {
 	private static final String POLICY_FILE_NAME = "rmi_client.policy";
 
 	private static Context INSTANCE = new Context();
-
-	private BorderPane mainRoot;
 	
 	private Stage mainStage;
 
@@ -52,16 +50,6 @@ public class Context {
 		return INSTANCE;
 	}
 
-	public BorderPane getMainRoot() {
-
-		return mainRoot;
-	}
-
-	public void setMainRoot(BorderPane mainRoot) {
-
-		this.mainRoot = mainRoot;
-
-	}
 	
 	public Stage getMainStage() {
 		return mainStage;

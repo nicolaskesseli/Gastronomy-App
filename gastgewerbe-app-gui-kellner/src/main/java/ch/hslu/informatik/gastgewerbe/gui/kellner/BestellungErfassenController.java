@@ -130,6 +130,7 @@ public class BestellungErfassenController implements Initializable {
 			}
 
 		} catch (Exception e) {
+			// TODO SIMI UND THOMAS: SERIÖSE FEHLER BEHANLDING!!!!!
 			e.getMessage();
 			System.out.println("Ein Fehler ist aufgetreten");
 		}
@@ -155,6 +156,7 @@ public class BestellungErfassenController implements Initializable {
 
 			}
 		} catch (Exception e) {
+			// TODO SIMI UND THOMAS: SERIÖSE FEHLER BEHANLDING!!!!!
 			e.getMessage();
 			System.out.println("Ein Fehler ist aufgetreten");
 		}
@@ -163,18 +165,20 @@ public class BestellungErfassenController implements Initializable {
 	@FXML
 	void zuruck(ActionEvent event) {
 		try {
-			AnchorPane mainRoot = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
-			Scene mainScene = new Scene(mainRoot);
+			AnchorPane backRoot = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
+
+			Scene backScene = new Scene(backRoot);
 
 			Stage mainStage = Context.getInstance().getMainStage();
 
-			mainStage.setScene(mainScene);
+			mainStage.setScene(backScene);
 			mainStage.show();
-			//((Node) (event.getSource())).getScene().getWindow().hide();
+
 		} catch (IOException e) {
 			logger.error(e.getMessage(), e);
 
 		}
+
 	}
 
 	public void initialize(URL location, ResourceBundle resources) {

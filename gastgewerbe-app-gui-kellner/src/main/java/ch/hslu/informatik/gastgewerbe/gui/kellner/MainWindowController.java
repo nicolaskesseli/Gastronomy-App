@@ -41,24 +41,46 @@ import javafx.stage.StageStyle;
 	    @FXML
 	    private Button abmeldeBtn;
 
+		@FXML
+		private Button bestellungBearbeitenBtn;
+
 	    @FXML
 	    void bestellungErfassen(ActionEvent event) {
 	    	try {
-	    		AnchorPane mainRoot = FXMLLoader.load(getClass().getResource("/fxml/BestellungErfassenView.fxml"));
-				Scene mainScene = new Scene(mainRoot);
+	    		AnchorPane bestellungErfassenRoot = FXMLLoader.load(getClass().getResource("/fxml/BestellungErfassenView.fxml"));
+				Scene bestellungErfassenScene = new Scene(bestellungErfassenRoot);
 
 				Stage mainStage = Context.getInstance().getMainStage();
 
-				mainStage.setScene(mainScene);
+				mainStage.setScene(bestellungErfassenScene);
 				mainStage.show();
-				//((Node) (event.getSource())).getScene().getWindow().hide();
 			} catch (IOException e) {
 				logger.error(e.getMessage(), e);
 
 			}
 	    }
 
-	    @FXML
+		@FXML
+		void bestellungBearbeiten(ActionEvent event) {
+
+            try {
+                AnchorPane bestellungBearbeitenRoot = FXMLLoader.load(getClass().getResource("/fxml/BestellungBearbeiten.fxml"));
+                Scene bestellungBearbeitenScene = new Scene(bestellungBearbeitenRoot);
+
+                Stage mainStage = Context.getInstance().getMainStage();
+
+                mainStage.setScene(bestellungBearbeitenScene);
+                mainStage.show();
+            } catch (IOException e) {
+                logger.error(e.getMessage(), e);
+
+            }
+
+
+		}
+
+
+		@FXML
 	    void offeneBestellungen(ActionEvent event) {
 	    	try {
 	    		AnchorPane mainRoot = FXMLLoader.load(getClass().getResource("/fxml/BestellungBereitView.fxml"));
@@ -68,7 +90,7 @@ import javafx.stage.StageStyle;
 
 				mainStage.setScene(mainScene);
 				mainStage.show();
-				((Node) (event.getSource())).getScene().getWindow().hide();
+
 	    	} catch (IOException e) {
 				logger.error(e.getMessage(), e);
 
@@ -85,7 +107,7 @@ import javafx.stage.StageStyle;
 
 				mainStage.setScene(mainScene);
 				mainStage.show();
-				//((Node) (event.getSource())).getScene().getWindow().hide();
+
 	    	} catch (IOException e) {
 				logger.error(e.getMessage(), e);
 
@@ -96,12 +118,15 @@ import javafx.stage.StageStyle;
 		private void abmelden(ActionEvent event) {
 
 			try {
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginView.fxml"));
-				Parent root1 = (Parent) fxmlLoader.load();
-				Stage stage = new Stage();
-				stage.setScene(new Scene(root1));
-				stage.show();
-				((Node) (event.getSource())).getScene().getWindow().hide();
+                AnchorPane abmeldenRoot = FXMLLoader.load(getClass().getResource("/fxml/LoginView.fxml"));
+
+                Scene abmeldenScene = new Scene(abmeldenRoot);
+
+                Stage mainStage = Context.getInstance().getMainStage();
+
+                mainStage.setScene(abmeldenScene);
+                mainStage.show();
+
 			} catch (IOException e) {
 				logger.error(e.getMessage(), e);
 

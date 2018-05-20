@@ -2,6 +2,7 @@ package ch.hslu.informatik.gastgewerbe.gui.kellner;
 
 import java.io.IOException;
 
+import javafx.scene.layout.AnchorPane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -39,20 +40,21 @@ public class BestellungBereitController {
 
     @FXML
     void zurück(ActionEvent event) {
-    	try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/MainWindow.fxml"));
-			Parent root1 = (Parent) fxmlLoader.load();
-			Stage stage = new Stage();
-		//	stage.initModality(Modality.APPLICATION_MODAL);
-		//	stage.initStyle(StageStyle.UNDECORATED);
-		//	stage.setTitle("Hauptseite");
-			stage.setScene(new Scene(root1));
-			stage.show();
-			((Node) (event.getSource())).getScene().getWindow().hide();
-    	} catch (IOException e) {
-			logger.error(e.getMessage(), e);
+        try {
+            AnchorPane backRoot = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
 
-		}
+            Scene backScene = new Scene(backRoot);
+
+            Stage mainStage = Context.getInstance().getMainStage();
+
+            mainStage.setScene(backScene);
+            mainStage.show();
+
+        } catch (IOException e) {
+            logger.error(e.getMessage(), e);
+
+        }
+
     }
 
 }

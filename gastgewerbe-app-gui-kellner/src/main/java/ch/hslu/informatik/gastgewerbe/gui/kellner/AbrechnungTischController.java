@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.scene.layout.AnchorPane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -147,15 +148,20 @@ public class AbrechnungTischController implements Initializable {
 	@FXML
 	void zurück(ActionEvent event) {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/MainWindow.fxml"));
-			Parent root1 = (Parent) fxmlLoader.load();
-			Stage stage = new Stage();
-			stage.setScene(new Scene(root1));
-			stage.show();
-			((Node) (event.getSource())).getScene().getWindow().hide();
+			AnchorPane backRoot = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
+
+			Scene backScene = new Scene(backRoot);
+
+			Stage mainStage = Context.getInstance().getMainStage();
+
+			mainStage.setScene(backScene);
+			mainStage.show();
+
 		} catch (IOException e) {
 			logger.error(e.getMessage(), e);
+
 		}
+
 	}
 
 	@Override
