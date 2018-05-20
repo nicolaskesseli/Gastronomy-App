@@ -33,6 +33,8 @@ public class MainApp extends Application {
 		}
 	}
 
+	// Beendet automatische aktualisierung Tabelle Bestellungen übersicht
+
 	@Override
 	public void stop() throws Exception {
 		super.stop();

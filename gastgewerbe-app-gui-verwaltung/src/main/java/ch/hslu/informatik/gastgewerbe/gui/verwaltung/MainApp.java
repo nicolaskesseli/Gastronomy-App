@@ -46,6 +46,15 @@ public class MainApp extends Application {
 		}
 	}
 
+	// Beendet automatische aktualisierung Tabelle Bestellungen übersicht
+
+	@Override
+	public void stop() throws Exception {
+		super.stop();
+		System.exit(0);
+	}
+
+
 	/**
 	 * The main() method is ignored in correctly deployed JavaFX application.
 	 * main() serves only as fallback in case the application can not be

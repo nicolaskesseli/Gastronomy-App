@@ -24,11 +24,6 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="abmeldeBtn" layoutX="686.0" layoutY="14.0" mnemonicParsing="false" onAction="#abmelden" prefHeight="31.0" prefWidth="138.0" text="Abmelden">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
       <TableView fx:id="tblBestBar" layoutX="52.0" layoutY="79.0" prefHeight="295.0" prefWidth="742.0">
         <columns>
           <TableColumn fx:id="colTischNr" prefWidth="75.0" text="Tisch-Nr." />

@@ -65,26 +65,26 @@ public class BestellungViewController extends TimerTask implements Initializable
 	private TableColumn<BestellungPositionWrapper, String> colProdukt;
 
 
-	@FXML
-	void abmelden (ActionEvent event) {
-		try {
-
-			AnchorPane loginRoot = FXMLLoader.load(getClass().getResource("/fxml/LoginView.fxml"));
-
-			Scene loginScene = new Scene(loginRoot);
-
-			Stage mainStage = Context.getInstance().getMainStage();
-
-			mainStage.setScene(loginScene);
-			mainStage.show();
-
-
-
-		} catch (IOException e) {
-			logger.error(e.getMessage(), e);
-
-		}
-	}
+//	@FXML
+//	void abmelden (ActionEvent event) {
+//		try {
+//
+//			AnchorPane loginRoot = FXMLLoader.load(getClass().getResource("/fxml/LoginView.fxml"));
+//
+//			Scene loginScene = new Scene(loginRoot);
+//
+//			Stage mainStage = Context.getInstance().getMainStage();
+//
+//			mainStage.setScene(loginScene);
+//			mainStage.show();
+//
+//
+//
+//		} catch (IOException e) {
+//			logger.error(e.getMessage(), e);
+//
+//		}
+//	}
 	    @FXML
         void bestellungBereit(ActionEvent event) {
 
