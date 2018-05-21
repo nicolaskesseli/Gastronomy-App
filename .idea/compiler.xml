@@ -12,6 +12,7 @@
         <module name="gastgewerbe-app-business-bestellung" />
         <module name="gastgewerbe-app-business-login" />
         <module name="gastgewerbe-app-business-produkt" />
+        <module name="gastgewerbe-app-business-tisch" />
         <module name="gastgewerbe-app-gui-bar" />
         <module name="gastgewerbe-app-gui-kellner" />
         <module name="gastgewerbe-app-gui-kueche" />
