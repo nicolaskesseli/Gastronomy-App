@@ -102,6 +102,7 @@ public class AbrechnungTischController implements Initializable {
 
 		List<Bestellung> abzurechnendeBest = Context.getInstance().getBestellungService().findByRechBezahltTisch(tisch.getTischNr(), false);
 
+		// logger info für debugging
 		logger.info(abzurechnendeBest.size() + abzurechnendeBest.get(0).toString());
 
 		if( abzurechnendeBest.size()!= 0 && abzurechnendeBest.size()<2){
