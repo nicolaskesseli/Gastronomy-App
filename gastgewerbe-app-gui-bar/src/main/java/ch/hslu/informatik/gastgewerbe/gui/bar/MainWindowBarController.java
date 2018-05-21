@@ -87,6 +87,7 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 
 		} catch (IOException e) {
 			logger.error(e.getMessage(), e);
+			throw new RuntimeException(e);
 
 		}
 	}

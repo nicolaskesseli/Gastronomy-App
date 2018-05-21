@@ -33,7 +33,7 @@ public class MainApp extends Application {
 		}
 	}
 
-	// Beendet automatische aktualisierung Tabelle Bestellungen übersicht
+	// Beendet automatische aktualisierung Tabelle Bestellungen bereit
 
 	@Override
 	public void stop() throws Exception {

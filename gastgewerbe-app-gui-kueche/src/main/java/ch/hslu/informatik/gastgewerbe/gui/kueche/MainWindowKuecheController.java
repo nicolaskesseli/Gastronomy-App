@@ -89,6 +89,7 @@ public class MainWindowKuecheController extends TimerTask implements Initializab
 
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
+            throw new RuntimeException(e);
 
         }
     }
