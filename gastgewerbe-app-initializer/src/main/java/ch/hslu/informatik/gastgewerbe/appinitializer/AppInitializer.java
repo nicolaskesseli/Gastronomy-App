@@ -254,8 +254,8 @@ public class AppInitializer {
 		BenutzerDAO benDao = new BenutzerDAOImpl();
 		BestellungDAO bestDao = new BestellungDAOImpl();
 
-		Abrechnung ab1 = new Abrechnung(benDao.findById(1), bestDao.findById(30), false);
-		Abrechnung ab2 = new Abrechnung(benDao.findById(3), bestDao.findById(34), false);
+		Abrechnung ab1 = new Abrechnung(benDao.findById(1), bestDao.findById(30));
+		Abrechnung ab2 = new Abrechnung(benDao.findById(3), bestDao.findById(34));
 
 		List<Abrechnung> abrechnungListe = new ArrayList<>();
 		abrechnungListe.add(ab1);

@@ -14,10 +14,11 @@ import java.util.ResourceBundle;
 
 public class MenuBarViewController implements Initializable {
 
-    private static final String TITEL_BENUTZER_VERWALTEN = "Benutzer";
-    private static final String TITEL_BESTELLUNGEN_ANSCHAUEN = "Bestellungen anschauen";
-    private static final String TITEL_PRODUKT_VERWALTEN = "Produkt-Typ verwalten";
-    private static final String TITEL_TISCH_VERWALTEN = "Tisch-Typ verwalten";
+    private static final String TITEL_BENUTZER_VERWALTEN = "Benutzer verwalten";
+    private static final String TITEL_BESTELLUNGEN_ANSCHAUEN = "Bestellübersicht";
+    private static final String TITEL_PRODUKT_VERWALTEN = "Produkte verwalten";
+    private static final String TITEL_TISCH_VERWALTEN = "Tische verwalten";
+    private static final String TITEL_ABRECHNUNG_VERWALTEN = "Tagesabrechnung";
 
     @FXML
     private Label lblBenutzer;
@@ -38,6 +39,8 @@ public class MenuBarViewController implements Initializable {
 
     @FXML
     public void home() {
+
+        lblTitel.setText("");
 
         try {
             AnchorPane root = FXMLLoader.load(getClass().getResource("/fxml/VerwaltungHomeView.fxml"));
@@ -112,7 +115,7 @@ public class MenuBarViewController implements Initializable {
     @FXML
     public void abrechnungVerwaltung() {
 
-        lblTitel.setText(TITEL_TISCH_VERWALTEN);
+        lblTitel.setText(TITEL_ABRECHNUNG_VERWALTEN);
 
         try {
             AnchorPane root = FXMLLoader.load(getClass().getResource("/fxml/AbrechnungTischView.fxml"));

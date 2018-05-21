@@ -9,15 +9,15 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="1180.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.verwaltung.ProduktVerwaltenViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="1180.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.verwaltung.ProduktVerwaltenViewController">
        <children>
            <Label fx:id="lblError" layoutX="22.0" layoutY="135.0" prefHeight="17.0" prefWidth="785.0" textFill="RED" />
-              <Label layoutX="21.0" layoutY="22.0" text="Name:" />
-              <TextField fx:id="txtProduktName" layoutX="21.0" layoutY="39.0" prefHeight="25.0" prefWidth="313.0" />
-              <Label layoutX="343.0" layoutY="22.0" text="Nummer:" />
-              <TextField fx:id="txtProduktCode" layoutX="343.0" layoutY="39.0" prefHeight="25.0" prefWidth="92.0" />
-              <Label layoutX="449.0" layoutY="22.0" text="Preis [CHF]:" />
-              <TextField fx:id="txtProduktPreis" layoutX="449.0" layoutY="39.0" prefHeight="25.0" prefWidth="111.0" />
+              <Label layoutX="21.0" layoutY="34.0" text="Name:" />
+              <TextField fx:id="txtProduktName" layoutX="21.0" layoutY="51.0" prefHeight="25.0" prefWidth="313.0" />
+              <Label layoutX="343.0" layoutY="34.0" text="Nummer:" />
+              <TextField fx:id="txtProduktCode" layoutX="343.0" layoutY="51.0" prefHeight="25.0" prefWidth="92.0" />
+              <Label layoutX="449.0" layoutY="34.0" text="Preis [CHF]:" />
+              <TextField fx:id="txtProduktPreis" layoutX="449.0" layoutY="51.0" prefHeight="25.0" prefWidth="111.0" />
               <Label layoutX="448.0" layoutY="75.0" text="Kategorie" />
               <ComboBox fx:id="cmbKategorie" layoutX="448.0" layoutY="92.0" prefHeight="25.0" prefWidth="111.0" />
               <Label layoutX="21.0" layoutY="75.0" text="Beschreibung:" />
@@ -34,12 +34,12 @@
                            <TableColumn fx:id="colPreis" prefWidth="144.0" text="Preis" />
                      </columns>
               </TableView>
-      <Label layoutX="641.0" layoutY="22.0" text="Produktcode" />
-      <TextField fx:id="txtSucheProduktCode" layoutX="641.0" layoutY="37.0" prefHeight="27.0" prefWidth="146.0" />
+      <Label layoutX="641.0" layoutY="34.0" text="Produktcode" />
+      <TextField fx:id="txtSucheProduktCode" layoutX="641.0" layoutY="49.0" prefHeight="27.0" prefWidth="146.0" />
       <Button fx:id="btnLoeschen" layoutX="704.0" layoutY="161.0" mnemonicParsing="false" onAction="#loeschen" prefHeight="25.0" prefWidth="110.0" text="Löschen" />
       <Button fx:id="btnSuche" layoutX="623.0" layoutY="92.0" mnemonicParsing="false" onAction="#suche" text="Suchen" />
       <Button fx:id="btnProduktErfassen" layoutX="21.0" layoutY="161.0" mnemonicParsing="false" onAction="#neuesProduktErfassen" prefHeight="27.0" prefWidth="102.0" text="Neu" />
-      <Separator layoutX="598.0" layoutY="6.0" orientation="VERTICAL" prefHeight="120.0" prefWidth="3.0" />
+      <Separator layoutX="598.0" layoutY="18.0" orientation="VERTICAL" prefHeight="120.0" prefWidth="3.0" />
       <Button fx:id="btnAlleAnzeigen" layoutX="714.0" layoutY="92.0" mnemonicParsing="false" onAction="#updateTable" text="Alle Anzeigen" />
        </children>
 </AnchorPane>

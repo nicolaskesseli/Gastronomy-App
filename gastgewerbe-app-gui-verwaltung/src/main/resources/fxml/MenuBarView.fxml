@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="50.0" prefWidth="1180.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.verwaltung.MenuBarViewController">
+<AnchorPane prefHeight="50.0" prefWidth="1180.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.verwaltung.MenuBarViewController">
 	<children>
 		<Label fx:id="lblBenutzer" layoutX="1000.0" layoutY="30.0" prefHeight="20.0" prefWidth="180.0" text=" " textAlignment="RIGHT">
 			<font>
@@ -32,7 +32,7 @@
 				</Menu>
 				<Menu mnemonicParsing="false" text="Bestellung">
 					<items>
-						<MenuItem mnemonicParsing="false" onAction="#bestellungAnschauen" text="Bestellung anschauen" />
+						<MenuItem mnemonicParsing="false" onAction="#bestellungAnschauen" text="Bestellübersicht" />
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Abrechnung">
