@@ -130,9 +130,8 @@ public class BestellungErfassenController implements Initializable {
 			}
 
 		} catch (Exception e) {
-			// TODO SIMI UND THOMAS: SERIÖSE FEHLER BEHANLDING!!!!!
-			e.getMessage();
-			System.out.println("Ein Fehler ist aufgetreten");
+			logger.error("Fehler beim Gericht suchen (nach Code): ", e);
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -155,10 +154,9 @@ public class BestellungErfassenController implements Initializable {
 				updateTableNameSuche();
 
 			}
-		} catch (Exception e) {
-			// TODO SIMI UND THOMAS: SERIÖSE FEHLER BEHANLDING!!!!!
-			e.getMessage();
-			System.out.println("Ein Fehler ist aufgetreten");
+		}catch (Exception e) {
+			logger.error("Fehler beim Gericht suchen nach Name: ", e);
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -256,7 +254,7 @@ public class BestellungErfassenController implements Initializable {
 
 	public void updateTableNameSuche() {
 
-		// List<Produkt> gefundeneProdukte = new ArrayList<>();
+
 
 		try {
 
@@ -282,7 +280,7 @@ public class BestellungErfassenController implements Initializable {
 	@FXML
 	void bestellungAbschicken(ActionEvent event) throws Exception {
 
-		// BestellungPositionWrapper bPosition = new BestellungPositionWrapper();
+
 		try {
 
 			String bemerkung = bemerkungInput.getText();
@@ -313,7 +311,7 @@ public class BestellungErfassenController implements Initializable {
 				for (BestellungPositionWrapper item : bestellübersichtTbl.getItems()) {
 					b.getBestellungPositionListe().add(item.getBestellungPosition());
 
-					// TODO: persist BestellPosition
+				
 				}
 
 				Context.getInstance().getBestellungService().bestellen(b);

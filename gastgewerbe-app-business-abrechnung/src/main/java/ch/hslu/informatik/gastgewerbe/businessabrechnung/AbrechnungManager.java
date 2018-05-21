@@ -77,6 +77,13 @@ public class AbrechnungManager implements AbrechnungService {
 
 			return betrag;
 
+<<<<<<< HEAD
+=======
+		}catch (IndexOutOfBoundsException e){
+			String msg = "Mehr als eine Bestellung für "+tisch.getTischNr() + " / Abrechnen misslungen";
+			logger.error(msg, e);
+			throw new Exception(msg);
+>>>>>>> origin/master
 		} catch (Exception e){
 			String msg = "Tisch Abrechnen misslungen";
 			logger.error(msg, e);

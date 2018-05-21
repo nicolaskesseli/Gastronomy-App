@@ -99,6 +99,7 @@ public class AbrechnungTischController implements Initializable {
 		benutzer = Context.getInstance().getBenutzer();
 			
 		tisch = Context.getInstance().getAbrechnungService().findByTischNr(Integer.parseInt(tischNrInput.getText()));
+<<<<<<< HEAD
 
 		List<Bestellung> abzurechnendeBest = Context.getInstance().getBestellungService().findByRechBezahltTisch(tisch.getTischNr(), false);
 
@@ -107,6 +108,11 @@ public class AbrechnungTischController implements Initializable {
 		if( abzurechnendeBest.size()!= 0 && abzurechnendeBest.size()<2){
 			gesamtBetrag = Context.getInstance().getAbrechnungService().tischAbrechnen(tisch, benutzer, abzurechnendeBest.get(0));
 		}
+=======
+		
+		gesamtBetrag = Context.getInstance().getAbrechnungService().tischAbrechnen(tisch, benutzer);
+		
+>>>>>>> origin/master
 		tblUebersichtBestellung.getItems().clear();
 		tischNrInput.setText("");
 		
@@ -172,7 +178,7 @@ public class AbrechnungTischController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+	
 		colPreis.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Double>("preis"));
 		colName.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, String>("name"));
 		colAnzahl.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Integer>("anzahl"));
