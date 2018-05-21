@@ -17,14 +17,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungPositionWrapper;
+import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungWrapper;
 import ch.hslu.informatik.gastgewerbe.gui.wrapper.ProduktWrapper;
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
@@ -188,7 +192,7 @@ public class BestellungErfassenController implements Initializable {
 					position2 = new BestellungPositionWrapper(pList.get(i));
 					bestellübersichtTbl.getItems().add(position2);
 				}
-				
+
 				bemerkungInput.setText(bestellung.getBemerkung());
 			}
 
@@ -232,12 +236,12 @@ public class BestellungErfassenController implements Initializable {
 
 				}
 				Context.getInstance().getBestellungService().bestellungAktualisieren(bestellung);
-				
+
 				bemerkungInput.clear();
 				tischNrInput.clear();
 				bestellübersichtTbl.getItems().clear();
 				tblGerichtAuswahl.getItems().clear();
-				
+
 			}
 
 		} catch (NumberFormatException e) {
@@ -276,7 +280,7 @@ public class BestellungErfassenController implements Initializable {
 	}
 
 	public void initialize(URL location, ResourceBundle resources) {
-
+		bestellübersichtTbl.setEditable(true);
 		try {
 			colPreis.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, Double>("preis"));
 			colName.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, String>("name"));
@@ -286,8 +290,14 @@ public class BestellungErfassenController implements Initializable {
 					.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, String>("name"));
 			colPreisUebersicht
 					.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Double>("preis"));
+
+			
+
 			colAnzalUebersicht
 					.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Integer>("anzahl"));
+			
+			
+			
 
 			updateTableNameSuche();
 			updateTableCodeSuche();
@@ -325,6 +335,44 @@ public class BestellungErfassenController implements Initializable {
 				}
 
 			});
+
+			bestellübersichtTbl.setRowFactory(
+					new Callback<TableView<BestellungPositionWrapper>, TableRow<BestellungPositionWrapper>>() {
+
+						@Override
+						public TableRow<BestellungPositionWrapper> call(TableView<BestellungPositionWrapper> param) {
+							TableRow<BestellungPositionWrapper> tRow = new TableRow<>();
+
+							tRow.setOnMouseClicked(event -> {
+								if (event.getClickCount() == 2 && !tRow.isEmpty()) {
+									BestellungPositionWrapper item = tRow.getItem();
+									
+									bestellübersichtTbl.getSelectionModel().select(0);
+									Context.getInstance().setAnzahlBearbeiten(item);
+									
+									try {
+							    		AnchorPane bestellungErfassenAnzahlAnpassenRoot = FXMLLoader.load(getClass().getResource("/fxml/BestellungErfassenAnzahlAnpassen.fxml"));
+										Scene bestellungErfassenAnzahlAnpassenScene = new Scene(bestellungErfassenAnzahlAnpassenRoot);
+
+										Stage bestellungErfassenAnzahlStage = new Stage();
+										
+										Context.getInstance().setBestellungErfassenAnzahlStage(bestellungErfassenAnzahlStage);									
+										
+										bestellungErfassenAnzahlStage.setScene(bestellungErfassenAnzahlAnpassenScene);
+										bestellungErfassenAnzahlStage.show();
+									} catch (IOException e) {
+										logger.error(e.getMessage(), e);
+
+									}
+									
+								}
+
+							});
+
+							return tRow;
+						}
+
+					});
 
 		} catch (Exception e) {
 			logger.error("Fehler beim initialisieren: ", e);

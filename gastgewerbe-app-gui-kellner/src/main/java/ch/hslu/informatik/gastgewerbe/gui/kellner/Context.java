@@ -12,6 +12,7 @@ import java.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungPositionWrapper;
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiAbrechnungService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiBestellungService;
@@ -30,6 +31,8 @@ public class Context {
 	private static Context INSTANCE = new Context();
 	
 	private Stage mainStage;
+	
+	private Stage bestellungErfassenAnzahlStage;
 
 	private Benutzer benutzer;
 
@@ -41,6 +44,10 @@ public class Context {
 	
 	private RmiAbrechnungService abrechnungService;
 	
+	private BestellungPositionWrapper anzahlBearbeiten;
+	
+	
+
 	private Context() {
 
 	}
@@ -50,6 +57,13 @@ public class Context {
 		return INSTANCE;
 	}
 
+	public BestellungPositionWrapper getAnzahlBearbeiten() {
+		return anzahlBearbeiten;
+	}
+
+	public void setAnzahlBearbeiten(BestellungPositionWrapper anzahlBearbeiten) {
+		this.anzahlBearbeiten = anzahlBearbeiten;
+	}
 	
 	public Stage getMainStage() {
 		return mainStage;
@@ -59,6 +73,15 @@ public class Context {
 		this.mainStage = mainStage;
 	}
 	
+	
+	public Stage getBestellungErfassenAnzahlStage() {
+		return bestellungErfassenAnzahlStage;
+	}
+
+	public void setBestellungErfassenAnzahlStage(Stage bestellungErfassenAnzahlStage) {
+		this.bestellungErfassenAnzahlStage = bestellungErfassenAnzahlStage;
+	}
+
 	public Benutzer getBenutzer() {
 		return benutzer;
 	}
