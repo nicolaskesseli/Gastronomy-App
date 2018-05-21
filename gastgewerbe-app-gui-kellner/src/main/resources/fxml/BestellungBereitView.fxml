@@ -24,7 +24,7 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
-      <TableView fx:id="tblBestBar" layoutX="62.0" layoutY="89.0" prefHeight="104.0" prefWidth="742.0">
+      <TableView fx:id="tblBestBar" layoutX="54.0" layoutY="93.0" prefHeight="104.0" prefWidth="742.0">
          <columns>
             <TableColumn fx:id="colTischNr" prefWidth="75.0" text="Tisch-Nr." />
             <TableColumn fx:id="colZeit" prefWidth="129.0" text="Zeit" />
