@@ -36,6 +36,11 @@ public class RmiTischServiceImpl extends UnicastRemoteObject implements RmiTisch
     }
 
     @Override
+    public Tisch tischAktualisieren(Tisch tisch) throws Exception {
+        return getTischService().tischAktualisieren(tisch);
+    }
+
+    @Override
     public void tischLoeschen(Tisch tisch) throws Exception {
         getTischService().tischLoeschen(tisch);
 
@@ -50,4 +55,5 @@ public class RmiTischServiceImpl extends UnicastRemoteObject implements RmiTisch
     public List<Tisch> alleTische() throws Exception {
         return getTischService().alleTische();
     }
+
 }

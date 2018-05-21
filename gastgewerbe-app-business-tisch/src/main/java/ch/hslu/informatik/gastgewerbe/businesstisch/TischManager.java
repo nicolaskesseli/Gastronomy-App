@@ -49,6 +49,17 @@ public class TischManager implements TischService {
         }
     }
 
+    public Tisch tischAktualisieren(Tisch tisch) throws Exception {
+        try {
+            return getTischDAO().update(tisch);
+        } catch (Exception e) {
+            String msg = "Tisch \'" + tisch.getTischNr()
+                    + "\' konnte nicht aktualisiert werden";
+            logger.error(msg, e);
+            throw new Exception(msg);
+        }
+    }
+
     @Override
     public List<Tisch> alleTische() throws Exception{
         try {

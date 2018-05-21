@@ -11,7 +11,11 @@ public class TischWrapper {
         this.tisch = tisch;
     }
 
-    public int getTisch() {
+    public Tisch getTisch() {
+        return tisch;
+    }
+
+    public int getTischNummer() {
         return tisch.getTischNr();
     }
 }

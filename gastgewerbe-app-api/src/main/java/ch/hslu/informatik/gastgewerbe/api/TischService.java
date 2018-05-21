@@ -11,6 +11,9 @@ public interface TischService {
 	//Fuegt Tisch hinzu
 	Tisch tischHinzufuegen(Tisch tisch) throws Exception;
 
+	//Aktualisiert Tisch hinzu
+	Tisch tischAktualisieren(Tisch tisch) throws Exception;
+
 	//Löscht Tisch
 	void tischLoeschen(Tisch tisch) throws Exception;
 

@@ -1,40 +1,24 @@
 package ch.hslu.informatik.gastgewerbe.gui.verwaltung;
 
-import ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.BenutzerWrapper;
 import ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.TischWrapper;
-import ch.hslu.informatik.gastgewerbe.model.*;
+import ch.hslu.informatik.gastgewerbe.model.Tisch;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-
 public class TischVerwaltenViewController implements Initializable {
-
-    public static final String ERROR_MSG_PLZ_EINGABE_NICHT_KORREKT = "Die Eingabe für Postleitzahl ist nicht korrekt.";
-    public static final String ERROR_MSG_EINGABE_NICHT_KORREKT = "Die Eingabe ist entweder nicht vollständig oder nicht korrekt (alle Felder sind 'required')";
 
     private static Logger logger = LogManager.getLogger(TischVerwaltenViewController.class);
 
@@ -51,10 +35,11 @@ public class TischVerwaltenViewController implements Initializable {
     private Button btnLoeschen;
 
     @FXML
+    private TextField txtTischNummer;
+
+    @FXML
     private Button btnHinzufuegen;
 
-    // @Override
-    @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         try {
@@ -88,22 +73,22 @@ public class TischVerwaltenViewController implements Initializable {
 
     private void updateTabelle() {
 
+        lblError.setText("");
+
         try {
-            List<Tisch> tischList = Context.getInstance().;
+            List<Tisch> tischListe = Context.getInstance().getTischService().alleTische();
 
-            if (benutzerListe.size() > 0) {
-                List<BenutzerWrapper> wrapperListe = new ArrayList<>();
+            if (tischListe.size() > 0) {
+                List<TischWrapper> wrapperListe = new ArrayList<>();
 
-                int nummer = 1;
-
-                for (Benutzer benutzer : benutzerListe) {
-                    wrapperListe.add(new BenutzerWrapper(nummer++, benutzer));
+                for (Tisch tisch : tischListe) {
+                    wrapperListe.add(new TischWrapper(tisch));
                 }
 
-                tblBenutzer.getItems().clear();
-                tblBenutzer.getItems().addAll(wrapperListe);
+                tblTisch.getItems().clear();
+                tblTisch.getItems().addAll(wrapperListe);
 
-                tblBenutzer.getSelectionModel().select(0);
+                tblTisch.getSelectionModel().select(0);
 
                 updateView();
             }
@@ -118,200 +103,101 @@ public class TischVerwaltenViewController implements Initializable {
 
         lblError.setText("");
 
-        if (tblBenutzer.getSelectionModel().getSelectedItem() == null) {
+        if (tblTisch.getSelectionModel().getSelectedItem() == null) {
 
-            cmbRolle.getSelectionModel().clearSelection();
-            txtName.setText("");
-            txtVorname.setText("");
-            txtStrasse.setText("");
-            txtPlz.setText("");
-            txtOrt.setText("");
-            txtEmail.setText("");
-            txtTelefon.setText("");
-            txtBenutzername.setText("");
-            txtKennwort.setText("");
+            txtTischNummer.setText("");
 
         } else {
 
-            Benutzer benutzer = tblBenutzer.getSelectionModel().getSelectedItem().getBenutzer();
+            Tisch tisch = tblTisch.getSelectionModel().getSelectedItem().getTisch();
 
-            cmbRolle.getSelectionModel().select(benutzer.getRolle());
-            txtName.setText(benutzer.getNachname());
-            txtVorname.setText(benutzer.getVorname());
-            txtStrasse.setText(benutzer.getAdresse().getStrasse());
-            txtPlz.setText("" + benutzer.getAdresse().getPlz());
-            txtOrt.setText(benutzer.getAdresse().getOrt());
-            txtEmail.setText(benutzer.getKontakt().getEmail());
-            txtTelefon.setText(benutzer.getKontakt().getTelefon());
-            txtBenutzername.setText(benutzer.getCredentials().getBenutzername());
-            txtKennwort.setText(benutzer.getCredentials().getPasswort());
+            txtTischNummer.setText("" + tisch.getTischNr());
+
         }
 
     }
 
     @FXML
-    private void neuenBenutzerErfassen() {
+    private void neuenTischErfassen() {
         reset();
-        txtName.requestFocus();
+        txtTischNummer.requestFocus();
     }
 
     @FXML
     private void speichern() {
 
-        if (eingabeValid()) {
+            if (tblTisch.getSelectionModel().getSelectedItem() == null) {
 
-            if (tblBenutzer.getSelectionModel().getSelectedItem() == null) {
+                int tischNr = Integer.parseInt(txtTischNummer.getText());
 
-                /* Neuen Benutzer einfügen */
-                String name = txtName.getText();
-                String vorname = txtVorname.getText();
-                String strasse = txtStrasse.getText();
-                int plz = Integer.parseInt(txtPlz.getText());
-                String ort = txtOrt.getText();
-                String email = txtEmail.getText();
-                String telefon = txtTelefon.getText();
-                String benutzername = txtBenutzername.getText();
-                String kennwort = txtKennwort.getText();
-                RolleTyp rolle = cmbRolle.getSelectionModel().getSelectedItem();
-
-                Benutzer benutzer = new Benutzer(name, vorname, new Adresse(strasse, plz, ort),
-                        new Kontakt(email, telefon), new Credentials(benutzername, kennwort), rolle);
+                Tisch tisch = new Tisch(tischNr);
 
                 try {
-                    Context.getInstance().getBenutzerService().benutzerHinzufuegen(benutzer);
+                    Context.getInstance().getTischService().tischHinzufuegen(tisch);
+
                 } catch (Exception e) {
-                    logger.error("Fehler beim Hinzufügen eines neuen Benutzers: ", e);
+                    logger.error("Fehler beim Hinzufügen des Tisches: ", e);
                     Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Benutzer speichern");
+                    alert.setTitle("Tisch speichern");
                     alert.setHeaderText("Information");
-                    alert.setContentText("Das Hinzufügen des neuen Benutzers ist misslungen.");
+                    alert.setContentText("Das Hinzufügen des neuen Tisch ist misslungen.");
                     alert.showAndWait();
                 }
+
             } else {
 
-                /* Den selektierten Benutzer updaten */
-                String name = txtName.getText();
-                String vorname = txtVorname.getText();
-                String strasse = txtStrasse.getText();
-                int plz = Integer.parseInt(txtPlz.getText());
-                String ort = txtOrt.getText();
-                String email = txtEmail.getText();
-                String telefon = txtTelefon.getText();
-                String benutzername = txtBenutzername.getText();
-                String kennwort = txtKennwort.getText();
-                RolleTyp rolle = cmbRolle.getSelectionModel().getSelectedItem();
-
-                Benutzer benutzer = tblBenutzer.getSelectionModel().getSelectedItem().getBenutzer();
-
-                benutzer.setNachname(name);
-                benutzer.setVorname(vorname);
-                benutzer.setAdresse(new Adresse(strasse, plz, ort));
-                benutzer.setKontakt(new Kontakt(email, telefon));
-                benutzer.getCredentials().setBenutzername(benutzername);
-                benutzer.getCredentials().setPasswort(kennwort);
-                benutzer.setRolle(rolle);
+                int tischNr = Integer.parseInt(txtTischNummer.getText());
+                Tisch tisch = tblTisch.getSelectionModel().getSelectedItem().getTisch();
+                tisch.setTischNr(tischNr);
 
                 try {
-                    Context.getInstance().getBenutzerService().benutzerAktualisieren(benutzer);
+                    Context.getInstance().getTischService().tischAktualisieren(tisch);
                 } catch (Exception e) {
-                    logger.error("Fehler beim Hinzufügen eines neuen Benutzers: ", e);
+                    logger.error("Fehler beim Hinzufügen eines neuen Tisch: ", e);
                     Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Benutzer speichern");
+                    alert.setTitle("Tisch speichern");
                     alert.setHeaderText("Information");
-                    alert.setContentText("Das Aktualisieren des ausgewählten Benutzers ist misslungen.");
+                    alert.setContentText("Das Aktualisieren des ausgewählten Tisch ist misslungen.");
                     alert.showAndWait();
                 }
             }
 
-            updateTabelle();
-            reset();
-            txtName.requestFocus();
-        }
-    }
-
-    private boolean eingabeValid() {
-
-        lblError.setText("");
-        if (isValid(txtName.getText()) && isValid(txtVorname.getText()) && isValid(txtStrasse.getText())
-                && isValid(txtPlz.getText()) && isValid(txtOrt.getText()) && isValid(txtEmail.getText())
-                && isValid(txtTelefon.getText()) && isValid(txtEmail.getText()) && isValid(txtKennwort.getText())) {
-
-            /* Prüfen, od die PLZ korrekt eingegeben wurde */
-            try {
-                Integer.parseInt(txtPlz.getText());
-                return true;
-            } catch (NumberFormatException e) {
-                lblError.setText(ERROR_MSG_PLZ_EINGABE_NICHT_KORREKT);
-                return false;
-            }
-        } else {
-            lblError.setText(ERROR_MSG_EINGABE_NICHT_KORREKT);
-            return false;
-        }
+        updateTabelle();
+        reset();
+        txtTischNummer.requestFocus();
 
     }
 
     @FXML
     private void reset() {
 
-        tblBenutzer.getSelectionModel().clearSelection();
-
-        cmbRolle.getSelectionModel().select(0);
-
-        txtName.setText("");
-        txtVorname.setText("");
-        txtStrasse.setText("");
-        txtPlz.setText("");
-        txtOrt.setText("");
-        txtEmail.setText("");
-        txtTelefon.setText("");
-        txtBenutzername.setText("");
-        txtKennwort.setText("");
+        tblTisch.getSelectionModel().clearSelection();
+        txtTischNummer.setText("");
     }
 
     @FXML
     private void loeschen() {
 
-        if (tblBenutzer.getSelectionModel().getSelectedItem() == null) {
-            return;
+        if (tblTisch.getSelectionModel().getSelectedItem() == null) {
+            return ;
         }
 
-        Benutzer benutzer = tblBenutzer.getSelectionModel().getSelectedItem().getBenutzer();
+        Tisch tisch = tblTisch.getSelectionModel().getSelectedItem().getTisch();
 
-        if (benutzer != null) {
+        if (tisch != null) {
             try {
-                Context.getInstance().getBenutzerService().benutzerLoeschen(benutzer);
+                Context.getInstance().getTischService().tischLoeschen(tisch);
                 updateTabelle();
-                updateView();
+                //updateView();
             } catch (Exception e) {
-                logger.error("Fehler beim Löschen des Benutzers: ", e);
+                logger.error("Fehler beim Löschen des Tisch: ", e);
                 Alert alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Benutzer löschen");
+                alert.setTitle("Tisch löschen");
                 alert.setHeaderText("Information");
-                alert.setContentText("Das Löschen des Benutzers ist misslungen.");
+                alert.setContentText("Das Löschen des Tisch ist misslungen.");
                 alert.showAndWait();
             }
         }
     }
 
-    private boolean isValid(String str) {
-        return str != null && str.trim().length() > 0;
-    }
-
-    @FXML
-    void zurück(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/VerwaltungHomeView.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            //		stage.initModality(Modality.APPLICATION_MODAL);
-            //		stage.initStyle(StageStyle.UNDECORATED);
-            //		stage.setTitle("Hauptseite");
-            stage.setScene(new Scene(root1));
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (IOException e) {
-            logger.error(e.getMessage(), e);
-        }
-    }
 }
