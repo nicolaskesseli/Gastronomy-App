@@ -34,9 +34,9 @@
             <TableColumn fx:id="colAnzalUebersicht" prefWidth="44.199951171875" text="Anzahl" />
         </columns>
       </TableView>
-      <Button fx:id="bestellungAbschickenBtn" layoutX="433.0" layoutY="479.0" mnemonicParsing="false" onAction="#bestellungAbschicken" prefHeight="44.0" prefWidth="396.0" text="Bestellung abschicken">
+      <Button fx:id="bestellungAbschickenBtn" layoutX="621.0" layoutY="479.0" mnemonicParsing="false" onAction="#bestellungAbschicken" prefHeight="44.0" prefWidth="208.0" text="Bestellung abschicken">
          <font>
-            <Font size="18.0" />
+            <Font size="14.0" />
          </font>
       </Button>
       <TextField fx:id="bemerkungInput" layoutX="433.0" layoutY="402.0" prefHeight="67.0" prefWidth="396.0" />
@@ -76,15 +76,25 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <TableView fx:id="tblGerichtAuswahl" layoutX="32.0" layoutY="289.0" prefHeight="166.0" prefWidth="352.0">
+      <TableView fx:id="tblGerichtAuswahl" layoutX="32.0" layoutY="289.0" prefHeight="181.0" prefWidth="352.0">
         <columns>
           <TableColumn fx:id="colName" prefWidth="267.79998779296875" text="Produkt" />
           <TableColumn fx:id="colPreis" prefWidth="83.20001220703125" text="Preis" />
         </columns>
       </TableView>
-      <Button fx:id="bestellPositionLoeschenBtn" layoutX="31.0" layoutY="477.0" mnemonicParsing="false" onAction="#bestellPositionLoeschen" prefHeight="44.0" prefWidth="352.0" text="Bestellposition löschen">
+      <Button fx:id="bestellPositionLoeschenBtn" layoutX="32.0" layoutY="479.0" mnemonicParsing="false" onAction="#bestellPositionLoeschen" prefHeight="44.0" prefWidth="352.0" text="Bestellposition löschen">
          <font>
-            <Font size="19.0" />
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="BtnBestellungAnzeigen" layoutX="253.0" layoutY="104.0" mnemonicParsing="false" onAction="#bestellungAnzeigen" prefHeight="34.0" prefWidth="130.0" text="Bestellung anzeigen">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="BtnBestellungAktualisieren" layoutX="435.0" layoutY="479.0" mnemonicParsing="false" onAction="#bestellungAktualisieren" prefHeight="44.0" prefWidth="178.0" text="Bestellung aktualisieren">
+         <font>
+            <Font size="14.0" />
          </font>
       </Button>
    </children>

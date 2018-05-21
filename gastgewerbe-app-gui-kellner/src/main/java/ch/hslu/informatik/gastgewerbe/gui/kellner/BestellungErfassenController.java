@@ -42,6 +42,8 @@ public class BestellungErfassenController implements Initializable {
 
 	private List<Produkt> namenListe = new ArrayList<>();
 
+	private BestellungPositionWrapper position2;
+
 	@FXML
 	private TextField tischNrInput;
 
@@ -62,6 +64,12 @@ public class BestellungErfassenController implements Initializable {
 
 	@FXML
 	private Button bestellungAbschickenBtn;
+
+	@FXML
+	private Button BtnBestellungAktualisieren;
+
+	@FXML
+	private Button BtnBestellungAnzeigen;
 
 	@FXML
 	private TextField bemerkungInput;
@@ -154,14 +162,100 @@ public class BestellungErfassenController implements Initializable {
 				updateTableNameSuche();
 
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			logger.error("Fehler beim Gericht suchen nach Name: ", e);
 			throw new RuntimeException(e);
 		}
 	}
 
 	@FXML
-	void zuruck(ActionEvent event) {
+	void bestellungAnzeigen(ActionEvent event) {
+
+		try {
+			bestellübersichtTbl.getItems().clear();
+			int tischNr = Integer.parseInt(tischNrInput.getText());
+
+			List<Bestellung> list = Context.getInstance().getBestellungService().findByRechBezahltTisch(tischNr, false);
+			if (list.isEmpty()) {
+
+			} else {
+
+				Bestellung bestellung = list.get(0);
+
+				List<BestellungPosition> pList = bestellung.getBestellungPositionListe();
+
+				for (int i = 0; i < pList.size(); i++) {
+					position2 = new BestellungPositionWrapper(pList.get(i));
+					bestellübersichtTbl.getItems().add(position2);
+				}
+				
+				bemerkungInput.setText(bestellung.getBemerkung());
+			}
+
+		} catch (Exception e) {
+			logger.error("Fehler bei einer bestehenden Bestellung bearbeiten ", e);
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void bestellungAktualisieren(ActionEvent event) throws Exception {
+
+		try {
+
+			String bemerkung = bemerkungInput.getText();
+
+			if (bemerkung.isEmpty()) {
+				bemerkung = "";
+			}
+
+			if (tischNrInput.getText().isEmpty()) {
+
+				tischNrInput.setText("Tisch-Nr. eingeben");
+
+			} else if (bestellübersichtTbl.getItems().isEmpty()) {
+
+				Alert error = new Alert(Alert.AlertType.ERROR);
+				error.setTitle("ACHTUNG");
+				error.setHeaderText("Bestellung leer!");
+				error.setContentText("Bitte Bestellposition hinzufügen");
+				error.showAndWait();
+
+			} else {
+
+				tischNr = Integer.parseInt(tischNrInput.getText());
+
+				Bestellung bestellung = new Bestellung(bemerkung,
+						Context.getInstance().getAbrechnungService().findByTischNr(tischNr));
+
+				for (BestellungPositionWrapper item : bestellübersichtTbl.getItems()) {
+					bestellung.getBestellungPositionListe().add(item.getBestellungPosition());
+
+				}
+				Context.getInstance().getBestellungService().bestellungAktualisieren(bestellung);
+				
+				bemerkungInput.clear();
+				tischNrInput.clear();
+				bestellübersichtTbl.getItems().clear();
+				tblGerichtAuswahl.getItems().clear();
+				
+			}
+
+		} catch (NumberFormatException e) {
+			String msg = "Keine Nummer im Eingabefeld.";
+			String ausgabe = "Nummer eingeben!";
+			tischNrInput.setText(ausgabe);
+			throw new Exception(msg);
+
+		} catch (Exception e) {
+			String msg = "Ein Fehler ist bei Bestellungübergabe aufgetreten";
+			logger.error(msg, e);
+			throw new Exception(msg, e);
+
+		}
+	}
+
+	@FXML
+	void zuruck(ActionEvent event) throws Exception {
 		try {
 			AnchorPane backRoot = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
 
@@ -173,8 +267,9 @@ public class BestellungErfassenController implements Initializable {
 			mainStage.show();
 
 		} catch (IOException e) {
-			logger.error(e.getMessage(), e);
-			throw new RuntimeException(e);
+			String msg = "Ein Fehler ist beim Laden der letzten Seite aufgetreten";
+			logger.error(msg, e);
+			throw new Exception(msg, e);
 
 		}
 
@@ -185,10 +280,14 @@ public class BestellungErfassenController implements Initializable {
 		try {
 			colPreis.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, Double>("preis"));
 			colName.setCellValueFactory(new PropertyValueFactory<ProduktWrapper, String>("name"));
-			colCodeUebersicht.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, String>("produktCode"));
-			colBezeichnungUebersicht.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, String>("name"));
-			colPreisUebersicht.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Double>("preis"));
-			colAnzalUebersicht.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Integer>("anzahl"));
+			colCodeUebersicht
+					.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, String>("produktCode"));
+			colBezeichnungUebersicht
+					.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, String>("name"));
+			colPreisUebersicht
+					.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Double>("preis"));
+			colAnzalUebersicht
+					.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Integer>("anzahl"));
 
 			updateTableNameSuche();
 			updateTableCodeSuche();
@@ -200,27 +299,27 @@ public class BestellungErfassenController implements Initializable {
 					TableRow<ProduktWrapper> tRow = new TableRow<>();
 
 					tRow.setOnMouseClicked(event -> {
-						
-																 							
-							if (event.getClickCount() == 1 && !tRow.isEmpty()) {
+
+						if (event.getClickCount() == 1 && !tRow.isEmpty()) {
 							if (tRow.getItem() == null) {
-								
+
 							} else {
-							
+
 								ProduktWrapper item = tRow.getItem();
 
-							Produkt produkt = item.getProdukt();
+								Produkt produkt = item.getProdukt();
 
-							if (produkt != null) {
-								position = new BestellungPositionWrapper(new BestellungPosition(produkt, 1));
+								if (produkt != null) {
+									position = new BestellungPositionWrapper(new BestellungPosition(produkt, 1));
 
-								bestellübersichtTbl.getItems().add(position);
-								bestellübersichtTbl.getSelectionModel().select(0);
+									bestellübersichtTbl.getItems().add(position);
+									bestellübersichtTbl.getSelectionModel().select(0);
 
+								}
 							}
+
 						}
-							
-							}	});
+					});
 
 					return tRow;
 				}
@@ -255,8 +354,6 @@ public class BestellungErfassenController implements Initializable {
 
 	public void updateTableNameSuche() {
 
-
-
 		try {
 
 			tblGerichtAuswahl.getItems().clear();
@@ -281,18 +378,17 @@ public class BestellungErfassenController implements Initializable {
 	@FXML
 	void bestellungAbschicken(ActionEvent event) throws Exception {
 
-
 		try {
 
 			String bemerkung = bemerkungInput.getText();
 
 			if (bemerkung.isEmpty()) {
-				bemerkung = "keine Bemerkungen";
+				bemerkung = "";
 			}
 
 			if (tischNrInput.getText().isEmpty()) {
 
-				tischNrInput.setText("TischNr. eingeben...");
+				tischNrInput.setText("Tisch-Nr. eingeben.");
 
 			} else if (bestellübersichtTbl.getItems().isEmpty()) {
 
@@ -312,7 +408,6 @@ public class BestellungErfassenController implements Initializable {
 				for (BestellungPositionWrapper item : bestellübersichtTbl.getItems()) {
 					b.getBestellungPositionListe().add(item.getBestellungPosition());
 
-				
 				}
 
 				Context.getInstance().getBestellungService().bestellen(b);
