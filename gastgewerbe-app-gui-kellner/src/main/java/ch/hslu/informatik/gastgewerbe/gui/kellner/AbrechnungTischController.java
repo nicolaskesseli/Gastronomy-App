@@ -100,7 +100,7 @@ public class AbrechnungTischController implements Initializable {
 			
 		tisch = Context.getInstance().getAbrechnungService().findByTischNr(Integer.parseInt(tischNrInput.getText()));
 		
-		Context.getInstance().getAbrechnungService().tischAbrechnen(tisch, benutzer);
+		gesamtBetrag = Context.getInstance().getAbrechnungService().tischAbrechnen(tisch, benutzer);
 		
 		tblUebersichtBestellung.getItems().clear();
 		
