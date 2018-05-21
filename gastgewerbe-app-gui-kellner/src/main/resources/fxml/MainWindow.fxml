@@ -24,7 +24,7 @@
             <Font name="System Bold" size="31.0" />
          </font>
       </Label>
-      <Button fx:id="abmeldeBtn" alignment="CENTER" layoutX="688.0" layoutY="21.0" maxHeight="64.0" maxWidth="879.0" mnemonicParsing="false" onAction="#abmelden" prefHeight="46.0" prefWidth="139.0" text="Abmelden">
+      <Button fx:id="abmeldeBtn" alignment="CENTER" layoutX="622.0" layoutY="14.0" maxHeight="64.0" maxWidth="879.0" mnemonicParsing="false" onAction="#abmelden" prefHeight="7.0" prefWidth="206.0" text="Abmelden">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
@@ -34,5 +34,6 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
+      <Label fx:id="lblBenutzer" layoutX="622.0" layoutY="62.0" prefHeight="21.0" prefWidth="206.0" />
    </children>
 </AnchorPane>

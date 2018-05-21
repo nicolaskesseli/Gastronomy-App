@@ -1,7 +1,11 @@
 package ch.hslu.informatik.gastgewerbe.gui.kellner;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
+import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungPositionWrapper;
+import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungWrapper;
+import javafx.scene.control.TableColumn;
 import javafx.scene.layout.AnchorPane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,18 +27,33 @@ public class BestellungBereitController {
     /* TODO @Andy Fenster FXML und Controller Bestellung bereit */
 	
 	private static Logger logger = LogManager.getLogger(BestellungBereitController.class);
-	
-    @FXML
-    private TableView<?> bestellungBereitTabelle;
 
     @FXML
-    private Button bestellpositionAbschliessenBtn;
+    private TableView<BestellungWrapper> tblBestKellner;
 
     @FXML
-    private Button zurückBtn;
+    private TableColumn<BestellungWrapper, Integer> colTischNr;
 
     @FXML
-    void bestellungAbschliessen(ActionEvent event) {
+    private TableColumn<BestellungWrapper, LocalDateTime> colZeit;
+
+    @FXML
+    private TableColumn<BestellungWrapper, String> colBemerkung;
+
+    @FXML
+    private TableView<BestellungPositionWrapper> tblPosKellner;
+
+    @FXML
+    private TableColumn<BestellungPositionWrapper, Long> colPos;
+
+    @FXML
+    private TableColumn<BestellungPositionWrapper, Integer> colAnzahl;
+
+    @FXML
+    private TableColumn<BestellungPositionWrapper, String> colProdukt;
+
+    @FXML
+    void bestellPosAusgeliefert(ActionEvent event) {
 
     }
 

@@ -13,6 +13,7 @@ import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
 import ch.hslu.informatik.gastgewerbe.model.KategorieTyp;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -64,6 +65,9 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 
 	@FXML
 	private TableColumn<BestellungPositionWrapper, String> colProdukt;
+
+	@FXML
+	private Label lblBenutzer;
 
 
 	@FXML
@@ -156,6 +160,11 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+		String str = Context.getInstance().getBenutzer().getVorname() + " "
+				+ Context.getInstance().getBenutzer().getNachname();
+		lblBenutzer.setText("Angemeldet: " + str);
+		lblBenutzer.setAlignment(Pos.BASELINE_CENTER);
 
 		//Zeit formatieren
 

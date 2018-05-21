@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,7 +28,7 @@ import javafx.stage.StageStyle;
 	import javafx.fxml.FXML;
 	import javafx.scene.control.Button;
 
-	public class MainWindowController {
+	public class MainWindowController implements Initializable {
 		
 		private static Logger logger = LogManager.getLogger(MainWindowController.class);
 
@@ -43,6 +46,9 @@ import javafx.stage.StageStyle;
 
 		@FXML
 		private Button bestellungBearbeitenBtn;
+
+		@FXML
+		private Label lblBenutzer;
 
 	    @FXML
 	    void bestellungErfassen(ActionEvent event) {
@@ -139,6 +145,11 @@ import javafx.stage.StageStyle;
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+
+		String str = Context.getInstance().getBenutzer().getVorname() + " "
+				+ Context.getInstance().getBenutzer().getNachname();
+		lblBenutzer.setText("Angemeldet: " + str);
+		lblBenutzer.setAlignment(Pos.BASELINE_CENTER);
 
 	}
 

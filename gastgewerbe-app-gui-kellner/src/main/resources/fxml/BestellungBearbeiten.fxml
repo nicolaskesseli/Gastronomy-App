@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.kellner.BestellungBearbeitenController">
+<AnchorPane prefHeight="570.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.kellner.BestellungBearbeitenController">
    <children>
       <Label layoutX="224.0" layoutY="36.0" text="Bestellung bearbeiten" />
       <Button layoutX="489.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" text="zurück" />

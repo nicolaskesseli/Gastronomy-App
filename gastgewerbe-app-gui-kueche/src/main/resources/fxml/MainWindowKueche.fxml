@@ -24,7 +24,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="abmeldeBtn" layoutX="686.0" layoutY="14.0" mnemonicParsing="false" onAction="#abmelden" prefHeight="31.0" prefWidth="138.0" text="Abmelden">
+      <Button fx:id="abmeldeBtn" layoutX="647.0" layoutY="8.0" mnemonicParsing="false" onAction="#abmelden" prefHeight="39.0" prefWidth="191.0" text="Abmelden">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -45,5 +45,10 @@
       </TableView>
       <Label layoutX="52.0" layoutY="59.0" prefHeight="17.0" prefWidth="128.0" text="Bestellungen" />
       <Label layoutX="52.0" layoutY="362.0" prefHeight="21.0" prefWidth="160.0" text="Bestellungspositionen" />
+      <Label fx:id="lblBenutzer" layoutX="647.0" layoutY="49.0" prefHeight="21.0" prefWidth="191.0">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

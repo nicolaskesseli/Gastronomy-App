@@ -11,6 +11,7 @@ import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -68,6 +69,8 @@ public class MainWindowKuecheController extends TimerTask implements Initializab
     @FXML
     private TableColumn<BestellungPositionWrapper, String> colProdukt;
 
+    @FXML
+    private Label lblBenutzer;
 
     @FXML
     void abmelden (ActionEvent event) {
@@ -159,6 +162,11 @@ public class MainWindowKuecheController extends TimerTask implements Initializab
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        String str = Context.getInstance().getBenutzer().getVorname() + " "
+                + Context.getInstance().getBenutzer().getNachname();
+        lblBenutzer.setText("Angemeldet: " + str);
+        lblBenutzer.setAlignment(Pos.BASELINE_CENTER);
 
         //Zeit formatieren
 
