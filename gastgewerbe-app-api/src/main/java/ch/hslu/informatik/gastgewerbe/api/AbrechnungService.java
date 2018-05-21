@@ -19,12 +19,10 @@ public interface AbrechnungService {
 	// Abschluss aller Bestellungen für Tagesabrechnung
 	double abschluss(LocalDateTime zeit) throws Exception;
 
-	// Liefert alle rechnungen für den übergeben Benutzer und Datum zurück
+	// Liefert alle Abnrechnung für den übergeben Benutzer und Datum zurück
 	List<Abrechnung> findByBenutzerUndDatum(Benutzer benutzer, LocalDateTime zeit) throws Exception;
-	
-	 /* Liefert den gesuchten Tisch zurück*/
-    Tisch findByTischNr(int TischNr) throws Exception;
-    
+
+    // Lieferte alle Abrechnungen für das übergebene LocalDateTime
     List<Abrechnung> findByDatum(LocalDateTime zeit) throws Exception;
 
 

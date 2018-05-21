@@ -117,6 +117,7 @@ public class Abrechnung implements Serializable {
 		if (!(o instanceof Abrechnung)) return false;
 		Abrechnung that = (Abrechnung) o;
 		return id == that.id &&
+				tagesAbrechnung == that.tagesAbrechnung &&
 				Objects.equals(bestellung, that.bestellung) &&
 				Objects.equals(benutzer, that.benutzer) &&
 				Objects.equals(zeit, that.zeit) &&
@@ -126,7 +127,7 @@ public class Abrechnung implements Serializable {
 	@Override
 	public int hashCode() {
 
-		return Objects.hash(id, bestellung, benutzer, zeit, betrag);
+		return Objects.hash(id, bestellung, benutzer, zeit, betrag, tagesAbrechnung);
 	}
 
 	@Override
@@ -137,6 +138,7 @@ public class Abrechnung implements Serializable {
 				", benutzer=" + benutzer +
 				", zeit=" + zeit +
 				", betrag=" + betrag +
+				", tagesAbrechnung=" + tagesAbrechnung +
 				'}';
 	}
 }

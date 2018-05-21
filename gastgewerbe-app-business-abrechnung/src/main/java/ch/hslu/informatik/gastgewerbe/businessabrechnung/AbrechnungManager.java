@@ -122,17 +122,7 @@ public class AbrechnungManager implements AbrechnungService {
 			throw new Exception(msg);
 		}
 		}
-	
-	@Override
-	public Tisch findByTischNr(int TischNr) throws Exception {
-		try{
-			return getTischDAO().findByTischNr(TischNr);
-		}catch (Exception e) {
-			String msg = "Keinen Tisch mit Tisch-Nr. " + TischNr + " gefunden";
-			logger.error(msg, e);
-			throw new Exception(msg, e);
-		}
-	}
+
 
 	@Override
 	public List<Abrechnung> findByDatum(LocalDateTime zeit) throws Exception {
