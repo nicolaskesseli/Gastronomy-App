@@ -59,6 +59,7 @@ public class AppInitializer {
 			initProdukt();
 			initTisch();
 			initBestellung();
+			initAbrechnung();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -246,6 +247,32 @@ public class AppInitializer {
             logger.info(">> Tisch mit Id-Nr. " + t.getId() + " wurde in die Datebank gespeichert.");
         }
     }
+
+	private static void initAbrechnung() throws Exception {
+		logger.info(">> Erzeugung von Abrechnung gestartet.");
+
+		BenutzerDAO benDao = new BenutzerDAOImpl();
+		BestellungDAO bestDao = new BestellungDAOImpl();
+
+		Abrechnung ab1 = new Abrechnung(benDao.findById(1), bestDao.findById(30));
+		Abrechnung ab2 = new Abrechnung(benDao.findById(3), bestDao.findById(34));
+
+		List<Abrechnung> abrechnungListe = new ArrayList<>();
+		abrechnungListe.add(ab1);
+		abrechnungListe.add(ab2);
+
+		for (Abrechnung ab:abrechnungListe){
+			logger.info("  >> Abrechnung: " + ab.getId());
+		}
+		logger.info(">> Erzeugung von Abrechnungen beendet.");
+
+		AbrechnungDAO abrechnungDAO = new AbrechnungDAOImpl();
+
+		for (Abrechnung ab:abrechnungListe){
+			abrechnungDAO.save(ab);
+			logger.info(">> Abrechnung mit Id-Nr. " + ab.getId() + " wurde in die Datebank gespeichert.");
+		}
+	}
 
 	private static void initBestellung() throws Exception {
 
