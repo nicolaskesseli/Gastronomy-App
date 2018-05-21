@@ -166,7 +166,7 @@ public class AbrechnungTischController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+	
 		colPreis.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Double>("preis"));
 		colName.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, String>("name"));
 		colAnzahl.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Integer>("anzahl"));
