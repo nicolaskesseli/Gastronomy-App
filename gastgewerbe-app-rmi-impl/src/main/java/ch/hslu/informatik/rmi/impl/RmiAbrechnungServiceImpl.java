@@ -4,6 +4,7 @@ import ch.hslu.informatik.gastgewerbe.api.AbrechnungService;
 import ch.hslu.informatik.gastgewerbe.businessabrechnung.AbrechnungManager;
 import ch.hslu.informatik.gastgewerbe.model.Abrechnung;
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
+import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.model.Tisch;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiAbrechnungService;
 
@@ -31,8 +32,8 @@ public class RmiAbrechnungServiceImpl extends UnicastRemoteObject implements Rmi
 	}
 
 	@Override
-	public double tischAbrechnen(Tisch tisch, Benutzer benutzer) throws Exception {
-		return getAbrechnungService().tischAbrechnen(tisch, benutzer);
+	public double tischAbrechnen(Tisch tisch, Benutzer benutzer, Bestellung bestellung) throws Exception {
+		return getAbrechnungService().tischAbrechnen(tisch, benutzer, bestellung);
 	}
 
 	@Override

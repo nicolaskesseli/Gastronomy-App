@@ -99,10 +99,16 @@ public class AbrechnungTischController implements Initializable {
 		benutzer = Context.getInstance().getBenutzer();
 			
 		tisch = Context.getInstance().getAbrechnungService().findByTischNr(Integer.parseInt(tischNrInput.getText()));
-		
-		Context.getInstance().getAbrechnungService().tischAbrechnen(tisch, benutzer);
-		
+
+		List<Bestellung> abzurechnendeBest = Context.getInstance().getBestellungService().findByRechBezahltTisch(tisch.getTischNr(), false);
+
+		logger.info(abzurechnendeBest.size() + abzurechnendeBest.get(0).toString());
+
+		if( abzurechnendeBest.size()!= 0 && abzurechnendeBest.size()<2){
+			gesamtBetrag = Context.getInstance().getAbrechnungService().tischAbrechnen(tisch, benutzer, abzurechnendeBest.get(0));
+		}
 		tblUebersichtBestellung.getItems().clear();
+		tischNrInput.setText("");
 		
 		} catch (NumberFormatException e) {
 			String msg = "Keine Nummer im Eingabefeld";

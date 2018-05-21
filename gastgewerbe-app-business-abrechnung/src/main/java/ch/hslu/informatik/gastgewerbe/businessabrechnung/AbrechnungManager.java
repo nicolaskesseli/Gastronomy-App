@@ -58,23 +58,9 @@ public class AbrechnungManager implements AbrechnungService {
 
 
     @Override
-    public double tischAbrechnen(Tisch tisch, Benutzer benutzer) throws Exception {
+    public double tischAbrechnen(Tisch tisch, Benutzer benutzer, Bestellung bestellung) throws Exception {
 
 		try {
-			List<Bestellung> bestellungenHeute = getBestellungDAO().findByZeit(LocalDateTime.now());
-			List<Bestellung> abzurechnedeBestellung = new ArrayList<>();
-			for (Bestellung b : bestellungenHeute) {
-				if (b.getTisch().getTischNr() == tisch.getTischNr()) {
-					if (b.isRechnungBezahlt() == false) {
-						abzurechnedeBestellung.add(b);
-					}
-				}
-			}
-			Bestellung bestellung = new Bestellung();
-
-			if (abzurechnedeBestellung.size() < 2) {
-				bestellung = abzurechnedeBestellung.get(0);
-			}
 
 			Abrechnung abrechnung = new Abrechnung(benutzer, bestellung);
 
@@ -84,16 +70,13 @@ public class AbrechnungManager implements AbrechnungService {
 			// Bestellung auf abgerechnet setzen und updaten
 			bestellung.setRechnungBezahlt(true);
 			getBestellungDAO().update(bestellung);
+
 			logger.info(abrechnung.toString()+ " wrude erstellt!");
 
 			double betrag = abrechnung.getGesamtBetrag();
 
 			return betrag;
 
-		}catch (IndexOutOfBoundsException e){
-			String msg = "Mehr als eine Bestellung für "+tisch.toString()+ " / Abrechnen misslungen";
-			logger.error(msg, e);
-			throw new Exception(msg);
 		} catch (Exception e){
 			String msg = "Tisch Abrechnen misslungen";
 			logger.error(msg, e);
