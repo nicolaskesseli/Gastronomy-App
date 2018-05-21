@@ -62,7 +62,7 @@ public class AbrechnungManager implements AbrechnungService {
 
 		try {
 
-			Abrechnung abrechnung = new Abrechnung(benutzer, bestellung, false);
+			Abrechnung abrechnung = new Abrechnung(benutzer, bestellung);
 
 			// Abrechnung speichern
 			getAbrechnungDAO().save(abrechnung);
@@ -131,6 +131,17 @@ public class AbrechnungManager implements AbrechnungService {
 			String msg = "Keinen Tisch mit Tisch-Nr. " + TischNr + " gefunden";
 			logger.error(msg, e);
 			throw new Exception(msg, e);
+		}
+	}
+
+	@Override
+	public List<Abrechnung> findByDatum(LocalDateTime zeit) throws Exception {
+		try{
+			return getAbrechnungDAO().findByDatum(zeit);
+		} catch (Exception e) {
+			String msg = "Rechnungen des Tages " + "konnten nicht geholt werden";
+			logger.error(msg, e);
+			throw new Exception(msg);
 		}
 	}
 

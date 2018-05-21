@@ -15,6 +15,7 @@ import javax.persistence.*;
 		@NamedQuery(name = "Abrechnung.findByDatum", query = "SELECT e FROM Abrechnung e WHERE e.zeit BETWEEN :startDatum AND :endDatum"),
 		@NamedQuery(name = "Abrechnung.findByBenutzer", query = "SELECT e FROM Abrechnung e WHERE e.benutzer=:benutzer"),
 		@NamedQuery(name = "Abrechnung.findByBenutzerUndDatum", query = "SELECT e FROM Abrechnung e WHERE e.zeit BETWEEN :startDatum AND :endDatum AND e.benutzer=:benutzer") })
+
 public class Abrechnung implements Serializable {
 
 	private static final long serialVersionUID = 4575490394462466750L;
@@ -39,11 +40,11 @@ public class Abrechnung implements Serializable {
 
 	}
 
-	public Abrechnung(Benutzer benutzer, Bestellung bestellung, boolean tagesAbrechnung) {
+	public Abrechnung(Benutzer benutzer, Bestellung bestellung) {
 		this.zeit = LocalDateTime.now();
 		this.benutzer = benutzer;
 		this.bestellung = bestellung;
-		this.tagesAbrechnung = tagesAbrechnung;
+		this.tagesAbrechnung = false;
 		this.betrag=0.0;
 	}
 

@@ -6,12 +6,15 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.AbrechnungWrapper;
+import ch.hslu.informatik.gastgewerbe.model.Abrechnung;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -27,6 +30,11 @@ import javafx.util.Callback;
 public class AbrechnungVerwaltungViewController {
 
 	private static Logger logger = LogManager.getLogger(AbrechnungVerwaltungViewController.class);
+	
+	private List<AbrechnungWrapper> abrechnungWrapperList= new ArrayList<>();
+	
+	private List<Abrechnung> abrechnungList= new ArrayList<>();
+
 	
     @FXML
     private TextField datumInput;
@@ -67,10 +75,16 @@ public class AbrechnungVerwaltungViewController {
         String date = datumInput.getText();
 
         LocalDateTime zeit = LocalDateTime.parse(date, formatter);
-    	
+        
+        abrechnungList = Context.getInstance().getAbrechnungService().findByDatum(zeit);
+        
+        //TODO: Liste in Wrapper-Liste umwandeln, die dann der Tabelle hinzufügen und dann die gewünschten ergebnisse ausgeben.
     	
 
-    double tagesUmsatz = Context.getInstance().getAbrechnungService().abschluss(zeit);
+        double tagesUmsatz = Context.getInstance().getAbrechnungService().abschluss(zeit);
+    
+        lblTotal.setText(String.valueOf(tagesUmsatz));
+
     	
     }catch (Exception e){
 		String msg = "Tagesabrechnung misslungen";

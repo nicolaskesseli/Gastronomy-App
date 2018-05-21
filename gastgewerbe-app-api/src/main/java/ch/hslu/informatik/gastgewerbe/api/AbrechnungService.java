@@ -24,6 +24,8 @@ public interface AbrechnungService {
 	
 	 /* Liefert den gesuchten Tisch zurück*/
     Tisch findByTischNr(int TischNr) throws Exception;
+    
+    List<Abrechnung> findByDatum(LocalDateTime zeit) throws Exception;
 
 
 }
