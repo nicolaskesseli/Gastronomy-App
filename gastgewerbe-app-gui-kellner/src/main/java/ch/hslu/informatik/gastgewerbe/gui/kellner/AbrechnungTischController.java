@@ -98,7 +98,7 @@ public class AbrechnungTischController implements Initializable {
 			
 		benutzer = Context.getInstance().getBenutzer();
 			
-		tisch = Context.getInstance().getAbrechnungService().findByTischNr(Integer.parseInt(tischNrInput.getText()));
+		tisch = Context.getInstance().getTischService().findByTischNummer(Integer.parseInt(tischNrInput.getText()));
 
 		List<Bestellung> abzurechnendeBest = Context.getInstance().getBestellungService().findByRechBezahltTisch(tisch.getTischNr(), false);
 

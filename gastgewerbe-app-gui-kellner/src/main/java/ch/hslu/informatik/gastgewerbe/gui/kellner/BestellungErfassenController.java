@@ -248,7 +248,7 @@ public class BestellungErfassenController implements Initializable {
 				tischNr = Integer.parseInt(tischNrInput.getText());
 
 				Bestellung bestellung = new Bestellung(bemerkung,
-						Context.getInstance().getAbrechnungService().findByTischNr(tischNr));
+						Context.getInstance().getTischService().findByTischNummer(tischNr));
 
 				for (BestellungPositionWrapper item : bestellübersichtTbl.getItems()) {
 					bestellung.getBestellungPositionListe().add(item.getBestellungPosition());
@@ -459,7 +459,7 @@ public class BestellungErfassenController implements Initializable {
 				
 				
 				Bestellung b = new Bestellung(bemerkung,
-						Context.getInstance().getAbrechnungService().findByTischNr(tischNr));
+						Context.getInstance().getTischService().findByTischNummer(tischNr));
 
 				for (BestellungPositionWrapper item : bestellübersichtTbl.getItems()) {
 					b.getBestellungPositionListe().add(item.getBestellungPosition());
