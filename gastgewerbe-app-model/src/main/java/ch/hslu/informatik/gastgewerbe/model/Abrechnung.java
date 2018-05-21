@@ -33,15 +33,17 @@ public class Abrechnung implements Serializable {
 
 	private LocalDateTime zeit;
 	private Double betrag;
+	private boolean tagesAbrechnung;
 
 	public Abrechnung() {
 
 	}
 
-	public Abrechnung(Benutzer benutzer, Bestellung bestellung) {
+	public Abrechnung(Benutzer benutzer, Bestellung bestellung, boolean tagesAbrechnung) {
 		this.zeit = LocalDateTime.now();
 		this.benutzer = benutzer;
 		this.bestellung = bestellung;
+		this.tagesAbrechnung = tagesAbrechnung;
 		this.betrag=0.0;
 	}
 
@@ -83,6 +85,15 @@ public class Abrechnung implements Serializable {
 
 	public Double getBetrag() {
 		return betrag;
+	}
+	
+
+	public boolean isTagesAbrechnung() {
+		return tagesAbrechnung;
+	}
+
+	public void setTagesAbrechnung(boolean tagesAbrechnung) {
+		this.tagesAbrechnung = tagesAbrechnung;
 	}
 
 	// Liefert dem Gesamtbetrag für die Abrechnung

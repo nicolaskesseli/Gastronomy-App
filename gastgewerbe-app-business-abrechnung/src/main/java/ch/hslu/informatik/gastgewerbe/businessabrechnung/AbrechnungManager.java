@@ -62,7 +62,7 @@ public class AbrechnungManager implements AbrechnungService {
 
 		try {
 
-			Abrechnung abrechnung = new Abrechnung(benutzer, bestellung);
+			Abrechnung abrechnung = new Abrechnung(benutzer, bestellung, false);
 
 			// Abrechnung speichern
 			getAbrechnungDAO().save(abrechnung);
@@ -96,7 +96,8 @@ public class AbrechnungManager implements AbrechnungService {
 
 			for (Abrechnung a: tagesAbschluss){
 				if(a.getBestellung().isRechnungBezahlt()==true)
-				gesamtBetragTagesabschluss = a.getBetrag() + gesamtBetragTagesabschluss;
+				gesamtBetragTagesabschluss = a.getBetrag();
+				a.setTagesAbrechnung(true);
 			}
 
 			return gesamtBetragTagesabschluss;
