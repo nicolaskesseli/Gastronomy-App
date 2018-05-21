@@ -35,9 +35,19 @@
 						<MenuItem mnemonicParsing="false" onAction="#bestellungAnschauen" text="Bestellung anschauen" />
 					</items>
 				</Menu>
+				<Menu mnemonicParsing="false" text="Abrechnung">
+					<items>
+						<MenuItem mnemonicParsing="false" onAction="#abrechnungVerwaltung" text="Tagesabrechnung" />
+					</items>
+				</Menu>
 				<Menu mnemonicParsing="false" text="Produkte">
 					<items>
 						<MenuItem mnemonicParsing="false" onAction="#produktVerwalten" text="Produktverwaltung" />
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="false" text="Tisch">
+					<items>
+						<MenuItem mnemonicParsing="false" onAction="#tischVerwalten" text="Tischverwaltung" />
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Personal">

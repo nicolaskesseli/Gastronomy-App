@@ -104,7 +104,6 @@ public class BenutzerVerwaltenViewController implements Initializable {
     @FXML
     private Button btnLoeschen;
 
-    // @Override
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

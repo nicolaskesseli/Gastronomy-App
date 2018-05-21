@@ -17,6 +17,7 @@ public class MenuBarViewController implements Initializable {
     private static final String TITEL_BENUTZER_VERWALTEN = "Benutzer";
     private static final String TITEL_BESTELLUNGEN_ANSCHAUEN = "Bestellungen anschauen";
     private static final String TITEL_PRODUKT_VERWALTEN = "Produkt-Typ verwalten";
+    private static final String TITEL_TISCH_VERWALTEN = "Tisch-Typ verwalten";
 
     @FXML
     private Label lblBenutzer;
@@ -85,6 +86,36 @@ public class MenuBarViewController implements Initializable {
 
         try {
             AnchorPane root = FXMLLoader.load(getClass().getResource("/fxml/BenutzerVerwaltenView.fxml"));
+            Context.getInstance().getMainRoot().setCenter(root);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @FXML
+    public void tischVerwalten() {
+
+        lblTitel.setText(TITEL_TISCH_VERWALTEN);
+
+        try {
+            AnchorPane root = FXMLLoader.load(getClass().getResource("/fxml/TischView.fxml"));
+            Context.getInstance().getMainRoot().setCenter(root);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @FXML
+    public void abrechnungVerwaltung() {
+
+        lblTitel.setText(TITEL_TISCH_VERWALTEN);
+
+        try {
+            AnchorPane root = FXMLLoader.load(getClass().getResource("/fxml/AbrechnungTischView.fxml"));
             Context.getInstance().getMainRoot().setCenter(root);
 
         } catch (IOException e) {
