@@ -3,13 +3,13 @@ package ch.hslu.informatik.gastgewerbe.gui.verwaltung;
 
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.scene.control.cell.CheckBoxTableCell;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,7 +17,6 @@ import ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.AbrechnungWrapper;
 import ch.hslu.informatik.gastgewerbe.model.Abrechnung;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -27,9 +26,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
-public class AbrechnungVerwaltungViewController {
+public class AbrechnungViewController {
 
-	private static Logger logger = LogManager.getLogger(AbrechnungVerwaltungViewController.class);
+	private static Logger logger = LogManager.getLogger(AbrechnungViewController.class);
 	
 	private List<AbrechnungWrapper> abrechnungWrapperList= new ArrayList<>();
 	
@@ -61,7 +60,7 @@ public class AbrechnungVerwaltungViewController {
     private Button tagesAbrechnungAbschliessenBtn;
 
     @FXML
-    private Button zurückBtn;
+    private TableColumn<AbrechnungWrapper, String> colAusgewaelt;
 
     @FXML
     private Label lblTotal;
@@ -122,7 +121,8 @@ public class AbrechnungVerwaltungViewController {
 			colZeit.setCellValueFactory(new PropertyValueFactory<AbrechnungWrapper, LocalDateTime>("zeit"));
 			colGesamtbetrag.setCellValueFactory(new PropertyValueFactory<AbrechnungWrapper, Double>("gesamtbetrag"));
 			colStatus.setCellValueFactory(new PropertyValueFactory<AbrechnungWrapper, String>("status"));
-			
+            colAusgewaelt.setCellValueFactory(new PropertyValueFactory<AbrechnungWrapper, String>("ausgewaelt"));
+
 	        // Datumformat anpassen CellFactory anpassen um nach dateFormatter zu formatieren
 
 			colZeit.setCellFactory(

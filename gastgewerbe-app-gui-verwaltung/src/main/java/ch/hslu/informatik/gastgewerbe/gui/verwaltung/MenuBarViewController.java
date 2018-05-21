@@ -118,7 +118,7 @@ public class MenuBarViewController implements Initializable {
         lblTitel.setText(TITEL_ABRECHNUNG_VERWALTEN);
 
         try {
-            AnchorPane root = FXMLLoader.load(getClass().getResource("/fxml/AbrechnungTischView.fxml"));
+            AnchorPane root = FXMLLoader.load(getClass().getResource("/fxml/AbrechnungView.fxml"));
             Context.getInstance().getMainRoot().setCenter(root);
 
         } catch (IOException e) {
