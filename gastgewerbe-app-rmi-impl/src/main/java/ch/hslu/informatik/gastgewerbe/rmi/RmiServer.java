@@ -69,6 +69,11 @@ public class RmiServer {
                 reg.rebind(RmiProduktService.REMOTE_OBJECT_NAME, produktServiceRo);
                 logger.info("Remote Object \'" + RmiProduktService.REMOTE_OBJECT_NAME + "\' bound!");
 
+                //Tisch-remoteObject erstellen und binden
+                RmiTischService tischServiceRo= new RmiTischServiceImpl();
+                reg.rebind(RmiTischService.REMOTE_OBJECT_NAME, tischServiceRo);
+                logger.info("Remote Object \'" + RmiTischService.REMOTE_OBJECT_NAME + "\' bound!");
+
                 String ip = InetAddress.getLocalHost().getHostAddress();
                 String titel = "RMI Server auf " + ip + ":" + portNr + " ist bereit";
 
@@ -92,6 +97,9 @@ public class RmiServer {
 
                 reg.unbind(RmiBenutzerService.REMOTE_OBJECT_NAME);
                 logger.info("Remote Object \'" + RmiBenutzerService.REMOTE_OBJECT_NAME + "\' unbound!");
+
+                reg.unbind(RmiTischService.REMOTE_OBJECT_NAME);
+                logger.info("Remote Object \'" + RmiTischService.REMOTE_OBJECT_NAME + "\' unbound!");
 
                 /* Prozess beenden */
                 System.exit(0);
