@@ -99,7 +99,6 @@ public class AbrechnungTischController implements Initializable {
 		benutzer = Context.getInstance().getBenutzer();
 			
 		tisch = Context.getInstance().getAbrechnungService().findByTischNr(Integer.parseInt(tischNrInput.getText()));
-<<<<<<< HEAD
 
 		List<Bestellung> abzurechnendeBest = Context.getInstance().getBestellungService().findByRechBezahltTisch(tisch.getTischNr(), false);
 
@@ -108,11 +107,7 @@ public class AbrechnungTischController implements Initializable {
 		if( abzurechnendeBest.size()!= 0 && abzurechnendeBest.size()<2){
 			gesamtBetrag = Context.getInstance().getAbrechnungService().tischAbrechnen(tisch, benutzer, abzurechnendeBest.get(0));
 		}
-=======
-		
-		gesamtBetrag = Context.getInstance().getAbrechnungService().tischAbrechnen(tisch, benutzer);
-		
->>>>>>> origin/master
+
 		tblUebersichtBestellung.getItems().clear();
 		tischNrInput.setText("");
 		
