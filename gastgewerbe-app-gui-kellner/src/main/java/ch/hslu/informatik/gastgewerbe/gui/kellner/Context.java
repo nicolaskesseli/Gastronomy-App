@@ -18,6 +18,7 @@ import ch.hslu.informatik.gastgewerbe.rmi.api.RmiAbrechnungService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiBestellungService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiLoginService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiProduktService;
+import ch.hslu.informatik.gastgewerbe.rmi.api.RmiTischService;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -37,6 +38,8 @@ public class Context {
 	private Benutzer benutzer;
 
 	private RmiProduktService produktService;
+	
+	private RmiTischService tischService;
 	
 	private RmiLoginService loginService;
 	
@@ -144,6 +147,59 @@ public class Context {
 		return bestellungService;
 	}
 	
+	public RmiTischService getTischService() {
+
+		int portNr = 0;
+
+		if (tischService == null) {
+
+			try (InputStream is = this.getClass().getClassLoader().getResourceAsStream(PROPERTY_FILE_NAME)) {
+
+				setSecurityManager();
+
+				Properties props = new Properties();
+
+				if (is == null) {
+					throw new RuntimeException(
+							"Die Property-Datei \'" + PROPERTY_FILE_NAME + "\' konnte nicht gefunden werden!");
+				} else {
+
+					props.load(is);
+
+					String ip = props.getProperty("rmi.server.ip");
+					String strPort = props.getProperty("rmi.registry.port");
+
+					try {
+						portNr = Integer.parseInt(strPort);
+						Registry reg = LocateRegistry.getRegistry(ip, portNr);
+
+						if (reg != null) {
+							String url = "rmi://" + ip + ":" + portNr + "/" + RmiTischService.REMOTE_OBJECT_NAME;
+
+							tischService = (RmiTischService) Naming.lookup(url);
+
+						} else {
+							String msg = "Die Reference auf RMI-Registry konnte auf " + ip + ":" + portNr
+									+ " nicht geholt werden!";
+							logger.error(msg);
+							throw new RuntimeException(msg);
+						}
+
+					} catch (NumberFormatException nfe) {
+						String msg = "Die Portnummer-Angabe \'" + strPort + "\' ist nicht korrekt";
+						logger.error(msg, nfe);
+						throw new RuntimeException(nfe);
+					}
+				}
+			} catch (Exception e) {
+				String msg = "Fehler beim Holen des RmiBestellungRO:";
+				logger.error(msg, e);
+				throw new RuntimeException(msg);
+			}
+		}
+
+		return tischService;
+	}
 
 	public RmiLoginService getLoginService() {
 

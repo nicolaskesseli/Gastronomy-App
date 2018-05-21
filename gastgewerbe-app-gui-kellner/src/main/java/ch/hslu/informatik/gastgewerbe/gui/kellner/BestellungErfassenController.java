@@ -16,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TablePosition;
@@ -33,6 +34,7 @@ import ch.hslu.informatik.gastgewerbe.gui.wrapper.ProduktWrapper;
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
 import ch.hslu.informatik.gastgewerbe.model.Produkt;
+import ch.hslu.informatik.gastgewerbe.model.Tisch;
 
 public class BestellungErfassenController implements Initializable {
 
@@ -48,8 +50,18 @@ public class BestellungErfassenController implements Initializable {
 
 	private BestellungPositionWrapper position2;
 
+	
+	 public static final String ERROR_MSG_OFFENE_BESTELLUNG_TRUE = "Es gibt bereits eine offene Bestellung unter dem ausgewählten Tisch";
+	 public static final String ERROR_MSG_GANZE_ZAHL_EINGEBEN = "Ungültige(s) Zahlenformat / Tischnummer. Neue Eingabe";
+	 
 	@FXML
 	private TextField tischNrInput;
+	
+	@FXML
+	private Label lblError;
+	
+	@FXML
+	private TextField inputAnzahl;
 
 	@FXML
 	private TableView<BestellungPositionWrapper> bestellübersichtTbl;
@@ -175,15 +187,19 @@ public class BestellungErfassenController implements Initializable {
 	@FXML
 	void bestellungAnzeigen(ActionEvent event) {
 
+		
+			
 		try {
 			bestellübersichtTbl.getItems().clear();
+			bemerkungInput.setText("");
+			inputAnzahl.setText("1");
 			int tischNr = Integer.parseInt(tischNrInput.getText());
 
 			List<Bestellung> list = Context.getInstance().getBestellungService().findByRechBezahltTisch(tischNr, false);
 			if (list.isEmpty()) {
-
+				lblError.setText("Keine offene Bestellung unter Tisch: " + tischNr + " vorhanden.");
 			} else {
-
+				lblError.setText("");
 				Bestellung bestellung = list.get(0);
 
 				List<BestellungPosition> pList = bestellung.getBestellungPositionListe();
@@ -196,6 +212,9 @@ public class BestellungErfassenController implements Initializable {
 				bemerkungInput.setText(bestellung.getBemerkung());
 			}
 
+		} catch (NumberFormatException e) {
+			lblError.setText(ERROR_MSG_GANZE_ZAHL_EINGEBEN);
+		
 		} catch (Exception e) {
 			logger.error("Fehler bei einer bestehenden Bestellung bearbeiten ", e);
 			throw new RuntimeException(e);
@@ -241,6 +260,7 @@ public class BestellungErfassenController implements Initializable {
 				tischNrInput.clear();
 				bestellübersichtTbl.getItems().clear();
 				tblGerichtAuswahl.getItems().clear();
+				inputAnzahl.setText("1");
 
 			}
 
@@ -310,7 +330,7 @@ public class BestellungErfassenController implements Initializable {
 
 					tRow.setOnMouseClicked(event -> {
 
-						if (event.getClickCount() == 1 && !tRow.isEmpty()) {
+						if (event.getClickCount() == 2 && !tRow.isEmpty()) {
 							if (tRow.getItem() == null) {
 
 							} else {
@@ -320,7 +340,10 @@ public class BestellungErfassenController implements Initializable {
 								Produkt produkt = item.getProdukt();
 
 								if (produkt != null) {
-									position = new BestellungPositionWrapper(new BestellungPosition(produkt, 1));
+									
+									int anzahl = Integer.parseInt(inputAnzahl.getText());
+									
+									position = new BestellungPositionWrapper(new BestellungPosition(produkt, anzahl));
 
 									bestellübersichtTbl.getItems().add(position);
 									bestellübersichtTbl.getSelectionModel().select(0);
@@ -336,43 +359,7 @@ public class BestellungErfassenController implements Initializable {
 
 			});
 
-			bestellübersichtTbl.setRowFactory(
-					new Callback<TableView<BestellungPositionWrapper>, TableRow<BestellungPositionWrapper>>() {
 
-						@Override
-						public TableRow<BestellungPositionWrapper> call(TableView<BestellungPositionWrapper> param) {
-							TableRow<BestellungPositionWrapper> tRow = new TableRow<>();
-
-							tRow.setOnMouseClicked(event -> {
-								if (event.getClickCount() == 2 && !tRow.isEmpty()) {
-									BestellungPositionWrapper item = tRow.getItem();
-									
-									bestellübersichtTbl.getSelectionModel().select(0);
-									Context.getInstance().setAnzahlBearbeiten(item);
-									
-									try {
-							    		AnchorPane bestellungErfassenAnzahlAnpassenRoot = FXMLLoader.load(getClass().getResource("/fxml/BestellungErfassenAnzahlAnpassen.fxml"));
-										Scene bestellungErfassenAnzahlAnpassenScene = new Scene(bestellungErfassenAnzahlAnpassenRoot);
-
-										Stage bestellungErfassenAnzahlStage = new Stage();
-										
-										Context.getInstance().setBestellungErfassenAnzahlStage(bestellungErfassenAnzahlStage);									
-										
-										bestellungErfassenAnzahlStage.setScene(bestellungErfassenAnzahlAnpassenScene);
-										bestellungErfassenAnzahlStage.show();
-									} catch (IOException e) {
-										logger.error(e.getMessage(), e);
-
-									}
-									
-								}
-
-							});
-
-							return tRow;
-						}
-
-					});
 
 		} catch (Exception e) {
 			logger.error("Fehler beim initialisieren: ", e);
@@ -427,6 +414,8 @@ public class BestellungErfassenController implements Initializable {
 	void bestellungAbschicken(ActionEvent event) throws Exception {
 
 		try {
+			
+			
 
 			String bemerkung = bemerkungInput.getText();
 
@@ -448,8 +437,27 @@ public class BestellungErfassenController implements Initializable {
 
 			} else {
 
+				
 				tischNr = Integer.parseInt(tischNrInput.getText());
-
+//				
+//				if (!checkForTable(tischNr)) {
+//					lblError.setText("Test Test Test");
+//				};
+//				
+//				if (checkForTable(tischNr)) {
+//					lblError.setText("Test Test Test222222");
+//				};
+				
+				if (!Context.getInstance().getBestellungService().findByRechBezahltTisch(tischNr, false).isEmpty()) {
+					bestellungAnzeigen(event);
+					lblError.setText("Bereits eine Bestellung unter Tisch-Nr. " + tischNr + " vorhanden.");
+					
+					
+					
+				} else {
+					
+				
+				
 				Bestellung b = new Bestellung(bemerkung,
 						Context.getInstance().getAbrechnungService().findByTischNr(tischNr));
 
@@ -459,12 +467,15 @@ public class BestellungErfassenController implements Initializable {
 				}
 
 				Context.getInstance().getBestellungService().bestellen(b);
-
+				
 				bemerkungInput.clear();
 				tischNrInput.clear();
 				bestellübersichtTbl.getItems().clear();
 				tblGerichtAuswahl.getItems().clear();
-
+				inputAnzahl.setText("1");
+				gerichtNameInput.clear();
+				gerichtNrInput.clear();
+				}
 			}
 
 		} catch (NumberFormatException e) {
@@ -481,4 +492,30 @@ public class BestellungErfassenController implements Initializable {
 		}
 
 	}
+	
+//	public boolean checkForTable(int tischNr) throws Exception{
+//	
+//		boolean checkTrue = false;		
+//		
+//		try {
+//		List<Tisch> list = Context.getInstance().getTischService().alleTische();
+//		
+//		for (int i = 0; i <= list.size(); i++) {
+//			if (list.get(i).getTischNr() == tischNr) {
+//				 checkTrue =  true;
+//				 break;
+//				 
+//			} else {
+//				 return checkTrue;
+//			}
+//			
+//		} return checkTrue;
+//
+//		
+//		} catch (Exception e) {
+//			String msg = "Fehler bei der Pruefung, ob ein Tisch vorhanden ist";
+//			logger.error(msg,  e);
+//			throw new Exception (msg, e);
+//		}
+//	}
 }
