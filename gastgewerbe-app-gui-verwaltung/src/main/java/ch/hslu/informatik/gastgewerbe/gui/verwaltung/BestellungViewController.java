@@ -64,27 +64,6 @@ public class BestellungViewController extends TimerTask implements Initializable
 	@FXML
 	private TableColumn<BestellungPositionWrapper, String> colProdukt;
 
-
-//	@FXML
-//	void abmelden (ActionEvent event) {
-//		try {
-//
-//			AnchorPane loginRoot = FXMLLoader.load(getClass().getResource("/fxml/LoginView.fxml"));
-//
-//			Scene loginScene = new Scene(loginRoot);
-//
-//			Stage mainStage = Context.getInstance().getMainStage();
-//
-//			mainStage.setScene(loginScene);
-//			mainStage.show();
-//
-//
-//
-//		} catch (IOException e) {
-//			logger.error(e.getMessage(), e);
-//
-//		}
-//	}
 	    @FXML
         void bestellungBereit(ActionEvent event) {
 
@@ -267,7 +246,7 @@ public class BestellungViewController extends TimerTask implements Initializable
             for (Bestellung b : alleBestellungen){
 				List<BestellungPosition> bestellungPosition = b.getBestellungPositionListe();
 				for (BestellungPosition p : bestellungPosition) {
-					if (p.getProdukt().getKategorie().equals(KategorieTyp.SNACK) || p.getProdukt().getKategorie().equals(KategorieTyp.GETRANK)){
+					if (p.getProdukt().getKategorie().equals(KategorieTyp.SNACK) || p.getProdukt().getKategorie().equals(KategorieTyp.GETRANK) ||  p.getProdukt().getKategorie().equals(KategorieTyp.SPEISE)){
 							if(!p.isBestellungBereit()){
 								if(!barBestellungen.contains(b)){
 									barBestellungen.add(b);
