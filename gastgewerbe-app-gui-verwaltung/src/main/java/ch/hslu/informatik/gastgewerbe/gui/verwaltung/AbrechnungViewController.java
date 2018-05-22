@@ -75,10 +75,12 @@ public class AbrechnungViewController implements Initializable {
     	try {
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy kk:mm:ss.SSS");
 
+
+
         String date = txtDatumInput.getText();
         date = date + " 00:00:00.000";
 
-        LocalDateTime zeit = LocalDateTime.parse("2018-05-22T16:12:50.257");
+        LocalDateTime zeit = LocalDateTime.parse("2018-05-22T16:52:30.161");
 
         //zeit.minusDays(1);
 
