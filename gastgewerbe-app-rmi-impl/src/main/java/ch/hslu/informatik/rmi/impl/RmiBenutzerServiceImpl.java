@@ -1,7 +1,6 @@
 package ch.hslu.informatik.rmi.impl;
 
 import ch.hslu.informatik.gastgewerbe.api.BenutzerService;
-import ch.hslu.informatik.gastgewerbe.api.LoginService;
 import ch.hslu.informatik.gastgewerbe.businessbenutzer.BenutzerManager;
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 import ch.hslu.informatik.gastgewerbe.model.RolleTyp;
@@ -13,7 +12,9 @@ import java.util.List;
 
 public class RmiBenutzerServiceImpl extends UnicastRemoteObject implements RmiBenutzerService {
 
-    private BenutzerService benutzerService;
+	private static final long serialVersionUID = 2695433427166087172L;
+	
+	private BenutzerService benutzerService;
 
     public RmiBenutzerServiceImpl() throws RemoteException{
 

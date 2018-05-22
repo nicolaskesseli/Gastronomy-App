@@ -12,8 +12,6 @@ import java.util.ResourceBundle;
 
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 import javafx.beans.binding.Bindings;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import org.apache.logging.log4j.LogManager;

@@ -1,8 +1,6 @@
 package ch.hslu.informatik.gastgewerbe.gui.wrapper;
 
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class BestellungWrapper {

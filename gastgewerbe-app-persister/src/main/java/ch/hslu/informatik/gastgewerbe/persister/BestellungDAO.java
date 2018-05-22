@@ -1,11 +1,9 @@
 package ch.hslu.informatik.gastgewerbe.persister;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
-import ch.hslu.informatik.gastgewerbe.model.Tisch;
 
 public interface BestellungDAO extends GenericPersisterDAO<Bestellung> {
 	

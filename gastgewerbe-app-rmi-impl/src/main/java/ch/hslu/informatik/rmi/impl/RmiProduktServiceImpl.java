@@ -12,7 +12,9 @@ import java.util.List;
 
 public class RmiProduktServiceImpl extends UnicastRemoteObject implements RmiProduktService {
 
-    private ProduktService produktService;
+	private static final long serialVersionUID = -4660530900510820485L;
+
+	private ProduktService produktService;
 
     public RmiProduktServiceImpl() throws RemoteException {
 

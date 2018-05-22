@@ -9,7 +9,6 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Properties;
 
-import ch.hslu.informatik.gastgewerbe.api.*;
 import ch.hslu.informatik.gastgewerbe.rmi.api.*;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;

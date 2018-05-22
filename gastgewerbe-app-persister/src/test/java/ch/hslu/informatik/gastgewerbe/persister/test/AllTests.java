@@ -1,6 +1,5 @@
 package ch.hslu.informatik.gastgewerbe.persister.test;
 
-import ch.hslu.informatik.gastgewerbe.persister.BestellungDAO;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;

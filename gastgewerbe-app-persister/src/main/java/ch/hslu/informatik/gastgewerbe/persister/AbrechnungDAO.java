@@ -3,7 +3,6 @@ package ch.hslu.informatik.gastgewerbe.persister;
 import ch.hslu.informatik.gastgewerbe.model.Abrechnung;
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 

@@ -7,7 +7,6 @@ import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

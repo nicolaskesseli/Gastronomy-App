@@ -4,10 +4,8 @@ import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.persister.BestellungDAO;
 import ch.hslu.informatik.gastgewerbe.persister.impl.BestellungDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.util.InitHelper;
-import org.apache.logging.log4j.core.appender.ConsoleAppender;
 import org.junit.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 

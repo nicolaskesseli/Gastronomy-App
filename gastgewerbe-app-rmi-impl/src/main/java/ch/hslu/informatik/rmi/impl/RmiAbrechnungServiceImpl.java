@@ -10,13 +10,13 @@ import ch.hslu.informatik.gastgewerbe.rmi.api.RmiAbrechnungService;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 public class RmiAbrechnungServiceImpl extends UnicastRemoteObject implements RmiAbrechnungService {
 
+	private static final long serialVersionUID = 5817814265886946740L;
+	
 	private AbrechnungService abrechnungService;
 
 	public RmiAbrechnungServiceImpl() throws RemoteException {

@@ -1,7 +1,6 @@
 package ch.hslu.informatik.gastgewerbe.persister.impl;
 
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
-import ch.hslu.informatik.gastgewerbe.model.Produkt;
 import ch.hslu.informatik.gastgewerbe.persister.BestellungPositionDAO;
 import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 

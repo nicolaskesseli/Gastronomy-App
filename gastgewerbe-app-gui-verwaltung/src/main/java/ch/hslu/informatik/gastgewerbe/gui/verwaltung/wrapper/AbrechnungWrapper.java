@@ -2,7 +2,6 @@ package ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper;
 
 
 import ch.hslu.informatik.gastgewerbe.model.Abrechnung;
-import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 import javafx.scene.control.CheckBox;
 
 import java.time.LocalDateTime;

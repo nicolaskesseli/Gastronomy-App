@@ -1,6 +1,5 @@
 package ch.hslu.informatik.gastgewerbe.gui.verwaltung;
 
-import ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.BestellungWrapper;
 import ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.TischWrapper;
 import ch.hslu.informatik.gastgewerbe.model.Tisch;
 import javafx.beans.binding.Bindings;

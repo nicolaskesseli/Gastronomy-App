@@ -1,6 +1,6 @@
 package ch.hslu.informatik.gastgewerbe.persister.impl;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
-import ch.hslu.informatik.gastgewerbe.model.Person;
-import ch.hslu.informatik.gastgewerbe.model.Tisch;
 import ch.hslu.informatik.gastgewerbe.persister.BestellungDAO;
 import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 

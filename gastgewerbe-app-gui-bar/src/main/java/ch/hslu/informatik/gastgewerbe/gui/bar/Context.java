@@ -66,7 +66,7 @@ public class Context {
     public void setMainStage(Stage mainStage) {
         this.mainStage = mainStage;
     }
-
+  //Liefert RmiLoginService zurück
 	public RmiLoginService getLoginService(){
 
 		int portNr = 0;
@@ -122,7 +122,8 @@ public class Context {
 
 		return loginService;
 	}
-
+	
+	//Liefert RmiBestellungService zurück
 	public RmiBestellungService getBestellungService(){
 
 		int portNr = 0;
@@ -176,7 +177,8 @@ public class Context {
 
 		return bestellungService;
 	}
-
+	
+	//Liefert RmiProduktService zurück
 	public RmiProduktService getProduktService(){
 
 		int portNr = 0;

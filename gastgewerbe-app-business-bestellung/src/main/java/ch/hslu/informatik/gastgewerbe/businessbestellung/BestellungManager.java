@@ -1,11 +1,9 @@
 package ch.hslu.informatik.gastgewerbe.businessbestellung;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
-import ch.hslu.informatik.gastgewerbe.model.Tisch;
 import ch.hslu.informatik.gastgewerbe.persister.BestellungPositionDAO;
 import ch.hslu.informatik.gastgewerbe.persister.impl.BestellungPositionDAOImpl;
 import org.apache.logging.log4j.LogManager;
@@ -43,7 +41,7 @@ public class BestellungManager implements BestellungService {
 		return bestellungPosDAO;
 	}
 
-	@Override
+    /* Bestellung am Tisch erfassen */
 	public Bestellung bestellen(Bestellung bestellung) throws Exception {
 		try {
 			return getBestellungDAO().save(bestellung);
@@ -68,7 +66,7 @@ public class BestellungManager implements BestellungService {
 		}
 	}
 
-	@Override
+	/* Bestellungsposition wird auf bereit gesetzt */
 	public boolean bestellungPositionBereit(BestellungPosition bestellungPosition) throws Exception {
 		try {
 			bestellungPosition.setBestellungBereit(true);
@@ -106,7 +104,7 @@ public class BestellungManager implements BestellungService {
 	
 	
 
-	@Override
+	/* Liefer alle Bestellungen für das bestimmte Datum/Zeit */
 	public List<Bestellung> findByZeit(LocalDateTime zeit) throws Exception {
 		try {
 			return getBestellungDAO().findByZeit(zeit);
@@ -117,7 +115,7 @@ public class BestellungManager implements BestellungService {
 		}
 	}
 
-	@Override
+	/* Löscht übergebene Bestellung */
 	public void deleteBestellung(Bestellung bestellung) throws Exception {
     	try{
     		getBestellungDAO().delete(bestellung);
@@ -130,7 +128,7 @@ public class BestellungManager implements BestellungService {
 
 	}
 
-	@Override
+	/* Liefert Bestellung mit dieser ID */
 	public Bestellung findById(Long id) throws Exception {
 
     	try{
@@ -142,7 +140,7 @@ public class BestellungManager implements BestellungService {
 		}
 	}
 
-	@Override
+	/* Liefert BestellungsPos für diese ID */
 	public BestellungPosition bestPosFindById(Long id) throws Exception {
 		try{
 			return  getBestellungPosDAO().findById(id);
@@ -154,7 +152,7 @@ public class BestellungManager implements BestellungService {
 
 	}
 
-	@Override
+	/* Bestellungsposition wird auf ausgeliefert gesetzt */
 	public boolean bestellungPositionAusgeliefert(BestellungPosition bestellungPosition) throws Exception {
 		try {
 			bestellungPosition.setBestellungAusgeliefert(true);
@@ -167,7 +165,7 @@ public class BestellungManager implements BestellungService {
 		}
 	}
 
-	@Override
+	/* Liefert alle Bestellung mit dem übergebenen Boolean für Bezahlungsstatus */
 	public List<Bestellung> findByRechBezahlt(Boolean rechnungBezahlt) throws Exception {
 
     	try{
@@ -179,7 +177,7 @@ public class BestellungManager implements BestellungService {
 		}
 	}
 
-	@Override
+	/*Liefert alle BestellungPositionen mit dem übergebenen Boolean für Bestellungsstatus*/
 	public List<BestellungPosition> bestPosFindByBereit(Boolean bestellungBereit) throws Exception {
 
     	try{
@@ -191,7 +189,7 @@ public class BestellungManager implements BestellungService {
 		}
 	}
 
-	@Override
+	/*Liefert alle BestellungPositionen mit dem übergebenen Boolean fürAuslieferungsstatus*/
 	public List<BestellungPosition> bestPosFindByAusgeliefert(Boolean bestellungAusgeliefert) throws Exception {
 
 		try{
@@ -203,7 +201,7 @@ public class BestellungManager implements BestellungService {
 		}
 	}
 
-	@Override
+	/*Liefert alle Bestellungen mit dem übergebenen Boolean für Bestellungsstatus*/
 	public List<Bestellung> findByBereit(Boolean bestellungBereit) throws Exception {
 		try{
 			return getBestellungDAO().findByBereit(bestellungBereit);
@@ -214,7 +212,7 @@ public class BestellungManager implements BestellungService {
 		}
 	}
 
-	@Override
+	/*Liefert alle Bestellungen mit dem übergebenen Boolean für Auslieferungsstatus*/
 	public List<Bestellung> findByAusgeliefert(Boolean bestellungAusgeliefert) throws Exception {
 		try{
 			return getBestellungDAO().findByAusgeliefert(bestellungAusgeliefert);
@@ -225,7 +223,7 @@ public class BestellungManager implements BestellungService {
 		}
 	}
 
-	@Override
+	/*Liefert alle Bestellungen einer Tisch-Nr., mit dem übergebenen Rechnungsstatus*/
 	public List<Bestellung> findByRechBezahltTisch(int TischNr, Boolean rechnungBezahlt) throws Exception {
 		try{
 			return getBestellungDAO().findByRechBezahltTisch(TischNr, rechnungBezahlt);

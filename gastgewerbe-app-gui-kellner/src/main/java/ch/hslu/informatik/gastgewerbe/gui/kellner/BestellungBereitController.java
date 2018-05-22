@@ -10,7 +10,6 @@ import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungPositionWrapper;
 import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungWrapper;
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
-import ch.hslu.informatik.gastgewerbe.model.KategorieTyp;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -23,12 +22,8 @@ import org.apache.logging.log4j.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class BestellungBereitController extends TimerTask implements Initializable {
 

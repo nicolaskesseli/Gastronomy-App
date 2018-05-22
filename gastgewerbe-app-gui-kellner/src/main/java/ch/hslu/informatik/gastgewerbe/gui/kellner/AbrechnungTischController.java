@@ -11,30 +11,22 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungPositionWrapper;
-import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungWrapper;
-import ch.hslu.informatik.gastgewerbe.gui.wrapper.ProduktWrapper;
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
-import ch.hslu.informatik.gastgewerbe.model.Produkt;
 import ch.hslu.informatik.gastgewerbe.model.Tisch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class AbrechnungTischController implements Initializable {
 
@@ -42,10 +34,6 @@ public class AbrechnungTischController implements Initializable {
 
 	
 	private List<Bestellung> offeneBestellungen = new ArrayList<>();
-	
-	private List<BestellungPosition> offeneBestellungPosition = new ArrayList<>();
-	
-	private List<BestellungWrapper> bestellungenListeWrapper = new ArrayList<>();
 
 	private List<BestellungPositionWrapper> offeneBestellungPositionWrapperListe = new ArrayList<>();
 	

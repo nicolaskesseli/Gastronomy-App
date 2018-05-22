@@ -4,14 +4,17 @@ import ch.hslu.informatik.gastgewerbe.model.Abrechnung;
 import ch.hslu.informatik.gastgewerbe.persister.AbrechnungDAO;
 import ch.hslu.informatik.gastgewerbe.persister.impl.AbrechnungDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.util.InitHelper;
-import org.junit.*;
 
-import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.junit.*;
 
 import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
 
 public class AbrechnungDAOImplTest {
+	
+	private static Logger logger = LogManager.getLogger(AbrechnungDAOImplTest.class);
 
     private static AbrechnungDAO pAbrechnung = new AbrechnungDAOImpl();
 
@@ -66,6 +69,9 @@ public class AbrechnungDAOImplTest {
         Abrechnung erste = pAbrechnung.findAll().get(0);
         assertNotNull(erste);
         double betrag = erste.getGesamtBetrag();
+        
+        // debug zwecke
+        logger.debug(betrag);
 
         /* Ein produkt entfernen geht nur über Bestellung/BestellungPos!!!!! weil ManyToOne */
 

@@ -19,7 +19,6 @@ import ch.hslu.informatik.gastgewerbe.rmi.api.RmiBestellungService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiLoginService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiProduktService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiTischService;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class Context {
@@ -92,7 +91,7 @@ public class Context {
 	public void setBenutzer(Benutzer benutzer) {
 		this.benutzer = benutzer;
 	}
-	
+	// Liefert RmiBestellungService zurück
 	public RmiBestellungService getBestellungService() {
 
 		int portNr = 0;
@@ -146,7 +145,7 @@ public class Context {
 
 		return bestellungService;
 	}
-	
+	// Liefert RmiTischService zurück
 	public RmiTischService getTischService() {
 
 		int portNr = 0;
@@ -200,7 +199,7 @@ public class Context {
 
 		return tischService;
 	}
-
+	// Liefert RmiLoginService zurück
 	public RmiLoginService getLoginService() {
 
 		int portNr = 0;
@@ -254,7 +253,7 @@ public class Context {
 
 		return loginService;
 	}
-	
+	// Liefert RmiProduktService zurück
 	public RmiProduktService getProduktService() {
 
 		int portNr = 0;
@@ -309,7 +308,7 @@ public class Context {
 		return produktService;
 	}
 	
-	
+	// Liefert RmiAbrechnungService zurück
 	public RmiAbrechnungService getAbrechnungService() {
 
 		int portNr = 0;

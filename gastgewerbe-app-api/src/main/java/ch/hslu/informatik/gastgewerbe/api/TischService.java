@@ -1,7 +1,6 @@
 package ch.hslu.informatik.gastgewerbe.api;
 
-import ch.hslu.informatik.gastgewerbe.model.Benutzer;
-import ch.hslu.informatik.gastgewerbe.model.RolleTyp;
+
 import ch.hslu.informatik.gastgewerbe.model.Tisch;
 
 import java.util.List;

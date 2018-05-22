@@ -25,7 +25,7 @@ public class TischManager implements TischService {
         return tischDAO;
     }
 
-    @Override
+  //Fuegt Tisch hinzu
     public Tisch tischHinzufuegen(Tisch tisch) throws Exception {
         try {
             return getTischDAO().save(tisch);
@@ -33,11 +33,11 @@ public class TischManager implements TischService {
             String msg = "Tisch \'" + tisch.getTischNr()
                     + "\' konnte nicht hinzugefügt werden";
             logger.error(msg, e);
-            throw new Exception(msg);
+            throw new Exception(msg, e);
         }
     }
 
-    @Override
+  //Löscht Tisch
     public void tischLoeschen(Tisch tisch) throws Exception {
         try {
             getTischDAO().delete(tisch);
@@ -45,10 +45,11 @@ public class TischManager implements TischService {
             String msg = "Tisch \'" + tisch.getTischNr()
                     + "\' konnte nicht gelöscht werden";
             logger.error(msg, e);
-            throw new Exception(msg);
+            throw new Exception(msg, e);
         }
     }
 
+    // Ändert bestehender Tisch
     public Tisch tischAktualisieren(Tisch tisch) throws Exception {
         try {
             return getTischDAO().update(tisch);
@@ -56,29 +57,29 @@ public class TischManager implements TischService {
             String msg = "Tisch \'" + tisch.getTischNr()
                     + "\' konnte nicht aktualisiert werden";
             logger.error(msg, e);
-            throw new Exception(msg);
+            throw new Exception(msg, e);
         }
     }
 
-    @Override
+  //Zeigt alle Tische an
     public List<Tisch> alleTische() throws Exception{
         try {
             return getTischDAO().findAll();
         } catch (Exception e) {
             String msg = "Tisch konnten nicht gefunden werden";
             logger.error(msg, e);
-            throw new Exception(msg);
+            throw new Exception(msg, e);
         }
     }
 
-    @Override
+  //Tisch nach Nummer suchen und finden
     public Tisch findByTischNummer(int tischNr) throws Exception{
         try {
             return getTischDAO().findByTischNr(tischNr);
         } catch (Exception e) {
             String msg = "Tisch konnte nicht gefunden werden";
             logger.error(msg, e);
-            throw new Exception(msg);
+            throw new Exception(msg, e);
         }
 	}
 }

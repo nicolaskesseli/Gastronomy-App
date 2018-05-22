@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import ch.hslu.informatik.gastgewerbe.model.KategorieTyp;
-import ch.hslu.informatik.gastgewerbe.model.RolleTyp;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

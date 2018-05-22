@@ -5,7 +5,6 @@ import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiLoginService;
 import ch.hslu.informatik.gastgewerbe.verteiler.business.login.LoginManager;
 
-import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 

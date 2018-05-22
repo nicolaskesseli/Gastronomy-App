@@ -1,13 +1,8 @@
 package ch.hslu.informatik.rmi.impl;
 
-import ch.hslu.informatik.gastgewerbe.api.ProduktService;
 import ch.hslu.informatik.gastgewerbe.api.TischService;
-import ch.hslu.informatik.gastgewerbe.businessprodukt.ProduktManager;
 import ch.hslu.informatik.gastgewerbe.businesstisch.TischManager;
-import ch.hslu.informatik.gastgewerbe.model.KategorieTyp;
-import ch.hslu.informatik.gastgewerbe.model.Produkt;
 import ch.hslu.informatik.gastgewerbe.model.Tisch;
-import ch.hslu.informatik.gastgewerbe.rmi.api.RmiProduktService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiTischService;
 
 import java.rmi.RemoteException;
@@ -16,7 +11,9 @@ import java.util.List;
 
 public class RmiTischServiceImpl extends UnicastRemoteObject implements RmiTischService {
 
-    private TischService tischService;
+	private static final long serialVersionUID = 5660541388281430955L;
+	
+	private TischService tischService;
 
     public RmiTischServiceImpl() throws RemoteException {
 

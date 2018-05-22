@@ -3,9 +3,6 @@ package ch.hslu.informatik.gastgewerbe.gui.verwaltung;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import ch.hslu.informatik.gastgewerbe.rmi.api.RmiLoginService;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

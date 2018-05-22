@@ -37,7 +37,7 @@ public class BenutzerManager implements BenutzerService {
             String msg = "Benutzer \'" + benutzer.getNachname() + " " + benutzer.getVorname()
                     + "\' konnte nicht hinzugefügt werden";
             logger.error(msg, e);
-            throw new Exception(msg);
+            throw new Exception(msg + e);
         }
     }
 
@@ -48,7 +48,7 @@ public class BenutzerManager implements BenutzerService {
             String msg = "Benutzer \'" + benutzer.getNachname() + " " + benutzer.getVorname()
                     + "\' konnte nicht aktualisiert werden";
             logger.error(msg, e);
-            throw new Exception(msg);
+            throw new Exception(msg + e);
         }
     }
 
@@ -59,7 +59,7 @@ public class BenutzerManager implements BenutzerService {
             String msg = "Benutzer \'" + benutzer.getNachname() + " " + benutzer.getVorname()
                     + "\' konnte nicht gelöscht werden";
             logger.error(msg, e);
-            throw new Exception(msg);
+            throw new Exception(msg + e);
         }
     }
 
@@ -69,7 +69,7 @@ public class BenutzerManager implements BenutzerService {
         } catch (Exception e) {
             String msg = "Benutzer \'" + benutzername + "\' konnte nicht gefunden werden";
             logger.error(msg, e);
-            throw new Exception(msg);
+            throw new Exception(msg + e);
         }
     }
 
@@ -79,7 +79,7 @@ public class BenutzerManager implements BenutzerService {
         } catch (Exception e) {
             String msg = "Benutzer als \'" + rolleTyp.bezeichnung() + "\' konnten nicht gefunden werden";
             logger.error(msg, e);
-            throw new Exception(msg);
+            throw new Exception(msg + e);
         }
     }
 
@@ -89,7 +89,7 @@ public class BenutzerManager implements BenutzerService {
         } catch (Exception e) {
             String msg = "Benutzer \'" + nachname + " " + vorname + "\' konnte nicht gefunden werden";
             logger.error(msg, e);
-            throw new Exception(msg);
+            throw new Exception(msg + e);
         }
     }
 
@@ -99,7 +99,7 @@ public class BenutzerManager implements BenutzerService {
         } catch (Exception e) {
             String msg = "Benutzer konnten nicht gefunden werden";
             logger.error(msg, e);
-            throw new Exception(msg);
+            throw new Exception(msg + e);
         }
     }
 
