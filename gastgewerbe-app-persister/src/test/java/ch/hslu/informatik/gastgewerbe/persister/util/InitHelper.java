@@ -273,7 +273,7 @@ public class InitHelper {
 
 		List<Abrechnung> liste = new ArrayList<Abrechnung>();
 
-		Abrechnung abrechnung = new Abrechnung(ben.get(0), b.get(0), false);
+		Abrechnung abrechnung = new Abrechnung(ben.get(0), b.get(0));
 
 		liste.add(abrechnung);
 

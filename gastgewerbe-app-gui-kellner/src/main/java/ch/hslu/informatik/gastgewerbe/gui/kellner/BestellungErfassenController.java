@@ -222,7 +222,7 @@ public class BestellungErfassenController implements Initializable {
 	}
 
 	public void bestellungAktualisieren(ActionEvent event) throws Exception {
-
+				lblError.setText("");
 		try {
 
 			String bemerkung = bemerkungInput.getText();
@@ -246,9 +246,19 @@ public class BestellungErfassenController implements Initializable {
 			} else {
 
 				tischNr = Integer.parseInt(tischNrInput.getText());
+				
+				Tisch tisch = Context.getInstance().getTischService().findByTischNummer(tischNr);
+				if (!(tisch != null)) {
+					lblError.setText("Tisch-Nr. " + tischNr + " nicht vorhanden");
+				} else {
+					
+				
 
+				
 				Bestellung bestellung = new Bestellung(bemerkung,
-						Context.getInstance().getTischService().findByTischNummer(tischNr));
+				Context.getInstance().getTischService().findByTischNummer(tischNr));
+				
+				
 
 				for (BestellungPositionWrapper item : bestellübersichtTbl.getItems()) {
 					bestellung.getBestellungPositionListe().add(item.getBestellungPosition());
@@ -262,7 +272,7 @@ public class BestellungErfassenController implements Initializable {
 				tblGerichtAuswahl.getItems().clear();
 				inputAnzahl.setText("1");
 
-			}
+			}}
 
 		} catch (NumberFormatException e) {
 			String msg = "Keine Nummer im Eingabefeld.";
