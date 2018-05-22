@@ -6,55 +6,55 @@ import java.time.LocalDateTime;
 
 public class BestellungWrapper {
 
-	private Bestellung bestellung;
+    private Bestellung bestellung;
 
-	public BestellungWrapper() {
+    public BestellungWrapper(){
 
-	}
+    }
 
-	public BestellungWrapper(Bestellung bestellung) {
-		this.bestellung = bestellung;
-	}
+    public BestellungWrapper(Bestellung bestellung) {
+        this.bestellung= bestellung;
+    }
 
-	public Bestellung getBestellung() {
-		return bestellung;
-	}
+    public Bestellung getBestellung() {
+        return bestellung;
+    }
 
-	public void setBestellung(Bestellung bestellung) {
-		this.bestellung = bestellung;
-	}
+    public void setBestellung(Bestellung bestellung) {
+        this.bestellung = bestellung;
+    }
 
-	public long getId() {
-		return bestellung.getId();
-	}
+    public long getId() {
+        return bestellung.getId();
+    }
 
-	public void setId(long id) {
-		bestellung.setId(id);
-	}
+    public void setId(long id) {
+        bestellung.setId(id);
+    }
 
-	public void setTischNr(int tischNr) {
-		bestellung.getTisch().setTischNr(tischNr);
-	}
+    public void setTischNr(int tischNr){
+        bestellung.getTisch().setTischNr(tischNr);
+    }
 
-	public int getTischNr() {
-		return bestellung.getTisch().getTischNr();
-	}
+    public int getTischNr(){
+        return bestellung.getTisch().getTischNr();
+    }
 
-	public void setZeit(LocalDateTime zeit) {
-		bestellung.setZeit(zeit);
-	}
+    public void setZeit(LocalDateTime zeit){
+        bestellung.setZeit(zeit);
+    }
 
-	public LocalDateTime getZeit() {
-		return bestellung.getZeit();
-	}
+    public LocalDateTime getZeit(){
+        return bestellung.getZeit();
+    }
 
-	public String getBemerkung() {
+    public String getBemerkung() {
 
-		return bestellung.getBemerkung();
-	}
+        return bestellung.getBemerkung();
+    }
 
-	public void setBemerkung(String bemerkung) {
+    public void setBemerkung(String bemerkung) {
 
-		bestellung.setBemerkung(bemerkung);
-	}
+        bestellung.setBemerkung(bemerkung);
+    }
 }

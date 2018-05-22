@@ -3,6 +3,9 @@ package ch.hslu.informatik.gastgewerbe.gui.verwaltung;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import ch.hslu.informatik.gastgewerbe.rmi.api.RmiLoginService;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class LoginViewController implements Initializable {
+
 
 	private static Logger logger = LogManager.getLogger(LoginViewController.class);
 
@@ -72,7 +76,8 @@ public class LoginViewController implements Initializable {
 					Context.getInstance().getMainRoot().setTop(menuBar);
 					Context.getInstance().getMainRoot().setCenter(root);
 
-				} else {
+
+				} else{
 					lblError.setText(LoginViewController.ACCESS_DENIED_MESSAGE);
 				}
 

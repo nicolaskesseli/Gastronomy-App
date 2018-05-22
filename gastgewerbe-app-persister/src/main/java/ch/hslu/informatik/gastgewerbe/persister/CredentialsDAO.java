@@ -1,5 +1,6 @@
 package ch.hslu.informatik.gastgewerbe.persister;
 
+
 import ch.hslu.informatik.gastgewerbe.model.Credentials;
 
 /**
@@ -10,12 +11,13 @@ import ch.hslu.informatik.gastgewerbe.model.Credentials;
  * 
  */
 public interface CredentialsDAO extends GenericPersisterDAO<Credentials> {
-	/**
-	 * Liefert die Credentials für den übergebenen Benutzernamen zurück.
-	 * 
-	 * @param benutzername
-	 * @return
-	 * @throws Exception
-	 */
-	Credentials findByBenutzername(String benutzername) throws Exception;
+    /**
+     * Liefert die Credentials für den übergebenen Benutzernamen zurück.
+     * 
+     * @param benutzername
+     * @return
+     * @throws Exception
+     */
+    Credentials findByBenutzername(String benutzername) throws Exception;
 }
+

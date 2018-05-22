@@ -3,8 +3,10 @@ package ch.hslu.informatik.gastgewerbe.gui.bar;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import ch.hslu.informatik.gastgewerbe.api.LoginService;
 import ch.hslu.informatik.gastgewerbe.gui.bar.Context;
 import ch.hslu.informatik.gastgewerbe.gui.bar.LoginViewController;
@@ -14,6 +16,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

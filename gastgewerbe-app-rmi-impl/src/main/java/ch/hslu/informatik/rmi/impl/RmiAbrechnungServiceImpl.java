@@ -10,10 +10,11 @@ import ch.hslu.informatik.gastgewerbe.rmi.api.RmiAbrechnungService;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
-@SuppressWarnings("serial")
 public class RmiAbrechnungServiceImpl extends UnicastRemoteObject implements RmiAbrechnungService {
 
 	private AbrechnungService abrechnungService;

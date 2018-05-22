@@ -1,5 +1,6 @@
 package ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper;
 
+
 import ch.hslu.informatik.gastgewerbe.model.Abrechnung;
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 import javafx.scene.control.CheckBox;
@@ -45,7 +46,6 @@ public class AbrechnungWrapper {
 
     public void setBenutzer(String benutzer){
         abrechnung.getBenutzer().getCredentials().setBenutzername(benutzer);
-
     }
 
     public void setZeit(LocalDateTime zeit){

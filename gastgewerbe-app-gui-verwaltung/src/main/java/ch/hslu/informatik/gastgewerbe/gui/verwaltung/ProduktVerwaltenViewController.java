@@ -24,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 public class ProduktVerwaltenViewController implements Initializable {
 
 	private static Logger logger = LogManager.getLogger(ProduktVerwaltenViewController.class);
@@ -74,14 +75,14 @@ public class ProduktVerwaltenViewController implements Initializable {
 	private TableColumn<ProduktWrapper, String> colProduktCode;
 
 	@FXML
-	void zuruck(ActionEvent event) {
+	void zuruck (ActionEvent event) {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/VerwaltungHomeView.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
-			// stage.initModality(Modality.APPLICATION_MODAL);
-			// stage.initStyle(StageStyle.UNDECORATED);
-			// stage.setTitle("Hauptseite");
+			//		stage.initModality(Modality.APPLICATION_MODAL);
+			//		stage.initStyle(StageStyle.UNDECORATED);
+			//		stage.setTitle("Hauptseite");
 			stage.setScene(new Scene(root1));
 			stage.show();
 			((Node) (event.getSource())).getScene().getWindow().hide();
@@ -106,7 +107,7 @@ public class ProduktVerwaltenViewController implements Initializable {
 			kategorieListe.add(k1);
 			kategorieListe.add(k2);
 			kategorieListe.add(k3);
-
+			
 			cmbKategorie.getItems().addAll(kategorieListe);
 
 			if (tblProdukt.getItems().size() > 0 && cmbKategorie.getItems().size() > 0) {
@@ -123,7 +124,7 @@ public class ProduktVerwaltenViewController implements Initializable {
 
 				@Override
 				public void changed(ObservableValue<? extends ProduktWrapper> observable, ProduktWrapper oldValue,
-						ProduktWrapper newValue) {
+									ProduktWrapper newValue) {
 					if (newValue != null) {
 						updateView();
 					}
@@ -180,8 +181,11 @@ public class ProduktVerwaltenViewController implements Initializable {
 
 			List<Produkt> produktListe = Context.getInstance().getProduktService().alleProdukt();
 
+
 			if (produktListe.size() > 0) {
 				List<ProduktWrapper> wrapperListe = new ArrayList<>();
+
+				int nummer = 1;
 
 				for (Produkt produkt : produktListe) {
 					wrapperListe.add(new ProduktWrapper(produkt));
@@ -218,11 +222,11 @@ public class ProduktVerwaltenViewController implements Initializable {
 
 			Produkt p = tblProdukt.getSelectionModel().getSelectedItem().getProdukt();
 
-			cmbKategorie.getSelectionModel().select(p.getKategorie());
-			txtProduktName.setText(p.getName());
-			txtProduktCode.setText(p.getProduktCode());
-			txtProduktPreis.setText("" + p.getPreis());
-			txtBeschreibung.setText(p.getBeschreibung());
+				cmbKategorie.getSelectionModel().select(p.getKategorie());
+				txtProduktName.setText(p.getName());
+				txtProduktCode.setText(p.getProduktCode());
+				txtProduktPreis.setText("" + p.getPreis());
+				txtBeschreibung.setText(p.getBeschreibung());
 		}
 
 	}
@@ -346,6 +350,7 @@ public class ProduktVerwaltenViewController implements Initializable {
 		}
 	}
 
+
 	@FXML
 	private void reset() {
 
@@ -359,3 +364,4 @@ public class ProduktVerwaltenViewController implements Initializable {
 	}
 
 }
+

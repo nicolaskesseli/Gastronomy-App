@@ -1,5 +1,6 @@
 package ch.hslu.informatik.gastgewerbe.persister;
 
+
 import java.util.List;
 
 /**
@@ -64,3 +65,4 @@ public interface GenericPersisterDAO<T> {
 	List<T> findAll() throws Exception;
 
 }
+

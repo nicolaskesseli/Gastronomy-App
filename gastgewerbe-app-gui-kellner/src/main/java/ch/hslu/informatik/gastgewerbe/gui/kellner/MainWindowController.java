@@ -14,123 +14,135 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
-public class MainWindowController implements Initializable {
+	
 
-	private static Logger logger = LogManager.getLogger(MainWindowController.class);
+	import javafx.fxml.FXML;
+	import javafx.scene.control.Button;
 
-	@FXML
-	private Button tischAbrechnenBtn;
+	public class MainWindowController implements Initializable {
+		
+		private static Logger logger = LogManager.getLogger(MainWindowController.class);
 
-	@FXML
-	private Button bestellungErfassen;
+	    @FXML
+	    private Button tischAbrechnenBtn;
 
-	@FXML
-	private Button offeneBestellungen;
+	    @FXML
+	    private Button bestellungErfassen;
 
-	@FXML
-	private Button abmeldeBtn;
+	    @FXML
+	    private Button offeneBestellungen;
 
-	@FXML
-	private Button bestellungBearbeitenBtn;
+	    @FXML
+	    private Button abmeldeBtn;
 
-	@FXML
-	private Label lblBenutzer;
+		@FXML
+		private Button bestellungBearbeitenBtn;
 
-	@FXML
-	void bestellungErfassen(ActionEvent event) {
-		try {
-			AnchorPane bestellungErfassenRoot = FXMLLoader
-					.load(getClass().getResource("/fxml/BestellungErfassenView.fxml"));
-			Scene bestellungErfassenScene = new Scene(bestellungErfassenRoot);
+		@FXML
+		private Label lblBenutzer;
 
-			Stage mainStage = Context.getInstance().getMainStage();
+	    @FXML
+	    void bestellungErfassen(ActionEvent event) {
+	    	try {
+	    		AnchorPane bestellungErfassenRoot = FXMLLoader.load(getClass().getResource("/fxml/BestellungErfassenView.fxml"));
+				Scene bestellungErfassenScene = new Scene(bestellungErfassenRoot);
 
-			mainStage.setScene(bestellungErfassenScene);
-			mainStage.show();
-		} catch (IOException e) {
-			logger.error(e.getMessage(), e);
+				Stage mainStage = Context.getInstance().getMainStage();
 
-		}
-	}
+				mainStage.setScene(bestellungErfassenScene);
+				mainStage.show();
+			} catch (IOException e) {
+				logger.error(e.getMessage(), e);
 
-	@FXML
-	void bestellungBearbeiten(ActionEvent event) {
+			}
+	    }
 
-		try {
-			AnchorPane bestellungBearbeitenRoot = FXMLLoader
-					.load(getClass().getResource("/fxml/BestellungBearbeiten.fxml"));
-			Scene bestellungBearbeitenScene = new Scene(bestellungBearbeitenRoot);
+		@FXML
+		void bestellungBearbeiten(ActionEvent event) {
 
-			Stage mainStage = Context.getInstance().getMainStage();
+            try {
+                AnchorPane bestellungBearbeitenRoot = FXMLLoader.load(getClass().getResource("/fxml/BestellungBearbeiten.fxml"));
+                Scene bestellungBearbeitenScene = new Scene(bestellungBearbeitenRoot);
 
-			mainStage.setScene(bestellungBearbeitenScene);
-			mainStage.show();
-		} catch (IOException e) {
-			logger.error(e.getMessage(), e);
+                Stage mainStage = Context.getInstance().getMainStage();
 
-		}
+                mainStage.setScene(bestellungBearbeitenScene);
+                mainStage.show();
+            } catch (IOException e) {
+                logger.error(e.getMessage(), e);
 
-	}
+            }
 
-	@FXML
-	void offeneBestellungen(ActionEvent event) {
-		try {
-			AnchorPane mainRoot = FXMLLoader.load(getClass().getResource("/fxml/BestellungBereitView.fxml"));
-			Scene mainScene = new Scene(mainRoot);
-
-			Stage mainStage = Context.getInstance().getMainStage();
-
-			mainStage.setScene(mainScene);
-			mainStage.show();
-
-		} catch (IOException e) {
-			logger.error(e.getMessage(), e);
-
-		}
-	}
-
-	@FXML
-	void tischAbrechnen(ActionEvent event) {
-		try {
-			AnchorPane mainRoot = FXMLLoader.load(getClass().getResource("/fxml/AbrechnungTischView.fxml"));
-			Scene mainScene = new Scene(mainRoot);
-
-			Stage mainStage = Context.getInstance().getMainStage();
-
-			mainStage.setScene(mainScene);
-			mainStage.show();
-
-		} catch (IOException e) {
-			logger.error(e.getMessage(), e);
-
-		}
-	}
-
-	@FXML
-	private void abmelden(ActionEvent event) {
-
-		try {
-			AnchorPane abmeldenRoot = FXMLLoader.load(getClass().getResource("/fxml/LoginView.fxml"));
-
-			Scene abmeldenScene = new Scene(abmeldenRoot);
-
-			Stage mainStage = Context.getInstance().getMainStage();
-
-			mainStage.setScene(abmeldenScene);
-			mainStage.show();
-
-		} catch (IOException e) {
-			logger.error(e.getMessage(), e);
-			throw new RuntimeException(e);
 
 		}
 
+
+		@FXML
+	    void offeneBestellungen(ActionEvent event) {
+	    	try {
+	    		AnchorPane mainRoot = FXMLLoader.load(getClass().getResource("/fxml/BestellungBereitView.fxml"));
+				Scene mainScene = new Scene(mainRoot);
+
+				Stage mainStage = Context.getInstance().getMainStage();
+
+				mainStage.setScene(mainScene);
+				mainStage.show();
+
+	    	} catch (IOException e) {
+				logger.error(e.getMessage(), e);
+
+			}
+	    }
+
+	    @FXML
+	    void tischAbrechnen(ActionEvent event) {
+	    	try {
+	    		AnchorPane mainRoot = FXMLLoader.load(getClass().getResource("/fxml/AbrechnungTischView.fxml"));
+				Scene mainScene = new Scene(mainRoot);
+
+				Stage mainStage = Context.getInstance().getMainStage();
+
+				mainStage.setScene(mainScene);
+				mainStage.show();
+
+	    	} catch (IOException e) {
+				logger.error(e.getMessage(), e);
+
+			}
+	    }
+	    
+	    @FXML
+		private void abmelden(ActionEvent event) {
+
+			try {
+                AnchorPane abmeldenRoot = FXMLLoader.load(getClass().getResource("/fxml/LoginView.fxml"));
+
+                Scene abmeldenScene = new Scene(abmeldenRoot);
+
+                Stage mainStage = Context.getInstance().getMainStage();
+
+                mainStage.setScene(abmeldenScene);
+                mainStage.show();
+
+			} catch (IOException e) {
+				logger.error(e.getMessage(), e);
+				throw new RuntimeException(e);
+
+			}
+
 	}
+
+
+	
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub

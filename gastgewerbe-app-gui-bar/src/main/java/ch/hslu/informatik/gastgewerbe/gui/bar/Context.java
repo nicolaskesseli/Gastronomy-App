@@ -1,5 +1,7 @@
 package ch.hslu.informatik.gastgewerbe.gui.bar;
 
+
+
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiBestellungService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiLoginService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiProduktService;
@@ -8,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
+
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,15 +25,15 @@ import java.util.Properties;
 public class Context {
 
 	private static Logger logger = LogManager.getLogger(Context.class);
-
+	
 	private static final String PROPERTY_FILE_NAME = "rmi_client.properties";
 	private static final String POLICY_FILE_NAME = "rmi_client.policy";
-
+	
 	private static Context INSTANCE = new Context();
-
+	
 	private Benutzer benutzer;
 
-	private Stage mainStage;
+    private Stage mainStage;
 
 	private RmiLoginService loginService;
 
@@ -56,16 +59,15 @@ public class Context {
 		this.benutzer = benutzer;
 	}
 
-	public Stage getMainStage() {
-		return mainStage;
-	}
+    public Stage getMainStage() {
+        return mainStage;
+    }
 
-	public void setMainStage(Stage mainStage) {
-		this.mainStage = mainStage;
-	}
-	
-	//Liefert RmiLoginService zurück
-	public RmiLoginService getLoginService() {
+    public void setMainStage(Stage mainStage) {
+        this.mainStage = mainStage;
+    }
+
+	public RmiLoginService getLoginService(){
 
 		int portNr = 0;
 
@@ -93,8 +95,8 @@ public class Context {
 
 						if (reg != null) {
 							String url = "rmi://" + ip + ":" + portNr + "/" + RmiLoginService.REMOTE_OBJECT_NAME;
-
-							logger.info("Adresse rmi: " + url);
+							
+							logger.info("Adresse rmi: " +url);
 
 							loginService = (RmiLoginService) Naming.lookup(url);
 
@@ -121,8 +123,7 @@ public class Context {
 		return loginService;
 	}
 
-	//Liefert RmiBestellungService zurück
-	public RmiBestellungService getBestellungService() {
+	public RmiBestellungService getBestellungService(){
 
 		int portNr = 0;
 
@@ -175,9 +176,8 @@ public class Context {
 
 		return bestellungService;
 	}
-	
-	//Liefert RmiProduktService zurück
-	public RmiProduktService getProduktService() {
+
+	public RmiProduktService getProduktService(){
 
 		int portNr = 0;
 
@@ -206,7 +206,7 @@ public class Context {
 						if (reg != null) {
 							String url = "rmi://" + ip + ":" + portNr + "/" + RmiProduktService.REMOTE_OBJECT_NAME;
 
-							produktService = (RmiProduktService) Naming.lookup(url);
+						produktService = (RmiProduktService) Naming.lookup(url);
 
 						} else {
 							String msg = "Die Reference auf RMI-Registry konnte auf " + ip + ":" + portNr
@@ -241,8 +241,8 @@ public class Context {
 
 		InputStream is = this.getClass().getClassLoader().getResourceAsStream(POLICY_FILE_NAME);
 
-		File tempFile = File.createTempFile(System.getProperty("user.home") + File.separator + "gastgewerbe_rmi_policy",
-				"tmp");
+		File tempFile = File
+				.createTempFile(System.getProperty("user.home") + File.separator + "gastgewerbe_rmi_policy", "tmp");
 
 		FileOutputStream fos = new FileOutputStream(tempFile);
 
@@ -268,4 +268,8 @@ public class Context {
 
 	}
 
+
 }
+
+
+

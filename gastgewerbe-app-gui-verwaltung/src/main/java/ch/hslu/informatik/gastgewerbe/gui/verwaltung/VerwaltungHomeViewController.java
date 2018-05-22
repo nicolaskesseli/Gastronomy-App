@@ -42,8 +42,7 @@ public class VerwaltungHomeViewController implements Initializable {
 			if (is != null) {
 				props.load(is);
 			} else {
-				throw new RuntimeException(
-						"Property File \'" + GASTGEWERBE_PROPERTIES_FILE_NAME + "\' nicht gefunden!");
+				throw new RuntimeException("Property File \'" + GASTGEWERBE_PROPERTIES_FILE_NAME + "\' nicht gefunden!");
 			}
 
 			String strWillkommen = props.getProperty("willkommen_meldung", "Willkommen");

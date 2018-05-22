@@ -1,5 +1,6 @@
 package ch.hslu.informatik.gastgewerbe.persister.impl;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,115 +15,116 @@ import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 
 public class GenericPersisterDAOImpl<T> implements GenericPersisterDAO<T> {
 
-	private static final Logger logger = LogManager.getLogger(GenericPersisterDAOImpl.class);
+    private static final Logger logger = LogManager.getLogger(GenericPersisterDAOImpl.class);
 
-	protected Class<T> classType;
+    protected Class<T> classType;
 
-	public GenericPersisterDAOImpl(Class<T> type) {
-		this.classType = type;
-	}
+    public GenericPersisterDAOImpl(Class<T> type) {
+        this.classType = type;
+    }
 
-	public T save(T entity) throws Exception {
+    public T save(T entity) throws Exception {
 
-		EntityManager em = JPAUtil.createEntityManager();
+        EntityManager em = JPAUtil.createEntityManager();
 
-		try {
-			em.getTransaction().begin();
-			em.persist(entity);
-			em.getTransaction().commit();
-		} catch (Exception e) {
-			if (em.getTransaction().isActive()) {
-				em.getTransaction().rollback();
-			}
-			logger.error("Fehler beim Speichern der Entity vom Typ \'" + classType.getName() + "\': ["
-					+ entity.toString() + "]", e);
-			throw e;
+        try {
+            em.getTransaction().begin();
+            em.persist(entity);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            logger.error("Fehler beim Speichern der Entity vom Typ \'" + classType.getName() + "\': ["
+                    + entity.toString() + "]", e);
+            throw e;
 
-		} finally {
-			em.close();
-		}
+        } finally {
+            em.close();
+        }
 
-		return entity;
-	}
+        return entity;
+    }
 
-	public T update(T entity) throws Exception {
+    public T update(T entity) throws Exception {
 
-		EntityManager em = JPAUtil.createEntityManager();
-		em.getTransaction().begin();
+        EntityManager em = JPAUtil.createEntityManager();
+        em.getTransaction().begin();
 
-		T eMerged = null;
+        T eMerged = null;
 
-		try {
-			eMerged = em.merge(entity);
-			em.getTransaction().commit();
-		} catch (Exception e) {
-			if (em.getTransaction().isActive()) {
-				em.getTransaction().rollback();
-			}
-			logger.error("Fehler beim Update der Entity vom Typ \'" + classType.getName() + "\': [" + entity + "]", e);
-			throw e;
+        try {
+            eMerged = em.merge(entity);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            logger.error("Fehler beim Update der Entity vom Typ \'" + classType.getName() + "\': [" + entity + "]", e);
+            throw e;
 
-		} finally {
-			em.close();
-		}
+        } finally {
+            em.close();
+        }
 
-		return eMerged;
-	}
+        return eMerged;
+    }
 
-	public void delete(T entity) throws Exception {
+    public void delete(T entity) throws Exception {
 
-		EntityManager em = JPAUtil.createEntityManager();
-		em.getTransaction().begin();
+        EntityManager em = JPAUtil.createEntityManager();
+        em.getTransaction().begin();
 
-		try {
+        try {
 
-			if (em.contains(entity)) {
-				em.remove(entity);
-			} else {
-				em.remove(em.merge(entity));
-			}
+            if (em.contains(entity)) {
+                em.remove(entity);
+            } else {
+                em.remove(em.merge(entity));
+            }
 
-			em.getTransaction().commit();
-		} catch (Exception e) {
-			if (em.getTransaction().isActive()) {
-				em.getTransaction().rollback();
-			}
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
 
-			logger.error("Fehler beim Löschen der Entity vom Typ \'" + classType.getName() + "\': [" + entity + "]", e);
+            logger.error("Fehler beim Löschen der Entity vom Typ \'" + classType.getName() + "\': [" + entity + "]", e);
 
-			throw e;
+            throw e;
 
-		} finally {
-			em.close();
-		}
-	}
+        } finally {
+            em.close();
+        }
+    }
 
-	public void deleteById(long id) throws Exception {
+    public void deleteById(long id) throws Exception {
 
-		T entity = findById(id);
+        T entity = findById(id);
 
-		if (entity != null) {
-			delete(entity);
-		}
+        if (entity != null) {
+            delete(entity);
+        }
 
-	}
+    }
 
-	public T findById(long id) throws Exception {
-		return JPAUtil.createEntityManager().find(classType, id);
-	}
+    public T findById(long id) throws Exception {
+        return JPAUtil.createEntityManager().find(classType, id);
+    }
 
-	public List<T> findAll() throws Exception {
+    public List<T> findAll() throws Exception {
 
-		String sql = "SELECT entity FROM " + classType.getSimpleName() + " entity";
+        String sql = "SELECT entity FROM " + classType.getSimpleName() + " entity";
 
-		EntityManager em = JPAUtil.createEntityManager();
-		TypedQuery<T> q = em.createQuery(sql, classType);
+        EntityManager em = JPAUtil.createEntityManager();
+        TypedQuery<T> q = em.createQuery(sql, classType);
 
-		List<T> liste = q.getResultList();
+        List<T> liste = q.getResultList();
 
-		em.close();
+        em.close();
 
-		return liste != null ? liste : new ArrayList<T>();
-	}
+        return liste != null ? liste : new ArrayList<T>();
+    }
 
 }
+

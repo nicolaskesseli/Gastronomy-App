@@ -42,12 +42,11 @@ public class Kontakt implements Serializable {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (!(o instanceof Kontakt))
-			return false;
+		if (this == o) return true;
+		if (!(o instanceof Kontakt)) return false;
 		Kontakt kontakt = (Kontakt) o;
-		return Objects.equals(email, kontakt.email) && Objects.equals(telefon, kontakt.telefon);
+		return Objects.equals(email, kontakt.email) &&
+				Objects.equals(telefon, kontakt.telefon);
 	}
 
 	@Override
@@ -58,6 +57,10 @@ public class Kontakt implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Kontakt{" + "email='" + email + '\'' + ", telefon='" + telefon + '\'' + '}';
+		return "Kontakt{" +
+				"email='" + email + '\'' +
+				", telefon='" + telefon + '\'' +
+				'}';
 	}
 }
+

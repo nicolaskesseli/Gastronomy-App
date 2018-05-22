@@ -27,6 +27,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 public class MainWindowBarController extends TimerTask implements Initializable {
 
 	private static Logger logger = LogManager.getLogger(MainWindowBarController.class);
@@ -68,8 +69,9 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 	@FXML
 	private Label lblBenutzer;
 
+
 	@FXML
-	void abmelden(ActionEvent event) {
+	void abmelden (ActionEvent event) {
 		try {
 
 			AnchorPane loginRoot = FXMLLoader.load(getClass().getResource("/fxml/LoginView.fxml"));
@@ -81,29 +83,30 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 			mainStage.setScene(loginScene);
 			mainStage.show();
 
+
+
 		} catch (IOException e) {
 			logger.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 
 		}
 	}
+	    @FXML
+        void bestellungBereit(ActionEvent event) {
 
-	@FXML
-	void bestellungBereit(ActionEvent event) {
+        BestellungPositionWrapper ausgewähltePosition;
 
-		BestellungPositionWrapper ausgewähltePosition;
+        try{
+			ausgewähltePosition=tblPosBar.getSelectionModel().getSelectedItem();
 
-		try {
-			ausgewähltePosition = tblPosBar.getSelectionModel().getSelectedItem();
-
-			if (ausgewähltePosition != null) {
-				BestellungPosition bereit = Context.getInstance().getBestellungService()
-						.bestPosFindById(ausgewähltePosition.getId());
+			if(ausgewähltePosition!= null){
+				BestellungPosition bereit = Context.getInstance().getBestellungService().bestPosFindById(ausgewähltePosition.getId());
 				Context.getInstance().getBestellungService().bestellungPositionBereit(bereit);
 				tblPosBar.getItems().remove(ausgewähltePosition);
 			}
 
 			updateTable();
+
 
 		} catch (Exception e) {
 			String msg = "BestellPos. konnte nicht in Status bereit versetzt werden!";
@@ -113,65 +116,64 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 			Alert error = new Alert(Alert.AlertType.ERROR);
 			error.setTitle("Fehler");
 			error.setHeaderText("Fehler bei Statusänderung");
-			error.setContentText(
-					"Die ausgewählte Position konnte nicht in den Status bereit versetzt werden. Bitte wenden Sie sich an Ihren Systemadministrator.");
+			error.setContentText("Die ausgewählte Position konnte nicht in den Status bereit versetzt werden. Bitte wenden Sie sich an Ihren Systemadministrator.");
 			error.showAndWait();
-		}
-	}
-
-	@FXML
-	void bestellungLöschen(ActionEvent event) {
-
-		BestellungWrapper ausgewahlteBestellung;
-
-		try {
-			ausgewahlteBestellung = tblBestBar.getSelectionModel().getSelectedItem();
-
-			if (ausgewahlteBestellung != null) {
-				Bestellung löschen = Context.getInstance().getBestellungService()
-						.findById(ausgewahlteBestellung.getId());
-				Context.getInstance().getBestellungService().deleteBestellung(löschen);
 			}
+	    }
 
-			tblPosBar.getItems().clear();
-			updateTable();
+        @FXML
+	    void bestellungLöschen(ActionEvent event) {
 
-			// info dialog anzeigen
-			Alert info = new Alert(Alert.AlertType.INFORMATION);
-			info.setTitle("Bestellung gelöscht");
-			info.setHeaderText("Information");
-			info.setContentText("Die ausgewählte Bestellung wurde erfolgreich gelöscht.");
-			info.showAndWait();
+	    BestellungWrapper ausgewahlteBestellung;
 
-		} catch (Exception e) {
-			String msg = "Bestellung konnte nicht gelöscht werden!";
-			logger.error(msg, e);
+	    try {
+	        ausgewahlteBestellung=tblBestBar.getSelectionModel().getSelectedItem();
 
-			// error dialog anzeigen
-			Alert error = new Alert(Alert.AlertType.ERROR);
-			error.setTitle("Fehler");
-			error.setHeaderText("Fehler beim löschen");
-			error.setContentText(
-					"Die ausgewählte Bestellung konnte nicht gelöscht werden. Bitte wenden Sie sich an Ihren Systemadministrator.");
-			error.showAndWait();
-		}
-	}
+	        if(ausgewahlteBestellung != null){
+	        	Bestellung löschen = Context.getInstance().getBestellungService().findById(ausgewahlteBestellung.getId());
+				Context.getInstance().getBestellungService().deleteBestellung(löschen);
+	        }
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
+	        tblPosBar.getItems().clear();
+            updateTable();
+
+            // info dialog anzeigen
+            Alert info = new Alert(Alert.AlertType.INFORMATION);
+            info.setTitle("Bestellung gelöscht");
+            info.setHeaderText("Information");
+            info.setContentText("Die ausgewählte Bestellung wurde erfolgreich gelöscht.");
+            info.showAndWait();
+
+
+        } catch (Exception e) {
+        String msg = "Bestellung konnte nicht gelöscht werden!";
+        logger.error(msg, e);
+
+        // error dialog anzeigen
+        Alert error = new Alert(Alert.AlertType.ERROR);
+        error.setTitle("Fehler");
+        error.setHeaderText("Fehler beim löschen");
+        error.setContentText("Die ausgewählte Bestellung konnte nicht gelöscht werden. Bitte wenden Sie sich an Ihren Systemadministrator.");
+        error.showAndWait();
+        }
+    }
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
 
 		String str = Context.getInstance().getBenutzer().getVorname() + " "
 				+ Context.getInstance().getBenutzer().getNachname();
 		lblBenutzer.setText("Angemeldet: " + str);
 		lblBenutzer.setAlignment(Pos.BASELINE_CENTER);
 
-		// Zeit formatieren
+		//Zeit formatieren
 
 		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy kk:mm");
 
-		try {
+	    try{
 
-			// Tabelle initialisieren
+	    	// Tabelle initialisieren
 			colTischNr.setCellValueFactory(new PropertyValueFactory<BestellungWrapper, Integer>("tischNr"));
 			colZeit.setCellValueFactory(new PropertyValueFactory<BestellungWrapper, LocalDateTime>("zeit"));
 			colBemerkung.setCellValueFactory(new PropertyValueFactory<BestellungWrapper, String>("bemerkung"));
@@ -180,15 +182,13 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 			colAnzahl.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Integer>("anzahl"));
 			colProdukt.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, String>("produkt"));
 
-			// Datumformat anpassen CellFactory anpassen um nach dateFormatter zu
-			// formatieren
+	        // Datumformat anpassen CellFactory anpassen um nach dateFormatter zu formatieren
 
 			colZeit.setCellFactory(
 					new Callback<TableColumn<BestellungWrapper, LocalDateTime>, TableCell<BestellungWrapper, LocalDateTime>>() {
 
 						@Override
-						public TableCell<BestellungWrapper, LocalDateTime> call(
-								TableColumn<BestellungWrapper, LocalDateTime> param) {
+						public TableCell<BestellungWrapper, LocalDateTime> call(TableColumn<BestellungWrapper, LocalDateTime> param) {
 
 							return new TableCell<BestellungWrapper, LocalDateTime>() {
 
@@ -205,7 +205,7 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 						}
 					});
 
-			/* Auf Click werden die Positionen der ausgewählten Bestellung angezeigt */
+			/* Auf Click werden die Positionen der ausgewählten Bestellung angezeigt*/
 			tblBestBar.setRowFactory(new Callback<TableView<BestellungWrapper>, TableRow<BestellungWrapper>>() {
 
 				@Override
@@ -224,10 +224,9 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 								positionenListe.clear();
 
 								List<BestellungPosition> tempListe = bestellung.getBestellungPositionListe();
-								for (BestellungPosition p : tempListe) {
-									if (p.getProdukt().getKategorie().equals(KategorieTyp.SNACK)
-											|| p.getProdukt().getKategorie().equals(KategorieTyp.GETRANK)) {
-										if (!p.isBestellungBereit()) {
+								for(BestellungPosition p : tempListe){
+									if(p.getProdukt().getKategorie().equals(KategorieTyp.SNACK) || p.getProdukt().getKategorie().equals(KategorieTyp.GETRANK)){
+										if(!p.isBestellungBereit()){
 											positionenListe.add(new BestellungPositionWrapper(p));
 										}
 									}
@@ -242,6 +241,7 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 				}
 			});
 
+
 			// Tabelle aktualisieren
 			updateTable();
 
@@ -250,65 +250,67 @@ public class MainWindowBarController extends TimerTask implements Initializable 
 			/* Binding für die Schaltfläche 'Bereit' erstellen */
 			bestellungBereitBtn.disableProperty().bind(Bindings.size(tblPosBar.getItems()).lessThan(1));
 
+
 			// Automatisches aktualisieren
-			MainWindowBarController task = new MainWindowBarController();
-			Timer timer = new Timer();
-			timer.schedule(task, 120000, 3000000);
+            MainWindowBarController task = new MainWindowBarController();
+            Timer timer = new Timer();
+            timer.schedule(task, 120000, 3000000);
 
-		} catch (Exception e) {
-			logger.error("Fehler bei der View-Initialisierung: ", e);
-			throw new RuntimeException(e);
-		}
+        }catch (Exception e) {
+            logger.error("Fehler bei der View-Initialisierung: ", e);
+            throw new RuntimeException(e);
+        }
 
-	}
+    }
 
-	private void updateTable() {
+    private void updateTable() {
 
-		tblBestBar.getItems().clear();
-		bestellungenListe.clear();
 
-		try {
-			// Nur Bestellungen für Bar einlesen D.h. Kategorie SNACK GETRÄNK die noch nicht
-			// bereit sind
-			List<Bestellung> alleBestellungen = Context.getInstance().getBestellungService().findByBereit(false);
+	    tblBestBar.getItems().clear();
+	    bestellungenListe.clear();
 
-			List<Bestellung> barBestellungen = new ArrayList<>();
+        try {
+            // Nur Bestellungen für Bar einlesen D.h. Kategorie SNACK GETRÄNK die noch nicht bereit sind
+            List<Bestellung> alleBestellungen = Context.getInstance().getBestellungService().findByBereit(false);
 
-			for (Bestellung b : alleBestellungen) {
+            List<Bestellung> barBestellungen = new ArrayList<>();
+
+            for (Bestellung b : alleBestellungen){
 				List<BestellungPosition> bestellungPosition = b.getBestellungPositionListe();
 				for (BestellungPosition p : bestellungPosition) {
-					if (p.getProdukt().getKategorie().equals(KategorieTyp.SNACK)
-							|| p.getProdukt().getKategorie().equals(KategorieTyp.GETRANK)) {
-						if (!p.isBestellungBereit()) {
-							if (!barBestellungen.contains(b)) {
-								barBestellungen.add(b);
+					if (p.getProdukt().getKategorie().equals(KategorieTyp.SNACK) || p.getProdukt().getKategorie().equals(KategorieTyp.GETRANK)){
+							if(!p.isBestellungBereit()){
+								if(!barBestellungen.contains(b)){
+									barBestellungen.add(b);
 							}
 						}
 					}
 				}
 			}
-			for (Bestellung b : barBestellungen) {
-				bestellungenListe.add(new BestellungWrapper(b));
-			}
+			for (Bestellung b : barBestellungen){
+                bestellungenListe.add(new BestellungWrapper(b));
+            }
+
+
 
 			tblBestBar.getItems().addAll(bestellungenListe);
 			tblBestBar.getSelectionModel().select(0);
 
-		} catch (Exception e) {
-			logger.error("Fehler beim updaten der Tabelle: ", e);
-			throw new RuntimeException(e);
-		}
+        } catch (Exception e) {
+            logger.error("Fehler beim updaten der Tabelle: ", e);
+            throw new RuntimeException(e);
+        }
 
-	}
+    }
 
-	@Override
-	public void run() {
-		try {
+    @Override
+    public void run() {
+	    try {
 
-			updateTable();
+	        updateTable();
 
-		} catch (Exception e) {
-			logger.info("Tabelle Update fehlgeschlagen. Grund: keine nicht bereiten Bestellungen" + e);
-		}
-	}
+        } catch (Exception e){
+	        logger.info("Tabelle Update fehlgeschlagen. Grund: keine nicht bereiten Bestellungen" + e);
+        }
+    }
 }

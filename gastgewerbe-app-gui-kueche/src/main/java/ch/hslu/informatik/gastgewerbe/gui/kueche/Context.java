@@ -18,6 +18,8 @@ import org.apache.logging.log4j.Logger;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiBestellungService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiProduktService;
 
+
+
 public class Context {
 
 	private static Logger logger = LogManager.getLogger(Context.class);
@@ -63,7 +65,7 @@ public class Context {
 		this.mainStage = mainStage;
 	}
 
-	public RmiLoginService getLoginService() {
+	public RmiLoginService getLoginService(){
 
 		int portNr = 0;
 
@@ -92,7 +94,7 @@ public class Context {
 						if (reg != null) {
 							String url = "rmi://" + ip + ":" + portNr + "/" + RmiLoginService.REMOTE_OBJECT_NAME;
 
-							logger.info("Adresse rmi: " + url);
+							logger.info("Adresse rmi: " +url);
 
 							loginService = (RmiLoginService) Naming.lookup(url);
 
@@ -119,7 +121,7 @@ public class Context {
 		return loginService;
 	}
 
-	public RmiBestellungService getBestellungService() {
+	public RmiBestellungService getBestellungService(){
 
 		int portNr = 0;
 
@@ -173,7 +175,7 @@ public class Context {
 		return bestellungService;
 	}
 
-	public RmiProduktService getProduktService() {
+	public RmiProduktService getProduktService(){
 
 		int portNr = 0;
 
@@ -237,8 +239,8 @@ public class Context {
 
 		InputStream is = this.getClass().getClassLoader().getResourceAsStream(POLICY_FILE_NAME);
 
-		File tempFile = File.createTempFile(System.getProperty("user.home") + File.separator + "gastgewerbe_rmi_policy",
-				"tmp");
+		File tempFile = File
+				.createTempFile(System.getProperty("user.home") + File.separator + "gastgewerbe_rmi_policy", "tmp");
 
 		FileOutputStream fos = new FileOutputStream(tempFile);
 

@@ -1,5 +1,6 @@
 package ch.hslu.informatik.gastgewerbe.model;
 
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -84,13 +85,14 @@ public class Person implements Serializable {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (!(o instanceof Person))
-			return false;
+		if (this == o) return true;
+		if (!(o instanceof Person)) return false;
 		Person person = (Person) o;
-		return id == person.id && Objects.equals(nachname, person.nachname) && Objects.equals(vorname, person.vorname)
-				&& Objects.equals(adresse, person.adresse) && Objects.equals(kontakt, person.kontakt);
+		return id == person.id &&
+				Objects.equals(nachname, person.nachname) &&
+				Objects.equals(vorname, person.vorname) &&
+				Objects.equals(adresse, person.adresse) &&
+				Objects.equals(kontakt, person.kontakt);
 	}
 
 	@Override

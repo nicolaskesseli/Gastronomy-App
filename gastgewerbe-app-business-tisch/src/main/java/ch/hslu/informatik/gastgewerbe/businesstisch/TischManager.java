@@ -25,7 +25,7 @@ public class TischManager implements TischService {
         return tischDAO;
     }
 
-	//Fuegt Tisch hinzu
+    @Override
     public Tisch tischHinzufuegen(Tisch tisch) throws Exception {
         try {
             return getTischDAO().save(tisch);
@@ -33,11 +33,11 @@ public class TischManager implements TischService {
             String msg = "Tisch \'" + tisch.getTischNr()
                     + "\' konnte nicht hinzugefügt werden";
             logger.error(msg, e);
-            throw new Exception(msg + e);
+            throw new Exception(msg);
         }
     }
 
-	//Löscht Tisch
+    @Override
     public void tischLoeschen(Tisch tisch) throws Exception {
         try {
             getTischDAO().delete(tisch);
@@ -45,7 +45,7 @@ public class TischManager implements TischService {
             String msg = "Tisch \'" + tisch.getTischNr()
                     + "\' konnte nicht gelöscht werden";
             logger.error(msg, e);
-            throw new Exception(msg + e);
+            throw new Exception(msg);
         }
     }
 
@@ -56,29 +56,29 @@ public class TischManager implements TischService {
             String msg = "Tisch \'" + tisch.getTischNr()
                     + "\' konnte nicht aktualisiert werden";
             logger.error(msg, e);
-            throw new Exception(msg + e);
+            throw new Exception(msg);
         }
     }
 
-	//Zeigt alle Tische an
+    @Override
     public List<Tisch> alleTische() throws Exception{
         try {
             return getTischDAO().findAll();
         } catch (Exception e) {
             String msg = "Tisch konnten nicht gefunden werden";
             logger.error(msg, e);
-            throw new Exception(msg + e);
+            throw new Exception(msg);
         }
     }
 
-	//Tisch nach Nummer suchen und finden
+    @Override
     public Tisch findByTischNummer(int tischNr) throws Exception{
         try {
             return getTischDAO().findByTischNr(tischNr);
         } catch (Exception e) {
             String msg = "Tisch konnte nicht gefunden werden";
             logger.error(msg, e);
-            throw new Exception(msg + e);
+            throw new Exception(msg);
         }
 	}
 }

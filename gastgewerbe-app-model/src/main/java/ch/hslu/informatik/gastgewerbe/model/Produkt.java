@@ -3,13 +3,16 @@ package ch.hslu.informatik.gastgewerbe.model;
 import java.io.Serializable;
 import java.util.Objects;
 
+
 import javax.persistence.*;
+
 
 @Entity
 @NamedQueries({ @NamedQuery(name = "Produkt.findByName", query = "SELECT e FROM Produkt e WHERE e.name=:name"),
 		@NamedQuery(name = "Produkt.FindByProduktCode", query = "SELECT e FROM Produkt e WHERE e.produktCode=:produktCode"),
 		@NamedQuery(name = "Produkt.findByKategorie", query = "SELECT e FROM Produkt e WHERE e.kategorie=:kategorieTyp"),
-		@NamedQuery(name = "Produkt.findAll", query = "SELECT e FROM Produkt e") })
+        @NamedQuery(name = "Produkt.findAll", query = "SELECT e FROM Produkt e")
+})
 public class Produkt implements Serializable {
 
 	private static final long serialVersionUID = -6748457523208107826L;
@@ -17,8 +20,8 @@ public class Produkt implements Serializable {
 	@GeneratedValue
 	private long id;
 
-	@Column(unique = true)
-	private String produktCode;
+    @Column(unique = true)
+    private String produktCode;
 	@Enumerated(EnumType.STRING)
 	private KategorieTyp kategorie;
 
@@ -30,7 +33,8 @@ public class Produkt implements Serializable {
 
 	}
 
-	public Produkt(String produktCode, String name, String beschreibung, double preis, KategorieTyp kategorie) {
+	public Produkt(String produktCode, String name, String beschreibung, double preis,
+				   KategorieTyp kategorie) {
 		this.produktCode = produktCode;
 		this.name = name;
 		this.beschreibung = beschreibung;
@@ -78,24 +82,26 @@ public class Produkt implements Serializable {
 		this.preis = preis;
 	}
 
+
 	public KategorieTyp getKategorie() {
 		return kategorie;
 	}
-
 	public void setKategorie(KategorieTyp kategorie) {
-		this.kategorie = kategorie;
+		this.kategorie = kategorie;	
 	}
+
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (!(o instanceof Produkt))
-			return false;
+		if (this == o) return true;
+		if (!(o instanceof Produkt)) return false;
 		Produkt produkt = (Produkt) o;
-		return id == produkt.id && Double.compare(produkt.preis, preis) == 0
-				&& Objects.equals(produktCode, produkt.produktCode) && kategorie == produkt.kategorie
-				&& Objects.equals(name, produkt.name) && Objects.equals(beschreibung, produkt.beschreibung);
+		return id == produkt.id &&
+				Double.compare(produkt.preis, preis) == 0 &&
+				Objects.equals(produktCode, produkt.produktCode) &&
+				kategorie == produkt.kategorie &&
+				Objects.equals(name, produkt.name) &&
+				Objects.equals(beschreibung, produkt.beschreibung);
 	}
 
 	@Override
@@ -106,7 +112,13 @@ public class Produkt implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Produkt{" + "id=" + id + ", produktCode='" + produktCode + '\'' + ", kategorie=" + kategorie
-				+ ", name='" + name + '\'' + ", beschreibung='" + beschreibung + '\'' + ", preis=" + preis + '}';
+		return "Produkt{" +
+				"id=" + id +
+				", produktCode='" + produktCode + '\'' +
+				", kategorie=" + kategorie +
+				", name='" + name + '\'' +
+				", beschreibung='" + beschreibung + '\'' +
+				", preis=" + preis +
+				'}';
 	}
 }

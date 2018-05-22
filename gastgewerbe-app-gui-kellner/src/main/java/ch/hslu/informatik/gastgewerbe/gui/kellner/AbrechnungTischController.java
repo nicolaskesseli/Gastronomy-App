@@ -11,27 +11,36 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungPositionWrapper;
+import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungWrapper;
+import ch.hslu.informatik.gastgewerbe.gui.wrapper.ProduktWrapper;
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
+import ch.hslu.informatik.gastgewerbe.model.Produkt;
 import ch.hslu.informatik.gastgewerbe.model.Tisch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class AbrechnungTischController implements Initializable {
 
 	private static Logger logger = LogManager.getLogger(BestellungBereitController.class);
 
+	
 	private List<Bestellung> offeneBestellungen = new ArrayList<>();
 	
 	private List<BestellungPosition> offeneBestellungPosition = new ArrayList<>();
@@ -39,15 +48,15 @@ public class AbrechnungTischController implements Initializable {
 	private List<BestellungWrapper> bestellungenListeWrapper = new ArrayList<>();
 
 	private List<BestellungPositionWrapper> offeneBestellungPositionWrapperListe = new ArrayList<>();
-
+	
 	private int tischNr;
-
+	
 	private List<BestellungPosition> pListe = new ArrayList<>();
 
 	private double gesamtBetrag;
-
+	
 	private Benutzer benutzer;
-
+	
 	private Tisch tisch;
 
 	@FXML
@@ -80,9 +89,11 @@ public class AbrechnungTischController implements Initializable {
 	@FXML
 	private Button zurückBtn;
 
+
 	@FXML
 	void bestellungAbschliessen(ActionEvent event) throws Exception {
 
+		
 		try {
 			
 		benutzer = Context.getInstance().getBenutzer();
@@ -110,9 +121,11 @@ public class AbrechnungTischController implements Initializable {
 			String msg = "Ein Fehler ist bei der Bestellsuche aufgetreten";
 			logger.error(msg, e);
 			throw new Exception(msg, e);
-
+			
 		}
-
+		
+		
+		
 	}
 
 	@FXML
@@ -121,9 +134,10 @@ public class AbrechnungTischController implements Initializable {
 		try {
 			tischNr = Integer.parseInt(tischNrInput.getText());
 			offeneBestellungen = Context.getInstance().getBestellungService().findByRechBezahltTisch(tischNr, false);
-
+			
 			updateTable();
-
+		
+			
 		} catch (NumberFormatException e) {
 			String msg = "Keine Nummer im Eingabefeld";
 			String ausgabe = "Nummer eingeben";
@@ -136,6 +150,8 @@ public class AbrechnungTischController implements Initializable {
 		}
 
 	}
+	
+	
 
 	@FXML
 	void zurück(ActionEvent event) {
@@ -159,7 +175,7 @@ public class AbrechnungTischController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+	
 		colPreis.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Double>("preis"));
 		colName.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, String>("name"));
 		colAnzahl.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Integer>("anzahl"));
@@ -167,6 +183,7 @@ public class AbrechnungTischController implements Initializable {
 
 	}
 
+	
 	@FXML
 	public void updateTable() {
 
@@ -174,28 +191,31 @@ public class AbrechnungTischController implements Initializable {
 
 			tblUebersichtBestellung.getItems().clear();
 			offeneBestellungPositionWrapperListe.clear();
-
+			
+			
 			int i = 0;
 
 			for (Bestellung b : offeneBestellungen) {
-				for (i = 0; i < b.getBestellungPositionListe().size(); i++) {
-
+				for(i=0; i<b.getBestellungPositionListe().size();i++) {
+					
 					pListe.add(b.getBestellungPositionListe().get(i));
-
+					
 				}
 			}
-
-			for (BestellungPosition bestellungPosition : pListe) {
+			
+			for(BestellungPosition bestellungPosition : pListe) {
 				offeneBestellungPositionWrapperListe.add(new BestellungPositionWrapper(bestellungPosition));
 			}
-
+			
+			
 			tblUebersichtBestellung.getItems().addAll(offeneBestellungPositionWrapperListe);
 			tblUebersichtBestellung.getSelectionModel().select(0);
-
-			for (BestellungPosition a : pListe) {
-				gesamtBetrag += a.getProdukt().getPreis() * a.getAnzahl();
-			}
-
+			
+			
+			for (BestellungPosition a : pListe){
+	            gesamtBetrag += a.getProdukt().getPreis()*a.getAnzahl();
+	        }
+			
 			String gesamtTotal = String.valueOf(gesamtBetrag);
 			
 			lblTotal.setText(gesamtTotal);
@@ -203,6 +223,8 @@ public class AbrechnungTischController implements Initializable {
 			pListe.clear();
 			gesamtBetrag = 0;
 			gesamtTotal = "";
+			
+		
 
 		} catch (Exception e) {
 			logger.error("Fehler beim updaten der Tabelle: ", e);

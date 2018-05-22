@@ -1,5 +1,6 @@
 package ch.hslu.informatik.gastgewerbe.gui.verwaltung;
 
+import ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.BestellungWrapper;
 import ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.TischWrapper;
 import ch.hslu.informatik.gastgewerbe.model.Tisch;
 import javafx.beans.binding.Bindings;
@@ -20,189 +21,189 @@ import java.util.ResourceBundle;
 
 public class TischVerwaltenViewController implements Initializable {
 
-	private static Logger logger = LogManager.getLogger(TischVerwaltenViewController.class);
+    private static Logger logger = LogManager.getLogger(TischVerwaltenViewController.class);
 
-	@FXML
-	private TableView<TischWrapper> tblTisch;
+    @FXML
+    private TableView<TischWrapper> tblTisch;
 
-	@FXML
-	private TableColumn<TischWrapper, Integer> colTischNr;
+    @FXML
+    private TableColumn<TischWrapper, Integer> colTischNr;
 
-	@FXML
-	private Label lblError;
+    @FXML
+    private Label lblError;
 
-	@FXML
-	private Button btnLoeschen;
+    @FXML
+    private Button btnLoeschen;
 
-	@FXML
-	private TextField txtTischNummer;
+    @FXML
+    private TextField txtTischNummer;
 
-	@FXML
-	private TableColumn<TischWrapper, Integer> colNummer;
+    @FXML
+    private TableColumn<TischWrapper, Integer> colNummer;
 
-	public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) {
 
-		try {
+        try {
 
-			lblError.setText("");
+            lblError.setText("");
 
-			/* Tabelle konfigurieren */
+            /* Tabelle konfigurieren */
 
-			colNummer.setCellValueFactory(new PropertyValueFactory<TischWrapper, Integer>("nummer"));
-			colTischNr.setCellValueFactory(new PropertyValueFactory<TischWrapper, Integer>("tischNr"));
+            colNummer.setCellValueFactory(new PropertyValueFactory<TischWrapper, Integer>("nummer"));
+            colTischNr.setCellValueFactory(new PropertyValueFactory<TischWrapper, Integer>("tischNr"));
 
-			tblTisch.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TischWrapper>() {
+            tblTisch.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TischWrapper>() {
 
-				@Override
-				public void changed(ObservableValue<? extends TischWrapper> observable, TischWrapper oldValue,
-						TischWrapper newValue) {
-					if (newValue != null) {
-						updateView();
-					}
-				}
-			});
+                @Override
+                public void changed(ObservableValue<? extends TischWrapper> observable, TischWrapper oldValue,
+                                    TischWrapper newValue) {
+                    if (newValue != null) {
+                        updateView();
+                    }
+                }
+            });
 
-			updateTabelle();
+            updateTabelle();
 
-			btnLoeschen.disableProperty()
-					.bind(Bindings.size(tblTisch.getSelectionModel().getSelectedItems()).isEqualTo(0));
+            btnLoeschen.disableProperty()
+                   .bind(Bindings.size(tblTisch.getSelectionModel().getSelectedItems()).isEqualTo(0));
 
-			updateTabelle();
-		} catch (Exception e) {
-			logger.error("Fehler bei der Initialisierung der View: ", e);
-			return;
-		}
-	}
+            updateTabelle();
+        } catch (Exception e) {
+            logger.error("Fehler bei der Initialisierung der View: ", e);
+            return;
+        }
+    }
 
-	private void updateTabelle() {
+    private void updateTabelle() {
 
-		lblError.setText("");
+        lblError.setText("");
 
-		try {
-			List<Tisch> tischListe = Context.getInstance().getTischService().alleTische();
+        try {
+            List<Tisch> tischListe = Context.getInstance().getTischService().alleTische();
 
-			if (tischListe.size() > 0) {
-				List<TischWrapper> wrapperListe = new ArrayList<>();
+            if (tischListe.size() > 0) {
+                List<TischWrapper> wrapperListe = new ArrayList<>();
 
-				int nummer = 1;
+                int nummer = 1;
 
-				for (Tisch tisch : tischListe) {
-					wrapperListe.add(new TischWrapper(tisch, nummer++));
-				}
+                for (Tisch tisch : tischListe) {
+                    wrapperListe.add(new TischWrapper(tisch, nummer++));
+                }
 
-				tblTisch.getItems().clear();
-				tblTisch.getItems().addAll(wrapperListe);
+                tblTisch.getItems().clear();
+                tblTisch.getItems().addAll(wrapperListe);
 
-				tblTisch.getSelectionModel().select(0);
+                tblTisch.getSelectionModel().select(0);
 
-				updateView();
-			}
-		} catch (Exception e) {
-			logger.error("Fehler bei der Aktualisierung der Tabelle: ", e);
-			throw new RuntimeException(e);
-		}
+                updateView();
+            }
+        } catch (Exception e) {
+            logger.error("Fehler bei der Aktualisierung der Tabelle: ", e);
+            throw new RuntimeException(e);
+        }
 
-	}
+    }
 
-	private void updateView() {
+    private void updateView() {
 
-		lblError.setText("");
+        lblError.setText("");
 
-		if (tblTisch.getSelectionModel().getSelectedItem() == null) {
+        if (tblTisch.getSelectionModel().getSelectedItem() == null) {
 
-			txtTischNummer.setText("0");
+            txtTischNummer.setText("0");
 
-		} else {
+        } else {
 
-			Tisch tisch = tblTisch.getSelectionModel().getSelectedItem().getTisch();
+            Tisch tisch = tblTisch.getSelectionModel().getSelectedItem().getTisch();
 
-			txtTischNummer.setText("" + tisch.getTischNr());
+            txtTischNummer.setText("" + tisch.getTischNr());
 
-		}
+        }
 
-	}
+    }
 
-	@FXML
-	private void neuenTischErfassen() {
-		reset();
-		txtTischNummer.requestFocus();
-	}
+    @FXML
+    private void neuenTischErfassen() {
+        reset();
+        txtTischNummer.requestFocus();
+    }
 
-	@FXML
-	private void speichern() {
+    @FXML
+    private void speichern() {
 
-		if (tblTisch.getSelectionModel().getSelectedItem() == null) {
+            if (tblTisch.getSelectionModel().getSelectedItem() == null) {
 
-			int tischNr = Integer.parseInt(txtTischNummer.getText());
+                int tischNr = Integer.parseInt(txtTischNummer.getText());
 
-			Tisch tisch = new Tisch(tischNr);
+                Tisch tisch = new Tisch(tischNr);
 
-			try {
-				Context.getInstance().getTischService().tischHinzufuegen(tisch);
+                try {
+                    Context.getInstance().getTischService().tischHinzufuegen(tisch);
 
-			} catch (Exception e) {
-				logger.error("Fehler beim Hinzufügen des Tisches: ", e);
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Tisch speichern");
-				alert.setHeaderText("Information");
-				alert.setContentText("Das Hinzufügen des neuen Tisch ist misslungen.");
-				alert.showAndWait();
-			}
+                } catch (Exception e) {
+                    logger.error("Fehler beim Hinzufügen des Tisches: ", e);
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Tisch speichern");
+                    alert.setHeaderText("Information");
+                    alert.setContentText("Das Hinzufügen des neuen Tisch ist misslungen.");
+                    alert.showAndWait();
+                }
 
-		} else {
+            } else {
 
-			int tischNr = Integer.parseInt(txtTischNummer.getText());
-			Tisch tisch = tblTisch.getSelectionModel().getSelectedItem().getTisch();
-			tisch.setTischNr(tischNr);
+                int tischNr = Integer.parseInt(txtTischNummer.getText());
+                Tisch tisch = tblTisch.getSelectionModel().getSelectedItem().getTisch();
+                tisch.setTischNr(tischNr);
 
-			try {
-				Context.getInstance().getTischService().tischAktualisieren(tisch);
-			} catch (Exception e) {
-				logger.error("Fehler beim Hinzufügen eines neuen Tisch: ", e);
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Tisch speichern");
-				alert.setHeaderText("Information");
-				alert.setContentText("Das Aktualisieren des ausgewählten Tisch ist misslungen.");
-				alert.showAndWait();
-			}
-		}
+                try {
+                    Context.getInstance().getTischService().tischAktualisieren(tisch);
+                } catch (Exception e) {
+                    logger.error("Fehler beim Hinzufügen eines neuen Tisch: ", e);
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Tisch speichern");
+                    alert.setHeaderText("Information");
+                    alert.setContentText("Das Aktualisieren des ausgewählten Tisch ist misslungen.");
+                    alert.showAndWait();
+                }
+            }
 
-		updateTabelle();
-		reset();
-		txtTischNummer.requestFocus();
+        updateTabelle();
+        reset();
+        txtTischNummer.requestFocus();
 
-	}
+    }
 
-	@FXML
-	private void reset() {
+    @FXML
+    private void reset() {
 
-		tblTisch.getSelectionModel().clearSelection();
-		txtTischNummer.setText("0");
-	}
+        tblTisch.getSelectionModel().clearSelection();
+        txtTischNummer.setText("0");
+    }
 
-	@FXML
-	private void loeschen() {
+    @FXML
+    private void loeschen() {
 
-		if (tblTisch.getSelectionModel().getSelectedItem() == null) {
-			return;
-		}
+        if (tblTisch.getSelectionModel().getSelectedItem() == null) {
+            return ;
+        }
 
-		Tisch tisch = tblTisch.getSelectionModel().getSelectedItem().getTisch();
+        Tisch tisch = tblTisch.getSelectionModel().getSelectedItem().getTisch();
 
-		if (tisch != null) {
-			try {
-				Context.getInstance().getTischService().tischLoeschen(tisch);
-				updateTabelle();
-				// updateView();
-			} catch (Exception e) {
-				logger.error("Fehler beim Löschen des Tisch: ", e);
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Tisch löschen");
-				alert.setHeaderText("Information");
-				alert.setContentText("Das Löschen des Tisch ist misslungen.");
-				alert.showAndWait();
-			}
-		}
-	}
+        if (tisch != null) {
+            try {
+                Context.getInstance().getTischService().tischLoeschen(tisch);
+                updateTabelle();
+                //updateView();
+            } catch (Exception e) {
+                logger.error("Fehler beim Löschen des Tisch: ", e);
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Tisch löschen");
+                alert.setHeaderText("Information");
+                alert.setContentText("Das Löschen des Tisch ist misslungen.");
+                alert.showAndWait();
+            }
+        }
+    }
 
 }
