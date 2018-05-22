@@ -23,11 +23,13 @@
       </Button>
       <TableView fx:id="tblUebersichtBestellung" layoutX="73.0" layoutY="97.0" prefHeight="326.0" prefWidth="704.0">
         <columns>
-          <TableColumn fx:id="colZeit" prefWidth="149.4000244140625" text="Zeit" />
-          <TableColumn fx:id="colBenutzer" prefWidth="240.0" text="Benutzer" />
-            <TableColumn fx:id="colGesamtbetrag" minWidth="0.0" prefWidth="141.0" text="Gesamtbetrag" />
-            <TableColumn fx:id="colStatus" prefWidth="138.0" text="Tagesabrechnung" />
-            <TableColumn fx:id="colAusgewaelt" prefWidth="33.0" />
+          <TableColumn fx:id="colZeit" prefWidth="131.0" text="Zeit" />
+          <TableColumn fx:id="colBenutzer" prefWidth="209.0" text="Benutzer" />
+            <TableColumn fx:id="colTischNr" prefWidth="61.0" text="TischNr." />
+            <TableColumn fx:id="colAnzPos" prefWidth="66.0" text="Anz. Pos." />
+            <TableColumn fx:id="colGesamtbetrag" minWidth="0.0" prefWidth="92.0" text="Gesamtbetrag" />
+            <TableColumn fx:id="colStatus" prefWidth="113.0" text="Tagesabrechnung" />
+            <TableColumn fx:id="colAusgewaelt" minWidth="0.0" prefWidth="31.0" />
         </columns>
       </TableView>
       <Label layoutX="71.0" layoutY="447.0" prefHeight="28.0" prefWidth="277.0" text="Total Tagesumsatz in CHF">
@@ -40,15 +42,20 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Label fx:id="lblTotal" alignment="CENTER" layoutX="300.0" layoutY="444.0" prefHeight="35.0" prefWidth="220.0">
+      <Label fx:id="lblTotal" alignment="CENTER" layoutX="305.0" layoutY="444.0" prefHeight="35.0" prefWidth="220.0">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <TextField fx:id="txtBenutzername" layoutX="182.0" layoutY="41.0" prefHeight="34.0" prefWidth="129.0" promptText="benutzername" />
+      <TextField fx:id="txtBenutzername" layoutX="182.0" layoutY="41.0" prefHeight="34.0" prefWidth="129.0" promptText="Benutzername" />
       <Label layoutX="182.0" layoutY="21.0" prefHeight="20.0" prefWidth="109.0" text="Benutzername">
          <font>
             <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblError" layoutX="71.0" layoutY="76.0" prefHeight="17.0" prefWidth="96.0" textFill="RED">
+         <font>
+            <Font size="10.0" />
          </font>
       </Label>
    </children>

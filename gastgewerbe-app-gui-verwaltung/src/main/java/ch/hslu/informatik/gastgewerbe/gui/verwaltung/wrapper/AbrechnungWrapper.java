@@ -39,12 +39,13 @@ public class AbrechnungWrapper {
         this.ausgewaelt = ausgewaelt;
     }
 
-    public void setBenutzer (Benutzer benutzer){
-        this.abrechnung.setBenutzer(benutzer);
+    public String getBenutzer(){
+
+        return abrechnung.getBenutzer().getCredentials().getBenutzername();
     }
 
-    public Benutzer getBenutzer(){
-        return abrechnung.getBenutzer();
+    public void setBenutzer(String benutzer){
+        abrechnung.getBenutzer().getCredentials().setBenutzername(benutzer);
     }
 
     public void setZeit(LocalDateTime zeit){
@@ -73,4 +74,29 @@ public class AbrechnungWrapper {
 
         this.abrechnung.setTagesAbrechnung(tagesAbrechnung);
     }
+
+    public void setTischNr(int tischNr){
+
+        abrechnung.getBestellung().getTisch().setTischNr(tischNr);
+    }
+
+    public int getTischNr(){
+
+        return abrechnung.getBestellung().getTisch().getTischNr();
+    }
+
+    public int getBestellungPositionListe(){
+        return abrechnung.getBestellung().getBestellungPositionListe().size();
+    }
+
+    public long getId() {
+
+        return abrechnung.getId();
+    }
+
+    public void setId(long id) {
+
+        abrechnung.setId(id);
+    }
+
 }

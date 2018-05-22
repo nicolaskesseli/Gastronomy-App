@@ -11,7 +11,11 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
+import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,12 +23,6 @@ import ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.AbrechnungWrapper;
 import ch.hslu.informatik.gastgewerbe.model.Abrechnung;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
@@ -46,6 +44,9 @@ public class AbrechnungViewController implements Initializable {
     private Label lblTotal;
 
     @FXML
+    private Label lblError;
+
+    @FXML
     private TableView<AbrechnungWrapper> tblUebersichtBestellung;
 
     @FXML
@@ -61,6 +62,12 @@ public class AbrechnungViewController implements Initializable {
     private TableColumn<AbrechnungWrapper, Boolean> colStatus;
 
     @FXML
+    private TableColumn<AbrechnungWrapper, Integer> colTischNr;
+
+    @FXML
+    private TableColumn<AbrechnungWrapper, Integer> colAnzPos;
+
+    @FXML
     private TableColumn<AbrechnungWrapper, String> colAusgewaelt;
 
     @FXML
@@ -73,31 +80,49 @@ public class AbrechnungViewController implements Initializable {
     void abrechnungenSuchen(ActionEvent event) throws Exception{
 
     	try {
+    	    lblError.setText("");
+            lblTotal.setText("");
+
+    	    tblUebersichtBestellung.getItems().clear();
+    	    abrechnungList.clear();
+    	    abrechnungWrapperList.clear();
+
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy kk:mm:ss.SSS");
 
 
 
         String date = txtDatumInput.getText();
-        date = date + " 00:00:00.000";
+        date = date + " 00:00:00.001";
 
-        LocalDateTime zeit = LocalDateTime.parse("2018-05-22T16:52:30.161");
-
-        //zeit.minusDays(1);
+        LocalDateTime zeit = LocalDateTime.parse(date, formatter);
 
         String username = txtBenutzername.getText();
 
         Benutzer benutzer = Context.getInstance().getBenutzerService().findByBenutzername(username);
 
         logger.debug(zeit.toString());
-        logger.debug(LocalDateTime.now().toString());
 
-      //  if(!benutzer.equals(null)&&!zeit.equals(null)){
-       //     abrechnungList = Context.getInstance().getAbrechnungService().findByBenutzerUndDatum(benutzer, zeit);
-       // }
+        if(txtBenutzername.getText()!=null || !txtBenutzername.getText().trim().isEmpty()) {
+            if(txtDatumInput.getText()!=null || !txtDatumInput.getText().trim().isEmpty()){
+                List<Abrechnung> temp = Context.getInstance().getAbrechnungService().findByBenutzerUndDatum(benutzer, zeit);
+                for(Abrechnung a : temp){
+                    if(a.getBestellung().isRechnungBezahlt()){
+                        abrechnungList.add(a);
+                    }
+                 }
+            }
+        }
 
-       // if(!zeit.equals(null)){
-            abrechnungList=Context.getInstance().getAbrechnungService().findByDatum(zeit);
-       // }
+        if(txtDatumInput.getText()!=null || !txtDatumInput.getText().trim().isEmpty()){
+            if(txtBenutzername.getText() == null || txtBenutzername.getText().trim().isEmpty()) {
+                List<Abrechnung> temp = Context.getInstance().getAbrechnungService().findByDatum(zeit);
+                for(Abrechnung a : temp){
+                    if (a.getBestellung().isRechnungBezahlt()){
+                        abrechnungList.add(a);
+                    }
+                }
+            }
+        }
 
         logger.debug(abrechnungList.toString());
 
@@ -107,23 +132,69 @@ public class AbrechnungViewController implements Initializable {
 
             tblUebersichtBestellung.getItems().addAll(abrechnungWrapperList);
 
-        //double tagesUmsatz = Context.getInstance().getAbrechnungService().abschluss(zeit);
-    
-        // lblTotal.setText(String.valueOf(tagesUmsatz));
-
         }catch (DateTimeParseException e){
     	    String msg = "Keine gültige Eingabe für Datum";
     	    logger.error(msg, e);
-    	    txtDatumInput.setText("dd.MM.yyyy");
+    	    txtDatumInput.setText("");
+    	    txtDatumInput.setPromptText("dd.MM.yyyy");
+    	    lblError.setText("Falsches Format");
         }catch (Exception e){
-		    String msg = "Suche fehlgeschlagen";
+		    String msg = "Suche fehlgeschlagen: ";
 		    logger.error(msg, e);
-		    throw new Exception(msg);
+		    throw new Exception(msg + e);
         }
     }
 
     @FXML
-    void tagesAbrechnungAbschliessen(ActionEvent event) {
+    void tagesAbrechnungAbschliessen(ActionEvent event) throws Exception {
+
+        Double gesamtBetragTagesAbrech;
+
+        // Liste für ausgewählte Wrapper
+        List<AbrechnungWrapper> ausgewaelt = new ArrayList<>();
+        // Liste für Abrechnungen für den Abschluss
+        List<Abrechnung> abschluss = new ArrayList<>();
+
+        try {
+
+            // Schleife für alle AbrechnungenWrapper die ausgewählt sind mit checkbox
+            for (AbrechnungWrapper a : abrechnungWrapperList) {
+                if (a.getAusgewaelt().isSelected()) {
+                    ausgewaelt.add(a);
+                }
+            }
+
+            if(!ausgewaelt.isEmpty()) {
+
+                for (AbrechnungWrapper a : ausgewaelt) {
+                    abschluss.add(a.getAbrechnung());
+                }
+
+                gesamtBetragTagesAbrech = Context.getInstance().getAbrechnungService().abschluss(abschluss);
+
+                lblTotal.setText(String.valueOf(gesamtBetragTagesAbrech));
+            } else {
+                Alert info = new Alert(Alert.AlertType.INFORMATION);
+                info.setTitle("Info");
+                info.setHeaderText("Abschluss nicht möglich");
+                info.setContentText("Es wurden keine Abrechnungen ausgewählt!");
+                info.showAndWait();
+            }
+
+        } catch (Exception e){
+            String msg = "Tagesabschluss fehlgeschlagen: ";
+
+            logger.error(msg, e);
+
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Fehler");
+            error.setHeaderText("Fehler beim Abschluss");
+            error.setContentText("Ein Fehler ist aufgetreten beim Abschluss. Bitte wenden Sie sich an Ihren Systemadministrator.");
+            error.showAndWait();
+
+            throw new Exception(msg + e);
+        }
+
 
     }
     
@@ -148,6 +219,8 @@ public class AbrechnungViewController implements Initializable {
 			colZeit.setCellValueFactory(new PropertyValueFactory<AbrechnungWrapper, LocalDateTime>("zeit"));
 			colGesamtbetrag.setCellValueFactory(new PropertyValueFactory<AbrechnungWrapper, Double>("betrag"));
 			colStatus.setCellValueFactory(new PropertyValueFactory<AbrechnungWrapper, Boolean>("tagesAbrechnung"));
+			colAnzPos.setCellValueFactory(new PropertyValueFactory<AbrechnungWrapper,Integer>("bestellungPositionListe"));
+			colTischNr.setCellValueFactory(new PropertyValueFactory<AbrechnungWrapper, Integer>("TischNr"));
 
             // Checkbox für ausgewählt
             colAusgewaelt.setCellValueFactory(new PropertyValueFactory<AbrechnungWrapper, String>("ausgewaelt"));
@@ -176,14 +249,18 @@ public class AbrechnungViewController implements Initializable {
 						}
 					});
 
+            /* Binding für die Schaltfläche 'Abschliessen' erstellen */
+            btnAbschliessen.disableProperty().bind(Bindings.size(tblUebersichtBestellung.getItems()).lessThan(1));
 
-	    }catch (Exception e){
+
+
+        }catch (Exception e){
             logger.error("Fehler bei der View-Initialisierung: ", e);
             throw new RuntimeException(e);
 
 	    	
 	    
-    }
+        }
     
-}
+    }
 }

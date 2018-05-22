@@ -29,25 +29,25 @@ public class AbrechnungManager implements AbrechnungService {
 	private AbrechnungDAO abrechnungDAO;
 	private BestellungDAO bestellungDAO;
 	private TischDAO tischDAO;
-	
+
 	private Abrechnung abrechnung;
 	private double betrag;
 
-	public AbrechnungDAO getAbrechnungDAO(){
+	public AbrechnungDAO getAbrechnungDAO() {
 		if (abrechnungDAO == null) {
 			abrechnungDAO = new AbrechnungDAOImpl();
 		}
 		return abrechnungDAO;
 	}
 
-	public BestellungDAO getBestellungDAO(){
+	public BestellungDAO getBestellungDAO() {
 		if (bestellungDAO == null) {
 			bestellungDAO = new BestellungDAOImpl();
 		}
 		return bestellungDAO;
 	}
 
-	public TischDAO getTischDAO(){
+	public TischDAO getTischDAO() {
 		if (tischDAO == null) {
 			tischDAO = new TischDAOImpl();
 		}
@@ -55,10 +55,8 @@ public class AbrechnungManager implements AbrechnungService {
 	}
 
 
-
-
-    @Override
-    public double tischAbrechnen(Tisch tisch, Benutzer benutzer, Bestellung bestellung) throws Exception {
+	@Override
+	public double tischAbrechnen(Tisch tisch, Benutzer benutzer, Bestellung bestellung) throws Exception {
 
 		try {
 
@@ -77,67 +75,76 @@ public class AbrechnungManager implements AbrechnungService {
 			bestellung.setRechnungBezahlt(true);
 			getBestellungDAO().update(bestellung);
 
-			logger.info(abrechnung.toString()+ " wrude erstellt!");
+			logger.info(abrechnung.toString() + " wrude erstellt!");
 
 			return betrag;
 
-		} catch (Exception e){
+		} catch (Exception e) {
 			String msg = "Tisch Abrechnen misslungen";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg + e);
 		}
 	}
 
 
 	@Override
-	public double abschluss(LocalDateTime zeit) throws Exception {
+	public double abschluss(List<Abrechnung> abrechnungen) throws Exception {
 		// TODO Auto-generated method stub
 
-		try{
-			List<Abrechnung> tagesAbschluss = getAbrechnungDAO().findByDatum(zeit);
+		double gesamtBetragTagesabschluss=0.0;
 
-			double gesamtBetragTagesabschluss=0;
+		try {
 
-			for (Abrechnung a: tagesAbschluss){
-				if(a.getBestellung().isRechnungBezahlt()==true)
-				gesamtBetragTagesabschluss = a.getBetrag();
-				a.setTagesAbrechnung(true);
+			for (Abrechnung a : abrechnungen) {
+					gesamtBetragTagesabschluss = a.getBetrag() + gesamtBetragTagesabschluss;
+					a.setTagesAbrechnung(true);
+					getAbrechnungDAO().update(a);
 			}
 
 			return gesamtBetragTagesabschluss;
 
-
-		} catch (Exception e){
+		} catch (Exception e) {
 			String msg = "Tagesabrechnung misslungen";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg + e);
 		}
 	}
 
 	@Override
 	public List<Abrechnung> findByBenutzerUndDatum(Benutzer benutzer, LocalDateTime zeit) throws Exception {
 		// TODO Auto-generated method stub
-		try{
+		try {
 			return getAbrechnungDAO().findByBenutzerUndDatum(benutzer, zeit);
 		} catch (Exception e) {
 			String msg = "Rechnungen des Benutzers " + benutzer.getNachname() + " " + benutzer.getVorname()
 					+ " konnten nicht geholt werden";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg + e);
 		}
-		}
+	}
 
 
 	@Override
 	public List<Abrechnung> findByDatum(LocalDateTime zeit) throws Exception {
-		try{
+		try {
 			return getAbrechnungDAO().findByDatum(zeit);
 		} catch (Exception e) {
-			String msg = "Rechnungen des Tages " + "konnten nicht geholt werden";
+			String msg = "Rechnungen des Tages " + zeit.toString() + " konnten nicht geholt werden";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg + e);
 		}
 	}
 
+	@Override
+	public Abrechnung findById(Long id) throws Exception {
+		try {
+			return getAbrechnungDAO().findById(id);
+
+		} catch (Exception e) {
+			String msg = "Abrechnung mit ID: " + id + " konnte nicht gefunden werden";
+			logger.error(msg, e);
+			throw new Exception(msg + e);
+		}
 	}
+}
 

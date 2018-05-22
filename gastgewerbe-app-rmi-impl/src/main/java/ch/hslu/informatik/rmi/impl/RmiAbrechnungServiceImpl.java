@@ -37,8 +37,8 @@ public class RmiAbrechnungServiceImpl extends UnicastRemoteObject implements Rmi
 	}
 
 	@Override
-	public double abschluss(LocalDateTime zeit) throws Exception {
-		return getAbrechnungService().abschluss(zeit);
+	public double abschluss(List<Abrechnung> abrechnungen) throws Exception {
+		return getAbrechnungService().abschluss(abrechnungen);
 	}
 
 	@Override
@@ -49,5 +49,10 @@ public class RmiAbrechnungServiceImpl extends UnicastRemoteObject implements Rmi
 	@Override
 	public List<Abrechnung> findByDatum(LocalDateTime zeit) throws Exception {
 		return getAbrechnungService().findByDatum(zeit);
+	}
+
+	@Override
+	public Abrechnung findById(Long id) throws Exception {
+		return getAbrechnungService().findById(id);
 	}
 }

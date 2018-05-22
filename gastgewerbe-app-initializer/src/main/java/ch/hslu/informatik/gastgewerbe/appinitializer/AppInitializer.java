@@ -261,14 +261,17 @@ public class AppInitializer {
 
 		Abrechnung ab1 = new Abrechnung(benDao.findById(1), bestDao.findById(30), LocalDateTime.now());
 		Abrechnung ab2 = new Abrechnung(benDao.findById(3), bestDao.findById(34), d);
+		Abrechnung ab3 = new Abrechnung(benDao.findByBenutzername("thelastsamurai"), bestDao.findById(41), LocalDateTime.now());
 
 		ab1.setBetrag(300.23);
+		ab2.setBetrag(600.31);
+		ab3.setBetrag(234.23);
 
 
 		List<Abrechnung> abrechnungListe = new ArrayList<>();
 		abrechnungListe.add(ab1);
 		abrechnungListe.add(ab2);
-
+		abrechnungListe.add(ab3);
 
 		for (Abrechnung ab:abrechnungListe){
 			logger.info("  >> Abrechnung: " + ab.getId() + " Zeit: " + ab.getZeit().toString());
@@ -310,11 +313,20 @@ public class AppInitializer {
 
 		logger.info("  >> Bestellung " +best2.getId()+" "+ best2.getTisch() + " " + best2.getZeit() + " Anzahl Pos:" + best2.getBestellungPositionListe().size()+" erzeugt.");
 
+		Bestellung best3 = new Bestellung("Für Abrechnungzwecke...", tischDAO.findByTischNr(4), LocalDateTime.now());
+
+		best3.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("3003"), 10));
+
+		best3.setRechnungBezahlt(true);
+
+		logger.info("  >> Bestellung " +best3.getId()+" "+ best3.getTisch() + " " + best3.getZeit() + " Anzahl Pos:" + best3.getBestellungPositionListe().size()+" erzeugt.");
+
 		logger.info(">> Erzeugung von Bestellungen beendet.");
 
 		List<Bestellung> bestellungen = new ArrayList<>();
         bestellungen.add(best1);
         bestellungen.add(best2);
+        bestellungen.add(best3);
 
 		for (Bestellung b : bestellungen) {
             bestellungDAO.save(b);

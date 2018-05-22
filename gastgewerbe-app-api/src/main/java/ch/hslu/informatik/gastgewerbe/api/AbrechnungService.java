@@ -17,7 +17,7 @@ public interface AbrechnungService {
 	double tischAbrechnen(Tisch tisch, Benutzer benutzer, Bestellung bestellung) throws Exception;
 
 	// Abschluss aller Bestellungen für Tagesabrechnung
-	double abschluss(LocalDateTime zeit) throws Exception;
+	double abschluss(List<Abrechnung> abrechnungen) throws Exception;
 
 	// Liefert alle Abnrechnung für den übergeben Benutzer und Datum zurück
 	List<Abrechnung> findByBenutzerUndDatum(Benutzer benutzer, LocalDateTime zeit) throws Exception;
@@ -25,5 +25,7 @@ public interface AbrechnungService {
     // Lieferte alle Abrechnungen für das übergebene LocalDateTime
     List<Abrechnung> findByDatum(LocalDateTime zeit) throws Exception;
 
+    // Gibt Abrechnung mit der übergebenen ID zurück
+	Abrechnung findById(Long id) throws Exception;
 
 }
