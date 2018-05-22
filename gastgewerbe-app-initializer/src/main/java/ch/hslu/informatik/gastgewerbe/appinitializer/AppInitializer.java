@@ -257,18 +257,16 @@ public class AppInitializer {
 		BenutzerDAO benDao = new BenutzerDAOImpl();
 		BestellungDAO bestDao = new BestellungDAOImpl();
 
-		Abrechnung ab1 = new Abrechnung(benDao.findById(1), bestDao.findById(30));
-		Abrechnung ab2 = new Abrechnung(benDao.findById(3), bestDao.findById(34));
+		LocalDateTime d = LocalDateTime.now().minusDays(3);
+
+		Abrechnung ab1 = new Abrechnung(benDao.findById(1), bestDao.findById(30), LocalDateTime.now());
+		Abrechnung ab2 = new Abrechnung(benDao.findById(3), bestDao.findById(34), d);
+
 
 		List<Abrechnung> abrechnungListe = new ArrayList<>();
 		abrechnungListe.add(ab1);
 		abrechnungListe.add(ab2);
 
-
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy kk:mm");
-
-		LocalDateTime d = LocalDateTime.parse("20.05.2018 00:00",formatter);
-		ab1.setZeit(d);
 
 		for (Abrechnung ab:abrechnungListe){
 			logger.info("  >> Abrechnung: " + ab.getId() + " Zeit: " + ab.getZeit().toString());
@@ -291,7 +289,7 @@ public class AppInitializer {
 		TischDAO tischDAO = new TischDAOImpl();
         BestellungDAO bestellungDAO = new BestellungDAOImpl();
 
-		Bestellung best1 = new Bestellung("Achtung Gluten Intolleranz", tischDAO.findByTischNr(2));
+		Bestellung best1 = new Bestellung("Achtung Gluten Intolleranz", tischDAO.findByTischNr(2), LocalDateTime.now());
 
 		best1.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("1000"), 4));
 		best1.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("2000"),3));
@@ -299,7 +297,7 @@ public class AppInitializer {
 
 		logger.info("  >> Bestellung " +best1.getId()+" "+ best1.getTisch() + " " + best1.getZeit() + " Anzahl Pos:" + best1.getBestellungPositionListe().size()+" erzeugt.");
 
-		Bestellung best2 = new Bestellung("Muss extrem schnell gehen Küche!!!", tischDAO.findByTischNr(3));
+		Bestellung best2 = new Bestellung("Muss extrem schnell gehen Küche!!!", tischDAO.findByTischNr(3), LocalDateTime.now().minusDays(3));
 
 		best2.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("1001"), 2));
 		best2.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("1002"),3));

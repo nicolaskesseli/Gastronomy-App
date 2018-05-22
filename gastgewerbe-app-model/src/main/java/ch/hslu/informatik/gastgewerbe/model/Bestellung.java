@@ -43,11 +43,11 @@ public class Bestellung implements Serializable {
 
 
 
-	public Bestellung(String bemerkung, Tisch tisch) {
+	public Bestellung(String bemerkung, Tisch tisch, LocalDateTime zeit) {
 		this.bemerkung = bemerkung;
 		this.tisch = tisch;
 		this.rechnungBezahlt=false;
-		this.zeit=LocalDateTime.now();
+		this.zeit=zeit;
 	}
 
 	public long getId() {

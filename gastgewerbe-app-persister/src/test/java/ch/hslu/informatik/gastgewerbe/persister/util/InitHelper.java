@@ -1,6 +1,7 @@
 package ch.hslu.informatik.gastgewerbe.persister.util;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class InitHelper {
 
         List<Tisch> tische = pTisch.findAll();
 
-		Bestellung b = new Bestellung("Achtung Glutenintolleranz",tische.get(1));
+		Bestellung b = new Bestellung("Achtung Glutenintolleranz",tische.get(1), LocalDateTime.now());
 
 		List<Produkt> produkte = pProduktDAO.findAll();
 
@@ -273,7 +274,7 @@ public class InitHelper {
 
 		List<Abrechnung> liste = new ArrayList<Abrechnung>();
 
-		Abrechnung abrechnung = new Abrechnung(ben.get(0), b.get(0));
+		Abrechnung abrechnung = new Abrechnung(ben.get(0), b.get(0), LocalDateTime.now());
 
 		liste.add(abrechnung);
 

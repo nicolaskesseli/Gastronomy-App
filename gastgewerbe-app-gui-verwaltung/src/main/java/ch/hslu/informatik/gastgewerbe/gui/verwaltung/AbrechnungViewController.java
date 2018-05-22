@@ -96,7 +96,6 @@ public class AbrechnungViewController implements Initializable {
 
         logger.debug(abrechnungList.toString());
 
-        //TODO: Liste in Wrapper-Liste umwandeln, die dann der Tabelle hinzufügen und dann die gewünschten ergebnisse ausgeben.
             for(Abrechnung a : abrechnungList ){
             abrechnungWrapperList.add(new AbrechnungWrapper(a));
             }

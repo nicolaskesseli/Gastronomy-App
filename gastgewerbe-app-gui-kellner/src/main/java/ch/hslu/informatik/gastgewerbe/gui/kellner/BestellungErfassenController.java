@@ -2,6 +2,7 @@ package ch.hslu.informatik.gastgewerbe.gui.kellner;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -268,7 +269,7 @@ public class BestellungErfassenController implements Initializable {
 
 				
 				Bestellung bestellung = new Bestellung(bemerkung,
-				Context.getInstance().getTischService().findByTischNummer(tischNr));
+				Context.getInstance().getTischService().findByTischNummer(tischNr), LocalDateTime.now());
 				
 				
 
@@ -489,7 +490,7 @@ public class BestellungErfassenController implements Initializable {
 				
 				
 				Bestellung b = new Bestellung(bemerkung,
-						Context.getInstance().getTischService().findByTischNummer(tischNr));
+						Context.getInstance().getTischService().findByTischNummer(tischNr), LocalDateTime.now());
 
 				for (BestellungPositionWrapper item : bestellübersichtTbl.getItems()) {
 					b.getBestellungPositionListe().add(item.getBestellungPosition());

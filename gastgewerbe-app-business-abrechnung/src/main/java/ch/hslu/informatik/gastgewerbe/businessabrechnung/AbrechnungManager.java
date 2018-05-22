@@ -62,7 +62,13 @@ public class AbrechnungManager implements AbrechnungService {
 
 		try {
 
-			Abrechnung abrechnung = new Abrechnung(benutzer, bestellung);
+			Abrechnung abrechnung = new Abrechnung(benutzer, bestellung, LocalDateTime.now());
+
+			// Abrechnung gesamtotal setzen
+
+			double betrag = abrechnung.getGesamtBetrag();
+
+			abrechnung.setBetrag(betrag);
 
 			// Abrechnung speichern
 			getAbrechnungDAO().save(abrechnung);
@@ -72,8 +78,6 @@ public class AbrechnungManager implements AbrechnungService {
 			getBestellungDAO().update(bestellung);
 
 			logger.info(abrechnung.toString()+ " wrude erstellt!");
-
-			double betrag = abrechnung.getGesamtBetrag();
 
 			return betrag;
 

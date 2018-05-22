@@ -40,12 +40,11 @@ public class Abrechnung implements Serializable {
 
 	}
 
-	public Abrechnung(Benutzer benutzer, Bestellung bestellung) {
-		this.zeit = LocalDateTime.now();
+	public Abrechnung(Benutzer benutzer, Bestellung bestellung, LocalDateTime zeit) {
+		this.zeit = zeit;
 		this.benutzer = benutzer;
 		this.bestellung = bestellung;
 		this.tagesAbrechnung = false;
-		this.betrag=0.0;
 	}
 
 	public long getId() {
