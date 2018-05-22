@@ -1,7 +1,5 @@
 package ch.hslu.informatik.gastgewerbe.gui.verwaltung;
 
-
-
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -47,6 +45,8 @@ public class AbrechnungViewController implements Initializable {
     private Label lblError;
 
     @FXML
+
+	@FXML
     private TableView<AbrechnungWrapper> tblUebersichtBestellung;
 
     @FXML
@@ -68,6 +68,8 @@ public class AbrechnungViewController implements Initializable {
     private TableColumn<AbrechnungWrapper, Integer> colAnzPos;
 
     @FXML
+
+	@FXML
     private TableColumn<AbrechnungWrapper, String> colAusgewaelt;
 
     @FXML
@@ -83,6 +85,13 @@ public class AbrechnungViewController implements Initializable {
     	    lblError.setText("");
             lblTotal.setText("");
 
+
+		try {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy kk:mm:ss.SSS");
+
+			String date = txtDatumInput.getText();
+			date = date + " 00:00:00.000";
+
     	    tblUebersichtBestellung.getItems().clear();
     	    abrechnungList.clear();
     	    abrechnungWrapperList.clear();
@@ -93,6 +102,11 @@ public class AbrechnungViewController implements Initializable {
 
         String date = txtDatumInput.getText();
         date = date + " 00:00:00.001";
+
+			Benutzer benutzer = Context.getInstance().getBenutzerService().findByBenutzername(username);
+
+			logger.debug(zeit.toString());
+			logger.debug(LocalDateTime.now().toString());
 
         LocalDateTime zeit = LocalDateTime.parse(date, formatter);
 
@@ -121,6 +135,16 @@ public class AbrechnungViewController implements Initializable {
                         abrechnungList.add(a);
                     }
                 }
+
+			for (Abrechnung a : abrechnungList) {
+				abrechnungWrapperList.add(new AbrechnungWrapper(a));
+			}
+
+			tblUebersichtBestellung.getItems().addAll(abrechnungWrapperList);
+
+			// double tagesUmsatz =
+			// Context.getInstance().getAbrechnungService().abschluss(zeit);
+
             }
         }
 

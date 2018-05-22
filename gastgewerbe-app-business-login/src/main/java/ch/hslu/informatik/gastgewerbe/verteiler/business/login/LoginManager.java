@@ -18,6 +18,7 @@ public class LoginManager implements LoginService {
 	private BenutzerDAO benutzerDAO;
 	private CredentialsDAO credentialsDAO;
 
+	// Liefert einen BenutzerDAOImpl zurück
 	public BenutzerDAO getBenutzerDAO() {
 
 		if (benutzerDAO == null) {
@@ -26,7 +27,7 @@ public class LoginManager implements LoginService {
 
 		return benutzerDAO;
 	}
-
+	// Liefert einen CredentialsDAOImpl zurück
 	public CredentialsDAO getCredentialsDAO() {
 
 		if (credentialsDAO == null) {
@@ -36,6 +37,7 @@ public class LoginManager implements LoginService {
 		return credentialsDAO;
 	}
 
+    /*Methode um sich einzuloggen*/
 	public Benutzer login(String benutzername, String kennwort) throws Exception {
 
 		try {
@@ -51,10 +53,11 @@ public class LoginManager implements LoginService {
 		} catch (Exception e) {
 			String msg = "Benutzer \'" + benutzername + "\' konnte nicht angemeldet werden";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg + e);
 		}
 	}
 
+	//Methode, um das Kennwort zu ändern
 	public boolean kennwortAendern(String benutzername, String kennwortAktuell, String kennwortNeu) throws Exception {
 
 		try {
@@ -75,7 +78,7 @@ public class LoginManager implements LoginService {
 		} catch (Exception e) {
 			String msg = "Kennwort des Benutzers \'" + benutzername + "\' konnte nicht geändert werden";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg + e);
 		}
 
 		return false;

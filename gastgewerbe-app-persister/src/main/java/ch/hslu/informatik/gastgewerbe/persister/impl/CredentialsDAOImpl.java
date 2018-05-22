@@ -1,6 +1,5 @@
 package ch.hslu.informatik.gastgewerbe.persister.impl;
 
-
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -15,34 +14,33 @@ import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 
 public class CredentialsDAOImpl extends GenericPersisterDAOImpl<Credentials> implements CredentialsDAO {
 
-    private static final Logger logger = LogManager.getLogger(CredentialsDAOImpl.class);
+	private static final Logger logger = LogManager.getLogger(CredentialsDAOImpl.class);
 
-    public CredentialsDAOImpl() {
-        super(Credentials.class);
-    }
+	public CredentialsDAOImpl() {
+		super(Credentials.class);
+	}
 
-    public Credentials findByBenutzername(String benutzername) throws Exception {
+	public Credentials findByBenutzername(String benutzername) throws Exception {
 
-        EntityManager em = JPAUtil.createEntityManager();
+		EntityManager em = JPAUtil.createEntityManager();
 
-        TypedQuery<Credentials> query = em.createNamedQuery("Credentials.findByBenutzername", Credentials.class);
+		TypedQuery<Credentials> query = em.createNamedQuery("Credentials.findByBenutzername", Credentials.class);
 
-        query.setParameter("benutzername", benutzername);
+		query.setParameter("benutzername", benutzername);
 
-        List<Credentials> liste = query.getResultList();
+		List<Credentials> liste = query.getResultList();
 
-        em.close();
+		em.close();
 
-        if (liste.isEmpty()) {
-            return null;
-        } else if (liste.size() == 1) {
-            return liste.get(0);
-        } else {
-            String message = "Mehr als eine Credentials-Entity mit dem Benutzernamen \'" + benutzername + "\' gefunden";
-            logger.error(message);
-            throw new IllegalStateException(message);
-        }
-    }
+		if (liste.isEmpty()) {
+			return null;
+		} else if (liste.size() == 1) {
+			return liste.get(0);
+		} else {
+			String message = "Mehr als eine Credentials-Entity mit dem Benutzernamen \'" + benutzername + "\' gefunden";
+			logger.error(message);
+			throw new IllegalStateException(message);
+		}
+	}
 
 }
-

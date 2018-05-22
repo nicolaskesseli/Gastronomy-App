@@ -9,7 +9,7 @@ import javax.persistence.Embeddable;
 public class Adresse implements Serializable {
 
 	private static final long serialVersionUID = -466703289533993557L;
-	
+
 	private String strasse;
 	private int plz;
 	private String ort;
@@ -50,12 +50,12 @@ public class Adresse implements Serializable {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof Adresse)) return false;
+		if (this == o)
+			return true;
+		if (!(o instanceof Adresse))
+			return false;
 		Adresse adresse = (Adresse) o;
-		return plz == adresse.plz &&
-				Objects.equals(strasse, adresse.strasse) &&
-				Objects.equals(ort, adresse.ort);
+		return plz == adresse.plz && Objects.equals(strasse, adresse.strasse) && Objects.equals(ort, adresse.ort);
 	}
 
 	@Override
@@ -70,4 +70,3 @@ public class Adresse implements Serializable {
 	}
 
 }
-

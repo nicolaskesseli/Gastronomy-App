@@ -19,7 +19,6 @@ import ch.hslu.informatik.gastgewerbe.rmi.api.RmiBestellungService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiLoginService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiProduktService;
 import ch.hslu.informatik.gastgewerbe.rmi.api.RmiTischService;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class Context {
@@ -30,26 +29,24 @@ public class Context {
 	private static final String POLICY_FILE_NAME = "rmi_client.policy";
 
 	private static Context INSTANCE = new Context();
-	
+
 	private Stage mainStage;
-	
+
 	private Stage bestellungErfassenAnzahlStage;
 
 	private Benutzer benutzer;
 
 	private RmiProduktService produktService;
-	
+
 	private RmiTischService tischService;
-	
+
 	private RmiLoginService loginService;
-	
+
 	private RmiBestellungService bestellungService;
-	
+
 	private RmiAbrechnungService abrechnungService;
-	
+
 	private BestellungPositionWrapper anzahlBearbeiten;
-	
-	
 
 	private Context() {
 
@@ -67,16 +64,15 @@ public class Context {
 	public void setAnzahlBearbeiten(BestellungPositionWrapper anzahlBearbeiten) {
 		this.anzahlBearbeiten = anzahlBearbeiten;
 	}
-	
+
 	public Stage getMainStage() {
 		return mainStage;
 	}
-	
+
 	public void setMainStage(Stage mainStage) {
 		this.mainStage = mainStage;
 	}
-	
-	
+
 	public Stage getBestellungErfassenAnzahlStage() {
 		return bestellungErfassenAnzahlStage;
 	}
@@ -92,7 +88,8 @@ public class Context {
 	public void setBenutzer(Benutzer benutzer) {
 		this.benutzer = benutzer;
 	}
-	
+
+	// Liefert RmiBestellungService zurück
 	public RmiBestellungService getBestellungService() {
 
 		int portNr = 0;
@@ -146,7 +143,8 @@ public class Context {
 
 		return bestellungService;
 	}
-	
+
+	// Liefert RmiTischService zurück
 	public RmiTischService getTischService() {
 
 		int portNr = 0;
@@ -201,6 +199,7 @@ public class Context {
 		return tischService;
 	}
 
+	// Liefert RmiLoginService zurück
 	public RmiLoginService getLoginService() {
 
 		int portNr = 0;
@@ -254,7 +253,8 @@ public class Context {
 
 		return loginService;
 	}
-	
+
+	// Liefert RmiProduktService zurück
 	public RmiProduktService getProduktService() {
 
 		int portNr = 0;
@@ -308,12 +308,12 @@ public class Context {
 
 		return produktService;
 	}
-	
-	
+
+	// Liefert RmiAbrechnungService zurück
 	public RmiAbrechnungService getAbrechnungService() {
 
 		int portNr = 0;
-		
+
 		abrechnungService = null;
 
 		if (abrechnungService == null) {
@@ -366,7 +366,6 @@ public class Context {
 		return abrechnungService;
 	}
 
-
 	/* Diese Methode setzt den SecurityManager */
 	private void setSecurityManager() throws IOException {
 
@@ -377,8 +376,8 @@ public class Context {
 
 		InputStream is = this.getClass().getClassLoader().getResourceAsStream(POLICY_FILE_NAME);
 
-		File tempFile = File
-				.createTempFile(System.getProperty("user.home") + File.separator + "gastgewerbe_rmi_policy", "tmp");
+		File tempFile = File.createTempFile(System.getProperty("user.home") + File.separator + "gastgewerbe_rmi_policy",
+				"tmp");
 
 		FileOutputStream fos = new FileOutputStream(tempFile);
 
@@ -402,8 +401,5 @@ public class Context {
 			System.setSecurityManager(new SecurityManager());
 		}
 	}
-	
-	
 
 }
-

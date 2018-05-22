@@ -1,11 +1,9 @@
 package ch.hslu.informatik.gastgewerbe.businessbestellung;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
-import ch.hslu.informatik.gastgewerbe.model.Tisch;
 import ch.hslu.informatik.gastgewerbe.persister.BestellungPositionDAO;
 import ch.hslu.informatik.gastgewerbe.persister.impl.BestellungPositionDAOImpl;
 import org.apache.logging.log4j.LogManager;
@@ -16,26 +14,23 @@ import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.persister.BestellungDAO;
 import ch.hslu.informatik.gastgewerbe.persister.impl.BestellungDAOImpl;
 
-
 public class BestellungManager implements BestellungService {
-	
+
 	private static Logger logger = LogManager.getLogger(BestellungManager.class);
 
-    private BestellungDAO bestellungDAO;
-    private BestellungPositionDAO bestellungPosDAO;
-    
-    public BestellungDAO getBestellungDAO() {
+	private BestellungDAO bestellungDAO;
+	private BestellungPositionDAO bestellungPosDAO;
 
-        if (bestellungDAO == null) {
-            bestellungDAO = new BestellungDAOImpl();
-        }
+	public BestellungDAO getBestellungDAO() {
 
-        return bestellungDAO;
-    }
+		if (bestellungDAO == null) {
+			bestellungDAO = new BestellungDAOImpl();
+		}
 
-    
+		return bestellungDAO;
+	}
 
-    public BestellungPositionDAO getBestellungPosDAO(){
+	public BestellungPositionDAO getBestellungPosDAO() {
 		if (bestellungPosDAO == null) {
 			bestellungPosDAO = new BestellungPositionDAOImpl();
 		}
@@ -43,32 +38,29 @@ public class BestellungManager implements BestellungService {
 		return bestellungPosDAO;
 	}
 
-	@Override
+	/* Bestellung am Tisch erfassen */
 	public Bestellung bestellen(Bestellung bestellung) throws Exception {
 		try {
 			return getBestellungDAO().save(bestellung);
-        } catch (Exception e) {
-            String msg = "Bestellung konnte nicht durchgeführt werden";
-            logger.error(msg, e);
-            throw new Exception(msg, e);
+		} catch (Exception e) {
+			String msg = "Bestellung konnte nicht durchgeführt werden";
+			logger.error(msg, e);
+			throw new Exception(msg + e);
 		}
 	}
-	
-	
-	
 
-	@Override
+	/* Bestellungsposition zu bestender Bestellung hinzufügen */
 	public Bestellung bestellungAktualisieren(Bestellung bestellung) throws Exception {
 		try {
 			return getBestellungDAO().update(bestellung);
 		} catch (Exception e) {
 			String msg = "Bestellung konnte nicht aktualisiert werden";
 			logger.error(msg, e);
-			throw new Exception(msg, e);
+			throw new Exception(msg + e);
 		}
 	}
 
-	@Override
+	/* Bestellungsposition wird auf bereit gesetzt */
 	public boolean bestellungPositionBereit(BestellungPosition bestellungPosition) throws Exception {
 		try {
 			bestellungPosition.setBestellungBereit(true);
@@ -77,84 +69,81 @@ public class BestellungManager implements BestellungService {
 		} catch (Exception e) {
 			String msg = "Bestellung konnte nicht auf Status bereit werden";
 			logger.error(msg, e);
-			throw new Exception(msg, e);
+			throw new Exception(msg + e);
 		}
 	}
 
-
-	@Override
+	/* Liefert alle Bestellung */
 	public List<Bestellung> alleBestellungen() throws Exception {
 		try {
 			return getBestellungDAO().findAll();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			String msg = "Keine Objekte gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg, e);
+			throw new Exception(msg + e);
 		}
 	}
 
-	@Override
+	/* Liefert alle Bestellungen einer Tisch Nr. */
 	public List<Bestellung> findByTischNr(int TischNr) throws Exception {
 		try {
 			return getBestellungDAO().findByTischNr(TischNr);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			String msg = "Keine Bestellungen mit der Tisch-Nr. " + TischNr + " gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg, e);
+			throw new Exception(msg + e);
 		}
 	}
-	
-	
 
-	@Override
+	/* Liefer alle Bestellungen für das bestimmte Datum/Zeit */
 	public List<Bestellung> findByZeit(LocalDateTime zeit) throws Exception {
 		try {
 			return getBestellungDAO().findByZeit(zeit);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			String msg = "Keine Bestellung mit dem Datum " + zeit + " gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg, e);
+			throw new Exception(msg + e);
 		}
 	}
 
-	@Override
+	/* Liefert Bestellung mit dieser ID */
 	public void deleteBestellung(Bestellung bestellung) throws Exception {
-    	try{
-    		getBestellungDAO().delete(bestellung);
+		try {
+			getBestellungDAO().delete(bestellung);
 
-		}catch (Exception e) {
-			String msg = "Bestellung: " +bestellung.toString()+" konnte nicht gelöscht werden!";
+		} catch (Exception e) {
+			String msg = "Bestellung: " + bestellung.toString() + " konnte nicht gelöscht werden!";
 			logger.error(msg, e);
-			throw new Exception(msg, e);
+			throw new Exception(msg + e);
 		}
 
 	}
 
-	@Override
+	/* Löscht übergebene Bestellung */
 	public Bestellung findById(Long id) throws Exception {
 
-    	try{
-    		return getBestellungDAO().findById(id);
+		try {
+			return getBestellungDAO().findById(id);
 		} catch (Exception e) {
 			String msg = "Keine Bestellung mit ID " + id + " gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg, e);
+			throw new Exception(msg + e);
 		}
 	}
 
-	@Override
+	/* Liefert BestellungsPos für diese ID */
 	public BestellungPosition bestPosFindById(Long id) throws Exception {
-		try{
-			return  getBestellungPosDAO().findById(id);
-		}catch (Exception e) {
+		try {
+			return getBestellungPosDAO().findById(id);
+		} catch (Exception e) {
 			String msg = "Keine BestellPos mit ID " + id + " gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg, e);
+			throw new Exception(msg + e);
 		}
 
 	}
 
-	@Override
+	/* Bestellungsposition wird auf ausgeliefert gesetzt */
 	public boolean bestellungPositionAusgeliefert(BestellungPosition bestellungPosition) throws Exception {
 		try {
 			bestellungPosition.setBestellungAusgeliefert(true);
@@ -163,78 +152,79 @@ public class BestellungManager implements BestellungService {
 		} catch (Exception e) {
 			String msg = "Bestellung konnte nicht auf Status ausgeliefert werden";
 			logger.error(msg, e);
-			throw new Exception(msg, e);
+			throw new Exception(msg + e);
 		}
 	}
 
-	@Override
+	/* Liefert alle Bestellung mit dem übergebenen Boolean für Bezahlungsstatus */
 	public List<Bestellung> findByRechBezahlt(Boolean rechnungBezahlt) throws Exception {
 
-    	try{
-    		return getBestellungDAO().findByRechBezahlt(rechnungBezahlt);
-		}catch (Exception e) {
+		try {
+			return getBestellungDAO().findByRechBezahlt(rechnungBezahlt);
+		} catch (Exception e) {
 			String msg = "Keine Bestellung mit RechStatus " + rechnungBezahlt + " gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg, e);
+			throw new Exception(msg + e);
 		}
 	}
 
-	@Override
+	/*Liefert alle BestellungPositionen mit dem übergebenen Boolean für Bestellungsstatus*/
 	public List<BestellungPosition> bestPosFindByBereit(Boolean bestellungBereit) throws Exception {
 
-    	try{
-    		return getBestellungPosDAO().findByBereit(bestellungBereit);
-		}catch (Exception e) {
+		try {
+			return getBestellungPosDAO().findByBereit(bestellungBereit);
+		} catch (Exception e) {
 			String msg = "Keine BestellPos mit BestellStatus " + bestellungBereit + " gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg, e);
+			throw new Exception(msg + e);
+
 		}
 	}
 
-	@Override
+	/*Liefert alle BestellungPositionen mit dem übergebenen Boolean fürAuslieferungsstatus*/
 	public List<BestellungPosition> bestPosFindByAusgeliefert(Boolean bestellungAusgeliefert) throws Exception {
 
-		try{
+		try {
 			return getBestellungPosDAO().findByAusgeliefert(bestellungAusgeliefert);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			String msg = "Keine BestellPos mit AuslieferungsStatus " + bestellungAusgeliefert + " gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg, e);
+			throw new Exception(msg + e);
 		}
 	}
 
-	@Override
+	/*Liefert alle Bestellungen mit dem übergebenen Boolean für Bestellungsstatus*/
 	public List<Bestellung> findByBereit(Boolean bestellungBereit) throws Exception {
-		try{
+		try {
 			return getBestellungDAO().findByBereit(bestellungBereit);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			String msg = "Keine Bestellung mit BestellStatus " + bestellungBereit + " gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg, e);
+			throw new Exception(msg + e);
 		}
 	}
 
-	@Override
+	/*Liefert alle Bestellungen mit dem übergebenen Boolean für Auslieferungsstatus*/
 	public List<Bestellung> findByAusgeliefert(Boolean bestellungAusgeliefert) throws Exception {
-		try{
+		try {
 			return getBestellungDAO().findByAusgeliefert(bestellungAusgeliefert);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			String msg = "Keine Bestellung mit AuslieferungsStatus " + bestellungAusgeliefert + " gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg, e);
+			throw new Exception(msg + e);
 		}
 	}
 
-	@Override
+	/*Liefert alle Bestellungen einer Tisch-Nr., mit dem übergebenen Rechnungsstatus*/
 	public List<Bestellung> findByRechBezahltTisch(int TischNr, Boolean rechnungBezahlt) throws Exception {
-		try{
+		try {
 			return getBestellungDAO().findByRechBezahltTisch(TischNr, rechnungBezahlt);
-		}catch (Exception e) {
-			String msg = "Keine Bestellung mit Tisch-Nr. " + TischNr + "und Rechnungsstatus: " +  rechnungBezahlt + " gefunden";
+		} catch (Exception e) {
+			String msg = "Keine Bestellung mit Tisch-Nr. " + TischNr + "und Rechnungsstatus: " + rechnungBezahlt
+					+ " gefunden";
 			logger.error(msg, e);
-			throw new Exception(msg, e);
+			throw new Exception(msg + e);
 		}
 	}
 
-	
 }
