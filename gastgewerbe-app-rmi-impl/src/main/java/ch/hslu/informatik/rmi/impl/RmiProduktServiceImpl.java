@@ -10,55 +10,56 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
+@SuppressWarnings("serial")
 public class RmiProduktServiceImpl extends UnicastRemoteObject implements RmiProduktService {
 
-    private ProduktService produktService;
+	private ProduktService produktService;
 
-    public RmiProduktServiceImpl() throws RemoteException {
+	public RmiProduktServiceImpl() throws RemoteException {
 
-        }
+	}
 
-        public ProduktService getProduktService(){
-            if(produktService==null){
-                produktService= new ProduktManager();
+	public ProduktService getProduktService() {
+		if (produktService == null) {
+			produktService = new ProduktManager();
 
-            }
-            return produktService;
-        }
+		}
+		return produktService;
+	}
 
-    @Override
-    public Produkt produktHinzufuegen(Produkt produkt) throws Exception {
-        return getProduktService().produktHinzufuegen(produkt);
-    }
+	@Override
+	public Produkt produktHinzufuegen(Produkt produkt) throws Exception {
+		return getProduktService().produktHinzufuegen(produkt);
+	}
 
-    @Override
-    public void produktLoeschen(Produkt produkt) throws Exception {
-        getProduktService().produktLoeschen(produkt);
+	@Override
+	public void produktLoeschen(Produkt produkt) throws Exception {
+		getProduktService().produktLoeschen(produkt);
 
-    }
+	}
 
-    @Override
-    public Produkt produktAktualisieren(Produkt produkt) throws Exception {
-        return getProduktService().produktAktualisieren(produkt);
-    }
+	@Override
+	public Produkt produktAktualisieren(Produkt produkt) throws Exception {
+		return getProduktService().produktAktualisieren(produkt);
+	}
 
-    @Override
-    public Produkt findByProduktCode(String produktCode) throws Exception {
-        return getProduktService().findByProduktCode(produktCode);
-    }
+	@Override
+	public Produkt findByProduktCode(String produktCode) throws Exception {
+		return getProduktService().findByProduktCode(produktCode);
+	}
 
-    @Override
-    public List<Produkt> findProduktByName(String name) throws Exception {
-        return getProduktService().findProduktByName(name);
-    }
+	@Override
+	public List<Produkt> findProduktByName(String name) throws Exception {
+		return getProduktService().findProduktByName(name);
+	}
 
-    @Override
-    public List<Produkt> findProduktByKategorie(KategorieTyp kategorie) throws Exception {
-        return getProduktService().findProduktByKategorie(kategorie);
-    }
+	@Override
+	public List<Produkt> findProduktByKategorie(KategorieTyp kategorie) throws Exception {
+		return getProduktService().findProduktByKategorie(kategorie);
+	}
 
-    @Override
-    public List<Produkt> alleProdukt() throws Exception {
-        return getProduktService().alleProdukt();
-    }
+	@Override
+	public List<Produkt> alleProdukt() throws Exception {
+		return getProduktService().alleProdukt();
+	}
 }

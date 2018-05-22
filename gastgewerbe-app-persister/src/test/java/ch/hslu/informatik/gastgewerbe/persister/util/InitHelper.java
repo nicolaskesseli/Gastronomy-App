@@ -1,6 +1,5 @@
 package ch.hslu.informatik.gastgewerbe.persister.util;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +8,6 @@ import ch.hslu.informatik.gastgewerbe.model.*;
 import ch.hslu.informatik.gastgewerbe.persister.*;
 import ch.hslu.informatik.gastgewerbe.persister.impl.*;
 import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
-
 
 public class InitHelper {
 
@@ -22,7 +20,6 @@ public class InitHelper {
 	public static final int INIT_SIZE_ABRECHNUNG = 1;
 	public static final int INIT_SIZE_BESTELLUNGPOSITIONEN = 3;
 
-
 	public static List<Bestellung> initBestellung() throws Exception {
 
 		List<Bestellung> liste = new ArrayList<Bestellung>();
@@ -31,19 +28,19 @@ public class InitHelper {
 		ProduktDAO pProduktDAO = new ProduktDAOImpl();
 		TischDAO pTisch = new TischDAOImpl();
 
-        List<Tisch> tische = pTisch.findAll();
+		List<Tisch> tische = pTisch.findAll();
 
-		Bestellung b = new Bestellung("Achtung Glutenintolleranz",tische.get(1), LocalDateTime.now());
+		Bestellung b = new Bestellung("Achtung Glutenintolleranz", tische.get(1), LocalDateTime.now());
 
 		List<Produkt> produkte = pProduktDAO.findAll();
 
-		b.getBestellungPositionListe().add(new BestellungPosition(produkte.get(0),4));
-		b.getBestellungPositionListe().add(new BestellungPosition(produkte.get(1),3));
-		b.getBestellungPositionListe().add(new BestellungPosition(produkte.get(2),10));
+		b.getBestellungPositionListe().add(new BestellungPosition(produkte.get(0), 4));
+		b.getBestellungPositionListe().add(new BestellungPosition(produkte.get(1), 3));
+		b.getBestellungPositionListe().add(new BestellungPosition(produkte.get(2), 10));
 
 		liste.add(b);
 
-		for (Bestellung bestellung : liste){
+		for (Bestellung bestellung : liste) {
 			pBestellungDAO.save(bestellung);
 		}
 
@@ -59,12 +56,12 @@ public class InitHelper {
 		}
 	}
 
-	public static List<BestellungPosition> initBestellungPosition() throws Exception{
+	public static List<BestellungPosition> initBestellungPosition() throws Exception {
 
 		List<BestellungPosition> liste = new ArrayList<BestellungPosition>();
 
 		ProduktDAO pProduktDAO = new ProduktDAOImpl();
-		BestellungPositionDAO  BestPosDAO = new BestellungPositionDAOImpl();
+		BestellungPositionDAO BestPosDAO = new BestellungPositionDAOImpl();
 
 		List<Produkt> produkte = pProduktDAO.findAll();
 
@@ -72,7 +69,7 @@ public class InitHelper {
 		liste.add(new BestellungPosition(produkte.get(1), 3));
 		liste.add(new BestellungPosition(produkte.get(2), 6));
 
-		for (BestellungPosition p : liste){
+		for (BestellungPosition p : liste) {
 			BestPosDAO.save(p);
 		}
 
@@ -81,7 +78,7 @@ public class InitHelper {
 
 	public static void deleteAllBestellungPosition() throws Exception {
 
-		BestellungPositionDAO  BestPosDAO = new BestellungPositionDAOImpl();
+		BestellungPositionDAO BestPosDAO = new BestellungPositionDAOImpl();
 
 		for (BestellungPosition p : BestPosDAO.findAll()) {
 			BestPosDAO.delete(p);
@@ -94,24 +91,22 @@ public class InitHelper {
 
 		List<Produkt> liste = new ArrayList<Produkt>();
 		// Getränke
-		liste.add(new Produkt("COLA","Coca Cola", "Koffeinhaltiges Getränk ungesund", 6.60, KategorieTyp.GETRANK));
+		liste.add(new Produkt("COLA", "Coca Cola", "Koffeinhaltiges Getränk ungesund", 6.60, KategorieTyp.GETRANK));
 		liste.add(new Produkt("RIVE", "Rivella Rot", "Mlchserumgetränk", 5.0, KategorieTyp.GETRANK));
 		// Snacks
 		liste.add(new Produkt("CHPS", "Zweifel Chips", "Kartoffelchips ungesund", 2.60, KategorieTyp.SNACK));
 		liste.add(new Produkt("BUEN", "Bounty", "Kokosnusssnack zuckrig", 2.80, KategorieTyp.SNACK));
 		// Speisen
 		liste.add(new Produkt("PIZZ", "Pizza Maragritha", "Klassische Pizza", 19.60, KategorieTyp.SPEISE));
-		liste.add(new Produkt("ZUER", "Geschnetzeltes nach Zürcher Art", "Wie mans halt kennt...", 25.90, KategorieTyp.SPEISE));
+		liste.add(new Produkt("ZUER", "Geschnetzeltes nach Zürcher Art", "Wie mans halt kennt...", 25.90,
+				KategorieTyp.SPEISE));
 
-		for (Produkt t: liste){
+		for (Produkt t : liste) {
 			p.save(t);
 		}
 
-
 		return liste;
 	}
-
-
 
 	public static void deleteAllProdukt() throws Exception {
 		ProduktDAO pProdukt = new ProduktDAOImpl();
@@ -119,8 +114,6 @@ public class InitHelper {
 			pProdukt.delete(p);
 		}
 	}
-
-
 
 	public static List<Person> createPersonListe() {
 
@@ -136,7 +129,7 @@ public class InitHelper {
 		return liste;
 
 	}
-	
+
 	public static List<Benutzer> initBenutzer() throws Exception {
 
 		BenutzerDAO pBenutzer = new BenutzerDAOImpl();
@@ -162,7 +155,7 @@ public class InitHelper {
 
 		return liste;
 	}
-	
+
 	public static List<Credentials> initCredentials() throws Exception {
 
 		CredentialsDAO pCredentials = new CredentialsDAOImpl();
@@ -189,11 +182,11 @@ public class InitHelper {
 			pCredentials.delete(c);
 		}
 	}
-	
+
 	public static void resetDb() {
 		JPAUtil.createEntityManagerForDelition().close();
 	}
-	
+
 	public static void deleteAllBenutzer() throws Exception {
 
 		BenutzerDAO pBenutzer = new BenutzerDAOImpl();
@@ -203,7 +196,7 @@ public class InitHelper {
 		}
 
 	}
-	
+
 	public static List<Person> initPerson() throws Exception {
 
 		PersonDAO pPerson = new PersonDAOImpl();
@@ -235,7 +228,7 @@ public class InitHelper {
 			pPerson.delete(p);
 		}
 	}
-	
+
 	public static List<Tisch> initTisch() throws Exception {
 
 		TischDAO pTisch = new TischDAOImpl();
@@ -263,14 +256,14 @@ public class InitHelper {
 		}
 	}
 
-	public static List<Abrechnung> initAbrechnung() throws Exception{
+	public static List<Abrechnung> initAbrechnung() throws Exception {
 
 		AbrechnungDAO pAbrechnung = new AbrechnungDAOImpl();
-        BestellungDAO pBestellungDAO = new BestellungDAOImpl();
-        BenutzerDAO pBenutzerDAO = new BenutzerDAOImpl();
+		BestellungDAO pBestellungDAO = new BestellungDAOImpl();
+		BenutzerDAO pBenutzerDAO = new BenutzerDAOImpl();
 
-        List<Bestellung> b = pBestellungDAO.findAll();
-        List<Benutzer> ben = pBenutzerDAO.findAll();
+		List<Bestellung> b = pBestellungDAO.findAll();
+		List<Benutzer> ben = pBenutzerDAO.findAll();
 
 		List<Abrechnung> liste = new ArrayList<Abrechnung>();
 
@@ -278,23 +271,21 @@ public class InitHelper {
 
 		liste.add(abrechnung);
 
-		for(Abrechnung a: liste){
-            pAbrechnung.save(a);
-        }
+		for (Abrechnung a : liste) {
+			pAbrechnung.save(a);
+		}
 
 		return liste;
 	}
 
-    public static void deleteAllAbrechnung() throws Exception {
+	public static void deleteAllAbrechnung() throws Exception {
 
-        AbrechnungDAO pRechnung = new AbrechnungDAOImpl();
+		AbrechnungDAO pRechnung = new AbrechnungDAOImpl();
 
-        for (Abrechnung a : pRechnung.findAll()) {
-            pRechnung.delete(a);
-        }
+		for (Abrechnung a : pRechnung.findAll()) {
+			pRechnung.delete(a);
+		}
 
-    }
+	}
 
-
-	
 }

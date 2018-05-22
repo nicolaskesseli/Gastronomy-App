@@ -1,6 +1,5 @@
 package ch.hslu.informatik.gastgewerbe.model;
 
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -60,12 +59,13 @@ public class Credentials implements Serializable {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof Credentials)) return false;
+		if (this == o)
+			return true;
+		if (!(o instanceof Credentials))
+			return false;
 		Credentials that = (Credentials) o;
-		return id == that.id &&
-				Objects.equals(benutzername, that.benutzername) &&
-				Objects.equals(passwort, that.passwort);
+		return id == that.id && Objects.equals(benutzername, that.benutzername)
+				&& Objects.equals(passwort, that.passwort);
 	}
 
 	@Override
@@ -80,4 +80,3 @@ public class Credentials implements Serializable {
 	}
 
 }
-

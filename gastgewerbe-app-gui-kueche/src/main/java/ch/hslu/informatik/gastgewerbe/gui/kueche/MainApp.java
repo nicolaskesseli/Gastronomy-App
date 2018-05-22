@@ -9,37 +9,37 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class MainApp extends Application {
-    @Override
-    public void start(Stage primaryStage) {
+	@Override
+	public void start(Stage primaryStage) {
 
-        Logger logger = LogManager.getLogger(MainApp.class);
+		Logger logger = LogManager.getLogger(MainApp.class);
 
-        try {
-            AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/fxml/LoginView.fxml"));
-            Scene scene = new Scene(root,900, 600);
+		try {
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/fxml/LoginView.fxml"));
+			Scene scene = new Scene(root, 900, 600);
 
-            Context.getInstance().setMainStage(primaryStage);
+			Context.getInstance().setMainStage(primaryStage);
 
-            //scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-            primaryStage.setScene(scene);
-            primaryStage.show();
+			// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			primaryStage.setScene(scene);
+			primaryStage.show();
 
-        } catch(Exception e) {
-            e.printStackTrace();
-            logger.error(e);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(e);
 
-        }
-    }
+		}
+	}
 
-    // Beendet automatische aktualisierung Tabelle Bestellungen übersicht
+	// Beendet automatische aktualisierung Tabelle Bestellungen übersicht
 
-    @Override
-    public void stop() throws Exception {
-        super.stop();
-        System.exit(0);
-    }
+	@Override
+	public void stop() throws Exception {
+		super.stop();
+		System.exit(0);
+	}
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+	public static void main(String[] args) {
+		launch(args);
+	}
 }

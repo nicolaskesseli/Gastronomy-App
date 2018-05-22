@@ -9,12 +9,10 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Properties;
 
-import ch.hslu.informatik.gastgewerbe.api.*;
 import ch.hslu.informatik.gastgewerbe.rmi.api.*;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 
@@ -200,7 +198,6 @@ public class Context {
 		return tischService;
 	}
 
-
 	public RmiLoginService getLoginService() {
 
 		int portNr = 0;
@@ -309,7 +306,6 @@ public class Context {
 		return produktService;
 	}
 
-
 	public RmiAbrechnungService getAbrechnungService() {
 
 		int portNr = 0;
@@ -363,7 +359,6 @@ public class Context {
 
 		return abrechnungService;
 	}
-
 
 	public RmiBenutzerService getBenutzerService() {
 
@@ -429,8 +424,8 @@ public class Context {
 
 		InputStream is = this.getClass().getClassLoader().getResourceAsStream(POLICY_FILE_NAME);
 
-		File tempFile = File
-				.createTempFile(System.getProperty("user.home") + File.separator + "gastgewerbe_rmi_policy", "tmp");
+		File tempFile = File.createTempFile(System.getProperty("user.home") + File.separator + "gastgewerbe_rmi_policy",
+				"tmp");
 
 		FileOutputStream fos = new FileOutputStream(tempFile);
 
@@ -456,4 +451,3 @@ public class Context {
 	}
 
 }
-

@@ -4,8 +4,6 @@ import ch.hslu.informatik.gastgewerbe.model.Abrechnung;
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.model.Tisch;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 

@@ -1,6 +1,5 @@
 package ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper;
 
-import ch.hslu.informatik.gastgewerbe.model.KategorieTyp;
 import ch.hslu.informatik.gastgewerbe.model.Produkt;
 
 public class ProduktWrapper {
