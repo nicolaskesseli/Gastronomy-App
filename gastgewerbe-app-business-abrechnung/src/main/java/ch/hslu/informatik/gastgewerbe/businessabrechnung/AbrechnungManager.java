@@ -1,22 +1,17 @@
 package ch.hslu.informatik.gastgewerbe.businessabrechnung;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import ch.hslu.informatik.gastgewerbe.api.AbrechnungService;
 import ch.hslu.informatik.gastgewerbe.model.Abrechnung;
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.model.Tisch;
 import ch.hslu.informatik.gastgewerbe.persister.AbrechnungDAO;
-import ch.hslu.informatik.gastgewerbe.persister.BenutzerDAO;
 import ch.hslu.informatik.gastgewerbe.persister.BestellungDAO;
 import ch.hslu.informatik.gastgewerbe.persister.TischDAO;
 import ch.hslu.informatik.gastgewerbe.persister.impl.AbrechnungDAOImpl;
-import ch.hslu.informatik.gastgewerbe.persister.impl.BenutzerDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.impl.BestellungDAOImpl;
 import ch.hslu.informatik.gastgewerbe.persister.impl.TischDAOImpl;
 import org.apache.logging.log4j.LogManager;
@@ -29,45 +24,40 @@ public class AbrechnungManager implements AbrechnungService {
 	private AbrechnungDAO abrechnungDAO;
 	private BestellungDAO bestellungDAO;
 	private TischDAO tischDAO;
-	
-	private Abrechnung abrechnung;
-	private double betrag;
 
-	public AbrechnungDAO getAbrechnungDAO(){
+	/*Liefert einen AbrechnungDAOImpl*/
+	public AbrechnungDAO getAbrechnungDAO() {
 		if (abrechnungDAO == null) {
 			abrechnungDAO = new AbrechnungDAOImpl();
 		}
 		return abrechnungDAO;
 	}
 
-	public BestellungDAO getBestellungDAO(){
+	/*Liefert einen BestellungDAOImpl*/
+	public BestellungDAO getBestellungDAO() {
 		if (bestellungDAO == null) {
 			bestellungDAO = new BestellungDAOImpl();
 		}
 		return bestellungDAO;
 	}
 
-	public TischDAO getTischDAO(){
+	/*Liefert einen TischDAOImpl*/
+	public TischDAO getTischDAO() {
 		if (tischDAO == null) {
 			tischDAO = new TischDAOImpl();
 		}
 		return tischDAO;
 	}
 
-
-
-
-    @Override
-    public double tischAbrechnen(Tisch tisch, Benutzer benutzer, Bestellung bestellung) throws Exception {
+	/*Methode, um Bestellung abzurechnen und Abrechnung in Datenbank zu speichern*/
+	public double tischAbrechnen(Tisch tisch, Benutzer benutzer, Bestellung bestellung) throws Exception {
 
 		try {
 
 			Abrechnung abrechnung = new Abrechnung(benutzer, bestellung, LocalDateTime.now());
 
 			// Abrechnung gesamtotal setzen
-
 			double betrag = abrechnung.getGesamtBetrag();
-
 			abrechnung.setBetrag(betrag);
 
 			// Abrechnung speichern
@@ -77,67 +67,62 @@ public class AbrechnungManager implements AbrechnungService {
 			bestellung.setRechnungBezahlt(true);
 			getBestellungDAO().update(bestellung);
 
-			logger.info(abrechnung.toString()+ " wrude erstellt!");
+			logger.info(abrechnung.toString() + " wrude erstellt!");
 
 			return betrag;
 
-		} catch (Exception e){
+		} catch (Exception e) {
 			String msg = "Tisch Abrechnen misslungen";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg + e);
 		}
 	}
 
-
-	@Override
+	/*Methode, um Tagesumsatz zurückzuliefern und den Status auf true zu setzten*/
 	public double abschluss(LocalDateTime zeit) throws Exception {
-		// TODO Auto-generated method stub
 
-		try{
+		try {
 			List<Abrechnung> tagesAbschluss = getAbrechnungDAO().findByDatum(zeit);
 
-			double gesamtBetragTagesabschluss=0;
+			double gesamtBetragTagesabschluss = 0;
 
-			for (Abrechnung a: tagesAbschluss){
-				if(a.getBestellung().isRechnungBezahlt()==true)
-				gesamtBetragTagesabschluss = a.getBetrag();
+			for (Abrechnung a : tagesAbschluss) {
+				if (a.getBestellung().isRechnungBezahlt() == true)
+					gesamtBetragTagesabschluss += a.getBetrag();
 				a.setTagesAbrechnung(true);
 			}
 
 			return gesamtBetragTagesabschluss;
 
-
-		} catch (Exception e){
+		} catch (Exception e) {
 			String msg = "Tagesabrechnung misslungen";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg + e);
 		}
 	}
 
-	@Override
+	/*Methode, um Abrechnung nach Benutzer und Datum zu suchen. Liefert eine Liste von Abrechnungen zurück*/
 	public List<Abrechnung> findByBenutzerUndDatum(Benutzer benutzer, LocalDateTime zeit) throws Exception {
 		// TODO Auto-generated method stub
-		try{
+		try {
 			return getAbrechnungDAO().findByBenutzerUndDatum(benutzer, zeit);
 		} catch (Exception e) {
 			String msg = "Rechnungen des Benutzers " + benutzer.getNachname() + " " + benutzer.getVorname()
 					+ " konnten nicht geholt werden";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg + e);
 		}
-		}
+	}
 
-
-	@Override
+	/*Methode, um Abrechnung nach Datum zu suchen. Liefert eine Liste von Abrechnungen zurück*/
 	public List<Abrechnung> findByDatum(LocalDateTime zeit) throws Exception {
-		try{
+		try {
 			return getAbrechnungDAO().findByDatum(zeit);
 		} catch (Exception e) {
 			String msg = "Rechnungen des Tages " + "konnten nicht geholt werden";
 			logger.error(msg, e);
-			throw new Exception(msg);
+			throw new Exception(msg + e);
 		}
 	}
 
-	}
-
+}

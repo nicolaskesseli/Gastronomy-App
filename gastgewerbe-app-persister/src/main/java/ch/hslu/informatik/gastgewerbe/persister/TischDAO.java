@@ -4,5 +4,5 @@ import ch.hslu.informatik.gastgewerbe.model.Tisch;
 
 public interface TischDAO extends GenericPersisterDAO<Tisch> {
 
-    Tisch findByTischNr(int tischNr) throws Exception;
+	Tisch findByTischNr(int tischNr) throws Exception;
 }

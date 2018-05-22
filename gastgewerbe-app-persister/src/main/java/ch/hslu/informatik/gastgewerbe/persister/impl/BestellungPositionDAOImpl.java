@@ -1,7 +1,6 @@
 package ch.hslu.informatik.gastgewerbe.persister.impl;
 
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
-import ch.hslu.informatik.gastgewerbe.model.Produkt;
 import ch.hslu.informatik.gastgewerbe.persister.BestellungPositionDAO;
 import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 
@@ -10,41 +9,44 @@ import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BestellungPositionDAOImpl extends GenericPersisterDAOImpl<BestellungPosition> implements BestellungPositionDAO {
+public class BestellungPositionDAOImpl extends GenericPersisterDAOImpl<BestellungPosition>
+		implements BestellungPositionDAO {
 
-    public BestellungPositionDAOImpl() {
-        super(BestellungPosition.class);
-    }
+	public BestellungPositionDAOImpl() {
+		super(BestellungPosition.class);
+	}
 
-    @Override
-    public List<BestellungPosition> findByBereit(Boolean bestellungBereit) throws Exception {
+	@Override
+	public List<BestellungPosition> findByBereit(Boolean bestellungBereit) throws Exception {
 
-        EntityManager em = JPAUtil.createEntityManager();
+		EntityManager em = JPAUtil.createEntityManager();
 
-        TypedQuery<BestellungPosition> query = em.createNamedQuery("BestellungPosition.findByBereit", BestellungPosition.class);
+		TypedQuery<BestellungPosition> query = em.createNamedQuery("BestellungPosition.findByBereit",
+				BestellungPosition.class);
 
-        query.setParameter("bestellungBereit", bestellungBereit);
+		query.setParameter("bestellungBereit", bestellungBereit);
 
-        List<BestellungPosition> liste = query.getResultList();
+		List<BestellungPosition> liste = query.getResultList();
 
-        em.close();
+		em.close();
 
-        return liste != null ? liste : new ArrayList<BestellungPosition>();
-    }
+		return liste != null ? liste : new ArrayList<BestellungPosition>();
+	}
 
-    @Override
-    public List<BestellungPosition> findByAusgeliefert(Boolean bestellungAusgeliefert) throws Exception {
+	@Override
+	public List<BestellungPosition> findByAusgeliefert(Boolean bestellungAusgeliefert) throws Exception {
 
-        EntityManager em = JPAUtil.createEntityManager();
+		EntityManager em = JPAUtil.createEntityManager();
 
-        TypedQuery<BestellungPosition> query = em.createNamedQuery("BestellungPosition.findByAusgeliefert", BestellungPosition.class);
+		TypedQuery<BestellungPosition> query = em.createNamedQuery("BestellungPosition.findByAusgeliefert",
+				BestellungPosition.class);
 
-        query.setParameter("bestellungAusgeliefert", bestellungAusgeliefert);
+		query.setParameter("bestellungAusgeliefert", bestellungAusgeliefert);
 
-        List<BestellungPosition> liste = query.getResultList();
+		List<BestellungPosition> liste = query.getResultList();
 
-        em.close();
+		em.close();
 
-        return liste != null ? liste : new ArrayList<BestellungPosition>();
-    }
+		return liste != null ? liste : new ArrayList<BestellungPosition>();
+	}
 }

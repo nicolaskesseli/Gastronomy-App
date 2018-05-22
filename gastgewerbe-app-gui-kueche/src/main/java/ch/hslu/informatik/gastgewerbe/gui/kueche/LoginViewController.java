@@ -1,6 +1,5 @@
 package ch.hslu.informatik.gastgewerbe.gui.kueche;
 
-
 import ch.hslu.informatik.gastgewerbe.api.LoginService;
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
 import ch.hslu.informatik.gastgewerbe.model.RolleTyp;
@@ -22,7 +21,6 @@ import java.util.ResourceBundle;
 
 public class LoginViewController implements Initializable {
 
-	
 	private static Logger logger = LogManager.getLogger(LoginViewController.class);
 
 	public static String LOGIN_ERROR_MESSAGE = "Benutzername oder Kennwort nicht korrekt!";
@@ -66,9 +64,10 @@ public class LoginViewController implements Initializable {
 
 			if (benutzer != null) {
 
-				if (benutzer.getRolle() == RolleTyp.KUECHE_MITARBEITER || benutzer.getRolle() == RolleTyp.ADMINISTRATOR) {
+				if (benutzer.getRolle() == RolleTyp.KUECHE_MITARBEITER
+						|| benutzer.getRolle() == RolleTyp.ADMINISTRATOR) {
 					Context.getInstance().setBenutzer(benutzer);
-					
+
 					AnchorPane mainRoot = FXMLLoader.load(getClass().getResource("/fxml/MainWindowKueche.fxml"));
 
 					Scene mainScene = new Scene(mainRoot);
@@ -78,11 +77,10 @@ public class LoginViewController implements Initializable {
 					mainStage.setScene(mainScene);
 					mainStage.show();
 
-
-				} else{
+				} else {
 					lblError.setText(LoginViewController.ACCESS_DENIED_MESSAGE);
 				}
-				
+
 			} else {
 				lblError.setText(LoginViewController.LOGIN_ERROR_MESSAGE);
 			}

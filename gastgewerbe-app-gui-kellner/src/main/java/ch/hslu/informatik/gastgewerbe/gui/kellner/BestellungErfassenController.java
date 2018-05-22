@@ -13,24 +13,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellEditEvent;
-import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungPositionWrapper;
-import ch.hslu.informatik.gastgewerbe.gui.wrapper.BestellungWrapper;
 import ch.hslu.informatik.gastgewerbe.gui.wrapper.ProduktWrapper;
 import ch.hslu.informatik.gastgewerbe.model.Bestellung;
 import ch.hslu.informatik.gastgewerbe.model.BestellungPosition;
@@ -51,14 +45,12 @@ public class BestellungErfassenController implements Initializable {
 
 	private BestellungPositionWrapper position2;
 
-	
-	 public static final String ERROR_MSG_OFFENE_BESTELLUNG_TRUE = "Es gibt bereits eine offene Bestellung unter dem ausgewählten Tisch";
-	 public static final String ERROR_MSG_GANZE_ZAHL_EINGEBEN = "Ungültige(s) Zahlenformat / Tischnummer. Neue Eingabe";
-	 
+	public static final String ERROR_MSG_OFFENE_BESTELLUNG_TRUE = "Es gibt bereits eine offene Bestellung unter dem ausgewählten Tisch";
+	public static final String ERROR_MSG_GANZE_ZAHL_EINGEBEN = "Ungültige(s) Zahlenformat / Tischnummer. Neue Eingabe";
+
 	@FXML
 	private TextField tischNrInput;
-	
-		
+
 	@FXML
 	private TextField inputAnzahl;
 
@@ -186,8 +178,6 @@ public class BestellungErfassenController implements Initializable {
 	@FXML
 	void bestellungAnzeigen(ActionEvent event) {
 
-		
-			
 		try {
 			bestellübersichtTbl.getItems().clear();
 			bemerkungInput.setText("");
@@ -196,15 +186,15 @@ public class BestellungErfassenController implements Initializable {
 
 			List<Bestellung> list = Context.getInstance().getBestellungService().findByRechBezahltTisch(tischNr, false);
 			if (list.isEmpty()) {
-		
-				
+
 				Alert error = new Alert(Alert.AlertType.ERROR);
 				error.setTitle("ACHTUNG");
 				error.setHeaderText("Kein/e Tisch / Bestellung vorhanden!");
-				error.setContentText("Angegebene Tisch-Nr. ungültig oder keine offene Bestellung vorhanden. Neue Eingabe");
+				error.setContentText(
+						"Angegebene Tisch-Nr. ungültig oder keine offene Bestellung vorhanden. Neue Eingabe");
 				error.showAndWait();
 			} else {
-				
+
 				Bestellung bestellung = list.get(0);
 
 				List<BestellungPosition> pList = bestellung.getBestellungPositionListe();
@@ -223,7 +213,7 @@ public class BestellungErfassenController implements Initializable {
 			error.setHeaderText("Ungültiges Zahlenformat");
 			error.setContentText("Geben Sie eine gültige Tisch-Nr. ein");
 			error.showAndWait();
-		
+
 		} catch (Exception e) {
 			logger.error("Fehler bei einer bestehenden Bestellung bearbeiten ", e);
 			throw new RuntimeException(e);
@@ -231,7 +221,7 @@ public class BestellungErfassenController implements Initializable {
 	}
 
 	public void bestellungAktualisieren(ActionEvent event) throws Exception {
-				
+
 		try {
 
 			String bemerkung = bemerkungInput.getText();
@@ -255,37 +245,34 @@ public class BestellungErfassenController implements Initializable {
 			} else {
 
 				tischNr = Integer.parseInt(tischNrInput.getText());
-				
+
 				Tisch tisch = Context.getInstance().getTischService().findByTischNummer(tischNr);
 				if (!(tisch != null)) {
 					Alert error = new Alert(Alert.AlertType.ERROR);
 					error.setTitle("ACHTUNG");
 					error.setHeaderText("Tisch nicht vorhanden!");
 					error.setContentText("Geben Sie eine gültige Tisch-Nr. ein");
-					error.showAndWait();;
+					error.showAndWait();
+					;
 				} else {
-					
-				
 
-				
-				Bestellung bestellung = new Bestellung(bemerkung,
-				Context.getInstance().getTischService().findByTischNummer(tischNr), LocalDateTime.now());
-				
-				
+					Bestellung bestellung = new Bestellung(bemerkung,
+							Context.getInstance().getTischService().findByTischNummer(tischNr), LocalDateTime.now());
 
-				for (BestellungPositionWrapper item : bestellübersichtTbl.getItems()) {
-					bestellung.getBestellungPositionListe().add(item.getBestellungPosition());
+					for (BestellungPositionWrapper item : bestellübersichtTbl.getItems()) {
+						bestellung.getBestellungPositionListe().add(item.getBestellungPosition());
+
+					}
+					Context.getInstance().getBestellungService().bestellungAktualisieren(bestellung);
+
+					bemerkungInput.clear();
+					tischNrInput.clear();
+					bestellübersichtTbl.getItems().clear();
+					tblGerichtAuswahl.getItems().clear();
+					inputAnzahl.setText("1");
 
 				}
-				Context.getInstance().getBestellungService().bestellungAktualisieren(bestellung);
-
-				bemerkungInput.clear();
-				tischNrInput.clear();
-				bestellübersichtTbl.getItems().clear();
-				tblGerichtAuswahl.getItems().clear();
-				inputAnzahl.setText("1");
-
-			}}
+			}
 
 		} catch (NumberFormatException e) {
 			String msg = "Keine Nummer im Eingabefeld.";
@@ -334,13 +321,8 @@ public class BestellungErfassenController implements Initializable {
 			colPreisUebersicht
 					.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Double>("preis"));
 
-			
-
 			colAnzalUebersicht
 					.setCellValueFactory(new PropertyValueFactory<BestellungPositionWrapper, Integer>("anzahl"));
-			
-			
-			
 
 			updateTableNameSuche();
 			updateTableCodeSuche();
@@ -363,9 +345,9 @@ public class BestellungErfassenController implements Initializable {
 								Produkt produkt = item.getProdukt();
 
 								if (produkt != null) {
-									
+
 									int anzahl = Integer.parseInt(inputAnzahl.getText());
-									
+
 									position = new BestellungPositionWrapper(new BestellungPosition(produkt, anzahl));
 
 									bestellübersichtTbl.getItems().add(position);
@@ -381,8 +363,6 @@ public class BestellungErfassenController implements Initializable {
 				}
 
 			});
-
-
 
 		} catch (Exception e) {
 			logger.error("Fehler beim initialisieren: ", e);
@@ -437,8 +417,6 @@ public class BestellungErfassenController implements Initializable {
 	void bestellungAbschicken(ActionEvent event) throws Exception {
 
 		try {
-			
-			
 
 			String bemerkung = bemerkungInput.getText();
 
@@ -460,52 +438,47 @@ public class BestellungErfassenController implements Initializable {
 
 			} else {
 
-				
 				tischNr = Integer.parseInt(tischNrInput.getText());
 
-				
 				Tisch tisch = Context.getInstance().getTischService().findByTischNummer(tischNr);
-				
+
 				if (!(tisch != null)) {
-			
+
 					Alert error = new Alert(Alert.AlertType.ERROR);
 					error.setTitle("ACHTUNG");
 					error.setHeaderText("Tisch nicht vorhanden!");
 					error.setContentText("Geben Sie eine gültige Tisch-Nr. ein");
 					error.showAndWait();
-					
-				} else if (!Context.getInstance().getBestellungService().findByRechBezahltTisch(tischNr, false).isEmpty()) {
+
+				} else if (!Context.getInstance().getBestellungService().findByRechBezahltTisch(tischNr, false)
+						.isEmpty()) {
 					bestellungAnzeigen(event);
-		
-					
+
 					Alert error = new Alert(Alert.AlertType.ERROR);
 					error.setTitle("ACHTUNG");
 					error.setHeaderText("Offene Bestellung vorhanden");
 					error.setContentText("Schliessen Sie die Bestellung ab oder bearbeiten Sie die bestehende.");
 					error.showAndWait();
-				
-								
+
 				} else {
-					
-				
-				
-				Bestellung b = new Bestellung(bemerkung,
-						Context.getInstance().getTischService().findByTischNummer(tischNr), LocalDateTime.now());
 
-				for (BestellungPositionWrapper item : bestellübersichtTbl.getItems()) {
-					b.getBestellungPositionListe().add(item.getBestellungPosition());
+					Bestellung b = new Bestellung(bemerkung,
+							Context.getInstance().getTischService().findByTischNummer(tischNr), LocalDateTime.now());
 
-				}
+					for (BestellungPositionWrapper item : bestellübersichtTbl.getItems()) {
+						b.getBestellungPositionListe().add(item.getBestellungPosition());
 
-				Context.getInstance().getBestellungService().bestellen(b);
-				
-				bemerkungInput.clear();
-				tischNrInput.clear();
-				bestellübersichtTbl.getItems().clear();
-				tblGerichtAuswahl.getItems().clear();
-				inputAnzahl.setText("1");
-				gerichtNameInput.clear();
-				gerichtNrInput.clear();
+					}
+
+					Context.getInstance().getBestellungService().bestellen(b);
+
+					bemerkungInput.clear();
+					tischNrInput.clear();
+					bestellübersichtTbl.getItems().clear();
+					tblGerichtAuswahl.getItems().clear();
+					inputAnzahl.setText("1");
+					gerichtNameInput.clear();
+					gerichtNrInput.clear();
 				}
 			}
 
@@ -523,6 +496,5 @@ public class BestellungErfassenController implements Initializable {
 		}
 
 	}
-	
 
 }

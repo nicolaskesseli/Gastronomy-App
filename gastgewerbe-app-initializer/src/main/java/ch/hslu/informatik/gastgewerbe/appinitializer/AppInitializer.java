@@ -2,12 +2,9 @@ package ch.hslu.informatik.gastgewerbe.appinitializer;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import javax.xml.XMLConstants;
 import javax.xml.validation.Schema;
@@ -28,7 +25,7 @@ import org.jdom2.input.sax.XMLReaderSchemaFactory;
 import ch.hslu.informatik.gastgewerbe.persister.util.JPAUtil;
 
 public class AppInitializer {
-	
+
 	private static Logger logger = LogManager.getLogger(AppInitializer.class);
 
 	public static void main(String[] args) {
@@ -50,7 +47,8 @@ public class AppInitializer {
 	private static void dropTables() {
 
 		/*
-		 * Es wird nur die Verbindung aufgebaut, damit die bestehenden Tabellen gelöscht und neu angelegt werden.
+		 * Es wird nur die Verbindung aufgebaut, damit die bestehenden Tabellen gelöscht
+		 * und neu angelegt werden.
 		 */
 		JPAUtil.createEntityManagerForDelition().close();
 
@@ -226,30 +224,30 @@ public class AppInitializer {
 		}
 	}
 
-    private static void initTisch() throws Exception {
-        logger.info(">> Erzeugung von Tischen gestartet.");
-        Tisch tisch1 = new Tisch(1);
-        Tisch tisch2 = new Tisch (2);
-        Tisch tisch3 = new Tisch (3);
-        Tisch tisch4 = new Tisch (4);
-        List<Tisch> tische = new ArrayList<>();
-        tische.add(tisch1);
-        tische.add(tisch2);
-        tische.add(tisch3);
-        tische.add(tisch4);
+	private static void initTisch() throws Exception {
+		logger.info(">> Erzeugung von Tischen gestartet.");
+		Tisch tisch1 = new Tisch(1);
+		Tisch tisch2 = new Tisch(2);
+		Tisch tisch3 = new Tisch(3);
+		Tisch tisch4 = new Tisch(4);
+		List<Tisch> tische = new ArrayList<>();
+		tische.add(tisch1);
+		tische.add(tisch2);
+		tische.add(tisch3);
+		tische.add(tisch4);
 
-        for (Tisch t:tische){
-            logger.info("  >> Tisch " + t.getId()+" "+ t.getTischNr()+ " wurde erzeugt.");
-        }
-        logger.info(">> Erzeugung von Tischen beendet.");
+		for (Tisch t : tische) {
+			logger.info("  >> Tisch " + t.getId() + " " + t.getTischNr() + " wurde erzeugt.");
+		}
+		logger.info(">> Erzeugung von Tischen beendet.");
 
-        TischDAO tischDAO = new TischDAOImpl();
+		TischDAO tischDAO = new TischDAOImpl();
 
-        for (Tisch t:tische){
-            tischDAO.save(t);
-            logger.info(">> Tisch mit Id-Nr. " + t.getId() + " wurde in die Datebank gespeichert.");
-        }
-    }
+		for (Tisch t : tische) {
+			tischDAO.save(t);
+			logger.info(">> Tisch mit Id-Nr. " + t.getId() + " wurde in die Datebank gespeichert.");
+		}
+	}
 
 	private static void initAbrechnung() throws Exception {
 		logger.info(">> Erzeugung von Abrechnung gestartet.");
@@ -264,20 +262,18 @@ public class AppInitializer {
 
 		ab1.setBetrag(300.23);
 
-
 		List<Abrechnung> abrechnungListe = new ArrayList<>();
 		abrechnungListe.add(ab1);
 		abrechnungListe.add(ab2);
 
-
-		for (Abrechnung ab:abrechnungListe){
+		for (Abrechnung ab : abrechnungListe) {
 			logger.info("  >> Abrechnung: " + ab.getId() + " Zeit: " + ab.getZeit().toString());
 		}
 		logger.info(">> Erzeugung von Abrechnungen beendet.");
 
 		AbrechnungDAO abrechnungDAO = new AbrechnungDAOImpl();
 
-		for (Abrechnung ab:abrechnungListe){
+		for (Abrechnung ab : abrechnungListe) {
 			abrechnungDAO.save(ab);
 			logger.info(">> Abrechnung mit Id-Nr. " + ab.getId() + " wurde in die Datebank gespeichert.");
 		}
@@ -289,35 +285,38 @@ public class AppInitializer {
 
 		ProduktDAO dao = new ProduktDAOImpl();
 		TischDAO tischDAO = new TischDAOImpl();
-        BestellungDAO bestellungDAO = new BestellungDAOImpl();
+		BestellungDAO bestellungDAO = new BestellungDAOImpl();
 
 		Bestellung best1 = new Bestellung("Achtung Gluten Intolleranz", tischDAO.findByTischNr(2), LocalDateTime.now());
 
 		best1.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("1000"), 4));
-		best1.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("2000"),3));
+		best1.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("2000"), 3));
 		best1.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("3000"), 5));
 
-		logger.info("  >> Bestellung " +best1.getId()+" "+ best1.getTisch() + " " + best1.getZeit() + " Anzahl Pos:" + best1.getBestellungPositionListe().size()+" erzeugt.");
+		logger.info("  >> Bestellung " + best1.getId() + " " + best1.getTisch() + " " + best1.getZeit() + " Anzahl Pos:"
+				+ best1.getBestellungPositionListe().size() + " erzeugt.");
 
-		Bestellung best2 = new Bestellung("Muss extrem schnell gehen Küche!!!", tischDAO.findByTischNr(3), LocalDateTime.now().minusDays(3));
+		Bestellung best2 = new Bestellung("Muss extrem schnell gehen Küche!!!", tischDAO.findByTischNr(3),
+				LocalDateTime.now().minusDays(3));
 
 		best2.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("1001"), 2));
-		best2.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("1002"),3));
-        best2.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("2001"), 3));
-        best2.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("2002"), 2));
-        best2.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("3002"), 5));
-        best2.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("3003"), 8));
+		best2.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("1002"), 3));
+		best2.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("2001"), 3));
+		best2.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("2002"), 2));
+		best2.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("3002"), 5));
+		best2.getBestellungPositionListe().add(new BestellungPosition(dao.findByProduktCode("3003"), 8));
 
-		logger.info("  >> Bestellung " +best2.getId()+" "+ best2.getTisch() + " " + best2.getZeit() + " Anzahl Pos:" + best2.getBestellungPositionListe().size()+" erzeugt.");
+		logger.info("  >> Bestellung " + best2.getId() + " " + best2.getTisch() + " " + best2.getZeit() + " Anzahl Pos:"
+				+ best2.getBestellungPositionListe().size() + " erzeugt.");
 
 		logger.info(">> Erzeugung von Bestellungen beendet.");
 
 		List<Bestellung> bestellungen = new ArrayList<>();
-        bestellungen.add(best1);
-        bestellungen.add(best2);
+		bestellungen.add(best1);
+		bestellungen.add(best2);
 
 		for (Bestellung b : bestellungen) {
-            bestellungDAO.save(b);
+			bestellungDAO.save(b);
 			logger.info(">> Bestellung mit Id-Nr. " + b.getId() + " wurde in die Datebank gespeichert.");
 		}
 	}
