@@ -1,5 +1,5 @@
 package ch.hslu.informatik.gastgewerbe.gui.verwaltung;
-
+/*
 
 
 import java.net.URL;
@@ -188,4 +188,4 @@ public class AbrechnungViewController implements Initializable {
     }
     
 }
-}
+}*/

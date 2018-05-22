@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="417.0" prefWidth="865.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.verwaltung.TischVerwaltenViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="417.0" prefWidth="865.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.verwaltung.TischVerwaltenViewController">
    <children>
       <Text layoutX="135.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tisch Verwalten" textAlignment="CENTER" wrappingWidth="538.7999267578125">
          <font>
@@ -23,10 +23,10 @@
       <Separator layoutX="52.0" layoutY="264.0" prefHeight="17.0" prefWidth="742.0" />
       <Label layoutX="52.0" layoutY="281.0" text="Tisch erfassen:" />
       <TextField fx:id="txtTischNummer" layoutX="52.0" layoutY="308.0" prefHeight="27.0" prefWidth="106.0" />
-      <TableView fx:id="tblTisch" layoutX="53.0" layoutY="64.0" prefHeight="139.0" prefWidth="539.0">
+      <TableView fx:id="tblTisch" layoutX="51.0" layoutY="73.0" prefHeight="127.0" prefWidth="592.0">
         <columns>
-          <TableColumn fx:id="colTischNr" prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="colNummer" prefWidth="75.0" text="Nummer" />
+          <TableColumn fx:id="colTischNr" prefWidth="116.0" text="Tischnummer" />
         </columns>
       </TableView>
    </children>
