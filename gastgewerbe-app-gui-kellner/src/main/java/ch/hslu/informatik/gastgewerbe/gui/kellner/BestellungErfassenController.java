@@ -197,7 +197,7 @@ public class BestellungErfassenController implements Initializable {
 
 			List<Bestellung> list = Context.getInstance().getBestellungService().findByRechBezahltTisch(tischNr, false);
 			if (list.isEmpty()) {
-				lblError.setText("Keine offene Bestellung unter Tisch: " + tischNr + " vorhanden.");
+				lblError.setText("Keine offene Bestellung ODER Tisch nicht vorhanden");
 			} else {
 				lblError.setText("");
 				Bestellung bestellung = list.get(0);
@@ -439,21 +439,17 @@ public class BestellungErfassenController implements Initializable {
 
 				
 				tischNr = Integer.parseInt(tischNrInput.getText());
-//				
-//				if (!checkForTable(tischNr)) {
-//					lblError.setText("Test Test Test");
-//				};
-//				
-//				if (checkForTable(tischNr)) {
-//					lblError.setText("Test Test Test222222");
-//				};
+
 				
-				if (!Context.getInstance().getBestellungService().findByRechBezahltTisch(tischNr, false).isEmpty()) {
+				Tisch tisch = Context.getInstance().getTischService().findByTischNummer(tischNr);
+				
+				if (!(tisch != null)) {
+					lblError.setText("Tisch-Nr. " + tischNr + " nicht vorhanden");
+				} else if (!Context.getInstance().getBestellungService().findByRechBezahltTisch(tischNr, false).isEmpty()) {
 					bestellungAnzeigen(event);
 					lblError.setText("Bereits eine Bestellung unter Tisch-Nr. " + tischNr + " vorhanden.");
-					
-					
-					
+				
+								
 				} else {
 					
 				
@@ -493,29 +489,5 @@ public class BestellungErfassenController implements Initializable {
 
 	}
 	
-//	public boolean checkForTable(int tischNr) throws Exception{
-//	
-//		boolean checkTrue = false;		
-//		
-//		try {
-//		List<Tisch> list = Context.getInstance().getTischService().alleTische();
-//		
-//		for (int i = 0; i <= list.size(); i++) {
-//			if (list.get(i).getTischNr() == tischNr) {
-//				 checkTrue =  true;
-//				 break;
-//				 
-//			} else {
-//				 return checkTrue;
-//			}
-//			
-//		} return checkTrue;
-//
-//		
-//		} catch (Exception e) {
-//			String msg = "Fehler bei der Pruefung, ob ein Tisch vorhanden ist";
-//			logger.error(msg,  e);
-//			throw new Exception (msg, e);
-//		}
-//	}
+
 }
