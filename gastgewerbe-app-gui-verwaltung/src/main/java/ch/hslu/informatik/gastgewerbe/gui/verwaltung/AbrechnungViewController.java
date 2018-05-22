@@ -3,7 +3,6 @@ package ch.hslu.informatik.gastgewerbe.gui.verwaltung;
 
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -12,11 +11,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import ch.hslu.informatik.gastgewerbe.model.Benutzer;
-import ch.hslu.informatik.gastgewerbe.persister.AbrechnungDAO;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.Initializable;
-import javafx.scene.control.cell.CheckBoxTableCell;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -76,7 +71,7 @@ public class AbrechnungViewController implements Initializable {
 
     @FXML
     void abrechnungenSuchen(ActionEvent event) throws Exception{
-    	
+
     	try {
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy kk:mm");
 
@@ -89,13 +84,16 @@ public class AbrechnungViewController implements Initializable {
 
         Benutzer benutzer = Context.getInstance().getBenutzerService().findByBenutzername(username);
 
-        if(date!=null&&zeit!=null){
+        if(!date.equals(null)&&!zeit.equals(null)){
             abrechnungList = Context.getInstance().getAbrechnungService().findByBenutzerUndDatum(benutzer, zeit);
         }
 
-        if(zeit!=null){
+        if(!zeit.equals(null)){
             abrechnungList=Context.getInstance().getAbrechnungService().findByDatum(zeit);
         }
+
+        System.out.println(abrechnungList.toString());
+
 
         //TODO: Liste in Wrapper-Liste umwandeln, die dann der Tabelle hinzufügen und dann die gewünschten ergebnisse ausgeben.
             for(Abrechnung a : abrechnungList ){
@@ -103,11 +101,6 @@ public class AbrechnungViewController implements Initializable {
             }
 
             tblUebersichtBestellung.getItems().addAll(abrechnungWrapperList);
-
-
-
-
-
 
         //double tagesUmsatz = Context.getInstance().getAbrechnungService().abschluss(zeit);
     
