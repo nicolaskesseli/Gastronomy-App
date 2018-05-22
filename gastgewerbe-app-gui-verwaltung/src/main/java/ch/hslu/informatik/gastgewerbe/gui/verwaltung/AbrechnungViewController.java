@@ -80,20 +80,21 @@ public class AbrechnungViewController implements Initializable {
 
         LocalDateTime zeit = LocalDateTime.parse(date, formatter);
 
+        //zeit.minusDays(1);
+
         String username = txtBenutzername.getText();
 
         Benutzer benutzer = Context.getInstance().getBenutzerService().findByBenutzername(username);
 
-        if(!date.equals(null)&&!zeit.equals(null)){
-            abrechnungList = Context.getInstance().getAbrechnungService().findByBenutzerUndDatum(benutzer, zeit);
-        }
+      //  if(!benutzer.equals(null)&&!zeit.equals(null)){
+       //     abrechnungList = Context.getInstance().getAbrechnungService().findByBenutzerUndDatum(benutzer, zeit);
+       // }
 
-        if(!zeit.equals(null)){
+       // if(!zeit.equals(null)){
             abrechnungList=Context.getInstance().getAbrechnungService().findByDatum(zeit);
-        }
+       // }
 
-        System.out.println(abrechnungList.toString());
-
+        logger.debug(abrechnungList.toString());
 
         //TODO: Liste in Wrapper-Liste umwandeln, die dann der Tabelle hinzufügen und dann die gewünschten ergebnisse ausgeben.
             for(Abrechnung a : abrechnungList ){

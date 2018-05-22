@@ -2,6 +2,9 @@ package ch.hslu.informatik.gastgewerbe.appinitializer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -261,8 +264,14 @@ public class AppInitializer {
 		abrechnungListe.add(ab1);
 		abrechnungListe.add(ab2);
 
+
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy kk:mm");
+
+		LocalDateTime d = LocalDateTime.parse("20.05.2018 00:00",formatter);
+		ab1.setZeit(d);
+
 		for (Abrechnung ab:abrechnungListe){
-			logger.info("  >> Abrechnung: " + ab.getId());
+			logger.info("  >> Abrechnung: " + ab.getId() + " Zeit: " + ab.getZeit().toString());
 		}
 		logger.info(">> Erzeugung von Abrechnungen beendet.");
 

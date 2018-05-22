@@ -17,8 +17,12 @@ public class TischWrapper {
         return tisch;
     }
 
-    public int getTischNummer() {
+    public int getTischNr() {
         return tisch.getTischNr();
+    }
+
+    public void setTischNr(int tischNr){
+        tisch.setTischNr(tischNr);
     }
 
     public int getNummer() {
