@@ -3,12 +3,19 @@ package ch.hslu.informatik.gastgewerbe.gui.verwaltung;
 
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import ch.hslu.informatik.gastgewerbe.model.Benutzer;
+import ch.hslu.informatik.gastgewerbe.persister.AbrechnungDAO;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.fxml.Initializable;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,7 +33,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
-public class AbrechnungViewController {
+public class AbrechnungViewController implements Initializable {
 
 	private static Logger logger = LogManager.getLogger(AbrechnungViewController.class);
 	
@@ -34,12 +41,14 @@ public class AbrechnungViewController {
 	
 	private List<Abrechnung> abrechnungList= new ArrayList<>();
 
-	
     @FXML
-    private TextField datumInput;
+    private TextField txtDatumInput;
 
     @FXML
-    private Button abrechnungenSuchenBtn;
+    private TextField txtBenutzername;
+
+    @FXML
+    private Label lblTotal;
 
     @FXML
     private TableView<AbrechnungWrapper> tblUebersichtBestellung;
@@ -54,60 +63,80 @@ public class AbrechnungViewController {
     private TableColumn<AbrechnungWrapper, Double> colGesamtbetrag;
 
     @FXML
-    private TableColumn<AbrechnungWrapper, String> colStatus;
-
-    @FXML
-    private Button tagesAbrechnungAbschliessenBtn;
+    private TableColumn<AbrechnungWrapper, Boolean> colStatus;
 
     @FXML
     private TableColumn<AbrechnungWrapper, String> colAusgewaelt;
 
     @FXML
-    private Label lblTotal;
+    private Button btnSuchen;
+
+    @FXML
+    private Button btnAbschliessen;
 
     @FXML
     void abrechnungenSuchen(ActionEvent event) throws Exception{
     	
     	try {
-    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("DD.MM.YYYY");
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy kk:mm");
 
-        String date = datumInput.getText();
+        String date = txtDatumInput.getText();
+        date = date + " 00:00";
 
         LocalDateTime zeit = LocalDateTime.parse(date, formatter);
-        
-        abrechnungList = Context.getInstance().getAbrechnungService().findByDatum(zeit);
-        
+
+        String username = txtBenutzername.getText();
+
+        Benutzer benutzer = Context.getInstance().getBenutzerService().findByBenutzername(username);
+
+        if(date!=null&&zeit!=null){
+            abrechnungList = Context.getInstance().getAbrechnungService().findByBenutzerUndDatum(benutzer, zeit);
+        }
+
+        if(zeit!=null){
+            abrechnungList=Context.getInstance().getAbrechnungService().findByDatum(zeit);
+        }
+
         //TODO: Liste in Wrapper-Liste umwandeln, die dann der Tabelle hinzufügen und dann die gewünschten ergebnisse ausgeben.
-    	
+            for(Abrechnung a : abrechnungList ){
+            abrechnungWrapperList.add(new AbrechnungWrapper(a));
+            }
 
-        double tagesUmsatz = Context.getInstance().getAbrechnungService().abschluss(zeit);
+            tblUebersichtBestellung.getItems().addAll(abrechnungWrapperList);
+
+
+
+
+
+
+        //double tagesUmsatz = Context.getInstance().getAbrechnungService().abschluss(zeit);
     
-        lblTotal.setText(String.valueOf(tagesUmsatz));
+        // lblTotal.setText(String.valueOf(tagesUmsatz));
 
-    	
-    }catch (Exception e){
-		String msg = "Tagesabrechnung misslungen";
-		logger.error(msg, e);
-		throw new Exception(msg);
-    	
-    }
+        }catch (DateTimeParseException e){
+    	    String msg = "Keine gültige Eingabe für Datum";
+    	    logger.error(msg, e);
+    	    txtDatumInput.setText("dd.MM.yyyy");
+        }catch (Exception e){
+		    String msg = "Suche fehlgeschlagen";
+		    logger.error(msg, e);
+		    throw new Exception(msg);
+        }
     }
 
     @FXML
     void tagesAbrechnungAbschliessen(ActionEvent event) {
 
     }
-
-    @FXML
-    void zurück(ActionEvent event) {
-
-    }
     
-    
-    public void initialize(URL location, ResourceBundle resources) throws Exception {
+    public void initialize(URL location, ResourceBundle resources) {
 
 		String benutzer = Context.getInstance().getBenutzer().getVorname() + " "
 				+ Context.getInstance().getBenutzer().getNachname();
+
+		//Tabelle editierbar machen
+
+        tblUebersichtBestellung.setEditable(true);
 		
 
 		//Zeit formatieren
@@ -119,9 +148,12 @@ public class AbrechnungViewController {
 	    	// Tabelle initialisieren
 	    	colBenutzer.setCellValueFactory(new PropertyValueFactory<AbrechnungWrapper, String>("benutzer"));
 			colZeit.setCellValueFactory(new PropertyValueFactory<AbrechnungWrapper, LocalDateTime>("zeit"));
-			colGesamtbetrag.setCellValueFactory(new PropertyValueFactory<AbrechnungWrapper, Double>("gesamtbetrag"));
-			colStatus.setCellValueFactory(new PropertyValueFactory<AbrechnungWrapper, String>("status"));
+			colGesamtbetrag.setCellValueFactory(new PropertyValueFactory<AbrechnungWrapper, Double>("betrag"));
+			colStatus.setCellValueFactory(new PropertyValueFactory<AbrechnungWrapper, Boolean>("tagesAbrechnung"));
+
+            // Checkbox für ausgewählt
             colAusgewaelt.setCellValueFactory(new PropertyValueFactory<AbrechnungWrapper, String>("ausgewaelt"));
+
 
 	        // Datumformat anpassen CellFactory anpassen um nach dateFormatter zu formatieren
 
@@ -148,9 +180,9 @@ public class AbrechnungViewController {
 
 
 	    }catch (Exception e){
-			String msg = "Tagesabrechnung misslungen";
-			logger.error(msg, e);
-			throw new Exception(msg);
+            logger.error("Fehler bei der View-Initialisierung: ", e);
+            throw new RuntimeException(e);
+
 	    	
 	    
     }
