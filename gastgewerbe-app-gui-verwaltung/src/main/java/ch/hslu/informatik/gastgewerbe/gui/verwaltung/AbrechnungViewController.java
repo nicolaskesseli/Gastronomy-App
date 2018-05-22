@@ -73,18 +73,21 @@ public class AbrechnungViewController implements Initializable {
     void abrechnungenSuchen(ActionEvent event) throws Exception{
 
     	try {
-    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy kk:mm");
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy kk:mm:ss.SSS");
 
         String date = txtDatumInput.getText();
-        date = date + " 00:00";
+        date = date + " 00:00:00.000";
 
-        LocalDateTime zeit = LocalDateTime.parse(date, formatter);
+        LocalDateTime zeit = LocalDateTime.parse("2018-05-22T16:12:50.257");
 
         //zeit.minusDays(1);
 
         String username = txtBenutzername.getText();
 
         Benutzer benutzer = Context.getInstance().getBenutzerService().findByBenutzername(username);
+
+        logger.debug(zeit.toString());
+        logger.debug(LocalDateTime.now().toString());
 
       //  if(!benutzer.equals(null)&&!zeit.equals(null)){
        //     abrechnungList = Context.getInstance().getAbrechnungService().findByBenutzerUndDatum(benutzer, zeit);

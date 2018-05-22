@@ -262,6 +262,8 @@ public class AppInitializer {
 		Abrechnung ab1 = new Abrechnung(benDao.findById(1), bestDao.findById(30), LocalDateTime.now());
 		Abrechnung ab2 = new Abrechnung(benDao.findById(3), bestDao.findById(34), d);
 
+		ab1.setBetrag(300.23);
+
 
 		List<Abrechnung> abrechnungListe = new ArrayList<>();
 		abrechnungListe.add(ab1);
