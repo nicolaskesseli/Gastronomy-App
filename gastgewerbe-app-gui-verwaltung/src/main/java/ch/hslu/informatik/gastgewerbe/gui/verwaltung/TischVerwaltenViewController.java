@@ -1,5 +1,6 @@
 package ch.hslu.informatik.gastgewerbe.gui.verwaltung;
 
+import ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.BestellungWrapper;
 import ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.TischWrapper;
 import ch.hslu.informatik.gastgewerbe.model.Tisch;
 import javafx.beans.binding.Bindings;
@@ -38,7 +39,7 @@ public class TischVerwaltenViewController implements Initializable {
     private TextField txtTischNummer;
 
     @FXML
-    private Button btnHinzufuegen;
+    private TableColumn<TischWrapper, Integer> colNummer;
 
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -47,6 +48,8 @@ public class TischVerwaltenViewController implements Initializable {
             lblError.setText("");
 
             /* Tabelle konfigurieren */
+
+            colNummer.setCellValueFactory(new PropertyValueFactory<TischWrapper, Integer>("nummer"));
             colTischNr.setCellValueFactory(new PropertyValueFactory<TischWrapper, Integer>("tischNr"));
 
             tblTisch.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TischWrapper>() {
@@ -63,8 +66,9 @@ public class TischVerwaltenViewController implements Initializable {
             updateTabelle();
 
             btnLoeschen.disableProperty()
-                    .bind(Bindings.size(tblTisch.getSelectionModel().getSelectedItems()).isEqualTo(0));
+                   .bind(Bindings.size(tblTisch.getSelectionModel().getSelectedItems()).isEqualTo(0));
 
+            updateTabelle();
         } catch (Exception e) {
             logger.error("Fehler bei der Initialisierung der View: ", e);
             return;
@@ -81,8 +85,10 @@ public class TischVerwaltenViewController implements Initializable {
             if (tischListe.size() > 0) {
                 List<TischWrapper> wrapperListe = new ArrayList<>();
 
+                int nummer = 1;
+
                 for (Tisch tisch : tischListe) {
-                    wrapperListe.add(new TischWrapper(tisch));
+                    wrapperListe.add(new TischWrapper(tisch, nummer++));
                 }
 
                 tblTisch.getItems().clear();
@@ -105,7 +111,7 @@ public class TischVerwaltenViewController implements Initializable {
 
         if (tblTisch.getSelectionModel().getSelectedItem() == null) {
 
-            txtTischNummer.setText("");
+            txtTischNummer.setText("0");
 
         } else {
 
@@ -172,7 +178,7 @@ public class TischVerwaltenViewController implements Initializable {
     private void reset() {
 
         tblTisch.getSelectionModel().clearSelection();
-        txtTischNummer.setText("");
+        txtTischNummer.setText("0");
     }
 
     @FXML

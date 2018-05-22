@@ -22,13 +22,11 @@ public class Tisch implements Serializable {
 	
 
 	public Tisch(int tischNr) {
-		super();
 		this.tischNr = tischNr;
 	}
 	
 	public Tisch() {
 	}
-
 
 	public long getId() {
 		return id;
