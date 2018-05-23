@@ -207,10 +207,14 @@ public class AbrechnungViewController implements Initializable {
     }
 
     @FXML
-    void alleAnzeigen(ActionEvent event) {
+    void alleAnzeigen(ActionEvent event) throws Exception{
 
-        updateTable();
-
+        try{
+            updateTable();
+        } catch (Exception e){
+            logger.error("Fehler beim updaten der Tabelle: ", e);
+            throw new Exception("Fehler beim updaten der Tabelle: " + e);
+        }
     }
 
     
@@ -280,7 +284,7 @@ public class AbrechnungViewController implements Initializable {
     
     }
 
-    private void updateTable(){
+    private void updateTable() throws Exception{
 
         lblError.setText("");
         lblTotal.setText("");
@@ -291,6 +295,8 @@ public class AbrechnungViewController implements Initializable {
 
         try {
             List<Abrechnung> alle = Context.getInstance().getAbrechnungService().alleAbrechnungen();
+
+            logger.debug(alle.toString());
 
             for(Abrechnung a : alle){
                 if(a.getBestellung().isRechnungBezahlt()){
@@ -306,9 +312,7 @@ public class AbrechnungViewController implements Initializable {
 
         } catch (Exception e) {
             logger.error("Fehler beim updaten der Tabelle: ", e);
-            throw new RuntimeException(e);
+            throw new Exception("Fehler beim updaten der Tabelle: " + e);
         }
-
     }
-
 }

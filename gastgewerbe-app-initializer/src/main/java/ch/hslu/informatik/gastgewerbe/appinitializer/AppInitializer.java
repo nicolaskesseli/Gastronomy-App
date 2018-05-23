@@ -253,14 +253,13 @@ public class AppInitializer {
 
 		LocalDateTime d = LocalDateTime.now().minusDays(3);
 
-		Abrechnung ab1 = new Abrechnung(benDao.findById(1), bestDao.findById(30), LocalDateTime.now());
-		Abrechnung ab2 = new Abrechnung(benDao.findById(3), bestDao.findById(34), d);
-		Abrechnung ab3 = new Abrechnung(benDao.findByBenutzername("thelastsamurai"), bestDao.findById(41), LocalDateTime.now());
+		Abrechnung ab1 = new Abrechnung(benDao.findById(1), bestDao.findById(126), LocalDateTime.now());
+		Abrechnung ab2 = new Abrechnung(benDao.findById(3), bestDao.findById(130), d);
+		Abrechnung ab3 = new Abrechnung(benDao.findByBenutzername("thelastsamurai"), bestDao.findById(137), LocalDateTime.now());
 
 		ab1.setBetrag(300.2);
 		ab2.setBetrag(600.3);
 		ab3.setBetrag(234.2);
-
 
 		List<Abrechnung> abrechnungListe = new ArrayList<>();
 		abrechnungListe.add(ab1);
