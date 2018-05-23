@@ -11,16 +11,16 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="1200" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.verwaltung.TischVerwaltenViewController">
    <children>
       <Label fx:id="lblError" layoutX="52.0" layoutY="386.0" prefHeight="17.0" prefWidth="742.0" textFill="RED" />
-      <Button fx:id="btnHinzufuegen" layoutX="52.0" layoutY="345.0" mnemonicParsing="false" onAction="#speichern" text="Hinzufügen" />
-      <Button fx:id="btnLoeschen" layoutX="52.0" layoutY="229.0" mnemonicParsing="false" onAction="#loeschen" text="Löschen" />
-      <Separator layoutX="52.0" layoutY="264.0" prefHeight="17.0" prefWidth="742.0" />
-      <Label layoutX="52.0" layoutY="281.0" text="Tisch erfassen:" />
-      <TextField fx:id="txtTischNummer" layoutX="52.0" layoutY="308.0" prefHeight="27.0" prefWidth="106.0" />
-      <TableView fx:id="tblTisch" layoutX="51.0" layoutY="73.0" prefHeight="127.0" prefWidth="116.0">
+      <Button fx:id="btnHinzufuegen" layoutX="457.0" layoutY="456.0" mnemonicParsing="false" onAction="#speichern" text="Hinzufügen" />
+      <Button fx:id="btnLoeschen" layoutX="565.0" layoutY="456.0" mnemonicParsing="false" onAction="#loeschen" text="Löschen" />
+      <Separator layoutX="229.0" layoutY="378.0" prefHeight="17.0" prefWidth="742.0" />
+      <Label layoutX="457.0" layoutY="397.0" text="Tisch erfassen:" />
+      <TextField fx:id="txtTischNummer" layoutX="457.0" layoutY="418.0" prefHeight="31.0" prefWidth="181.0" />
+      <TableView fx:id="tblTisch" layoutX="375.0" layoutY="27.0" prefHeight="317.0" prefWidth="346.0">
         <columns>
-          <TableColumn fx:id="colTischNr" minWidth="-Infinity" prefWidth="115.0" text="Tischnummer" />
+          <TableColumn fx:id="colTischNr" minWidth="-Infinity" prefWidth="345.0" text="Tischnummer" />
         </columns>
       </TableView>
-      <Button fx:id="btnReset" layoutX="129.0" layoutY="229.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
+      <Button fx:id="btnReset" layoutX="742.0" layoutY="313.0" mnemonicParsing="false" onAction="#reset" text="Aktualisieren" />
    </children>
 </AnchorPane>
