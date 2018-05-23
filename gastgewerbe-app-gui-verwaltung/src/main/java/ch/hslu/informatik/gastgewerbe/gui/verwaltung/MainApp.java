@@ -34,7 +34,8 @@ public class MainApp extends Application {
 			primaryStage.show();
 
 		} catch (Exception e){
-			logger.error("Fehler bei der Mainklasse" + e);
+			e.printStackTrace();
+			logger.error(e);
 		}
 	}
 
