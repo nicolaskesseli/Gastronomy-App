@@ -284,16 +284,16 @@ public class ProduktVerwaltenViewController implements Initializable {
 				produkt.setKategorie(kategorie);
 
 				try {
-					if (Context.getInstance().getProduktService().findByProduktCode(produkt.getProduktCode())==null) {
+					//if (Context.getInstance().getProduktService().findByProduktCode(produkt.getProduktCode())==null) {
 						Context.getInstance().getProduktService().produktAktualisieren(produkt);
-					} else {
+					//} else {
 						lblError.setText(ERROR_MSG_UPDATE_MISSLUNGEN);
-						Alert alert = new Alert(Alert.AlertType.ERROR);
+/*						Alert alert = new Alert(Alert.AlertType.ERROR);
 						alert.setTitle("Produkt speichern");
 						alert.setHeaderText("Information");
 						alert.setContentText("Das Aktualisieren des ausgewählten Produkts ist misslungen.");
-						alert.showAndWait();
-					}
+						alert.showAndWait();*/
+					//}
 				} catch (Exception e) {
 					logger.error("Fehler beim Aktualisieren eines neuen Produkts: ", e);
 				}

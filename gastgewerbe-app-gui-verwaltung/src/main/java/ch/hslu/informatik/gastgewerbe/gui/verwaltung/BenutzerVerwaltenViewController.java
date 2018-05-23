@@ -286,11 +286,11 @@ public class BenutzerVerwaltenViewController implements Initializable {
                     Context.getInstance().getBenutzerService().benutzerAktualisieren(benutzer);
                 } catch (Exception e) {
                     logger.error("Fehler beim Hinzufügen eines neuen Benutzers: ", e);
-                    Alert alert = new Alert(AlertType.ERROR);
+/*                    Alert alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Benutzer speichern");
                     alert.setHeaderText("Information");
                     alert.setContentText("Das Aktualisieren des ausgewählten Benutzers ist misslungen.");
-                    alert.showAndWait();
+                    alert.showAndWait();*/
                 }
             }
 
