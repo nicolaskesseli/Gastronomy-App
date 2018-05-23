@@ -185,7 +185,6 @@ public class ProduktVerwaltenViewController implements Initializable {
 			if (produktListe.size() > 0) {
 				List<ProduktWrapper> wrapperListe = new ArrayList<>();
 
-				int nummer = 1;
 
 				for (Produkt produkt : produktListe) {
 					wrapperListe.add(new ProduktWrapper(produkt));

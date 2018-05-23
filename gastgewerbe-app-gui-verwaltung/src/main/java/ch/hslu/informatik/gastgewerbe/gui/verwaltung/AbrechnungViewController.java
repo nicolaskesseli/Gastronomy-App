@@ -216,8 +216,8 @@ public class AbrechnungViewController implements Initializable {
     
     public void initialize(URL location, ResourceBundle resources) {
 
-		String benutzer = Context.getInstance().getBenutzer().getVorname() + " "
-				+ Context.getInstance().getBenutzer().getNachname();
+//		String benutzer = Context.getInstance().getBenutzer().getVorname() + " "
+//				+ Context.getInstance().getBenutzer().getNachname();
 
 		//Tabelle editierbar machen
 
