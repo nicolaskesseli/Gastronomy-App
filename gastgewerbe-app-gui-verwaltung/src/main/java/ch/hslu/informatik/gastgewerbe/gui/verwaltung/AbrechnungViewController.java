@@ -181,7 +181,7 @@ public class AbrechnungViewController implements Initializable {
                 tblUebersichtBestellung.getItems().clear();
                 tblUebersichtBestellung.getItems().addAll(ausgewaelt);
 
-                lblTotal.setText(String.valueOf(gesamtBetragTagesAbrech));
+                lblTotal.setText(String.valueOf(gesamtBetragTagesAbrech)+"0 CHF");
 
             } else {
                 Alert info = new Alert(Alert.AlertType.INFORMATION);
