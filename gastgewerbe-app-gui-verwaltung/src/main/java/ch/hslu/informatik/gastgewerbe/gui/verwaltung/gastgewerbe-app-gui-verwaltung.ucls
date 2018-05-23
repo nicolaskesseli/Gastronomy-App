@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="ch.hslu.informatik.gastgewerbe.gui.verwaltung.BestellungViewController" 
+    project="gastgewerbe-app-gui-verwaltung" 
+    file="/gastgewerbe-app-gui-verwaltung/src/main/java/ch/hslu/informatik/gastgewerbe/gui/verwaltung/BestellungViewController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="410" width="398" x="385" y="188"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="ch.hslu.informatik.gastgewerbe.gui.verwaltung.VerwaltungHomeViewController" 
+    project="gastgewerbe-app-gui-verwaltung" 
+    file="/gastgewerbe-app-gui-verwaltung/src/main/java/ch/hslu/informatik/gastgewerbe/gui/verwaltung/VerwaltungHomeViewController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="194" width="354" x="823" y="188"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="ch.hslu.informatik.gastgewerbe.gui.verwaltung.TischVerwaltenViewController" 
+    project="gastgewerbe-app-gui-verwaltung" 
+    file="/gastgewerbe-app-gui-verwaltung/src/main/java/ch/hslu/informatik/gastgewerbe/gui/verwaltung/TischVerwaltenViewController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="356" width="328" x="1217" y="188"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="ch.hslu.informatik.gastgewerbe.gui.verwaltung.BenutzerVerwaltenViewController" 
+    project="gastgewerbe-app-gui-verwaltung" 
+    file="/gastgewerbe-app-gui-verwaltung/src/main/java/ch/hslu/informatik/gastgewerbe/gui/verwaltung/BenutzerVerwaltenViewController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="752" width="380" x="2002" y="188"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="ch.hslu.informatik.gastgewerbe.gui.verwaltung.LoginViewController" 
+    project="gastgewerbe-app-gui-verwaltung" 
+    file="/gastgewerbe-app-gui-verwaltung/src/main/java/ch/hslu/informatik/gastgewerbe/gui/verwaltung/LoginViewController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="266" width="259" x="2422" y="188"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="ch.hslu.informatik.gastgewerbe.gui.verwaltung.MenuBarViewController" 
+    project="gastgewerbe-app-gui-verwaltung" 
+    file="/gastgewerbe-app-gui-verwaltung/src/main/java/ch/hslu/informatik/gastgewerbe/gui/verwaltung/MenuBarViewController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="356" width="312" x="1585" y="980"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="ch.hslu.informatik.gastgewerbe.gui.verwaltung.AbrechnungViewController" 
+    project="gastgewerbe-app-gui-verwaltung" 
+    file="/gastgewerbe-app-gui-verwaltung/src/main/java/ch/hslu/informatik/gastgewerbe/gui/verwaltung/AbrechnungViewController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="500" width="405" x="2721" y="188"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="ch.hslu.informatik.gastgewerbe.gui.verwaltung.ProduktVerwaltenViewController" 
+    project="gastgewerbe-app-gui-verwaltung" 
+    file="/gastgewerbe-app-gui-verwaltung/src/main/java/ch/hslu/informatik/gastgewerbe/gui/verwaltung/ProduktVerwaltenViewController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="626" width="393" x="3166" y="188"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="ch.hslu.informatik.gastgewerbe.gui.verwaltung.Context" 
+    project="gastgewerbe-app-gui-verwaltung" 
+    file="/gastgewerbe-app-gui-verwaltung/src/main/java/ch/hslu/informatik/gastgewerbe/gui/verwaltung/Context.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="590" width="367" x="1585" y="188"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="ch.hslu.informatik.gastgewerbe.gui.verwaltung.MainApp" 
+    project="gastgewerbe-app-gui-verwaltung" 
+    file="/gastgewerbe-app-gui-verwaltung/src/main/java/ch/hslu/informatik/gastgewerbe/gui/verwaltung/MainApp.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="140" width="238" x="3599" y="188"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.BestellungPositionWrapper" 
+    project="gastgewerbe-app-gui-verwaltung" 
+    file="/gastgewerbe-app-gui-verwaltung/src/main/java/ch/hslu/informatik/gastgewerbe/gui/verwaltung/wrapper/BestellungPositionWrapper.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1322" y="1577"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.BestellungWrapper" 
+    project="gastgewerbe-app-gui-verwaltung" 
+    file="/gastgewerbe-app-gui-verwaltung/src/main/java/ch/hslu/informatik/gastgewerbe/gui/verwaltung/wrapper/BestellungWrapper.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1659" y="1568"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.BenutzerWrapper" 
+    project="gastgewerbe-app-gui-verwaltung" 
+    file="/gastgewerbe-app-gui-verwaltung/src/main/java/ch/hslu/informatik/gastgewerbe/gui/verwaltung/wrapper/BenutzerWrapper.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1981" y="1604"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.ProduktWrapper" 
+    project="gastgewerbe-app-gui-verwaltung" 
+    file="/gastgewerbe-app-gui-verwaltung/src/main/java/ch/hslu/informatik/gastgewerbe/gui/verwaltung/wrapper/ProduktWrapper.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2303" y="1523"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.TischWrapper" 
+    project="gastgewerbe-app-gui-verwaltung" 
+    file="/gastgewerbe-app-gui-verwaltung/src/main/java/ch/hslu/informatik/gastgewerbe/gui/verwaltung/wrapper/TischWrapper.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2625" y="1514"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="ch.hslu.informatik.gastgewerbe.gui.verwaltung.wrapper.AbrechnungWrapper" 
+    project="gastgewerbe-app-gui-verwaltung" 
+    file="/gastgewerbe-app-gui-verwaltung/src/main/java/ch/hslu/informatik/gastgewerbe/gui/verwaltung/wrapper/AbrechnungWrapper.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2947" y="1640"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="17">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="18" name="positionenListe"/>      
+      <multiplicity id="19" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="21" name="INSTANCE"/>      
+      <multiplicity id="22" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="23">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="24" name="menuBarViewController"/>      
+      <multiplicity id="25" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="26">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="27" name="bestellungenListe"/>      
+      <multiplicity id="28" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="29">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="30" name="abrechnungWrapperList"/>      
+      <multiplicity id="31" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

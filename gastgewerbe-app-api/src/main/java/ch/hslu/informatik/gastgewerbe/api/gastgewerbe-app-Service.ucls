@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <interface id="1" language="java" name="ch.hslu.informatik.gastgewerbe.api.ProduktService" 
+    project="gastgewerbe-app-api" 
+    file="/gastgewerbe-app-api/src/main/java/ch/hslu/informatik/gastgewerbe/api/ProduktService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="194" width="345" x="-11" y="-10"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="2" language="java" name="ch.hslu.informatik.gastgewerbe.api.BestellungService" 
+    project="gastgewerbe-app-api" 
+    file="/gastgewerbe-app-api/src/main/java/ch/hslu/informatik/gastgewerbe/api/BestellungService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="356" width="401" x="374" y="-10"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="3" language="java" name="ch.hslu.informatik.gastgewerbe.api.LoginService" project="gastgewerbe-app-api" 
+    file="/gastgewerbe-app-api/src/main/java/ch/hslu/informatik/gastgewerbe/api/LoginService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="104" width="308" x="815" y="-10"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="4" language="java" name="ch.hslu.informatik.gastgewerbe.api.BenutzerService" 
+    project="gastgewerbe-app-api" 
+    file="/gastgewerbe-app-api/src/main/java/ch/hslu/informatik/gastgewerbe/api/BenutzerService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="212" width="386" x="1163" y="-10"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="5" language="java" name="ch.hslu.informatik.gastgewerbe.api.TischService" project="gastgewerbe-app-api" 
+    file="/gastgewerbe-app-api/src/main/java/ch/hslu/informatik/gastgewerbe/api/TischService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="158" width="210" x="1589" y="-10"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="6" language="java" name="ch.hslu.informatik.gastgewerbe.api.AbrechnungService" 
+    project="gastgewerbe-app-api" 
+    file="/gastgewerbe-app-api/src/main/java/ch/hslu/informatik/gastgewerbe/api/AbrechnungService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="176" width="454" x="1839" y="-10"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="7" language="java" name="ch.hslu.informatik.gastgewerbe.businessabrechnung.AbrechnungManager" 
+    project="gastgewerbe-app-business-abrechnung" 
+    file="/gastgewerbe-app-business-abrechnung/src/main/java/ch/hslu/informatik/gastgewerbe/businessabrechnung/AbrechnungManager.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2091" y="645"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="ch.hslu.informatik.gastgewerbe.businessbenutzer.BenutzerManager" 
+    project="gastgewerbe-app-business-benutzer" 
+    file="/gastgewerbe-app-business-benutzer/src/main/java/ch/hslu/informatik/gastgewerbe/businessbenutzer/BenutzerManager.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1370" y="631"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="ch.hslu.informatik.gastgewerbe.businessbestellung.BestellungManager" 
+    project="gastgewerbe-app-business-bestellung" 
+    file="/gastgewerbe-app-business-bestellung/src/main/java/ch/hslu/informatik/gastgewerbe/businessbestellung/BestellungManager.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="564" y="722"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="ch.hslu.informatik.gastgewerbe.verteiler.business.login.LoginManager" 
+    project="gastgewerbe-app-business-login" 
+    file="/gastgewerbe-app-business-login/src/main/java/ch/hslu/informatik/gastgewerbe/verteiler/business/login/LoginManager.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="989" y="597"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="ch.hslu.informatik.gastgewerbe.businessprodukt.ProduktManager" 
+    project="gastgewerbe-app-business-produkt" 
+    file="/gastgewerbe-app-business-produkt/src/main/java/ch/hslu/informatik/gastgewerbe/businessprodukt/ProduktManager.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="164" y="627"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="ch.hslu.informatik.gastgewerbe.businesstisch.TischManager" 
+    project="gastgewerbe-app-business-tisch" 
+    file="/gastgewerbe-app-business-tisch/src/main/java/ch/hslu/informatik/gastgewerbe/businesstisch/TischManager.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1710" y="608"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <realization id="13">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="14">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <realization id="15">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="16">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <realization id="17">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <realization id="18">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

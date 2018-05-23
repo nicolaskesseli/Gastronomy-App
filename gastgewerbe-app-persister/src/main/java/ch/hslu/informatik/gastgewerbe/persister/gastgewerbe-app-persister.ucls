@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <interface id="1" language="java" name="ch.hslu.informatik.gastgewerbe.persister.GenericPersisterDAO" 
+    project="gastgewerbe-app-persister" 
+    file="/gastgewerbe-app-persister/src/main/java/ch/hslu/informatik/gastgewerbe/persister/GenericPersisterDAO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1407" y="94"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="2" language="java" name="ch.hslu.informatik.gastgewerbe.persister.PersonDAO" 
+    project="gastgewerbe-app-persister" 
+    file="/gastgewerbe-app-persister/src/main/java/ch/hslu/informatik/gastgewerbe/persister/PersonDAO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="107" y="346"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="3" language="java" name="ch.hslu.informatik.gastgewerbe.persister.BestellungDAO" 
+    project="gastgewerbe-app-persister" 
+    file="/gastgewerbe-app-persister/src/main/java/ch/hslu/informatik/gastgewerbe/persister/BestellungDAO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="512" y="364"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="4" language="java" name="ch.hslu.informatik.gastgewerbe.persister.CredentialsDAO" 
+    project="gastgewerbe-app-persister" 
+    file="/gastgewerbe-app-persister/src/main/java/ch/hslu/informatik/gastgewerbe/persister/CredentialsDAO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="864" y="319"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="5" language="java" name="ch.hslu.informatik.gastgewerbe.persister.BestellungPositionDAO" 
+    project="gastgewerbe-app-persister" 
+    file="/gastgewerbe-app-persister/src/main/java/ch/hslu/informatik/gastgewerbe/persister/BestellungPositionDAO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1212" y="328"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="6" language="java" name="ch.hslu.informatik.gastgewerbe.persister.TischDAO" 
+    project="gastgewerbe-app-persister" 
+    file="/gastgewerbe-app-persister/src/main/java/ch/hslu/informatik/gastgewerbe/persister/TischDAO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1532" y="319"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="7" language="java" name="ch.hslu.informatik.gastgewerbe.persister.ProduktDAO" 
+    project="gastgewerbe-app-persister" 
+    file="/gastgewerbe-app-persister/src/main/java/ch/hslu/informatik/gastgewerbe/persister/ProduktDAO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1827" y="337"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="8" language="java" name="ch.hslu.informatik.gastgewerbe.persister.AbrechnungDAO" 
+    project="gastgewerbe-app-persister" 
+    file="/gastgewerbe-app-persister/src/main/java/ch/hslu/informatik/gastgewerbe/persister/AbrechnungDAO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2244" y="337"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="9" language="java" name="ch.hslu.informatik.gastgewerbe.persister.BenutzerDAO" 
+    project="gastgewerbe-app-persister" 
+    file="/gastgewerbe-app-persister/src/main/java/ch/hslu/informatik/gastgewerbe/persister/BenutzerDAO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2704" y="337"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="10" language="java" name="ch.hslu.informatik.gastgewerbe.persister.impl.BestellungDAOImpl" 
+    project="gastgewerbe-app-persister" 
+    file="/gastgewerbe-app-persister/src/main/java/ch/hslu/informatik/gastgewerbe/persister/impl/BestellungDAOImpl.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="497" y="886"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="ch.hslu.informatik.gastgewerbe.persister.impl.TischDAOImpl" 
+    project="gastgewerbe-app-persister" 
+    file="/gastgewerbe-app-persister/src/main/java/ch/hslu/informatik/gastgewerbe/persister/impl/TischDAOImpl.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1560" y="845"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="ch.hslu.informatik.gastgewerbe.persister.impl.CredentialsDAOImpl" 
+    project="gastgewerbe-app-persister" 
+    file="/gastgewerbe-app-persister/src/main/java/ch/hslu/informatik/gastgewerbe/persister/impl/CredentialsDAOImpl.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="865" y="859"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="ch.hslu.informatik.gastgewerbe.persister.impl.BenutzerDAOImpl" 
+    project="gastgewerbe-app-persister" 
+    file="/gastgewerbe-app-persister/src/main/java/ch/hslu/informatik/gastgewerbe/persister/impl/BenutzerDAOImpl.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2735" y="843"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="ch.hslu.informatik.gastgewerbe.persister.impl.AbrechnungDAOImpl" 
+    project="gastgewerbe-app-persister" 
+    file="/gastgewerbe-app-persister/src/main/java/ch/hslu/informatik/gastgewerbe/persister/impl/AbrechnungDAOImpl.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2265" y="836"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="ch.hslu.informatik.gastgewerbe.persister.impl.BestellungPositionDAOImpl" 
+    project="gastgewerbe-app-persister" 
+    file="/gastgewerbe-app-persister/src/main/java/ch/hslu/informatik/gastgewerbe/persister/impl/BestellungPositionDAOImpl.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1227" y="863"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="ch.hslu.informatik.gastgewerbe.persister.impl.GenericPersisterDAOImpl" 
+    project="gastgewerbe-app-persister" 
+    file="/gastgewerbe-app-persister/src/main/java/ch/hslu/informatik/gastgewerbe/persister/impl/GenericPersisterDAOImpl.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1435" y="1517"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="ch.hslu.informatik.gastgewerbe.persister.impl.PersonDAOImpl" 
+    project="gastgewerbe-app-persister" 
+    file="/gastgewerbe-app-persister/src/main/java/ch/hslu/informatik/gastgewerbe/persister/impl/PersonDAOImpl.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="82" y="876"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="ch.hslu.informatik.gastgewerbe.persister.impl.ProduktDAOImpl" 
+    project="gastgewerbe-app-persister" 
+    file="/gastgewerbe-app-persister/src/main/java/ch/hslu/informatik/gastgewerbe/persister/impl/ProduktDAOImpl.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1845" y="843"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <realization id="19">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="7"/>  
+  </realization>  
+  <generalization id="20">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="21">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <realization id="22">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <realization id="23">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <realization id="24">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <generalization id="25">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="26">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="27">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="29">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="30">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <realization id="31">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <generalization id="32">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <realization id="33">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <generalization id="34">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="35">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="36">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <realization id="37">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <generalization id="38">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="39">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="40">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="41">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <realization id="42">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <realization id="43">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
