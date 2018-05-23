@@ -50,10 +50,8 @@ public class TischVerwaltenViewController implements Initializable {
             lblError.setText("");
 
             /* Tabelle konfigurieren */
-
-            colNummer.setCellValueFactory(new PropertyValueFactory<TischWrapper, Integer>("nummer"));
             colTischNr.setCellValueFactory(new PropertyValueFactory<TischWrapper, Integer>("tischNr"));
-
+            
             tblTisch.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TischWrapper>() {
 
                 @Override
@@ -141,10 +139,17 @@ public class TischVerwaltenViewController implements Initializable {
                 Tisch tisch = new Tisch(tischNr);
 
                 try {
-
+                	
+                	if(Context.getInstance().getTischService().findByTischNummer(tischNr) == null) {
                     Context.getInstance().getTischService().tischHinzufuegen(tisch);
-
-
+                	} else {
+                		 Alert alert = new Alert(AlertType.ERROR);
+                         alert.setTitle("Tisch speichern");
+                         alert.setHeaderText("Information");
+                         alert.setContentText("Der Tisch mit der Nr. " + tischNr + " ist bereits erfasst.");
+                         alert.showAndWait();
+                	}
+                	
                 } catch (Exception e) {
                     logger.error("Fehler beim Hinzufügen des Tisches: ", e);
                     Alert alert = new Alert(AlertType.ERROR);
@@ -153,6 +158,7 @@ public class TischVerwaltenViewController implements Initializable {
                     alert.setContentText("Das Hinzufügen des neuen Tisch ist misslungen.");
                     alert.showAndWait();
                 }
+                
 
             } else {
 

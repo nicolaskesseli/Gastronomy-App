@@ -16,10 +16,9 @@
       <Separator layoutX="52.0" layoutY="264.0" prefHeight="17.0" prefWidth="742.0" />
       <Label layoutX="52.0" layoutY="281.0" text="Tisch erfassen:" />
       <TextField fx:id="txtTischNummer" layoutX="52.0" layoutY="308.0" prefHeight="27.0" prefWidth="106.0" />
-      <TableView fx:id="tblTisch" layoutX="51.0" layoutY="73.0" prefHeight="127.0" prefWidth="592.0">
+      <TableView fx:id="tblTisch" layoutX="51.0" layoutY="73.0" prefHeight="127.0" prefWidth="116.0">
         <columns>
-          <TableColumn fx:id="colNummer" prefWidth="75.0" text="Nummer" />
-          <TableColumn fx:id="colTischNr" prefWidth="116.0" text="Tischnummer" />
+          <TableColumn fx:id="colTischNr" minWidth="-Infinity" prefWidth="115.0" text="Tischnummer" />
         </columns>
       </TableView>
       <Button fx:id="btnReset" layoutX="129.0" layoutY="229.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
