@@ -269,8 +269,8 @@ public class BestellungErfassenController implements Initializable {
 				
 				Bestellung bestellung = new Bestellung(bemerkung,
 				Context.getInstance().getTischService().findByTischNummer(tischNr), LocalDateTime.now());
-				
-				
+
+
 
 				for (BestellungPositionWrapper item : bestellübersichtTbl.getItems()) {
 					bestellung.getBestellungPositionListe().add(item.getBestellungPosition());
@@ -354,9 +354,8 @@ public class BestellungErfassenController implements Initializable {
 
 						if (event.getClickCount() == 2 && !tRow.isEmpty()) {
 							if (tRow.getItem() == null) {
-
-							} else {
 								inputAnzahl.setText("1");
+							} else {
 								ProduktWrapper item = tRow.getItem();
 
 								Produkt produkt = item.getProdukt();
