@@ -254,15 +254,18 @@ public class ProduktVerwaltenViewController implements Initializable {
 				Produkt produkt = new Produkt(produktCode, name, beschreibung, preis, kategorie);
 
 				try {
-					Context.getInstance().getProduktService().produktHinzufuegen(produkt);
+					if(Context.getInstance().getProduktService().findByProduktCode(produkt.getProduktCode())==null) {
+						Context.getInstance().getProduktService().produktHinzufuegen(produkt);
+					} else {
+						lblError.setText(ERROR_MSG_SPEICHERN_MISSLUNGEN);
+						Alert alert = new Alert(Alert.AlertType.ERROR);
+						alert.setTitle("Produkt speichern");
+						alert.setHeaderText("Information");
+						alert.setContentText("Das Hinzufügen des neuen Produkts ist misslungen.");
+						alert.showAndWait();
+					}
 				} catch (Exception e) {
 					logger.error("Fehler beim Hinzufügen eines neuen Produkt: ", e);
-					lblError.setText(ERROR_MSG_SPEICHERN_MISSLUNGEN);
-					Alert alert = new Alert(Alert.AlertType.ERROR);
-					alert.setTitle("Produkt speichern");
-					alert.setHeaderText("Information");
-					alert.setContentText("Das Hinzufügen des neuen Produkts ist misslungen.");
-					alert.showAndWait();
 				}
 			} else {
 
@@ -282,15 +285,18 @@ public class ProduktVerwaltenViewController implements Initializable {
 				produkt.setKategorie(kategorie);
 
 				try {
-					Context.getInstance().getProduktService().produktAktualisieren(produkt);
+					if (Context.getInstance().getProduktService().findByProduktCode(produkt.getProduktCode())==null) {
+						Context.getInstance().getProduktService().produktAktualisieren(produkt);
+					} else {
+						lblError.setText(ERROR_MSG_UPDATE_MISSLUNGEN);
+						Alert alert = new Alert(Alert.AlertType.ERROR);
+						alert.setTitle("Produkt speichern");
+						alert.setHeaderText("Information");
+						alert.setContentText("Das Aktualisieren des ausgewählten Produkts ist misslungen.");
+						alert.showAndWait();
+					}
 				} catch (Exception e) {
-					logger.error("Fehler beim Hinzufügen eines neuen Produkts: ", e);
-					lblError.setText(ERROR_MSG_UPDATE_MISSLUNGEN);
-					Alert alert = new Alert(Alert.AlertType.ERROR);
-					alert.setTitle("Produkt speichern");
-					alert.setHeaderText("Information");
-					alert.setContentText("Das Aktualisieren des ausgewählten Produkts ist misslungen.");
-					alert.showAndWait();
+					logger.error("Fehler beim Aktualisieren eines neuen Produkts: ", e);
 				}
 			}
 

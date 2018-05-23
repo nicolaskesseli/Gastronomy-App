@@ -141,7 +141,9 @@ public class TischVerwaltenViewController implements Initializable {
                 Tisch tisch = new Tisch(tischNr);
 
                 try {
+
                     Context.getInstance().getTischService().tischHinzufuegen(tisch);
+
 
                 } catch (Exception e) {
                     logger.error("Fehler beim Hinzufügen des Tisches: ", e);
