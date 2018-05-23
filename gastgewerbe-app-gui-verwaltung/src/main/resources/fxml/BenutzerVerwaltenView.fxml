@@ -10,50 +10,53 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1180.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.verwaltung.BenutzerVerwaltenViewController">
+<AnchorPane prefHeight="600.0" prefWidth="1200" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.verwaltung.BenutzerVerwaltenViewController">
 	<children>
-	<Label fx:id="lblError" layoutX="80.0" layoutY="15.0" prefHeight="17.0" prefWidth="1050.0" textFill="RED" />
-		<Label layoutX="10.0" layoutY="50.0" text="Rolle" />
-		<ComboBox fx:id="cmbRolle" layoutX="80.0" layoutY="50.0" prefWidth="200.0" />
-		<Label layoutX="10.0" layoutY="80.0" text="Name:" />
-		<TextField fx:id="txtName" layoutX="80.0" layoutY="80.0" prefWidth="200.0" />
-		<Label layoutX="10.0" layoutY="110.0" text="Vorname:" />
-		<TextField fx:id="txtVorname" layoutX="80.0" layoutY="110.0" prefWidth="200.0" />
-		<Label layoutX="300.0" layoutY="50.0" text="Adresse:">
+	<Label fx:id="lblError" layoutX="342.0" layoutY="6.0" prefHeight="17.0" prefWidth="813.0" textFill="RED" />
+		<Label layoutX="50.0" layoutY="32.0" text="Rolle:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+		<ComboBox fx:id="cmbRolle" layoutX="119.0" layoutY="27.0" prefWidth="200.0" />
+		<Label layoutX="53.0" layoutY="63.0" text="Name:" />
+		<TextField fx:id="txtName" layoutX="119.0" layoutY="58.0" prefWidth="200.0" />
+		<Label layoutX="53.0" layoutY="92.0" text="Vorname:" />
+		<TextField fx:id="txtVorname" layoutX="119.0" layoutY="87.0" prefHeight="27.0" prefWidth="200.0" />
+		<Label layoutX="338.0" layoutY="33.0" text="Adresse:">
 			<font>
 				<Font name="System Bold" size="12.0" />
 			</font>
 		</Label>
-		<Label layoutX="300.0" layoutY="80.0" text="Strasse:" />
-		<TextField fx:id="txtStrasse" layoutX="350.0" layoutY="80.0" prefHeight="25.0" prefWidth="200.0" />
-		<Label layoutX="300.0" layoutY="110.0" text="Plz / Ort:" />
-		<TextField fx:id="txtPlz" layoutX="350.0" layoutY="110.0" prefWidth="50.0" />
-		<TextField fx:id="txtOrt" layoutX="400.0" layoutY="110.0" prefWidth="149.0" />
-		<Label layoutX="570.0" layoutY="50.0" text="Kontakt:">
+		<Label layoutX="342.0" layoutY="63.0" text="Strasse:" />
+		<TextField fx:id="txtStrasse" layoutX="395.0" layoutY="58.0" prefHeight="25.0" prefWidth="200.0" />
+		<Label layoutX="340.0" layoutY="92.0" text="Plz / Ort:" />
+		<TextField fx:id="txtPlz" layoutX="395.0" layoutY="87.0" prefWidth="50.0" />
+		<TextField fx:id="txtOrt" layoutX="445.0" layoutY="87.0" prefWidth="149.0" />
+		<Label layoutX="609.0" layoutY="33.0" text="Kontakt:">
 			<font>
 				<Font name="System Bold" size="12.0" />
 			</font>
 		</Label>
-		<Label layoutX="570.0" layoutY="80.0" text="Email:" />
-		<TextField fx:id="txtEmail" layoutX="620.0" layoutY="80.0" prefWidth="200.0" />
-		<Label layoutX="570.0" layoutY="110.0" text="Telefon:" />
-		<TextField fx:id="txtTelefon" layoutX="620.0" layoutY="110.0" prefWidth="200.0" />
-		<Label layoutX="840.0" layoutY="50.0" text="Credentials:">
+		<Label layoutX="617.0" layoutY="63.0" text="Email:" />
+		<TextField fx:id="txtEmail" layoutX="670.0" layoutY="58.0" prefHeight="27.0" prefWidth="190.0" />
+		<Label layoutX="610.0" layoutY="92.0" text="Telefon:" />
+		<TextField fx:id="txtTelefon" layoutX="670.0" layoutY="87.0" prefHeight="27.0" prefWidth="190.0" />
+		<Label layoutX="880.0" layoutY="33.0" text="Credentials:">
 			<font>
 				<Font name="System Bold" size="12.0" />
 			</font>
 		</Label>
-		<Label layoutX="840.0" layoutY="80.0" text="Benutzername:" />
-		<TextField fx:id="txtBenutzername" layoutX="930.0" layoutY="80.0" prefWidth="200.0" />
-		<Label layoutX="840.0" layoutY="110.0" text="Kennwort:" />
-		<TextField fx:id="txtKennwort" layoutX="930.0" layoutY="110.0" prefWidth="200.0" />
+		<Label layoutX="880.0" layoutY="63.0" text="Benutzername:" />
+		<TextField fx:id="txtBenutzername" layoutX="980.0" layoutY="58.0" prefHeight="27.0" prefWidth="178.0" />
+		<Label layoutX="880.0" layoutY="92.0" text="Kennwort:" />
+		<TextField fx:id="txtKennwort" layoutX="980.0" layoutY="87.0" prefHeight="27.0" prefWidth="178.0" />
 
-		<Separator layoutX="9.0" layoutY="144.0" prefHeight="0.0" prefWidth="1122.0" />
-		<Button layoutX="1050.0" layoutY="155.0" mnemonicParsing="false" onAction="#speichern" prefWidth="80.0" text="Speichern" />
-		<Button fx:id="btnNeu" layoutX="10.0" layoutY="155.0" mnemonicParsing="false" onAction="#neuenBenutzerErfassen" prefWidth="80.0" text="Neu" />
+		<Separator layoutX="39.0" layoutY="128.0" prefHeight="4.0" prefWidth="1130.0" />
+		<Button layoutX="1074.0" layoutY="157.0" mnemonicParsing="false" onAction="#speichern" prefWidth="80.0" text="Speichern" />
+		<Button fx:id="btnNeu" layoutX="48.0" layoutY="157.0" mnemonicParsing="false" onAction="#neuenBenutzerErfassen" prefWidth="80.0" text="Neu" />
 
-		<Label layoutX="10.0" layoutY="195.0" text="Benutzer:" />
-		<TableView fx:id="tblBenutzer" layoutX="10.0" layoutY="210.0" prefHeight="280.0" prefWidth="1118.0">
+		<Label layoutX="53.0" layoutY="132.0" text="Benutzer:" />
+		<TableView fx:id="tblBenutzer" layoutX="47.0" layoutY="209.0" prefHeight="235.0" prefWidth="1107.0">
 			<columns>
 				<TableColumn fx:id="colNummer" prefWidth="40.0" text="Nr." />
 				<TableColumn fx:id="colName" prefWidth="100.0" text="Name" />
@@ -80,6 +83,6 @@
 				<TableColumn fx:id="colRolle" prefWidth="167.0" text="Rolle" />
 			</columns>
 		</TableView>
-		<Button fx:id="btnLoeschen" layoutX="1048.0" layoutY="500.0" mnemonicParsing="false" onAction="#loeschen" prefWidth="80.0" text="Löschen" />
+		<Button fx:id="btnLoeschen" layoutX="139.0" layoutY="157.0" mnemonicParsing="false" onAction="#loeschen" prefWidth="80.0" text="Löschen" />
 	</children>
 </AnchorPane>

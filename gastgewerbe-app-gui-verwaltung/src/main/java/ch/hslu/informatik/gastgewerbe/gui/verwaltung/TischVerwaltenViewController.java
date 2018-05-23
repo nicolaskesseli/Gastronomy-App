@@ -35,6 +35,9 @@ public class TischVerwaltenViewController implements Initializable {
     private Button btnLoeschen;
 
     @FXML
+    private Button btnReset;
+
+    @FXML
     private TextField txtTischNummer;
 
     @FXML

@@ -21,15 +21,6 @@ public class MainApp extends Application {
 
 			BorderPane mainRoot = new BorderPane();
 
-			mainRoot.setMinWidth(1180);
-			mainRoot.setMinHeight(600);
-
-			mainRoot.setPrefWidth(1180);
-			mainRoot.setPrefHeight(600);
-
-			mainRoot.setMaxWidth(1180);
-			mainRoot.setMaxHeight(600);
-
 			/* mainRoot 'exportieren' zu Context */
 			Context.getInstance().setMainRoot(mainRoot);
 

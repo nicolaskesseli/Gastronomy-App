@@ -7,32 +7,32 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="1180.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.verwaltung.BestellungViewController">
+<AnchorPane prefHeight="600" prefWidth="1200" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.verwaltung.BestellungViewController">
    <children>
-      <Button fx:id="bestellungBereitBtn" layoutX="873.0" layoutY="363.0" mnemonicParsing="false" onAction="#bestellungBereit" prefHeight="39.0" prefWidth="216.0" text="Position bereit">
+      <Button fx:id="bestellungBereitBtn" layoutX="873.0" layoutY="279.0" mnemonicParsing="false" onAction="#bestellungBereit" prefHeight="39.0" prefWidth="216.0" text="Position bereit">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Button>
-      <Button fx:id="bestellungLöschenBtn" layoutX="873.0" layoutY="50.0" mnemonicParsing="false" onAction="#bestellungLöschen" prefHeight="39.0" prefWidth="216.0" text="Bestellung löschen">
+      <Button fx:id="bestellungLöschenBtn" layoutX="873.0" layoutY="31.0" mnemonicParsing="false" onAction="#bestellungLöschen" prefHeight="39.0" prefWidth="216.0" text="Bestellung löschen">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <TableView fx:id="tblBestBar" layoutX="52.0" layoutY="50.0" prefHeight="295.0" prefWidth="742.0">
+      <TableView fx:id="tblBestBar" layoutX="52.0" layoutY="31.0" prefHeight="218.0" prefWidth="742.0">
         <columns>
           <TableColumn fx:id="colTischNr" prefWidth="75.0" text="Tisch-Nr." />
           <TableColumn fx:id="colZeit" prefWidth="129.0" text="Zeit" />
             <TableColumn fx:id="colBemerkung" prefWidth="537.0" text="Bemerkung" />
         </columns>
       </TableView>
-      <TableView fx:id="tblPosBar" layoutX="52.0" layoutY="363.0" prefHeight="189.0" prefWidth="742.0">
+      <TableView fx:id="tblPosBar" layoutX="52.0" layoutY="279.0" prefHeight="203.0" prefWidth="742.0">
         <columns>
             <TableColumn fx:id="colPos" minWidth="1.0" prefWidth="61.0" text="Pos-Nr." />
             <TableColumn fx:id="colAnzahl" prefWidth="63.0" text="Anzahl" />
             <TableColumn fx:id="colProdukt" prefWidth="617.0" text="Produkt" />
         </columns>
       </TableView>
-      <Label layoutX="52.0" layoutY="30.0" prefHeight="17.0" prefWidth="128.0" text="Bestellungen" />
-      <Label layoutX="54.0" layoutY="342.0" prefHeight="21.0" prefWidth="161.0" text="Bestellungspositionen" />
+      <Label layoutX="52.0" layoutY="14.0" prefHeight="17.0" prefWidth="128.0" text="Bestellungen" />
+      <Label layoutX="52.0" layoutY="258.0" prefHeight="21.0" prefWidth="161.0" text="Bestellungspositionen" />
    </children>
 </AnchorPane>

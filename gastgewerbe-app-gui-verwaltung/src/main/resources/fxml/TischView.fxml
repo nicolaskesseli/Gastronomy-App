@@ -7,16 +7,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="417.0" prefWidth="865.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.verwaltung.TischVerwaltenViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="1200" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.verwaltung.TischVerwaltenViewController">
    <children>
-      <Text layoutX="135.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tisch Verwalten" textAlignment="CENTER" wrappingWidth="538.7999267578125">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
       <Label fx:id="lblError" layoutX="52.0" layoutY="386.0" prefHeight="17.0" prefWidth="742.0" textFill="RED" />
       <Button fx:id="btnHinzufuegen" layoutX="52.0" layoutY="345.0" mnemonicParsing="false" onAction="#speichern" text="Hinzufügen" />
       <Button fx:id="btnLoeschen" layoutX="52.0" layoutY="229.0" mnemonicParsing="false" onAction="#loeschen" text="Löschen" />
@@ -29,5 +22,6 @@
           <TableColumn fx:id="colTischNr" prefWidth="116.0" text="Tischnummer" />
         </columns>
       </TableView>
+      <Button fx:id="btnReset" layoutX="129.0" layoutY="229.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
    </children>
 </AnchorPane>

@@ -15,8 +15,8 @@ public class MenuBarViewController implements Initializable {
 
     private static final String TITEL_BENUTZER_VERWALTEN = "Benutzer verwalten";
     private static final String TITEL_BESTELLUNGEN_ANSCHAUEN = "Bestellübersicht";
-    private static final String TITEL_PRODUKT_VERWALTEN = "Produkte verwalten";
-    private static final String TITEL_TISCH_VERWALTEN = "Tische verwalten";
+    private static final String TITEL_PRODUKT_VERWALTEN = "Produkt verwalten";
+    private static final String TITEL_TISCH_VERWALTEN = "Tisch verwalten";
     private static final String TITEL_ABRECHNUNG_VERWALTEN = "Tagesabrechnung";
 
     @FXML
