@@ -15,6 +15,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>ch.hslu.informatik</groupId>
+			<artifactId>gastgewerbe-app-model</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>javax.persistence</artifactId>
 			<version>2.1.0</version>
@@ -23,11 +28,6 @@
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>
 			<version>2.5.0</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.hslu.informatik</groupId>
-			<artifactId>gastgewerbe-app-model</artifactId>
-			<version>1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.postgresql</groupId>
