@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="570.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hslu.informatik.gastgewerbe.gui.kellner.AbrechnungTischController">
@@ -34,7 +35,7 @@
             <TableColumn fx:id="colAnzahl" minWidth="0.0" prefWidth="98.0" text="Anzahl" />
         </columns>
       </TableView>
-      <Label layoutX="71.0" layoutY="482.0" prefHeight="28.0" prefWidth="144.0" text="Total CHF">
+      <Label layoutX="71.0" layoutY="482.0" prefHeight="28.0" prefWidth="144.0" text="Total">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
@@ -49,10 +50,12 @@
             <Font size="19.0" />
          </font>
       </Button>
-      <Label fx:id="lblTotal" alignment="CENTER" layoutX="195.0" layoutY="479.0" prefHeight="35.0" prefWidth="220.0">
+      <Label fx:id="lblTotal" alignment="CENTER" layoutX="195.0" layoutY="479.0" prefHeight="35.0" prefWidth="201.0">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
+      <Line endX="100.0" layoutX="296.0" layoutY="509.0" startX="-100.0" />
+      <Line endX="100.0" layoutX="296.0" layoutY="514.0" startX="-100.0" />
    </children>
 </AnchorPane>

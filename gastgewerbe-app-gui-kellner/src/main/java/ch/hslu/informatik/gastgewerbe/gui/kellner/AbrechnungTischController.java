@@ -207,7 +207,7 @@ public class AbrechnungTischController implements Initializable {
 			
 			String gesamtTotal = String.valueOf(gesamtBetrag);
 			
-			lblTotal.setText(gesamtTotal);
+			lblTotal.setText(gesamtTotal + "0 CHF");
 
 			pListe.clear();
 			gesamtBetrag = 0;
