@@ -128,6 +128,9 @@ public class BestellungErfassenController implements Initializable {
 		Produkt p;
 
 		try {
+			gerichtNrInput.setText("");
+			gerichtNameInput.setText("");
+			inputAnzahl.setText("1");
 
 			p = Context.getInstance().getProduktService().findByProduktCode(gerichtCode);
 
@@ -158,7 +161,9 @@ public class BestellungErfassenController implements Initializable {
 		String gerichtName = gerichtNameInput.getText();
 
 		try {
-
+			gerichtNrInput.setText("");
+			gerichtNameInput.setText("");
+			inputAnzahl.setText("1");
 			namenListe = Context.getInstance().getProduktService().findProduktByName(gerichtName);
 
 			if (namenListe.isEmpty() == true) {
@@ -351,7 +356,7 @@ public class BestellungErfassenController implements Initializable {
 							if (tRow.getItem() == null) {
 
 							} else {
-
+								inputAnzahl.setText("1");
 								ProduktWrapper item = tRow.getItem();
 
 								Produkt produkt = item.getProdukt();
@@ -440,7 +445,7 @@ public class BestellungErfassenController implements Initializable {
 				bemerkung = "";
 			}
 
-			if (tischNrInput.getText().isEmpty()) {
+			if (tischNrInput.getText().isEmpty()  ) {
 
 				tischNrInput.setText("Tisch-Nr. eingeben.");
 
@@ -504,10 +509,9 @@ public class BestellungErfassenController implements Initializable {
 			}
 
 		} catch (NumberFormatException e) {
-			String msg = "Keine Nummer im Eingabefeld.";
 			String ausgabe = "Nummer eingeben!";
 			tischNrInput.setText(ausgabe);
-			throw new Exception(msg);
+		
 
 		} catch (Exception e) {
 			String msg = "Ein Fehler ist bei Bestellungübergabe aufgetreten";

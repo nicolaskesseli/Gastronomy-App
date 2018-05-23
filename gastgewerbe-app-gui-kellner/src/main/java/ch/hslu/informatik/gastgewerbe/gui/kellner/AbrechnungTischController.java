@@ -99,10 +99,11 @@ public class AbrechnungTischController implements Initializable {
 
 		tblUebersichtBestellung.getItems().clear();
 		tischNrInput.setText("");
+		lblTotal.setText("");
 		
 		} catch (NumberFormatException e) {
 			String msg = "Keine Nummer im Eingabefeld";
-			String ausgabe = "Nummer eingeben";
+			String ausgabe = "Nr. eingeben";
 			tischNrInput.setText(ausgabe);
 			throw new Exception(msg, e);
 		} catch (Exception e) {
