@@ -224,15 +224,13 @@ public class AppInitializer {
 
     private static void initTisch() throws Exception {
         logger.info(">> Erzeugung von Tischen gestartet.");
-        Tisch tisch1 = new Tisch(1);
-        Tisch tisch2 = new Tisch (2);
-        Tisch tisch3 = new Tisch (3);
-        Tisch tisch4 = new Tisch (4);
+
         List<Tisch> tische = new ArrayList<>();
-        tische.add(tisch1);
-        tische.add(tisch2);
-        tische.add(tisch3);
-        tische.add(tisch4);
+
+
+        for (int i = 0; i < 100; i++) {
+			tische.add(new Tisch(i));
+		}
 
         for (Tisch t:tische){
             logger.info("  >> Tisch " + t.getId()+" "+ t.getTischNr()+ " wurde erzeugt.");
