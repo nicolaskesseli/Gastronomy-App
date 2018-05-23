@@ -35,7 +35,7 @@ public interface BenutzerService {
 	List<Benutzer> alleBenutzer() throws Exception;
 	
 	
-	//Zeigt alle Rollen an (Admin, User)
+	//Zeigt alle Rollen an (Admin, User usw.)
 	List<RolleTyp> alleRollen() throws Exception;
 	
 }

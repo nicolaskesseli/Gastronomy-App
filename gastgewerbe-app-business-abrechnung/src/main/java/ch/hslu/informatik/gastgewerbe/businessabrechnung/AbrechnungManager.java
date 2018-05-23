@@ -138,5 +138,16 @@ public class AbrechnungManager implements AbrechnungService {
 			throw new Exception(msg + e);
 		}
 	}
+
+	// Liefert alle Abrechnungen
+	public List<Abrechnung> alleAbrechnungen() throws Exception {
+		try {
+			return getAbrechnungDAO().findAll();
+		} catch (Exception e) {
+			String msg = "Abrechnungen konnten nicht gefunden werden";
+			logger.error(msg, e);
+			throw new Exception(msg + e);
+		}
+	}
 }
 

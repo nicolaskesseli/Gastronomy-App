@@ -28,4 +28,7 @@ public interface AbrechnungService {
     // Gibt Abrechnung mit der übergebenen ID zurück
 	Abrechnung findById(Long id) throws Exception;
 
+	// Liefert alle Abrechnungen
+	List<Abrechnung> alleAbrechnungen() throws Exception;
+
 }

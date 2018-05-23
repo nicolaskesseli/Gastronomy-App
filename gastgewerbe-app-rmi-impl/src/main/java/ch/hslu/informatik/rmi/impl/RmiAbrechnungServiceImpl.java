@@ -55,4 +55,9 @@ public class RmiAbrechnungServiceImpl extends UnicastRemoteObject implements Rmi
 	public Abrechnung findById(Long id) throws Exception {
 		return getAbrechnungService().findById(id);
 	}
+
+	@Override
+	public List<Abrechnung> alleAbrechnungen() throws Exception {
+		return getAbrechnungService().alleAbrechnungen();
+	}
 }

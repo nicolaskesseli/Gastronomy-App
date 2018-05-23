@@ -72,6 +72,9 @@ public class AbrechnungViewController implements Initializable {
     private Button btnSuchen;
 
     @FXML
+    private Button btnAlleAnzeigen;
+
+    @FXML
     private Button btnAbschliessen;
 
     @FXML
@@ -170,7 +173,16 @@ public class AbrechnungViewController implements Initializable {
 
                 gesamtBetragTagesAbrech = Context.getInstance().getAbrechnungService().abschluss(abschluss);
 
+                // Tabelle aktualisieren...
+                for (AbrechnungWrapper a : ausgewaelt){
+                    a.setTagesAbrechnung(true);
+                }
+
+                tblUebersichtBestellung.getItems().clear();
+                tblUebersichtBestellung.getItems().addAll(ausgewaelt);
+
                 lblTotal.setText(String.valueOf(gesamtBetragTagesAbrech));
+
             } else {
                 Alert info = new Alert(Alert.AlertType.INFORMATION);
                 info.setTitle("Info");
@@ -192,9 +204,15 @@ public class AbrechnungViewController implements Initializable {
 
             throw new Exception(msg + e);
         }
+    }
 
+    @FXML
+    void alleAnzeigen(ActionEvent event) {
+
+        updateTable();
 
     }
+
     
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -250,15 +268,47 @@ public class AbrechnungViewController implements Initializable {
             /* Binding für die Schaltfläche 'Abschliessen' erstellen */
             btnAbschliessen.disableProperty().bind(Bindings.size(tblUebersichtBestellung.getItems()).lessThan(1));
 
+            // Tabelle updaten
+            updateTable();
+
 
 
         }catch (Exception e){
             logger.error("Fehler bei der View-Initialisierung: ", e);
             throw new RuntimeException(e);
-
-	    	
-	    
         }
     
     }
+
+    private void updateTable(){
+
+        lblError.setText("");
+        lblTotal.setText("");
+
+        tblUebersichtBestellung.getItems().clear();
+        abrechnungList.clear();
+        abrechnungWrapperList.clear();
+
+        try {
+            List<Abrechnung> alle = Context.getInstance().getAbrechnungService().alleAbrechnungen();
+
+            for(Abrechnung a : alle){
+                if(a.getBestellung().isRechnungBezahlt()){
+                    abrechnungList.add(a);
+                }
+            }
+
+            for(Abrechnung a : abrechnungList ){
+                abrechnungWrapperList.add(new AbrechnungWrapper(a));
+            }
+
+            tblUebersichtBestellung.getItems().addAll(abrechnungWrapperList);
+
+        } catch (Exception e) {
+            logger.error("Fehler beim updaten der Tabelle: ", e);
+            throw new RuntimeException(e);
+        }
+
+    }
+
 }
