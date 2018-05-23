@@ -5,7 +5,7 @@
     project="gastgewerbe-app-gui-kellner" 
     file="/gastgewerbe-app-gui-kellner/src/main/java/ch/hslu/informatik/gastgewerbe/gui/kellner/Context.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="572" width="353" x="207" y="100"/>    
+    <position height="-1" width="-1" x="42" y="-100"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -16,7 +16,7 @@
     project="gastgewerbe-app-gui-kellner" 
     file="/gastgewerbe-app-gui-kellner/src/main/java/ch/hslu/informatik/gastgewerbe/gui/kellner/BestellungBereitController.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="392" width="398" x="610" y="100"/>    
+    <position height="-1" width="-1" x="474" y="-199"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -27,7 +27,7 @@
     project="gastgewerbe-app-gui-kellner" 
     file="/gastgewerbe-app-gui-kellner/src/main/java/ch/hslu/informatik/gastgewerbe/gui/kellner/BestellungErfassenController.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="788" width="493" x="1048" y="100"/>    
+    <position height="-1" width="-1" x="953" y="-10"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -38,7 +38,7 @@
     project="gastgewerbe-app-gui-kellner" 
     file="/gastgewerbe-app-gui-kellner/src/main/java/ch/hslu/informatik/gastgewerbe/gui/kellner/MainWindowController.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="320" width="264" x="1581" y="100"/>    
+    <position height="-1" width="-1" x="1372" y="-217"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -49,7 +49,7 @@
     project="gastgewerbe-app-gui-kellner" 
     file="/gastgewerbe-app-gui-kellner/src/main/java/ch/hslu/informatik/gastgewerbe/gui/kellner/MainApp.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="140" width="218" x="1885" y="100"/>    
+    <position height="-1" width="-1" x="1653" y="-307"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -60,7 +60,7 @@
     project="gastgewerbe-app-gui-kellner" 
     file="/gastgewerbe-app-gui-kellner/src/main/java/ch/hslu/informatik/gastgewerbe/gui/kellner/AbrechnungTischController.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="500" width="467" x="2143" y="100"/>    
+    <position height="-1" width="-1" x="2035" y="-136"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -71,7 +71,7 @@
     project="gastgewerbe-app-gui-kellner" 
     file="/gastgewerbe-app-gui-kellner/src/main/java/ch/hslu/informatik/gastgewerbe/gui/kellner/LoginViewController.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="266" width="259" x="2650" y="100"/>    
+    <position height="-1" width="-1" x="2438" y="-244"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -82,7 +82,7 @@
     project="gastgewerbe-app-gui-kellner" 
     file="/gastgewerbe-app-gui-kellner/src/main/java/ch/hslu/informatik/gastgewerbe/gui/wrapper/ProduktWrapper.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1720" y="845"/>    
+    <position height="-1" width="-1" x="948" y="1031"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
     project="gastgewerbe-app-gui-kellner" 
     file="/gastgewerbe-app-gui-kellner/src/main/java/ch/hslu/informatik/gastgewerbe/gui/wrapper/BestellungWrapper.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="798" y="697"/>    
+    <position height="-1" width="-1" x="474" y="1035"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -104,7 +104,7 @@
     project="gastgewerbe-app-gui-kellner" 
     file="/gastgewerbe-app-gui-kellner/src/main/java/ch/hslu/informatik/gastgewerbe/gui/wrapper/BestellungPositionWrapper.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1294" y="1638"/>    
+    <position height="-1" width="-1" x="1614" y="1056"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -112,73 +112,73 @@
     </display>  
   </class>  
   <association id="11">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="12" name="bestellungenListe"/>      
-      <multiplicity id="13" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="14">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="15" name="offeneBestellungPositionWrapperListe"/>      
-      <multiplicity id="16" minimum="0" maximum="2147483647"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="12" name="position"/>      
+      <multiplicity id="13" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="14">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="15" name="produktListe"/>      
+      <multiplicity id="16" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <association id="17">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="18" name="INSTANCE"/>      
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="18" name="position2"/>      
       <multiplicity id="19" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="20">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="21" name="anzahlBearbeiten"/>      
-      <multiplicity id="22" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="21" name="positionenListe"/>      
+      <multiplicity id="22" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="23">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="24" name="gefundesProdukt"/>      
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="24" name="INSTANCE"/>      
       <multiplicity id="25" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="26">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="27" name="produktListe"/>      
-      <multiplicity id="28" minimum="0" maximum="2147483647"/>    
+      <attribute id="27" name="gefundesProdukt"/>      
+      <multiplicity id="28" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="29">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="30" name="position"/>      
-      <multiplicity id="31" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="30" name="bestellungenListe"/>      
+      <multiplicity id="31" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
+    <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="32">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="33" name="positionenListe"/>      
-      <multiplicity id="34" minimum="0" maximum="2147483647"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="33" name="anzahlBearbeiten"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="35">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="36" name="position2"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="36" name="offeneBestellungPositionWrapperListe"/>      
+      <multiplicity id="37" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  

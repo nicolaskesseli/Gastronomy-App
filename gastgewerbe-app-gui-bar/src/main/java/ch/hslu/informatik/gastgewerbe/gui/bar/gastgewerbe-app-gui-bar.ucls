@@ -4,7 +4,7 @@
   <class id="1" language="java" name="ch.hslu.informatik.gastgewerbe.gui.bar.Context" project="gastgewerbe-app-gui-bar" 
     file="/gastgewerbe-app-gui-bar/src/main/java/ch/hslu/informatik/gastgewerbe/gui/bar/Context.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="206" y="238"/>    
+    <position height="-1" width="-1" x="176" y="226"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -15,7 +15,7 @@
     project="gastgewerbe-app-gui-bar" 
     file="/gastgewerbe-app-gui-bar/src/main/java/ch/hslu/informatik/gastgewerbe/gui/bar/LoginViewController.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="535" y="175"/>    
+    <position height="-1" width="-1" x="505" y="163"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -25,7 +25,7 @@
   <class id="3" language="java" name="ch.hslu.informatik.gastgewerbe.gui.bar.MainApp" project="gastgewerbe-app-gui-bar" 
     file="/gastgewerbe-app-gui-bar/src/main/java/ch/hslu/informatik/gastgewerbe/gui/bar/MainApp.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="806" y="112"/>    
+    <position height="-1" width="-1" x="776" y="100"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -36,7 +36,7 @@
     project="gastgewerbe-app-gui-bar" 
     file="/gastgewerbe-app-gui-bar/src/main/java/ch/hslu/informatik/gastgewerbe/gui/bar/MainWindowBarController.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1146" y="265"/>    
+    <position height="-1" width="-1" x="1116" y="235"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -47,7 +47,7 @@
     project="gastgewerbe-app-gui-bar" 
     file="/gastgewerbe-app-gui-bar/src/main/java/ch/hslu/informatik/gastgewerbe/gui/wrapper/BestellungPositionWrapper.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="540" y="721"/>    
+    <position height="-1" width="-1" x="414" y="659"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -58,7 +58,7 @@
     project="gastgewerbe-app-gui-bar" 
     file="/gastgewerbe-app-gui-bar/src/main/java/ch/hslu/informatik/gastgewerbe/gui/wrapper/BestellungWrapper.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="965" y="765"/>    
+    <position height="-1" width="-1" x="857" y="677"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,25 +66,37 @@
     </display>  
   </class>  
   <association id="7">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="8" name="bestellungenListe"/>      
-      <multiplicity id="9" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="10">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="11" name="INSTANCE"/>      
-      <multiplicity id="12" minimum="0" maximum="1"/>    
+      <attribute id="8" name="INSTANCE">        
+        <position height="0" width="0" x="-30" y="-30"/>      
+      </attribute>      
+      <multiplicity id="9" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-30" y="-30"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="10">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="11" name="bestellungenListe">        
+        <position height="0" width="0" x="-108" y="-88"/>      
+      </attribute>      
+      <multiplicity id="12" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-108" y="-88"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <association id="13">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="14" name="positionenListe"/>      
-      <multiplicity id="15" minimum="0" maximum="2147483647"/>    
+      <attribute id="14" name="positionenListe">        
+        <position height="0" width="0" x="-126" y="-62"/>      
+      </attribute>      
+      <multiplicity id="15" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-126" y="-62"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
