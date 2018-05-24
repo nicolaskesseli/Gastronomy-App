@@ -196,7 +196,9 @@ public class BestellungBereitController extends TimerTask implements Initializab
                                 List<BestellungPosition> tempListe = bestellung.getBestellungPositionListe();
                                 for (BestellungPosition p : tempListe) {
                                     if (!p.isBestellungAusgeliefert()) {
+                                    	if (p.isBestellungBereit()) {
                                         positionenListe.add(new BestellungPositionWrapper(p));
+                                    	}
                                     }
                                 }
                                 tblPosKellner.getItems().addAll(positionenListe);
@@ -241,8 +243,10 @@ public class BestellungBereitController extends TimerTask implements Initializab
                 List<BestellungPosition> bestellungPosition = b.getBestellungPositionListe();
                 for (BestellungPosition p : bestellungPosition) {
                         if(!p.isBestellungAusgeliefert()){
-                            if(!kellnerBestellungen.contains(b)){
+                        	if(p.isBestellungBereit()) {
+                        		if(!kellnerBestellungen.contains(b)){
                                 kellnerBestellungen.add(b);
+                        		}
                             }
                         }
                 }
